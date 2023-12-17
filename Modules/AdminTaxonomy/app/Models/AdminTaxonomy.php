@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\AdminTaxonomy\Database\factories\TaxonomyFactory;
 
-class Taxonomy extends Model
+class AdminTaxonomy extends Model
 {
     use HasFactory;
 
+    protected $table = 'taxonomies';
     /**
      * The attributes that are mass assignable.
      */
@@ -79,8 +80,4 @@ class Taxonomy extends Model
         $items = $query->paginate($limit);
         return $items;
     }
-    public static function getActiveItems(){
-        return self::where('status',self::ACTIVE)->get();
-    }
-
 }

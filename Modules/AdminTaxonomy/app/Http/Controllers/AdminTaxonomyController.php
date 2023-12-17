@@ -7,7 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Modules\AdminTaxonomy\app\Http\Requests\StoreAdminTaxonomyRequest;
 use Illuminate\Http\Response;
-use Modules\AdminTaxonomy\app\Models\Taxonomy;
+use Modules\AdminTaxonomy\app\Models\AdminTaxonomy;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Log;
@@ -16,7 +16,7 @@ class AdminTaxonomyController extends Controller
 {
     protected $view_path    = 'admintaxonomy::';
     protected $route_prefix = 'admintaxonomy.';
-    protected $model        = Taxonomy::class;
+    protected $model        = AdminTaxonomy::class;
     protected $limit        = 3;
 
     public function index(Request $request)
