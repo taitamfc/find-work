@@ -39,7 +39,11 @@ class AdminTaxonomyController extends Controller
      */
     public function create()
     {
-        return view($this->view_path.'create');
+        $params = [
+            'route_prefix'  => $this->route_prefix,
+            'model'         => $this->model
+        ];
+        return view($this->view_path.'create', $params);
     }
 
     /**
@@ -65,6 +69,8 @@ class AdminTaxonomyController extends Controller
         try {
             $item = $this->model::findOrFail($id);
             $params = [
+                'route_prefix'  => $this->route_prefix,
+                'model'         => $this->model,
                 'item' => $item
             ];
             return view($this->view_path.'show', $params);
@@ -82,6 +88,8 @@ class AdminTaxonomyController extends Controller
         try {
             $item = $this->model::findOrFail($id);
             $params = [
+                'route_prefix'  => $this->route_prefix,
+                'model'         => $this->model,
                 'item' => $item
             ];
             return view($this->view_path.'edit', $params);
