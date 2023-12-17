@@ -13,7 +13,10 @@ use Modules\AdminTheme\app\Http\Controllers\AdminThemeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::group([], function () {
-    Route::resource('admintheme', AdminThemeController::class)->names('admintheme');
+Route::group(['prefix'=>'admin'], function () {
+    Route::group(['prefix'=>'admintheme'], function () {
+        Route::get('/', [AdminThemeController::class,'index'])->name('admintheme.index');
+        Route::get('/create', [AdminThemeController::class,'create'])->name('admintheme.create');
+        Route::get('/login', [AdminThemeController::class,'login'])->name('admintheme.login');
+    });
 });

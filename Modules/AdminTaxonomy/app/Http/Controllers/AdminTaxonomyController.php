@@ -5,16 +5,34 @@ namespace Modules\AdminTaxonomy\app\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Modules\AdminTaxonomy\app\Http\Requests\StoreAdminTaxonomyRequest;
 use Illuminate\Http\Response;
+use Modules\AdminTaxonomy\app\Models\Taxonomy;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 
 class AdminTaxonomyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    protected $view_path    = 'admintaxonomy::';
+    protected $route_prefix = 'admintaxonomy.';
+    protected $model        = Taxonomy::class;
+    protected $limit        = 3;
+
+    public function index(Request $request)
     {
-        return view('admintaxonomy::index');
+        try {
+            $items = $this->model::getAdminItems($request,$this->limit);
+            $params = [
+                'route_prefix'  => $this->route_prefix,
+                'model'         => $this->model,
+                'items'         => $items
+            ];
+            return view($this->view_path.'index', $params);
+        } catch (QueryException $e) {
+            Log::error('Error in index method: ' . $e->getMessage());
+            return redirect()->back()->with('error',  __('sys.get_items_error'));
+        }
     }
 
     /**
@@ -22,15 +40,21 @@ class AdminTaxonomyController extends Controller
      */
     public function create()
     {
-        return view('admintaxonomy::create');
+        return view($this->view_path.'create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreAdminTaxonomyRequest $request): RedirectResponse
     {
-        //
+        try {
+            $this->model::create($request->all());
+            return redirect()->route($this->route_prefix.'index')->with('success', __('sys.store_item_success'));
+        } catch (QueryException $e) {
+            Log::error('Error in store method: ' . $e->getMessage());
+            return redirect()->back()->with('error', __('sys.item_not_found'));
+        }
     }
 
     /**
@@ -38,7 +62,16 @@ class AdminTaxonomyController extends Controller
      */
     public function show($id)
     {
-        return view('admintaxonomy::show');
+        try {
+            $item = $this->model::findOrFail($id);
+            $params = [
+                'item' => $item
+            ];
+            return view($this->view_path.'show', $params);
+        } catch (ModelNotFoundException $e) {
+            Log::error('Item not found: ' . $e->getMessage());
+            return redirect()->back()->with('error', __('sys.item_not_found'));
+        }
     }
 
     /**
@@ -46,15 +79,34 @@ class AdminTaxonomyController extends Controller
      */
     public function edit($id)
     {
-        return view('admintaxonomy::edit');
+        try {
+            $item = $this->model::findOrFail($id);
+            $params = [
+                'item' => $item
+            ];
+            return view($this->view_path.'edit', $params);
+        } catch (ModelNotFoundException $e) {
+            Log::error('Item not found: ' . $e->getMessage());
+            return redirect()->back()->with('error', __('sys.item_not_found'));
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(StoreAdminTaxonomyRequest $request, $id): RedirectResponse
     {
-        //
+        try {
+            $item = $this->model::findOrFail($id);
+            $item->update($request->all());
+            return redirect()->route($this->route_prefix.'index')->with('success', __('sys.update_item_success'));
+        } catch (ModelNotFoundException $e) {
+            Log::error('Item not found: ' . $e->getMessage());
+            return redirect()->back()->with('error', __('sys.item_not_found'));
+        } catch (QueryException $e) {
+            Log::error('Error in update method: ' . $e->getMessage());
+            return redirect()->back()->with('error', __('sys.update_item_error'));
+        }
     }
 
     /**
@@ -62,6 +114,16 @@ class AdminTaxonomyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $item = $this->model::findOrFail($id);
+            $item->delete();
+            return redirect()->route($this->route_prefix.'index')->with('success', __('sys.destroy_item_success'));
+        } catch (ModelNotFoundException $e) {
+            Log::error('Item not found: ' . $e->getMessage());
+            return redirect()->back()->with('error', __('sys.item_not_found'));
+        } catch (QueryException $e) {
+            Log::error('Error in destroy method: ' . $e->getMessage());
+            return redirect()->back()->with('error', __('sys.destroy_item_error'));
+        }
     }
 }

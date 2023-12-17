@@ -1,4 +1,5 @@
 {
     "AdminTaxonomy": true,
-    "AdminTheme": true
+    "AdminTheme": true,
+    "AdminUser": true
 }

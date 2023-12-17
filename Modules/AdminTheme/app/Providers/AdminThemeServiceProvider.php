@@ -4,6 +4,7 @@ namespace Modules\AdminTheme\app\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AdminThemeServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,7 @@ class AdminThemeServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'database/migrations'));
+        Paginator::useBootstrapFour();
     }
 
     /**
