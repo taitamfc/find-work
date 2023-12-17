@@ -17,12 +17,11 @@ class AdminTaxonomyController extends Controller
     protected $view_path    = 'admintaxonomy::';
     protected $route_prefix = 'admintaxonomy.';
     protected $model        = AdminTaxonomy::class;
-    protected $limit        = 3;
 
     public function index(Request $request)
     {
         try {
-            $items = $this->model::getAdminItems($request,$this->limit);
+            $items = $this->model::getAdminItems($request);
             $params = [
                 'route_prefix'  => $this->route_prefix,
                 'model'         => $this->model,
@@ -49,7 +48,8 @@ class AdminTaxonomyController extends Controller
     public function store(StoreAdminTaxonomyRequest $request): RedirectResponse
     {
         try {
-            $this->model::create($request->all());
+            $data = $request->all();
+            $this->model::create($data);
             return redirect()->route($this->route_prefix.'index')->with('success', __('sys.store_item_success'));
         } catch (QueryException $e) {
             Log::error('Error in store method: ' . $e->getMessage());
@@ -98,7 +98,8 @@ class AdminTaxonomyController extends Controller
     {
         try {
             $item = $this->model::findOrFail($id);
-            $item->update($request->all());
+            $data = $request->all();
+            $item->update($data);
             return redirect()->route($this->route_prefix.'index')->with('success', __('sys.update_item_success'));
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());

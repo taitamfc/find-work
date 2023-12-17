@@ -22,7 +22,7 @@ class AdminTaxonomy extends Model
     const ACTIVE    = 1;
     const INACTIVE  = 2;
     const DRAFT     = -1;
-    
+
     protected static function newFactory(): TaxonomyFactory
     {
         //return TaxonomyFactory::new();
