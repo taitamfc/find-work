@@ -17,7 +17,7 @@ use Modules\AdminUser\app\Http\Controllers\AdminUserController;
 
 Route::group(['prefix'=>'admin'], function () {
     Route::group(['prefix'=>'adminuser'], function () {
-        Route::get('login',[AdminAuthController::class,'login'])->name('adminuser.login');
+        Route::get('login',[AdminAuthController::class,'login'])->name('login');
         Route::post('postLogin',[AdminAuthController::class,'postLogin'])->name('adminuser.postLogin');
 
         Route::get('register',[AdminAuthController::class,'register'])->name('adminuser.register');

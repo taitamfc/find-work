@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('option_name')->unique();
             $table->text('option_value')->nullable();
+            $table->string('option_label')->nullable();
+            $table->string('option_group_label')->nullable();
+            $table->string('option_group')->nullable();
         });
     }
 
