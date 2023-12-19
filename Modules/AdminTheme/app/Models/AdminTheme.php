@@ -9,6 +9,8 @@ use Modules\AdminTheme\Database\factories\ThemeFactory;
 class Theme extends Model
 {
     use HasFactory;
+    protected $table    = 'admin_theme';
+    public $timestamps  = false;
 
     /**
      * The attributes that are mass assignable.

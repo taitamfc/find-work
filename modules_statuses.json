@@ -1,5 +1,8 @@
 {
     "AdminTaxonomy": true,
     "AdminTheme": true,
-    "AdminUser": true
+    "AdminUser": true,
+    "Migrate": false,
+    "CreateAdminThemeTable": false,
+    "AdminPost": true
 }
