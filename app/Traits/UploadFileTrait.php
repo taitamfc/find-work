@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 trait UploadFileTrait
 {
-    public function uploadFile($requestFile, $folder, $disk = 'public', $filename = null)
+    public static function uploadFile($requestFile, $folder, $disk = 'public', $filename = null)
     {
         ini_set('memory_limit', '256M');
         try {
@@ -42,11 +42,14 @@ trait UploadFileTrait
             return $e->getMessage();
         }
     }
-    public function deleteFile($fileName, $disk = 'public')
+    public static function deleteFile($fileName, $disk = 'public')
     {
         try {
             if ($fileName) {
-                Storage::delete($disk . '/' . $fileName);
+                $fileName = str_replace($fileName,'storage/','');
+                if( Storage::disk($disk)->exists($fileName) ){
+                    Storage::disk($disk)->delete($fileName);
+                }
             }
             return true;
         } catch (\Exception $e) {

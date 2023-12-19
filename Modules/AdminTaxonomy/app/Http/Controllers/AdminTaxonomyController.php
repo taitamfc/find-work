@@ -17,11 +17,10 @@ class AdminTaxonomyController extends Controller
     protected $view_path    = 'admintaxonomy::';
     protected $route_prefix = 'admintaxonomy.';
     protected $model        = AdminTaxonomy::class;
-
     public function index(Request $request)
     {
         try {
-            $items = $this->model::getAdminItems($request);
+            $items = $this->model::getItems($request);
             $params = [
                 'route_prefix'  => $this->route_prefix,
                 'model'         => $this->model,
@@ -52,8 +51,7 @@ class AdminTaxonomyController extends Controller
     public function store(StoreAdminTaxonomyRequest $request): RedirectResponse
     {
         try {
-            $data = $request->all();
-            $this->model::create($data);
+            $this->model::saveItem($request);
             return redirect()->route($this->route_prefix.'index')->with('success', __('sys.store_item_success'));
         } catch (QueryException $e) {
             Log::error('Error in store method: ' . $e->getMessage());
@@ -67,7 +65,7 @@ class AdminTaxonomyController extends Controller
     public function show($id)
     {
         try {
-            $item = $this->model::findOrFail($id);
+            $item = $this->model::findItem($id);
             $params = [
                 'route_prefix'  => $this->route_prefix,
                 'model'         => $this->model,
@@ -86,7 +84,7 @@ class AdminTaxonomyController extends Controller
     public function edit($id)
     {
         try {
-            $item = $this->model::findOrFail($id);
+            $item = $this->model::findItem($id);
             $params = [
                 'route_prefix'  => $this->route_prefix,
                 'model'         => $this->model,
@@ -105,9 +103,7 @@ class AdminTaxonomyController extends Controller
     public function update(StoreAdminTaxonomyRequest $request, $id): RedirectResponse
     {
         try {
-            $item = $this->model::findOrFail($id);
-            $data = $request->all();
-            $item->update($data);
+            $this->model::updateItem($id,$request);
             return redirect()->route($this->route_prefix.'index')->with('success', __('sys.update_item_success'));
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
@@ -124,8 +120,7 @@ class AdminTaxonomyController extends Controller
     public function destroy($id)
     {
         try {
-            $item = $this->model::findOrFail($id);
-            $item->delete();
+            $this->model::deleteItem($id);
             return redirect()->route($this->route_prefix.'index')->with('success', __('sys.destroy_item_success'));
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());

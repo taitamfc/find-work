@@ -1,15 +1,15 @@
 @extends('admintheme::layouts.master')
 @section('content')
 @include('admintheme::includes.globals.breadcrumb')
-<form action="{{ route('admintaxonomy.update',$item->id) }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('adminpost.update',$item->id) }}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="row">
         <div class="col-12 col-lg-8">
-            @include('admintaxonomy::includes.form-left')
+            @include('adminpost::includes.form-left')
         </div>
         <div class="col-12 col-lg-4">
-        @include('admintaxonomy::includes.form-right')
+        @include('adminpost::includes.form-right')
         </div>
     </div>
 </form>
