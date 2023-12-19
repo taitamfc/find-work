@@ -20,4 +20,4 @@
     </div>
 </div>
 
-@yield('taxonomy-form-right')
+@yield('form-right')

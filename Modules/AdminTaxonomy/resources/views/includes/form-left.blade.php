@@ -13,4 +13,4 @@
     </div>
 </div>
 
-@yield('taxonomy-form-left')
+@yield('form-left')
