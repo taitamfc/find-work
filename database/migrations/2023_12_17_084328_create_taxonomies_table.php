@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('taxonomies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->tinyInteger('status')->default(-1);
             $table->bigInteger('position')->default(0);
             $table->timestamps();

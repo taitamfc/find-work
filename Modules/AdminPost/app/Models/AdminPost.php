@@ -1,18 +1,19 @@
 <?php
 
-namespace Modules\AdminTaxonomy\app\Models;
+namespace Modules\AdminPost\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Modules\AdminTaxonomy\Database\factories\TaxonomyFactory;
+use Modules\AdminPost\Database\factories\TaxonomyFactory;
 use App\Traits\UploadFileTrait;
 use Illuminate\Support\Str;
-class AdminTaxonomy extends Model
+
+class AdminPost extends Model
 {
     use HasFactory;
     use UploadFileTrait;
 
-    protected $table = 'taxonomies';
+    protected $table = 'posts';
     /**
      * The attributes that are mass assignable.
      */
@@ -20,7 +21,9 @@ class AdminTaxonomy extends Model
         'name',
         'slug',
         'description',
+        'sort_description',
         'image',
+        'gallery',
         'status',
         'position'
     ];
@@ -66,7 +69,7 @@ class AdminTaxonomy extends Model
             $data['slug'] = Str::slug($request->name);
         }
         if ($request->hasFile('image')) {
-            $data['image'] = self::uploadFile($request->file('image'), 'uploads/taxonomies');
+            $data['image'] = self::uploadFile($request->file('image'), 'uploads/posts');
         } 
         self::create($data);
     }

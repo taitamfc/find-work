@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name');
             $table->string('slug')->unique();
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();
             $table->text('metas')->nullable();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('image')->nullable();
+            $table->text('gallery')->nullable();
+            $table->tinyInteger('status')->default(-1);
+            $table->bigInteger('position')->default(0);
+            $table->unsignedBigInteger('user_id')->default(0);
             $table->timestamps();
         });
     }

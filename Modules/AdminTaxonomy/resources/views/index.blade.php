@@ -17,12 +17,7 @@
                 </div>
             </div>
             <div class="col-auto">
-                <select class="form-control dropdown-toggle" name="status">
-                    <option value="" @selected( request()->status == '' )>{{ __('sys.all_statues') }}</option>
-                    <option value="{{ $model::ACTIVE }}" @selected( request()->status == $model::ACTIVE )>{{ __('sys.active') }}</option>
-                    <option value="{{ $model::INACTIVE }}" @selected( request()->status == $model::INACTIVE )>{{ __('sys.inactive') }}</option>
-                    <option value="{{ $model::DRAFT }}" @selected( request()->status == $model::DRAFT )>{{ __('sys.draf') }}</option>
-                </select>
+                <x-admintheme::form-status model="{{ $model }}" status="{{ request()->status }}" showAll="1"/>
             </div>
             <div class="col-auto">
                 <select class="form-control dropdown-toggle" name="sortBy">

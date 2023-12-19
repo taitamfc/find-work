@@ -1,16 +1,16 @@
 @extends('admintheme::layouts.master')
 @section('content')
     @include('admintheme::includes.globals.breadcrumb',[
-        'page_title' => __('admintaxonomy::general.title_create')
+        'page_title' => __('adminpost::general.title_create')
     ])
-    <form action="{{ route('admintaxonomy.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('adminpost.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-12 col-lg-8">
-                @include('admintaxonomy::includes.form-left')
+                @include('adminpost::includes.form-left')
             </div>
             <div class="col-12 col-lg-4">
-                @include('admintaxonomy::includes.form-right')
+                @include('adminpost::includes.form-right')
             </div>
         </div>
     </form>

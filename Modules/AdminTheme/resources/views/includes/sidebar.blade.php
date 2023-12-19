@@ -12,17 +12,7 @@
         </div>
     </div>
     <div class="sidebar-nav" data-simplebar="true">
-        <!--navigation-->
-        <ul class="metismenu" id="menu">
-            <li>
-                <a href="index.html">
-                    <div class="parent-icon"><span class="material-symbols-outlined">home</span>
-                    </div>
-                    <div class="menu-title">Dashboard</div>
-                </a>
-            </li>
-        </ul>
-        <!--end navigation-->
+        @include('admintheme::includes.sidebar-nav')
     </div>
     <div class="sidebar-bottom dropdown dropup-center dropup">
         <div class="dropdown-toggle d-flex align-items-center px-3 gap-3 w-100 h-100" data-bs-toggle="dropdown">
