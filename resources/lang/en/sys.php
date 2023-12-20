@@ -31,4 +31,5 @@ return [
     'id_asc' => 'ID Asc',
     'name_asc' => 'Name Asc',
     'created_asc' => 'Created Asc',
+    'search_name' => 'Search name',
 ];

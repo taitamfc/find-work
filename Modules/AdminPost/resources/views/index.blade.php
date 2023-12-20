@@ -13,7 +13,7 @@
         <div class="row g-3">
             <div class="col-auto flex-grow-1">
                 <div class="position-relative">
-                    <input class="form-control" name="name" type="text" placeholder="Search name">
+                    <input class="form-control" name="name" type="text" placeholder="{{ __('sys.search_name') }}" value="{{ request()->name }}">
                 </div>
             </div>
             <div class="col-auto">
@@ -107,9 +107,11 @@
                 </div>
             </div>
         </div>
+        @if( count( $items ) )
         <div class="card-footer pb-0">
             @include('admintheme::includes.globals.pagination')
         </div>
+        @endif
     </div>
 
 @endsection
