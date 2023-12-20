@@ -23051,6 +23051,20 @@ Work Section
 		align-items: flex-end;
 		flex-direction: column-reverse;
 	}
+ 
+  .login-bg {
+      position: relative;
+  }
 
+  .login-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2; /* Đặt z-index để nó lên trên ảnh nền */
+      text-align: center;
+      color: #fff; /* Màu chữ */
+  }
+  
 }
 

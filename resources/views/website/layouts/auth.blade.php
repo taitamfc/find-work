@@ -9,6 +9,7 @@
     <link href="{{ asset('website-assets/css/style.css')}}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('website-assets/images/favicon.png')}}" type="image/x-icon">
     <link rel="icon" href="{{ asset('website-assets/images/favicon.png')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('website-assets/css/custom.css')}}">
     <!-- Responsive -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -36,7 +37,7 @@
                         <!-- Login/Register -->
                         <div class="btn-box">
                             <a href="login-popup.html" class="theme-btn btn-style-three call-modal">Login / Register</a>
-                            <a href="dashboard-post-job.html" class="theme-btn btn-style-one"><span
+                            <a href="{{ route('postjob.index')}}" class="theme-btn btn-style-one"><span
                                     class="btn-title">Job Post</span></a>
                         </div>
                     </div>
@@ -54,7 +55,7 @@
         <!-- Info Section -->
         <div class="login-section">
             <div class="image-layer"
-                style="background-image: url({{ asset('website-assets/images/background/12.jpg')}});"></div>
+                style="background-image: url({{ asset('website-assets/images/background/login-bg.png')}});"></div>
             <div class="outer-box">
                 @yield('content')
             </div>
@@ -80,6 +81,7 @@
     <script src="{{ asset('website-assets/js/owl.js')}}"></script>
     <script src="{{ asset('website-assets/js/wow.js')}}"></script>
     <script src="{{ asset('website-assets/js/script.js')}}"></script>
+    <script src="{{ asset('website-assets/js/custom.js')}}"></script>
 </body>
 
 </html>
