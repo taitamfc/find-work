@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admin_theme', function (Blueprint $table) {
+        Schema::create('admin_theme_options', function (Blueprint $table) {
             $table->id();
             $table->string('option_name')->unique();
             $table->text('option_value')->nullable();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admin_theme');
+        Schema::dropIfExists('admin_theme_options');
     }
 };
