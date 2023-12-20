@@ -5,7 +5,7 @@
     <div class="form-inner">
         <h3>Reset password</h3>
         <!--Login Form-->
-        <form action="{{ route('website.postReset',['user' => $data['user'],'token' => $data['token']]) }}" method="POST">
+        <form action="{{ route('website.postReset',$data['token']) }}" method="POST">
             @if (session('error'))
             <div class="alert alert-danger" role="alert">
                 {{ session('error') }}
