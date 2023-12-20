@@ -28,8 +28,8 @@ Route::group([
     // Forgot password
     Route::get('/forgot',[AuthController::class,'forgot'])->name('website.forgot');
     Route::post('/postForgot',[AuthController::class,'postForgot'])->name('website.postForgot');
-    Route::get('/resetPassword/{user}/{token}',[AuthController::class,'getReset'])->name('website.getReset');
-    Route::post('/resetPassword/{user}/{token}',[AuthController::class,'postReset'])->name('website.postReset');
+    Route::get('/resetPassword/{token}',[AuthController::class,'getReset'])->name('website.getReset');
+    Route::post('/resetPassword/{token}',[AuthController::class,'postReset'])->name('website.postReset');
 });
 
 
