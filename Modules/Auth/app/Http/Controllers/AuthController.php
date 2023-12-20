@@ -3,65 +3,133 @@
 namespace Modules\Auth\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
+use App\Http\Requests\StoreLoginRequest;
+use App\Http\Requests\StoreRegisterRequest;
+use App\Http\Requests\ForgotPasswordRequest;
+use App\Http\Requests\ResetPasswordRequest;
+use Mail;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function login()
     {
-        return view('auth::index');
+        if (Auth::check()) {
+            return redirect()->route('home.index');
+        } else {
+            return view('auth::login');
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function postLogin(StoreLoginRequest $request)
     {
-        return view('auth::create');
+        $dataUser = $request->only('email', 'password');
+        if (Auth::attempt($dataUser, $request->remember)) {
+            return redirect()->route('home.index'); 
+        } else {
+            return redirect()->route('website.login')->with('error', 'Account or password is incorrect');
+        }
+    }
+    public function Logout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->route('website.login');
+    }
+    public function register($type = ''){
+        if (Auth::check()) {
+            // return redirect()->route('website.register',['site_name'=>$this->site_name]);
+            return view('auth::register');
+        } else {
+            return view('auth::register');
+        }
+    }
+    public function postRegister(StoreRegisterRequest $request){
+        try {
+            // dd($request->all());
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = $request->password;
+            $user->phone = $request->phone;
+            $user->year_of_birth = $request->year_of_birth;
+            $user->save(); 
+            $message = "Successfully registered";
+            return redirect()->route('website.login')->with('success', $message);
+        } catch (\Exception $e) {
+            Log::error('Bug occurred: ' . $e->getMessage());
+            return view('auth::register')->with('error', 'Registration failed');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): RedirectResponse
+    function forgot(Request $request)
     {
-        //
+        return view('auth::forgot');
+    }
+    public function postForgot(ForgotPasswordRequest $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'Email not found');
+        }
+
+        // Generate a random token
+        $token = strtoupper(Str::random(10));
+
+        // Save the token in the database
+        $user->token = $token;
+        $user->save();
+
+        // Data to be passed to the email view
+        $data = [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'token' => $token
+        ];
+
+        // Send the reset password email
+        Mail::send('auth::mail', compact('data'), function ($email) use ($user) {
+            $email->subject('Forgot Password');
+            $email->to($user->email, $user->name);
+        });
+
+        return redirect()->route('website.login')->with('success', 'Please check your email to reset the password');
     }
 
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
+    public function getReset(Request $request)
     {
-        return view('auth::show');
+        $item = User::findOrFail($request->user);
+
+        if ($item->token === $request->token) {
+            $data = [
+                'user' => $request->user,
+                'token' => $request->token,
+            ];
+
+            return view('auth::resetpassword', compact('data'));
+        } else {
+            return redirect()->route('website.login')->with('error', 'There was a problem. Please try again.');
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
+    public function postReset(ResetPasswordRequest $request)
     {
-        return view('auth::edit');
-    }
+        $item = User::findOrFail($request->user);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id): RedirectResponse
-    {
-        //
-    }
+        if ($item && $item->token === $request->token) {
+            $item->password = bcrypt($request->password);
+            $item->token = '';
+            $item->save();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        //
+            return redirect()->route('website.login')->with('success', 'Password reset successful.');
+        } else {
+            return redirect()->route('website.login')->with('error', 'There was a problem. Please try again.');
+        }
     }
 }
