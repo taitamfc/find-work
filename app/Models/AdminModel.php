@@ -26,6 +26,9 @@ class AdminModel extends Model
         if($request->name){
             $query->where('name','LIKE','%'.$request->name.'%');
         }
+        if($request->status){
+            $query->where('status',$request->status);
+        }
         switch ($request->sortBy) {
             case 'id_asc':
                 $query->orderBy('id','asc');
