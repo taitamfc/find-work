@@ -4,5 +4,9 @@
     "AdminUser": true,
     "Migrate": false,
     "CreateAdminThemeTable": false,
-    "AdminPost": true
+    "AdminPost": true,
+    "Auth": true,
+    "Employee": true,
+    "Staff": true,
+    "Job": true
 }
