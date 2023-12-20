@@ -73,26 +73,4 @@ Route::prefix('themes')->group(function () {
     Route::get('/profile', function () {
         return view('website/dashboards/profile/index');
     })->name('profile.index');
-
-    // Route::get('/login', function () {
-    //     return view('website/auth/login');
-    // })->name('auth.login');
-
-    // Route::get('/register', function () {
-    //     return view('website/auth/register');
-    // })->name('auth.register');
-
-    Route::get('login',[App\Http\Controllers\Website\AuthController::class,'login'])->name('website.login');
-    Route::post('postLogin',[App\Http\Controllers\Website\AuthController::class,'postLogin'])->name('website.postLogin');
-    Route::get('logout',[App\Http\Controllers\Website\AuthController::class,'Logout'])->name('website.logout');
-
-    // Register
-    Route::get('register',[App\Http\Controllers\Website\AuthController::class,'register'])->name('website.register');
-    Route::post('postRegister',[App\Http\Controllers\Website\AuthController::class,'postRegister'])->name('website.postRegister');
-
-    // Forgot password
-    Route::get('/forgot',[App\Http\Controllers\Website\AuthController::class,'forgot'])->name('website.forgot');
-    Route::post('/postForgot',[App\Http\Controllers\Website\AuthController::class,'postForgot'])->name('website.postForgot');
-    Route::get('/resetPassword/{user}/{token}',[App\Http\Controllers\Website\AuthController::class,'getReset'])->name('website.getReset');
-    Route::post('/resetPassword/{user}/{token}',[App\Http\Controllers\Website\AuthController::class,'postReset'])->name('website.postReset');
 });
