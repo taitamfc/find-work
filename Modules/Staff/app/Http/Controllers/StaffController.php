@@ -19,7 +19,6 @@ class StaffController extends Controller
     {
         $user = Auth::user();
         $item = StaffUser::where('user_id', $user->id)->with('user')->first();
-        // dd($item);
         $params = [
             'item' => $item,
         ];

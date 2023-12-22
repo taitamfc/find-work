@@ -5,7 +5,7 @@
     <div class="form-inner">
         <h3>Login to Superio</h3>
         <!--Login Form-->
-        <form action="{{ route('website.postLogin')}}" method="POST">
+        <form action="{{ route('auth.postLogin')}}" method="POST">
             @if (session('error'))
             <div class="alert alert-danger" role="alert">
                 {{ session('error') }}
@@ -37,7 +37,7 @@
                         <input type="checkbox" name="remember-me" value="" id="remember">
                         <label for="remember" class="remember"><span class="custom-checkbox"></span> Remember me</label>
                     </div>
-                    <a href="{{ route('website.forgot')}}" class="pwd">Forgot password?</a>
+                    <a href="{{ route('auth.forgot')}}" class="pwd">Forgot password?</a>
                 </div>
             </div>
 
@@ -47,7 +47,7 @@
         </form>
 
         <div class="bottom-box">
-            <div class="text">Don't have an account? <a href="{{ route('website.register')}}">Signup</a></div>
+            <div class="text">Don't have an account? <a href="{{ route('auth.register')}}">Signup</a></div>
             <div class="divider"><span>or</span></div>
             <div class="btn-box row">
                 <div class="col-lg-6 col-md-12">

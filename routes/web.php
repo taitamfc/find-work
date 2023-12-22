@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', function () {
     return view('website/homes/index');
-})->name('home.index');
+})->name('home');
 
 Route::prefix('themes')->group(function () {
     

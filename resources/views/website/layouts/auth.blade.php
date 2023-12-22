@@ -33,14 +33,6 @@
                                         src="{{ asset('website-assets/images/logo-2.svg')}}" alt="" title=""></a></div>
                         </div>
                     </div>
-                    <div class="outer-box">
-                        <!-- Login/Register -->
-                        <div class="btn-box">
-                            <a href="login-popup.html" class="theme-btn btn-style-three call-modal">Login / Register</a>
-                            <a href="{{ route('postjob.index')}}" class="theme-btn btn-style-one"><span
-                                    class="btn-title">Job Post</span></a>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!-- Mobile Header -->

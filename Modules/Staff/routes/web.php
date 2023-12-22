@@ -16,10 +16,11 @@ use Modules\Staff\app\Http\Controllers\UserCvController;
 |
 */
 
-// Route::group([], function () {
-//     Route::resource('staff', StaffController::class)->names('staff');
-// });
-Route::group(['prefix' => 'staff'], function () {
+Route::group([
+    'prefix' => 'staff',
+    'middleware'=>'auth'
+], function () {
+    Route::get('/', [StaffController::class, 'index'])->name('staff.home');
     Route::put('/profile/{id}', [StaffController::class, 'update'])->name('staff.update');
     Route::resource('profile', StaffController::class)->names('staff.profile');
     Route::resource('cv', UserCvController::class)->names('staff.cv');
@@ -35,18 +36,12 @@ Route::group(['prefix' => 'staff'], function () {
     Route::get('/skill', function () {
         return view('staff::skill');
     })->name('staff.skill.index');
-
-    Route::get('login',[AuthController::class,'login'])->name('website.login');
-    Route::post('postLogin',[AuthController::class,'postLogin'])->name('website.postLogin');
-    Route::get('logout',[AuthController::class,'Logout'])->name('website.logout');
-
+});
+Route::group(['prefix' => 'staff'], function () {
+    Route::get('login',[AuthController::class,'login'])->name('staff.login');
+    Route::post('postLogin',[AuthController::class,'postLogin'])->name('staff.postLogin');
     // Register
-    Route::get('register',[AuthController::class,'register'])->name('website.register');
-    Route::post('postRegister',[AuthController::class,'postRegister'])->name('website.postRegister');
+    Route::get('register',[AuthController::class,'register'])->name('staff.register');
+    Route::post('postRegister',[AuthController::class,'postRegister'])->name('staff.postRegister');
 
-    // Forgot password
-    Route::get('/forgot',[AuthController::class,'forgot'])->name('website.forgot');
-    Route::post('/postForgot',[AuthController::class,'postForgot'])->name('website.postForgot');
-    Route::get('/resetPassword/{token}',[AuthController::class,'getReset'])->name('website.getReset');
-    Route::post('/resetPassword/{token}',[AuthController::class,'postReset'])->name('website.postReset');
 });
