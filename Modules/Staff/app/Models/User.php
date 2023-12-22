@@ -17,6 +17,8 @@ class User extends Model
         'name',
         'email',
         'password',
+        'phone',
+        'birthdate',
     ];
     // Trong mô hình User.php
     public function staffUser()

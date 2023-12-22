@@ -12,18 +12,9 @@ class StaffDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user_staff')->truncate();
-        DB::table('user_staff')->insert([
-            'user_id' => 1, 
-            'phone' => '123456789',
-            'birthdate' => '2002',
-            'experience_years' => 3,
-            'gender' => 'Nữ',
-            'city' => 'QT',
-            'address' => 'Linh Chiểu',
-            'outstanding_achievements' => 'no',
-            'created_at' => now(),
-            'updated_at' => now(),
+        $this->call([
+            UserCvSeeder::class,
+            UserStaffSeeder::class,
         ]);
     }
 }
