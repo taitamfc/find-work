@@ -12,12 +12,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', function () {
+    return view('website/homes/index');
+})->name('home.index');
 
 Route::prefix('themes')->group(function () {
-    Route::get('/', function () {
-        return view('website/homes/index');
-    })->name('home.index');
-
+    
     Route::get('/employer', function () {
         return view('website/employer/index');
     })->name('employer.index');

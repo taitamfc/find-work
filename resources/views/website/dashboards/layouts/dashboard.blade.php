@@ -19,7 +19,7 @@
 
     <div class="page-wrapper dashboard ">
         <!-- Preloader -->
-        <div class="preloader"></div>
+        <!-- <div class="preloader"></div> -->
         <!-- Header Span -->
         <span class="header-span"></span>
 

@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         // Xoá dữ liệu cũ trong bảng users (nếu có)
-        DB::table('users')->truncate();
+        // DB::table('users')->truncate();
         // Thêm dữ liệu mới
         DB::table('users')->insert([
             'name' => 'admin',
