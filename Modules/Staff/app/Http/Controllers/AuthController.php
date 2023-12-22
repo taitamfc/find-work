@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Auth\app\Http\Controllers;
+namespace Modules\Staff\app\Http\Controllers;
 use Modules\Staff\app\Models\StaffUser;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

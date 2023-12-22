@@ -26,7 +26,7 @@
 
             <div class="form-group">
                 <label>Tên </label>
-                <input type="text" name="name" placeholder="name"  value="{{ old('name') }}">
+                <input type="text" name="name" placeholder="name" value="{{ old('name') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('name') }}</p>
                 @endif
@@ -34,7 +34,7 @@
 
             <div class="form-group">
                 <label>Email </label>
-                <input type="email" name="email" placeholder="Email"  value="{{ old('email') }}">
+                <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('email') }}</p>
                 @endif
@@ -42,11 +42,12 @@
 
             <div class="form-group">
                 <label>Năm sinh </label>
-                <input type="text" name="year_of_birth" placeholder="Năm sinh"  value="{{ old('year_of_birth') }}">
+                <input type="text" name="birthdate" value="{{ old('birthdate') }}">
                 @if ($errors->any())
-                <p style="color:red">{{ $errors->first('year_of_birth') }}</p>
+                <p style="color:red">{{ $errors->first('birthdate') }}</p>
                 @endif
             </div>
+
 
             <div class="form-group">
                 <label>SĐT </label>
@@ -73,11 +74,11 @@
             </div>
 
             <div class="form__check" style="margin-bottom: 50px;">
-                        <input id="accept_pp" type="checkbox" name="accept_pp" >
-                        <label for="accept_pp">Chấp nhận các điều khoản và chính sách bảo mật</label>
-                        @if ($errors->has('accept_pp'))
-                        <div class="error-message" style="color:red">{{ $errors->first('accept_pp') }}</div>
-                        @endif
+                <input id="accept_pp" type="checkbox" name="accept_pp">
+                <label for="accept_pp">Chấp nhận các điều khoản và chính sách bảo mật</label>
+                @if ($errors->has('accept_pp'))
+                <div class="error-message" style="color:red">{{ $errors->first('accept_pp') }}</div>
+                @endif
             </div>
 
             <div class="form-group">
@@ -101,5 +102,3 @@
     </div>
 </div>
 @endsection
-
-

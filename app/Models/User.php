@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
-        'year_of_birth',
+        'birthdate',
     ];
 
     /**
@@ -49,4 +49,5 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserEmployee::class);
     }
+
 }

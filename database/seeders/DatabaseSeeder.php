@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
-        // ]);
+        // ]); $this->call([
+            $this->call([
+                UserSeeder::class,
+                // Các Seeder khác nếu có
+            ]);
     }
 }

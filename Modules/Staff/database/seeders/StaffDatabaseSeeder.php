@@ -3,14 +3,18 @@
 namespace Modules\Staff\database\seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class StaffDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        // $this->call([]);
+        $this->call([
+            UserCvSeeder::class,
+            UserStaffSeeder::class,
+        ]);
     }
 }
