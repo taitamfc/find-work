@@ -39,3 +39,6 @@
     margin-bottom: 20px;
     background: white;
 }
+.li.nav-item.active {
+    background-color: red;
+}

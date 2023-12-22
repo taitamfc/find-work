@@ -16,17 +16,13 @@ class UserSeeder extends Seeder
     {
         // Xoá dữ liệu cũ trong bảng users (nếu có)
         DB::table('users')->truncate();
-
         // Thêm dữ liệu mới
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make(123456),
-            'phone' => '123456789',
-            'year_of_birth' => 2000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-
     }
 }

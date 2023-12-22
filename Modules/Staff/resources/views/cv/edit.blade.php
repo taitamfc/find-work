@@ -1,5 +1,6 @@
 @extends('website.dashboards.layouts.dashboard')
 @section('content')
+
 <!-- Dashboard -->
 <section class="user-dashboard">
     <div class="dashboard-outer">
@@ -7,22 +8,8 @@
             <h3>Profile!</h3>
             <div class="text">Ready to jump back in?</div>
         </div>
-        <div class="cardt card-body">
-            <ul class="nav nav-pills nav-fill nav-cv-step">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('staff.profile.index')}}">
-                        <i class="icon-information"></i> 1. Thông tin cá nhân </a>
-                </li>
-                <li class="nav-item"><a class="nav-link active" href="{{ route('staff.cv.index')}}"> <i
-                            class="icon-briefcase"></i> 2. Danh sách hồ sơ </a></li>
-                <li class="nav-item"><a class="nav-link" href="/Candidate/ResumeAdd?step=3"> <i
-                            class="icon-calendar"></i> 3. Kinh nghiệm làm việc </a></li>
-                <li class="nav-item"><a class="nav-link" href="/Candidate/ResumeAdd?step=4"> <i
-                            class="icon-book-open"></i> 4. Học vấn </a></li>
-                <li class="nav-item"><a class="nav-link" href="/Candidate/ResumeAdd?step=5"> <i class="icon-layers"></i>
-                        5. Kỹ năng chuyên môn </a></li>
-            </ul>
-        </div>
+        @include('website.dashboards.includes.card')
+
         <div class="row">
             <div class="col-lg-12">
                 <!-- Ls widget -->

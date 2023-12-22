@@ -23,13 +23,16 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->text('outstanding_achievements')->nullable();
-            $table->string('desired_position')->nullable(); // Nhập vị trí muốn ứng tuyển
-            $table->string('desired_rank')->nullable(); // Cấp bậc mong muốn
-            $table->string('employment_type')->nullable(); // Hình thức làm việc
-            $table->string('industry')->nullable(); // Ngành nghề
-            $table->string('desired_location')->nullable(); // Nơi làm việc mong muốn
-            $table->string('desired_salary')->nullable(); // Mức lương
-            $table->text('career_objective')->nullable(); // Mục tiêu nghề nghiệp
+            $table->string('desired_position')->nullable(); 
+            $table->string('desired_rank')->nullable(); 
+            $table->string('employment_type')->nullable();
+            $table->string('industry')->nullable(); 
+            $table->string('desired_location')->nullable(); 
+            $table->string('desired_salary')->nullable(); 
+            $table->text('career_objective')->nullable(); 
+            $table->text('work_experience')->nullable();
+            $table->text('education')->nullable();
+            $table->text('skill')->nullable();
             $table->timestamps();
         });
     }
