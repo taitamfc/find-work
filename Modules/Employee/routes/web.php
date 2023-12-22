@@ -14,6 +14,14 @@ use Modules\Employee\app\Http\Controllers\EmployeeController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('employee', EmployeeController::class)->names('employee');
+
+
+
+Route::group(['prefix' => 'employee'], function () {
+    include 'auth.php';
 });
+Route::group(['prefix' => 'employee','middleware' => ['employee']], function () {
+    include 'profile.php';
+});
+
+

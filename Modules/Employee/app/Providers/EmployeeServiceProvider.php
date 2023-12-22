@@ -4,6 +4,7 @@ namespace Modules\Employee\app\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Modules\Employee\Database\Seeders\ProfileEmployeeSeeder;
 
 class EmployeeServiceProvider extends ServiceProvider
 {
@@ -111,4 +112,5 @@ class EmployeeServiceProvider extends ServiceProvider
 
         return $paths;
     }
+    
 }
