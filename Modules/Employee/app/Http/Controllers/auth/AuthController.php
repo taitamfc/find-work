@@ -39,7 +39,7 @@ class AuthController extends Controller
             return redirect()->route('employee.auth.login')->with('error', 'Account or password is incorrect');
         }
     }
-    public function Logout(Request $request)
+    public function logout(Request $request)
     {
         Auth::logout();
         return redirect()->route('employee.auth.login');
@@ -77,82 +77,4 @@ class AuthController extends Controller
             return view('employee::auth.register')->with('error', 'Đăng ký bị lỗi!');
         }
     }
-
-    function forgot(Request $request)
-    {
-        return view('auth::forgot');
-    }
-    public function postForgot(ForgotPasswordRequest $request)
-    {
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user) {
-            return redirect()->back()->with('error', 'Email not found');
-        }
-
-        // Generate a random token
-        $token = strtoupper(Str::random(10));
-
-        // Save the token in the password_reset_tokens table
-        // Check if the email already has a token in the password_reset_tokens table
-        $existingToken = PasswordResetToken::where('email', $user->email)->first();
-
-        if ($existingToken) {
-            // If a token exists, update the existing record
-            $existingToken->update(['token' => $token]);
-        } else {
-            // If no token exists, create a new record
-            PasswordResetToken::create([
-                'email' => $user->email,
-                'token' => $token,
-            ]);
-        }
-
-        // Data to be passed to the email view
-        $data = [
-            'id' => $user->id,
-            'name' => $user->name,
-            'email' => $user->email,
-            'token' => $token
-        ];
-
-        // Send the reset password email
-        Mail::send('auth::mail', compact('data'), function ($email) use ($user) {
-            $email->subject('Forgot Password');
-            $email->to($user->email, $user->name);
-        });
-
-        return redirect()->route('website.login')->with('success', 'Please check your email to reset the password');
-    }
-
-    public function getReset($token)
-    {
-        $tokenRecord = PasswordResetToken::where('token', $token)->first();
-
-        if ($tokenRecord) {
-            $data = [
-                'token' => $token,
-            ];
-
-            return view('auth::resetpassword', compact('data'));
-        } else {
-            return redirect()->route('website.login')->with('error', 'There was a problem. Please try again.');
-        }
-    }
-
-    public function postReset(ResetPasswordRequest $request)
-    {
-        $tokenRecord = PasswordResetToken::where('token', $request->token)->first();
-        if ($tokenRecord) {
-            $user = User::where('email', $tokenRecord->email)->first();
-            $user->password = bcrypt($request->password);
-            $user->save();
-
-            $tokenRecord->delete(); // Remove the used token
-            return redirect()->route('website.login')->with('success', 'Password reset successful.');
-        } else {
-            return redirect()->route('website.login')->with('error', 'There was a problem. Please try again.');
-        }
-    }
-
 }

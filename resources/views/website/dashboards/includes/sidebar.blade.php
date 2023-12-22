@@ -20,7 +20,7 @@
             <li><a href="{{ route('resume-alerts.index')}}"><i class="la la-bell"></i>Tiếp tục cảnh báo</a></li>
             <li><a href="{{ route('change-password.index')}}"><i class="la la-lock"></i>Đổi mật khẩu</a></li>
             <li><a href="{{ route('staff.profile.index')}}"><i class="la la-user-alt"></i>Xem hồ sơ</a></li>
-            <li><a href="{{ route('website.logout')}}"><i class="la la-sign-out"></i>Đăng xuất</a></li>
+            <li><a href="{{ route('auth.logout')}}"><i class="la la-sign-out"></i>Đăng xuất</a></li>
             <li><a href="index.html"><i class="la la-trash"></i>Xóa hồ sơ</a></li>
         </ul>
     </div>

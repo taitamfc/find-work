@@ -20,31 +20,26 @@ class AuthController extends Controller
 {
     public function login()
     {
-        if (Auth::check()) {
-            return redirect()->route('home.index');
-        } else {
-            return view('auth::login');
-        }
+        return view('auth::login');
     }
 
     public function postLogin(StoreLoginRequest $request)
     {
         $dataUser = $request->only('email', 'password');
         if (Auth::attempt($dataUser, $request->remember)) {
-            return redirect()->route('home.index'); 
+            return redirect()->route('home'); 
         } else {
-            return redirect()->route('website.login')->with('error', 'Account or password is incorrect');
+            return redirect()->route('auth.login')->with('error', 'Account or password is incorrect');
         }
     }
-    public function Logout(Request $request)
+    public function logout(Request $request)
     {
         Auth::logout();
-        return redirect()->route('website.login');
+        return redirect()->route('home');
     }
     public function register($type = ''){
         if (Auth::check()) {
-            // return redirect()->route('website.register',['site_name'=>$this->site_name]);
-            return view('auth::register');
+            return redirect()->route('home'); 
         } else {
             return view('auth::register');
         }
@@ -68,7 +63,7 @@ class AuthController extends Controller
         ]);
 
         $message = "Successfully registered";
-        return redirect()->route('website.login')->with('success', $message);
+        return redirect()->route('auth.login')->with('success', $message);
     } catch (\Exception $e) {
         Log::error('Bug occurred: ' . $e->getMessage());
         return view('auth::register')->with('error', 'Registration failed');
@@ -119,7 +114,7 @@ class AuthController extends Controller
             $email->to($user->email, $user->name);
         });
 
-        return redirect()->route('website.login')->with('success', 'Please check your email to reset the password');
+        return redirect()->route('auth.login')->with('success', 'Please check your email to reset the password');
     }
 
     public function getReset($token)
@@ -133,7 +128,7 @@ class AuthController extends Controller
 
             return view('auth::resetpassword', compact('data'));
         } else {
-            return redirect()->route('website.login')->with('error', 'There was a problem. Please try again.');
+            return redirect()->route('auth.login')->with('error', 'There was a problem. Please try again.');
         }
     }
 
@@ -146,9 +141,9 @@ class AuthController extends Controller
             $user->save();
 
             $tokenRecord->delete(); // Remove the used token
-            return redirect()->route('website.login')->with('success', 'Password reset successful.');
+            return redirect()->route('auth.login')->with('success', 'Password reset successful.');
         } else {
-            return redirect()->route('website.login')->with('error', 'There was a problem. Please try again.');
+            return redirect()->route('auth.login')->with('error', 'There was a problem. Please try again.');
         }
     }
 
