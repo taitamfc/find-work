@@ -13,7 +13,7 @@
             <a href="{{ route('cv-manager.index')}}" class="upload-cv">Tải lên CV của bạn</a>
             <!-- Login/Register -->
             <div class="btn-box">
-                <a href="login-popup.html" class="theme-btn btn-style-three call-modal">Đăng nhập / Đăng ký</a>
+                <a href="{{ route('website.login') }}" class="theme-btn btn-style-three call-modal">Đăng nhập / Đăng ký</a>
                 <a href="{{ route('dashboards.index') }}" class="theme-btn btn-style-one">Tin tuyển dụng</a>
             </div>
         </div>

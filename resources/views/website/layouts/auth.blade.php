@@ -20,7 +20,7 @@
 <body>
     <div class="page-wrapper">
         <!-- Preloader -->
-        <div class="preloader"></div>
+        <!-- <div class="preloader"></div> -->
         <!-- Main Header-->
         <header class="main-header">
             <div class="container-fluid">

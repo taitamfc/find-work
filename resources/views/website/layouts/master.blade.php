@@ -16,7 +16,7 @@
 <body data-anm=".anm">
     <div class="page-wrapper">
         <!-- Preloader -->
-        <div class="preloader"></div>
+        <!-- <div class="preloader"></div> -->
         @include('website.includes.header')
         @yield('content')
         @include('website.includes.footer')
