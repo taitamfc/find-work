@@ -4,9 +4,12 @@ namespace Modules\Staff\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use Modules\Staff\app\Http\Requests\UpdateUserStaffRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use Modules\Staff\app\Models\StaffUser;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 class StaffController extends Controller
 {
     /**
@@ -14,8 +17,16 @@ class StaffController extends Controller
      */
     public function index()
     {
-        return view('staff::index');
+        $user = Auth::user();
+        $item = StaffUser::where('user_id', $user->id)->with('user')->first();
+        // dd($item);
+        $params = [
+            'item' => $item,
+        ];
+    
+        return view('staff::index', $params);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -52,9 +63,26 @@ class StaffController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(UpdateUserStaffRequest $request, $id)
     {
-        //
+        $staff = StaffUser::findOrFail($id);
+        $user = $staff->user;
+        $user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+        ]);
+
+        $staff->update([
+            'phone' => $request->input('phone'),
+            'birthdate' => $request->input('birthdate'),
+            'experience_years' => $request->input('experience_years'),
+            'gender' => $request->input('gender'),
+            'city' => $request->input('city'),
+            'address' => $request->input('address'),
+            'outstanding_achievements' => $request->input('outstanding_achievements'),
+     
+        ]);
+        return back()->with('success', 'Thông tin đã được cập nhật thành công.');
     }
 
     /**
