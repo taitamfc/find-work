@@ -1,7 +1,7 @@
 <?php
 
 namespace Modules\Auth\app\Http\Controllers;
-
+use Modules\Staff\app\Models\StaffUser;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,23 +49,31 @@ class AuthController extends Controller
             return view('auth::register');
         }
     }
-    public function postRegister(StoreRegisterRequest $request){
-        try {
-            // dd($request->all());
-            $user = new User();
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = $request->password;
-            $user->phone = $request->phone;
-            $user->year_of_birth = $request->year_of_birth;
-            $user->save(); 
-            $message = "Successfully registered";
-            return redirect()->route('website.login')->with('success', $message);
-        } catch (\Exception $e) {
-            Log::error('Bug occurred: ' . $e->getMessage());
-            return view('auth::register')->with('error', 'Registration failed');
-        }
+    public function postRegister(StoreRegisterRequest $request)
+{
+    try {
+        // Create a new user in the users table
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        // Create a new staff_user in the staff_user table
+        $staffUser = StaffUser::create([
+            'user_id' => $user->id,
+            'phone' => $request->phone,
+            'birthdate' => $request->birthdate,
+            // Set other staff_user fields here
+        ]);
+
+        $message = "Successfully registered";
+        return redirect()->route('website.login')->with('success', $message);
+    } catch (\Exception $e) {
+        Log::error('Bug occurred: ' . $e->getMessage());
+        return view('auth::register')->with('error', 'Registration failed');
     }
+}
 
     function forgot(Request $request)
     {

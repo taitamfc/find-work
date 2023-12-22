@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Staff\app\Http\Controllers\StaffController;
+use Modules\Staff\app\Http\Controllers\UserCvController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,11 @@ use Modules\Staff\app\Http\Controllers\StaffController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('staff', StaffController::class)->names('staff');
+// Route::group([], function () {
+//     Route::resource('staff', StaffController::class)->names('staff');
+// });
+Route::group(['prefix' => 'staff'], function () {
+    Route::put('/profile/{id}', [StaffController::class, 'update'])->name('staff.update');
+    Route::resource('profile', StaffController::class)->names('staff.profile');
+    Route::resource('cv', UserCvController::class)->names('staff.cv');
 });
