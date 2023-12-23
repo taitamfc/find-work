@@ -46,14 +46,16 @@ class UserCvController extends Controller
      * Show the form for creating a new resource.
      */
 // UserCvController.php
-public function create()
+public function create(Request $request)
 {
-    $user = Auth::user();
-    $item = StaffUser::where('user_id', $user->id)->first();
+    $tab    = $request->tab ? $request->tab : 'personal-information';
+    $user   = Auth::user();
+    $item   = StaffUser::where('user_id', $user->id)->first();
 
     $params = [
         'user' => $user,
         'item' => $item,
+        'tab' => $tab,
     ];
 
     return view('staff::cv.create', $params);
@@ -63,9 +65,51 @@ public function create()
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserCvRequest $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
+        // dd($request->all());
+        $cv_id = session()->get('cv_id', 0);
         $user = Auth::user();
+        $tab  = $request->tab;
+        switch ($tab) {
+            case 'personal-information':
+                $request->merge(['user_id' => $user->id]);
+                $saved = UserCv::savePersonalInformation($request,$cv_id);
+                session(['cv_id' => $saved->id]);
+                return redirect()->route('staff.cv.create',['tab'=>'job-information']);
+                break;
+            case 'job-information':
+                $data = $request->all();
+                $data['user_id'] = $user->id;
+                $saved = UserCv::saveJobInformation($data,$cv_id);
+                session(['cv_id' => $saved->id]);
+                return redirect()->route('staff.cv.create',['tab'=>'experience']);
+                break;
+            // case 'experience':
+            //     $data = $request->all();
+            //     $data['user_id'] = $user->id;
+            //     $saved = UserCv::savePersonalInformation($data,$cv_id);
+            //     session(['cv_id' => $saved]);
+            //     return redirect()->route('staff.cv.create',['tab'=>'education']);
+            //     break;
+            // case 'education':
+            //     $data = $request->all();
+            //     $data['user_id'] = $user->id;
+            //     $saved = UserCv::savePersonalInformation($data,$cv_id);
+            //     session(['cv_id' => $saved]);
+            //     return redirect()->route('staff.cv.create',['tab'=>'skill']);
+            //     break;
+            // case 'skill':
+            //     $data = $request->all();
+            //     $data['user_id'] = $user->id;
+            //     $saved = UserCv::savePersonalInformation($data,$cv_id);
+            //     session(['cv_id' => $saved]);
+            //     return redirect()->route('staff.cv.create',['tab'=>'skill']);
+            //     break;
+            default:
+                # code...
+                break;
+        }
     
         $data = $request->all();
         $data['user_id'] = $user->id;

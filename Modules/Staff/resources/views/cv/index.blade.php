@@ -1,4 +1,4 @@
-@extends('website.dashboards.layouts.dashboard')
+@extends('staff::dashboards.layouts.dashboard')
 @section('content')
 <section class="user-dashboard">
     <div class="dashboard-outer">
@@ -6,7 +6,6 @@
             <h3>Danh sách hồ sơ</h3>
             <div class="text">Ready to jump back in?</div>
         </div>
- @include('website.dashboards.includes.card')
         <div class="row">
             <div class="col-lg-12">
                 <!-- applicants Widget -->

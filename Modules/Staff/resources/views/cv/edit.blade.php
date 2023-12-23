@@ -1,4 +1,4 @@
-@extends('website.dashboards.layouts.dashboard')
+@extends('staff::dashboards.layouts.dashboard')
 @section('content')
 
 <!-- Dashboard -->
@@ -8,7 +8,8 @@
             <h3>Profile!</h3>
             <div class="text">Ready to jump back in?</div>
         </div>
-        @include('website.dashboards.includes.card')
+        @include('staff::cv.includes.card')
+
 
         <div class="row">
             <div class="col-lg-12">
