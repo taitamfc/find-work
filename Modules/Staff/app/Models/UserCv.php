@@ -31,6 +31,44 @@ class UserCv extends Model
         'desired_salary',
         'career_objective',
     ];
+    public static function savePersonalInformation($request,$cv_id = 0){
+        // dd($data);
+        if($cv_id){
+            $item = self::find($cv_id);
+        }else{
+            $item = new self;
+        }
+        $item->name = $request->name;
+        $item->email = $request->email;
+        $item->phone = $request->phone;
+        $item->birthdate = $request->birthdate;
+        $item->gender = $request->gender;
+        $item->city = $request->city;
+        $item->address = $request->address;
+        $item->outstanding_achievements = $request->outstanding_achievements;
+        $item->user_id = $request->user_id;
+        $item->save();
+        return $item;
+    }
+    public static function saveJobInformation($request,$cv_id = 0){
+        // dd($data);
+        if($cv_id){
+            $item = self::find($cv_id);
+        }else{
+            $item = new self;
+        }
+        $item->cv_file = $request->cv_file;
+        $item->desired_position = $request->desired_position;
+        $item->desired_rank = $request->desired_rank;
+        $item->employment_type = $request->employment_type;
+        $item->industry = $request->industry;
+        $item->desired_location = $request->desired_location;
+        $item->desired_salary = $request->desired_salary;
+        $item->career_objective = $request->career_objective;
+        dd($item);
+        $item->save();
+        return $item;
+    }
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -38,6 +38,10 @@ Route::group([
     Route::get('/skill', function () {
         return view('staff::skill');
     })->name('skill.index');
+
+    Route::get('/personal_information', function () {
+        return view('staff::personal_information');
+    })->name('personal_information.index');
 });
 Route::group([
     'prefix' => 'staff',

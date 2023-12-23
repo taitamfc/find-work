@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_cvs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('cv_file');
+            $table->string('cv_file')->nullable();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
