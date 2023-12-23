@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Modules\Employee\app\Http\Controllers\EmployeeController;
 use Modules\Employee\app\Http\Controllers\AuthController;
 use Modules\Employee\app\Http\Controllers\ProfileController;
+use Modules\Employee\app\Http\Controllers\JobController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,13 +26,26 @@ Route::group([
 	// Register
 	Route::get('register',[AuthController::class,'register'])->name('register');
 	Route::post('postRegister',[AuthController::class,'postRegister'])->name('postRegister');
+	Route::get('logout',[AuthController::class,'logout'])->name('logout');
 });
 Route::group([
 	'prefix' => 'employee',
-	'middleware' => ['auth.employee']
+	'middleware' => ['auth.employee'],
+	'as' => 'employee.'
 ], function () {
-	Route::get('/', [ProfileController::class,'index'])->name('employee.profile.index');
-	Route::post('/update/{id}', [ProfileController::class,'update'])->name('employee.profile.update');
+
+	// profile
+	Route::get('/', [ProfileController::class,'index'])->name('home');
+	Route::post('/update/{id}', [ProfileController::class,'update'])->name('profile.update');
+
+	//Job
+	Route::get('/job', [JobController::class,'index'])->name('job.index');
+	Route::get('/job/create', [JobController::class,'create'])->name('job.create');
+	Route::post('/job/store', [JobController::class,'store'])->name('job.store');
+	Route::get('/job/edit/{id}', [JobController::class,'edit'])->name('job.edit');
+	Route::post('/job/update/{id}', [JobController::class,'update'])->name('job.update');
+	Route::get('/job/delete/{id}', [JobController::class,'destroy'])->name('job.delete');
+
 });
 
 

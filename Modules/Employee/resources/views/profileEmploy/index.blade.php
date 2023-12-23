@@ -1,4 +1,4 @@
-@extends('website.dashboards.layouts.dashboard')
+@extends('employee::layouts.master')
 @section('content')
 <!-- Dashboard -->
 <section class="user-dashboard">
@@ -28,21 +28,21 @@
                                 <div class="text">ảnh .jpg & .png</div>
                             </div> --}}
                             <form class="default-form" action="{{route('employee.profile.update',$user->id)}}" method="post">
-                                @if (session('error'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{ session('error') }}
-                                </div>
-                                @endif
-                                @if (session('success'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('success') }}
-                                </div>
-                                @endif
+                                    @if (session('error'))
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ session('error') }}
+                                    </div>
+                                    @endif
+                                    @if (session('success'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                    @endif
                                 @csrf
                                 <div class="row">
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Tên Nhà Tuyển Dụng</label>
-                                        <input type="text" name="name" value="{{$user->name}}" placeholder="Invisionn">
+                                        <input type="text" name="name" value="{{$user->name}}" placeholder="Tên Nhà Tuyển Dụng">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('name') }}</p>
                                         @endif
@@ -50,16 +50,16 @@
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Địa Chỉ Email Nhà Tuyển Dụng</label>
-                                        <input type="text" name="email" value="{{$user->email}}" placeholder="Invisionn">
+                                        <input type="text" name="email" value="{{$user->email}}" placeholder="Email Nhà Tuyển Dụng">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('email') }}</p>
                                         @endif
                                     </div>
-
+                        
                                     <!-- Input -->
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Tên Công Ty</label>
-                                        <input type="text" name="company_name" value="{{$user_employee->company_name}}" placeholder="Invisionn">
+                                        <input type="text" name="company_name" value="{{ isset($user_employee->company_name) ? $user_employee->company_name : '' }}" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('company_name') }}</p>
                                         @endif
@@ -68,7 +68,7 @@
                                     <!-- Input -->
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Địa Chỉ Công Ty</label>
-                                        <input type="text" name="company_address" value="{{$user_employee->company_address}}" placeholder="creativelayers">
+                                        <input type="text" name="company_address" value="{{ isset($user_employee->company_address) ? $user_employee->company_address : ''}}" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('company_address') }}</p>
                                         @endif
@@ -77,7 +77,7 @@
                                     <!-- Input -->
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Số Điện Thoại Công Ty</label>
-                                        <input type="text" name="company_phone" value="{{$user_employee->company_phone}}" placeholder="0 123 456 7890">
+                                        <input type="text" name="company_phone" value="{{isset($user_employee->company_phone) ? $user_employee->company_phone : ''}}" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('company_phone') }}</p>
                                         @endif
@@ -85,7 +85,7 @@
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Website Công ty</label>
-                                        <input type="text" name="company_website" value="{{$user_employee->company_website}}" placeholder="Invisionn">
+                                        <input type="text" name="company_website" value="{{isset($user_employee->company_website) ? $user_employee->company_website : ''}}" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('company_website') }}</p>
                                         @endif
@@ -93,7 +93,7 @@
 
                                     <div class="form-group col-lg-12 col-md-12">
                                         <label>Mật Khẩu</label>
-                                        <input type="text" name="password" value="{{$user->password}}" placeholder="Invisionn">
+                                        <input type="text" name="password" value="{{$user->password}}" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('password') }}</p>
                                         @endif

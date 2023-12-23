@@ -64,7 +64,7 @@ class AuthController extends Controller
 
             $user->userEmployee()->create([
                 'company_name' => $request->company_name,
-                'company_email' => $request->company_email,
+                'company_website' => $request->company_website,
                 'company_phone' => $request->company_phone,
                 'company_address' => $request->company_address
             ]);
@@ -77,4 +77,6 @@ class AuthController extends Controller
             return view('employee::auth.register')->with('error', 'Đăng ký bị lỗi!');
         }
     }
+
+    
 }
