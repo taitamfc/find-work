@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Staff\app\Http\Controllers\StaffController;
+use Modules\Staff\app\Http\Controllers\ProfileController;
 use Modules\Staff\app\Http\Controllers\AuthController;
 use Modules\Staff\app\Http\Controllers\UserCvController;
 
@@ -18,30 +18,34 @@ use Modules\Staff\app\Http\Controllers\UserCvController;
 
 Route::group([
     'prefix' => 'staff',
-    'middleware'=>'auth'
+    'middleware'=>'auth.staff',
+    'as' => 'staff.'
 ], function () {
-    Route::get('/', [StaffController::class, 'index'])->name('staff.home');
-    Route::put('/profile/{id}', [StaffController::class, 'update'])->name('staff.update');
-    Route::resource('profile', StaffController::class)->names('staff.profile');
-    Route::resource('cv', UserCvController::class)->names('staff.cv');
+    Route::get('/', [ProfileController::class, 'index'])->name('home');
+
+    Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('update');
+    Route::resource('profile', ProfileController::class)->names('profile');
+    Route::resource('cv', UserCvController::class)->names('cv');
 
     Route::get('/experience', function () {
         return view('staff::experience');
-    })->name('staff.experience.index');
+    })->name('experience.index');
 
     Route::get('/education', function () {
         return view('staff::education');
-    })->name('staff.education.index');
+    })->name('education.index');
 
     Route::get('/skill', function () {
         return view('staff::skill');
-    })->name('staff.skill.index');
+    })->name('skill.index');
 });
-Route::group(['prefix' => 'staff'], function () {
-    Route::get('login',[AuthController::class,'login'])->name('staff.login');
-    Route::post('postLogin',[AuthController::class,'postLogin'])->name('staff.postLogin');
+Route::group([
+    'prefix' => 'staff',
+    'as' => 'staff.'
+], function () {
+    Route::get('login',[AuthController::class,'login'])->name('login');
+    Route::post('postLogin',[AuthController::class,'postLogin'])->name('postLogin');
     // Register
-    Route::get('register',[AuthController::class,'register'])->name('staff.register');
-    Route::post('postRegister',[AuthController::class,'postRegister'])->name('staff.postRegister');
-
+    Route::get('register',[AuthController::class,'register'])->name('register');
+    Route::post('postRegister',[AuthController::class,'postRegister'])->name('postRegister');
 });

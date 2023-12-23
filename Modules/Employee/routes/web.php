@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Employee\app\Http\Controllers\EmployeeController;
 use Modules\Employee\app\Http\Controllers\AuthController;
+use Modules\Employee\app\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,19 +16,22 @@ use Modules\Employee\app\Http\Controllers\AuthController;
 |
 */
 
-
-
-
-Route::group(['prefix' => 'employee'], function () {
-    Route::get('login',[AuthController::class,'login'])->name('employee.auth.login');
-        Route::post('postLogin',[AuthController::class,'postLogin'])->name('employee.auth.postLogin');
-        // Register
-        Route::get('register',[AuthController::class,'register'])->name('employee.auth.register');
-        Route::post('postRegister',[AuthController::class,'postRegister'])->name('employee.auth.postRegister');
+Route::group([
+	'prefix' => 'employee',
+	'as' => 'employee.'
+], function () {
+	Route::get('login',[AuthController::class,'login'])->name('login');
+	Route::post('postLogin',[AuthController::class,'postLogin'])->name('postLogin');
+	// Register
+	Route::get('register',[AuthController::class,'register'])->name('register');
+	Route::post('postRegister',[AuthController::class,'postRegister'])->name('postRegister');
 });
-Route::group(['prefix' => 'employee','middleware' => ['employee']], function () {
-        Route::get('/', [Modules\Employee\app\Http\Controllers\profile\ProfilesController::class,'index'])->name('employee.profile.index');
-        Route::post('/update/{id}', [Modules\Employee\app\Http\Controllers\profile\ProfilesController::class,'update'])->name('employee.profile.update');
+Route::group([
+	'prefix' => 'employee',
+	'middleware' => ['auth.employee']
+], function () {
+	Route::get('/', [ProfileController::class,'index'])->name('employee.profile.index');
+	Route::post('/update/{id}', [ProfileController::class,'update'])->name('employee.profile.update');
 });
 
 

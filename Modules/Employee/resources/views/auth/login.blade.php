@@ -5,7 +5,7 @@
     <div class="form-inner">
         <h3>Đăng Nhập Nhà Tuyển Dụng</h3>
         <!--Login Form-->
-        <form action="{{ route('employee.auth.postLogin')}}" method="POST">
+        <form action="{{ route('employee.postLogin')}}" method="POST">
             @if (session('error'))
             <div class="alert alert-danger" role="alert">
                 {{ session('error') }}
@@ -37,7 +37,7 @@
                         <input type="checkbox" name="remember-me" value="" id="remember">
                         <label for="remember" class="remember"><span class="custom-checkbox"></span>Ghi nhớ mật khẩu</label>
                     </div>
-                    <a href="{{ route('website.forgot')}}" class="pwd">Lấy lại mật khẩu?</a>
+                    <a href="{{ route('auth.forgot')}}" class="pwd">Lấy lại mật khẩu?</a>
                 </div>
             </div>
 
@@ -47,7 +47,7 @@
         </form>
 
         <div class="bottom-box">
-            <div class="text">Bạn có muốn đăng ký tài khoản? <a href="{{ route('employee.auth.register')}}">Đăng ký</a></div>
+            <div class="text">Bạn có muốn đăng ký tài khoản? <a href="{{ route('employee.register')}}">Đăng ký</a></div>
             {{-- <div class="divider"><span>or</span></div>
             <div class="btn-box row">
                 <div class="col-lg-6 col-md-12">

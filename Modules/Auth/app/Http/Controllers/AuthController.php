@@ -53,15 +53,6 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
-
-        // Create a new staff_user in the staff_user table
-        $staffUser = StaffUser::create([
-            'user_id' => $user->id,
-            'phone' => $request->phone,
-            'birthdate' => $request->birthdate,
-            // Set other staff_user fields here
-        ]);
-
         $message = "Successfully registered";
         return redirect()->route('auth.login')->with('success', $message);
     } catch (\Exception $e) {

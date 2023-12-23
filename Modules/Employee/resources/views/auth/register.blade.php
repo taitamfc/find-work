@@ -5,7 +5,7 @@
     <div class="form-inner">
         <h3>Tạo tài khoản tuyển dụng miễn phí</h3>
         <!--Login Form-->
-        <form action="{{ route('employee.auth.postRegister') }}" method='post'>
+        <form action="{{ route('employee.postRegister') }}" method='post'>
             @if (session('error'))
             <div class="alert alert-danger" role="alert">
                 {{ session('error') }}
@@ -132,7 +132,7 @@
             </div>
         </form>
         <div class="bottom-box">
-            <div class="text">Đã có tài khoản? <a href="{{ route('employee.auth.login')}}">Đăng nhập</a></div>
+            <div class="text">Đã có tài khoản? <a href="{{ route('employee.login')}}">Đăng nhập</a></div>
             {{-- <div class="divider"><span>Hoặc</span></div>
             <div class="btn-box row">
                 <div class="col-lg-6 col-md-12">
