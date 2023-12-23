@@ -7,10 +7,10 @@ use Illuminate\Http\RedirectResponse;
 use Modules\Staff\app\Http\Requests\UpdateUserStaffRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Modules\Staff\app\Models\StaffUser;
+use Modules\Staff\app\Models\UserStaff;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-class StaffController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class StaffController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $item = StaffUser::where('user_id', $user->id)->with('user')->first();
+        $item = UserStaff::where('user_id', $user->id)->with('user')->first();
         $params = [
             'item' => $item,
         ];
@@ -64,7 +64,7 @@ class StaffController extends Controller
      */
     public function update(UpdateUserStaffRequest $request, $id)
     {
-        $staff = StaffUser::findOrFail($id);
+        $staff = UserStaff::findOrFail($id);
         $user = $staff->user;
         $user->update([
             'name' => $request->input('name'),

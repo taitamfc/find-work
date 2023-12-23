@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Employee\app\Http\Controllers\profile;
+namespace Modules\Employee\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Modules\Employee\app\Http\Requests\UpdateProfileEmployeeRequest;
 
 
-class ProfilesController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,8 +22,7 @@ class ProfilesController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $user_employees = UserEmployee::where('user_id',$user->id)->get();
-        $user_employee = $user_employees[0];
+        $user_employee = UserEmployee::where('user_id',$user->id)->first();
         return view('employee::profileEmploy.index',compact(['user_employee','user']));
     }
 

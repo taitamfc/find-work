@@ -25,6 +25,10 @@ class User extends Model
     {
         return $this->hasOne(StaffUser::class);
     }
+    public function userStaff()
+    {
+        return $this->hasOne(UserStaff::class);
+    }
     public function userCv()
     {
         return $this->hasOne(UserCv::class);

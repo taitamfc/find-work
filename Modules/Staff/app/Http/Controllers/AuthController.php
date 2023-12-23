@@ -1,11 +1,9 @@
 <?php
 
 namespace Modules\Staff\app\Http\Controllers;
-use Modules\Staff\app\Models\StaffUser;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Log;
 use Modules\Auth\app\Http\Requests\StoreLoginRequest;
@@ -15,6 +13,9 @@ use Modules\Auth\app\Http\Requests\ResetPasswordRequest;
 use Modules\Auth\app\Models\PasswordResetToken;
 use Mail;
 use Illuminate\Support\Str;
+use Modules\Staff\app\Models\StaffUser;
+use Modules\Staff\app\Models\User;
+
 
 class AuthController extends Controller
 {
@@ -54,14 +55,10 @@ class AuthController extends Controller
                 'password' => bcrypt($request->password),
             ]);
 
-            // Create a new staff_user in the staff_user table
-            $staffUser = StaffUser::create([
-                'user_id' => $user->id,
+            $user->userStaff()->create([
                 'phone' => $request->phone,
                 'birthdate' => $request->birthdate,
-                // Set other staff_user fields here
             ]);
-
             $message = "Successfully registered";
             return redirect()->route('staff.login')->with('success', $message);
         } catch (\Exception $e) {
