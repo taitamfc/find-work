@@ -13,7 +13,7 @@ class UserEmployee extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $table = 'user_employees';
+    protected $table = 'user_employee';
     protected $fillable = [
         'company_name',
         'company_email',

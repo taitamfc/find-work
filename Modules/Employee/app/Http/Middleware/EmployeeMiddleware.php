@@ -16,6 +16,6 @@ class EmployeeMiddleware
         if ($request->user()) {
             return $next($request);
         }
-        return redirect()->route('employee.auth.login');
+        return redirect()->route('employee.login');
     }
 }

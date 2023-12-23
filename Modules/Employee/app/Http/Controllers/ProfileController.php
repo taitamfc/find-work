@@ -92,11 +92,11 @@ class ProfileController extends Controller
             DB::commit(); // Hoàn thành giao dịch
 
             $message = "Cập nhật thành công!";
-            return redirect()->route('employee.profile.index')->with('success', $message);
+            return redirect()->route('employee.home')->with('success', $message);
         } catch (\Exception $e) {
             DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
             Log::error('Lỗi xảy ra: ' . $e->getMessage());
-            return redirect()->route('employee.profile.index')->with('error', 'Cập Nhật bị lỗi!');
+            return redirect()->route('employee.home')->with('error', 'Cập Nhật bị lỗi!');
         }
     }
 
