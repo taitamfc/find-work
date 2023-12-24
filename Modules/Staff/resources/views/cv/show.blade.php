@@ -7,8 +7,6 @@
             <h3>Profile!</h3>
             <div class="text">Ready to jump back in?</div>
         </div>
-        @include('staff::cv.includes.card')
-
         <div class="row">
             <div class="col-lg-12">
                 <!-- Ls widget -->
