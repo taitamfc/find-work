@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('user_skills', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->nullable();
-            $table->foreignId('cv_id')->constrained()->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('cv_id')->nullable();
             $table->integer('numerical')->nullable();
             $table->string('special_skill')->nullable();
             $table->string('skill_level')->nullable();
