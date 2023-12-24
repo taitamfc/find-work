@@ -10,7 +10,7 @@
                 {{ session('error') }}
             </div>
             @endif
-            <form class="default-form" method="POST" action="{{ route('staff.cv.store') }}">
+            <form class="default-form" method="POST" action="{{ route('staff.cv.store',['tab'=>$tab]) }}">
                 @csrf
                 <div class="row">
                     <!-- Thông tin cá nhân -->
@@ -66,7 +66,7 @@
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Mức lương mong muốn</label>
-                        <input type="text" name="desired_salary" value="{{ old('desired_salary') }}">
+                        <input type="number" name="desired_salary" value="{{ old('desired_salary') }}">
                             @if ($errors->any())
                         <p style="color:red">{{ $errors->first('desired_salary') }}</p>
                         @endif

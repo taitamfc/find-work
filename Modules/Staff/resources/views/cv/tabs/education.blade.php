@@ -1,6 +1,5 @@
-<form class="default-form" method="POST" action="">
+<form class="default-form" method="POST" action="{{ route('staff.education.store',['tab'=>$tab]) }}">
     @csrf
-    @method('PUT')
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -15,11 +14,11 @@
                             <div class="row">
                                 <div class="form-group col-lg-6 col-md-12">
                                     <label>Thứ tự</label>
-                                    <input type="number" name="number" value="">
+                                    <input type="number" name="numerical" value="">
                                 </div>
                                 <div class="form-group col-lg-6 col-md-12">
                                     <label>Trình độ</label>
-                                    <select name="level" class="form-control">
+                                    <select name="education_level" class="form-control">
                                         <option value="1">chưa tốt nghiệp </option>
                                         <option value="2">Trung học</option>
                                         <option value="3">Trung cấp</option>
@@ -33,15 +32,15 @@
                                             / Ngày tốt
                                             nghiệp</label> <input class="form-control valid" data-val="true"
                                             data-val-required="Vui lòng nhập thời gian nhận bằng" id="GraduationDate"
-                                            name="GraduationDate" type="date" value="2023-03-21"
+                                            name="graduation_date" type="date" value="2023-03-21"
                                             aria-describedby="GraduationDate-error" aria-invalid="false"> <small
                                             class="form-text text-muted">
-                                            <span class="field-validation-valid" data-valmsg-for="GraduationDate"
+                                            <span class="field-validation-valid" data-valmsg-for="graduation_date"
                                                 data-valmsg-replace="true"></span> </small></div>
                                 </div>
                                 <div class="form-group col-lg-6 col-md-12">
                                     <label>Ngoại ngữ</label>
-                                    <select name="level" class="form-control">
+                                    <select name="language" class="form-control">
                                         <option value="1">Anh</option>
                                         <option value="2">Pháp</option>
                                         <option value="3">Hàn</option>
@@ -55,14 +54,14 @@
                             <div class="row">
                                 <div class="form-group col-12">
                                     <label>Trường / Khóa học</label>
-                                    <input type="text" name="" value="">
+                                    <input type="text" name="school_course" value="">
                                     @if ($errors->any())
-                                    <p style="color:red">{{ $errors->first('email') }}</p>
+                                    <p style="color:red">{{ $errors->first('school_course') }}</p>
                                     @endif
                                 </div>
                                 <div class="form-group col-12">
                                     <label>Ngành / Chuyên ngành</label>
-                                    <input type="text" name="name" value="">
+                                    <input type="text" name="major" value="">
                                 </div>
                             </div>
                         </div>

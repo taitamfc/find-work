@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <form class="default-form" method="POST" action="{{ route('staff.cv.store',['tab'=>'personal-information']) }}">
+            <form class="default-form" method="POST" action="{{ route('staff.cv.store',['tab'=>$tab]) }}">
                 @csrf
                 <div class="row">
                     <div class="form-group col-lg-6 col-md-12">
