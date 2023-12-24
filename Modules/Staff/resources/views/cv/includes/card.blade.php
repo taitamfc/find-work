@@ -1,4 +1,6 @@
-
+@php
+$tab = request()->fullUrl();
+@endphp
 <style>
 li.nav-item.active {
     background-color: #1269DB;

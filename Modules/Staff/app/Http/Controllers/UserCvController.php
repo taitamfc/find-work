@@ -1,7 +1,6 @@
 <?php
 
 namespace Modules\Staff\app\Http\Controllers;
-
 use App\Http\Controllers\Controller;
 use Modules\Staff\app\Http\Requests\StoreUserCvRequest;
 use Modules\Staff\app\Http\Requests\UpdateUserCvRequest;
@@ -58,7 +57,6 @@ public function create(Request $request)
         'item' => $item,
         'tab' => $tab,
     ];
-
     return view('staff::cv.create', $params);
 }
 
