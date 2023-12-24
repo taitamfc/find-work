@@ -15,6 +15,10 @@ class StaffDatabaseSeeder extends Seeder
         $this->call([
             UserCvSeeder::class,
             UserStaffSeeder::class,
+            UserExperiencesSeeder::class,
+            UserEducationSeeder::class,
+            UserSkillSeeder::class,
+
         ]);
     }
 }

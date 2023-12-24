@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Staff\app\Models\UserCv;
+use Modules\Staff\app\Models\UserExperience;
 use Illuminate\Support\Facades\Auth;
 use Modules\Staff\app\Models\StaffUser;
 use Illuminate\Support\Facades\Log;
@@ -70,28 +71,24 @@ public function create(Request $request)
         // dd($request->all());
         $cv_id = session()->get('cv_id', 0);
         $user = Auth::user();
+        $request->merge(['user_id' => $user->id]);
         $tab  = $request->tab;
         switch ($tab) {
             case 'personal-information':
-                $request->merge(['user_id' => $user->id]);
                 $saved = UserCv::savePersonalInformation($request,$cv_id);
                 session(['cv_id' => $saved->id]);
                 return redirect()->route('staff.cv.create',['tab'=>'job-information']);
                 break;
             case 'job-information':
-                $data = $request->all();
-                $data['user_id'] = $user->id;
-                $saved = UserCv::saveJobInformation($data,$cv_id);
+                $saved = UserCv::saveJobInformation($request,$cv_id);
                 session(['cv_id' => $saved->id]);
                 return redirect()->route('staff.cv.create',['tab'=>'experience']);
                 break;
-            // case 'experience':
-            //     $data = $request->all();
-            //     $data['user_id'] = $user->id;
-            //     $saved = UserCv::savePersonalInformation($data,$cv_id);
-            //     session(['cv_id' => $saved]);
-            //     return redirect()->route('staff.cv.create',['tab'=>'education']);
-            //     break;
+            case 'experience':
+                $saved = UserExperience::saveExperienceInformation($request,$cv_id);
+                session(['cv_id' => $saved->id]);
+                return redirect()->route('staff.cv.create',['tab'=>'education']);
+                break;
             // case 'education':
             //     $data = $request->all();
             //     $data['user_id'] = $user->id;

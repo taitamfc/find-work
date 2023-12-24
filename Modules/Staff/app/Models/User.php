@@ -21,6 +21,19 @@ class User extends Model
         'birthdate',
     ];
     // Trong mô hình User.php
+
+    public function userExperiences()
+    {
+        return $this->hasMany(UserExperience::class);
+    }
+    public function userSkills()
+    {
+        return $this->hasMany(UserSkill::class);
+    }
+    public function userEducations()
+    {
+        return $this->hasMany(UserEducation::class);
+    }
     public function staffUser()
     {
         return $this->hasOne(StaffUser::class);

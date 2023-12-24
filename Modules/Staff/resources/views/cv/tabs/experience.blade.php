@@ -1,6 +1,5 @@
-<form class="default-form" method="POST" action="">
+<form class="default-form" method="POST" action="{{ route('staff.experience.store') }}">
     @csrf
-    @method('PUT')
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -15,7 +14,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-6 col-md-12">
                                     <label>Thứ tự</label>
-                                    <input type="number" name="number" value="">
+                                    <input type="number" name="numerical" value="">
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-check"><label class="form-check-label">
@@ -28,26 +27,26 @@
                                 </div>
                                 <div class="form-group col-12">
                                     <label>Công ty</label>
-                                    <input type="text" name="email" value="" placeholder="creativelayers">
+                                    <input type="text" name="company" value="" placeholder="creativelayers">
                                     @if ($errors->any())
-                                    <p style="color:red">{{ $errors->first('email') }}</p>
+                                    <p style="color:red">{{ $errors->first('company') }}</p>
                                     @endif
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group"><label class="required" for="WorkFrom">Thời
                                             gian bắt đầu</label> <input class="form-control" data-val="true"
                                             data-val-required="Vui lòng nhập thời gian bắt đầu" id="WorkFrom"
-                                            name="WorkFrom" type="date" value="2022-12-22"> <small
+                                            name="start_date" type="date" value="2022-12-22"> <small
                                             class="form-text text-muted">
-                                            <span class="field-validation-valid" data-valmsg-for="WorkFrom"
+                                            <span class="field-validation-valid" data-valmsg-for="start_date"
                                                 data-valmsg-replace="true"></span> </small>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group"><label for="WorkTo">Thời gian
-                                            kết thúc</label> <input class="form-control" id="WorkTo" name="WorkTo"
+                                            kết thúc</label> <input class="form-control" id="WorkTo" name="end_date"
                                             type="date"> <small class="form-text text-muted"> <span
-                                                class="field-validation-valid" data-valmsg-for="WorkTo"
+                                                class="field-validation-valid" data-valmsg-for="end_date"
                                                 data-valmsg-replace="true"></span> </small>
                                     </div>
                                 </div>
@@ -73,13 +72,13 @@
 
                                 <div class="form-group col-12">
                                     <label>Vị trí chức danh</label>
-                                    <input type="text" name="name" value="">
+                                    <input type="text" name="position" value="">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-12">
                                     <label>mô tả công việc</label>
-                                    <input type="text" name="name" value="">
+                                    <input type="text" name="job_description" value="">
                                 </div>
                             </div>
                         </div>

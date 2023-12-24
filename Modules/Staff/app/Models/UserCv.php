@@ -35,6 +35,9 @@ class UserCv extends Model
         // dd($data);
         if($cv_id){
             $item = self::find($cv_id);
+            if(!$item){
+                $item = new self;
+            }
         }else{
             $item = new self;
         }
@@ -65,12 +68,25 @@ class UserCv extends Model
         $item->desired_location = $request->desired_location;
         $item->desired_salary = $request->desired_salary;
         $item->career_objective = $request->career_objective;
-        dd($item);
         $item->save();
         return $item;
+    }
+    public function userExperiences()
+    {
+        return $this->hasMany(UserExperience::class, 'cv_id');
+    }
+    public function userEducations()
+    {
+        return $this->hasMany(UserEducation::class, 'cv_id');
+    }
+
+    public function userSkills()
+    {
+        return $this->hasMany(UserSkill::class, 'cv_id');
     }
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+   
 }

@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Modules\Staff\app\Http\Controllers\ProfileController;
 use Modules\Staff\app\Http\Controllers\AuthController;
 use Modules\Staff\app\Http\Controllers\UserCvController;
+use Modules\Staff\app\Http\Controllers\UserExperienceController;
+use Modules\Staff\app\Http\Controllers\UserEducationController;
+use Modules\Staff\app\Http\Controllers\UserSkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,18 +29,9 @@ Route::group([
     Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('update');
     Route::resource('profile', ProfileController::class)->names('profile');
     Route::resource('cv', UserCvController::class)->names('cv');
-
-    Route::get('/experience', function () {
-        return view('staff::experience');
-    })->name('experience.index');
-
-    Route::get('/education', function () {
-        return view('staff::education');
-    })->name('education.index');
-
-    Route::get('/skill', function () {
-        return view('staff::skill');
-    })->name('skill.index');
+    Route::resource('experience', UserExperienceController::class)->names('experience');
+    Route::resource('education', UserEducationController::class)->names('education');
+    Route::resource('skill', UserSkillController::class)->names('skill');
 
     Route::get('/personal_information', function () {
         return view('staff::personal_information');
