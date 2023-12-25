@@ -4,7 +4,7 @@
     <section class="user-dashboard">
         <div class="dashboard-outer">
             <div class="upper-title-box">
-                <h3>Thêm mới công việc</h3>
+                <h3>Chi tiết công việc</h3>
                 {{-- <div class="text">Ready to jump back in?</div> --}}
             </div>
 
@@ -14,7 +14,7 @@
                     <div class="ls-widget">
                         <div class="tabs-box">
                             <div class="widget-content">
-                                <form action="{{route('employee.job.store')}}" method="post" novalidate="novalidate">
+                                <form action="{{route('employee.job.update',$job->id)}}" method="post" novalidate="novalidate">
                                     @if (session('error'))
                                     <div class="alert alert-danger" role="alert">
                                         {{ session('error') }}
@@ -52,7 +52,8 @@
                                                                             data-val-required="Tiêu đề việc làm không được để trống"
                                                                             id="Title" maxlength="1000" name="name"
                                                                             type="text"
-                                                                            onkeyup="generateSlug(this.value)">
+                                                                            onkeyup="generateSlug(this.value)"
+                                                                            value="{{$job->name}}">
                                                                         @if ($errors->any())
                                                                             <p style="color:red">
                                                                                 {{ $errors->first('name') }}</p>
@@ -73,7 +74,8 @@
                                                                             data-val-maxlength-max="1000"
                                                                             data-val-required="Đường dẫn không được để trống"
                                                                             id="NameUrl" maxlength="1000" name="slug"
-                                                                            readonly="" type="text">
+                                                                            readonly="" type="text"
+                                                                            value="{{$job->slug}}">
                                                                         @if ($errors->any())
                                                                             <p style="color:red">
                                                                                 {{ $errors->first('slug') }}</p>
@@ -107,7 +109,7 @@
                                                                 <div class="form-group row"><label
                                                                         for="Categories"><strong>Lĩnh vực việc làm:</strong>
                                                                         (*)
-                                                                        <input name="career" class="form-control ol-md-12">
+                                                                        <input name="career" class="form-control ol-md-12" value="{{$job->career}}">
                                                                         @if ($errors->any())
                                                                             <p style="color:red">
                                                                                 {{ $errors->first('career') }}</p>
@@ -120,8 +122,8 @@
                                                             <div class="col-lg-6">
                                                                 <label for="type_work"><strong>Loại công việc (*)</strong></label>
                                                                 <select class="form-control" name="type_work" id="">
-                                                                    <option value="1">Toàn thời gian</option>
-                                                                    <option value="0">Bán thời gian</option>
+                                                                    <option @selected($job->type_work == 1) value="1">Toàn thời gian</option>
+                                                                    <option @selected($job->type_work == 0) value="0">Bán thời gian</option>
                                                                 </select>
                                                                  @if ($errors->any())
                                                                      <p style="color:red">
@@ -135,7 +137,7 @@
                                                                         data-val="true"
                                                                         data-val-required="Hạn cuối không được để trống"
                                                                         id="Deadline" name="deadline" type="date"
-                                                                        value="2024-01-01">
+                                                                        value="{{$job->deadline}}">
                                                                     @if ($errors->any())
                                                                         <p style="color:red">
                                                                             {{ $errors->first('deadline') }}</p>
@@ -151,8 +153,8 @@
                                                                         class="form-control" data-val="true"
                                                                         data-val-required="Kinh nghiệm không được để trống"
                                                                         id="RequireExperience" name="experience">
-                                                                        <option value="1">Không yêu cầu</option>
-                                                                        <option value="2">Có yêu cầu</option>
+                                                                        <option @selected($job->experience == 1) value="1">Không yêu cầu</option>
+                                                                        <option @selected($job->experience == 2) value="2">Có yêu cầu</option>
                                                                     </select>
                                                                     @if ($errors->any())
                                                                         <p style="color:red">
@@ -175,7 +177,8 @@
                                                                         data-val-range="The field Lương tối thiểu (triệu đồng) must be between 0 and 2147483647."
                                                                         data-val-range-max="2147483647"
                                                                         data-val-range-min="0" id="SalaryFrom"
-                                                                        min="0" name="wage_min" type="number">
+                                                                        min="0" name="wage_min" type="number"
+                                                                        value="{{$job->wage_min}}">
                                                                     @if ($errors->any())
                                                                         <p style="color:red">
                                                                             {{ $errors->first('wage_min') }}</p>
@@ -195,7 +198,8 @@
                                                                         data-val-range="The field Lương tối đa (triệu đồng) must be between 0 and 2147483647."
                                                                         data-val-range-max="2147483647"
                                                                         data-val-range-min="0" id="SalaryTo"
-                                                                        min="0" name="wage_max" type="number">
+                                                                        min="0" name="wage_max" type="number"
+                                                                        value="{{$job->wage_max}}">
                                                                     @if ($errors->any())
                                                                         <p style="color:red">
                                                                             {{ $errors->first('wage_max') }}</p>
@@ -214,8 +218,8 @@
                                                                         (*)
                                                                         <select class="form-control col-lg-12"
                                                                             name="gender" id="">
-                                                                            <option value="1">Nam</option>
-                                                                            <option value="2">Nữ</option>
+                                                                            <option @selected($job->gender == 1) value="1">Nam</option>
+                                                                            <option @selected($job->gender == 2) value="2">Nữ</option>
                                                                         </select>
                                                                         @if ($errors->any())
                                                                             <p style="color:red">
@@ -229,7 +233,7 @@
                                                                 <div class="form-group"><label for="Districts"><strong>Nơi
                                                                             làm việc:</strong>
                                                                         (*)</label> <input class="form-control"
-                                                                        name="work_address" type="text">
+                                                                        name="work_address" type="text" value="{{$job->work_address}}">
                                                                     @if ($errors->any())
                                                                         <p style="color:red">
                                                                             {{ $errors->first('work_address') }}</p>
@@ -240,7 +244,7 @@
                                                                 <div class="form-group"><label
                                                                         for="Districts"><strong>Bằng cấp:</strong>
                                                                         (*)</label> <input class="form-control"
-                                                                        name="degree" type="text">
+                                                                        name="degree" type="text" value="{{$job->degree}}">
                                                                     @if ($errors->any())
                                                                         <p style="color:red">
                                                                             {{ $errors->first('degree') }}</p>
@@ -253,7 +257,7 @@
                                                                 <div class="form-group"><label
                                                                         for="Description"><strong>Mô tả:</strong>
                                                                         (*)</label>
-                                                                    <textarea class="form-control" name="job_description" id="" cols="30" rows="10"></textarea>
+                                                                    <textarea class="form-control" name="job_description" id="" cols="30" rows="10">{{$job->job_description}}</textarea>
                                                                     @if ($errors->any())
                                                                         <p style="color:red">
                                                                             {{ $errors->first('job_description') }}</p>
@@ -265,7 +269,7 @@
                                                                         for="Description"><strong>Yêu cầu công
                                                                             việc:</strong>Yêu cầu công việc
                                                                         (*)</label>
-                                                                    <textarea class="form-control" name="job_requirements" id="" cols="30" rows="10"></textarea>
+                                                                    <textarea class="form-control" name="job_requirements" id="" cols="30" rows="10">{{$job->job_requirements}}</textarea>
                                                                     @if ($errors->any())
                                                                         <p style="color:red">
                                                                             {{ $errors->first('job_requirements') }}</p>
@@ -285,13 +289,13 @@
                                                                         data-val-range-min="1"
                                                                         data-val-required="Trạng thái tuyển dụng không được để trống"
                                                                         id="JobStatusId" name="jobStatusId">
-                                                                        <option value="1">Đang tuyển</option>
-                                                                        <option value="0">Dừng tuyển</option>
+                                                                        <option @selected($job->jobStatusId == 1) value="1">Đang tuyển</option>
+                                                                        <option @selected($job->jobStatusId == 0) value="0">Dừng tuyển</option>
                                                                     </select> 
                                                                 </div>
                                                     </div>
                                                     <div class="card-action pt-3"><button type="submit"
-                                                            class="btn btn-success">Lưu</button> <a class="btn btn-danger"
+                                                            class="btn btn-success">Cập Nhật</button> <a class="btn btn-danger"
                                                             href="{{route('employee.job.index')}}">Quay về</a>
                                                     </div>
                                                 </div>

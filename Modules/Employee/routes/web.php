@@ -43,6 +43,7 @@ Route::group([
 	Route::get('/job/create', [JobController::class,'create'])->name('job.create');
 	Route::post('/job/store', [JobController::class,'store'])->name('job.store');
 	Route::get('/job/edit/{id}', [JobController::class,'edit'])->name('job.edit');
+	Route::get('/job/show/{id}', [JobController::class,'show'])->name('job.show');
 	Route::post('/job/update/{id}', [JobController::class,'update'])->name('job.update');
 	Route::get('/job/delete/{id}', [JobController::class,'destroy'])->name('job.delete');
 

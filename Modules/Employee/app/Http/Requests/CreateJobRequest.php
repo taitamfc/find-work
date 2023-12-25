@@ -23,12 +23,20 @@ class CreateJobRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'slug' => 'required',
             'career' => 'required',
-            'Work_address' => 'required',
-            'Job_description' => 'required',
-            'Job_requirements' => 'required',
-            'wage' => 'required',
             'type_work' => 'required',
+            'deadline' => 'required',
+            'experience' => 'required',
+            'wage_min' => 'required',
+            'wage_max' => 'required',
+            'gender' => 'required',
+            'work_address' => 'required',
+            'degree' => 'required',
+            'jobStatusId' => 'required',
+            'job_description' => 'required',
+            'job_requirements' => 'required',
+            
         ];
     }
 
@@ -36,12 +44,20 @@ class CreateJobRequest extends FormRequest
     {
         return  [
             'name.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'slug.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'career.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'Work_address.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'Job_description.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'Job_requirements.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'wage.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'type_work.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'deadline.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'experience.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'wage_min.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'wage_max.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'gender.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'work_address.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'degree.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'jobStatusId.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'job_description.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'job_requirements.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            
             ];
     }
 

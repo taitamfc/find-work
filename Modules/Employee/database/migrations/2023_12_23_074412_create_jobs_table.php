@@ -14,14 +14,21 @@ return new class extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('name')->nullable();
-            $table->string('career')->nullable();
-            $table->string('Work_address')->nullable();
-            $table->string('Job_description')->nullable();
-            $table->string('Job_requirements')->nullable();
-            $table->string('wage')->nullable();
-            $table->string('type_work')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('name')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('career')->nullable();
+            $table->string('type_work')->nullable();
+            $table->string('deadline')->nullable();
+            $table->string('experience')->nullable();
+            $table->integer('wage_min')->nullable();
+            $table->integer('wage_max')->nullable();
+            $table->integer('gender')->nullable();
+            $table->string('work_address')->nullable();
+            $table->string('degree')->nullable();
+            $table->string('jobStatusId')->nullable();
+            $table->string('job_description')->nullable();
+            $table->string('job_requirements')->nullable();
             $table->timestamps();
         });
     }
