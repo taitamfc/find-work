@@ -48,16 +48,13 @@ class UserCvController extends Controller
 // UserCvController.php
 public function create(Request $request)
 {
-    $tab    = $request->tab ? $request->tab : 'personal-information';
     $user   = Auth::user();
-    $item   = StaffUser::where('user_id', $user->id)->first();
+    $saved = UserCv::create([
+        'user_id' => $user->id
+    ]);
+    return redirect()->route('staff.cv.edit',$saved->id)->with('success', 'Hồ sơ được cập nhật thành công');
 
-    $params = [
-        'user' => $user,
-        'item' => $item,
-        'tab' => $tab,
-    ];
-    return view('staff::cv.create', $params);
+    
 }
 
 
@@ -133,14 +130,17 @@ public function create(Request $request)
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
+        $user   = Auth::user();
         $item = UserCv::findOrFail($id);
-    // dd($item);
+        $tab    = $request->tab ? $request->tab : 'personal-information';
+        $item   = StaffUser::where('user_id', $user->id)->first();
         $params = [
+            'user' => $user,
             'item' => $item,
+            'tab' => $tab,
         ];
-    
         return view('staff::cv.edit', $params);
     }
     

@@ -1,14 +1,19 @@
-<form class="default-form" method="POST" action="{{ route('staff.experience.store') }}">
-    @csrf
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header" data-toggle="collapse" data-target="#collapseExperience-" aria-expanded="true"
-                    style="background-color: white;">
-                    <div class="card-title"><span class="btn btn-primary"> <i class="fas fa-plus"></i>
-                            Thêm mới công việc </span></div>
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                        data-target="#collapseExperience-" aria-expanded="false" aria-controls="collapseExperience-">
+                        <i class="fas fa-plus"></i>
+                        Thêm mới công việc
+                    </button>
                 </div>
-                <div class="card-body collapse show" id="collapseExperience-" style="">
+            </div>
+            <div class="card-body collapse" id="collapseExperience-">
+                <form class="default-form" method="POST" action="{{ route('staff.experience.update',$item->id) }}">
+                    @csrf
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="row">
@@ -33,8 +38,9 @@
                                     @endif
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="form-group"><label class="required" for="WorkFrom">Thời
-                                            gian bắt đầu</label> <input class="form-control" data-val="true"
+                                    <div class="form-group">
+                                        <label class="required" for="WorkFrom">Thời gian bắt đầu</label>
+                                        <input class="form-control" data-val="true"
                                             data-val-required="Vui lòng nhập thời gian bắt đầu" id="WorkFrom"
                                             name="start_date" type="date" value="2022-12-22"> <small
                                             class="form-text text-muted">
@@ -83,11 +89,32 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text-right"><button class="d-flex btn btn-primary ms-auto" type="submit"
-                            style="margin-top: 20px;">
-                            <i class="fas fa-plus"></i> Lưu </button></div>
-                </div>
+                    <div class="text-right">
+                        <button class="d-flex btn btn-primary ms-auto mt-2" type="submit">
+                            <i class="fas fa-plus"></i> Lưu
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
+
+		<div class="card">
+			<div class="card-body">
+				This is some text within a card body.
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				This is some text within a card body.
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				This is some text within a card body.
+			</div>
+		</div>
+
     </div>
-</form>
+</div>
