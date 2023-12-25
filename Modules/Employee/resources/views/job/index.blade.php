@@ -15,17 +15,6 @@
                         <div class="tabs-box">
                             <div class="widget-title">
                                 <h4>Danh sách công việc của tôi</h4>
-
-                                <div class="chosen-outer">
-                                    <!--Tabs Box-->
-                                    <select class="chosen-select">
-                                        <option>6 tháng trước</option>
-                                        <option>12 tháng trước</option>
-                                        <option>16 tháng trước</option>
-                                        <option>24 tháng trước</option>
-                                        <option>36 tháng trước</option>
-                                    </select>
-                                </div>
                             </div>
                             <div class="widget-content">
                                 <div class="table-outer">
@@ -43,12 +32,8 @@
                                             @endif
                                             <tr>
                                                 <th>Tên công việc</th>
-                                                <th>Ngành nghề</th>
-                                                <th>Địa chỉ làm việc</th>
-                                                <th>Mô tả công việc</th>
-                                                <th>Yêu cầu công việc</th>
-                                                <th>Lương</th>
-                                                <th>Loại hình công việc</th>
+                                                <th>Thời hạn</th>
+                                                <th>Trạng thái công việc</th>
                                                 <th>Thao tác</th>
                                             </tr>
                                         </thead>
@@ -59,20 +44,20 @@
                                                     <td>
                                                         <h6>{{ $job->name }}</h6>
                                                     </td>
-                                                    <td>{{ $job->career }}</td>
-                                                    <td>{{ $job->Work_address }}</td>
-                                                    <td>{{ $job->Job_description }}</td>
-                                                    <td>{{ $job->Job_requirements }}</td>
-                                                    <td>{{ $job->wage }} VNĐ</td>
-                                                    <td>{{ $job->type_work }}</td>
+                                                    <td>{{ $job->deadline }}</td>
+                                                    @if($job->jobStatusId == 1)
+                                                        <td><span class="green-button">Đang tuyển</span></td>
+                                                    @elseif ($job->jobStatusId == 0)
+                                                        <td><span class="danger-button">Dừng tuyển</span></td>
+                                                    @endif
                                                     <td>
                                                         <div class="option-box">
                                                             <ul class="option-list">
-                                                                <li><a href="" data-text="View Aplication"><span
+                                                                <li><a href="{{ route('employee.job.show', $job->id) }}" data-text="View Aplication"><span
                                                                             class="la la-eye"></span></a></li>
-                                                                <li><a href="{{ route('employee.job.edit', $job->id) }}"
+                                                                {{-- <li><a href="{{ route('employee.job.edit', $job->id) }}"
                                                                         data-text="Reject Aplication"><span
-                                                                            class="la la-pencil"></span></a></li>
+                                                                            class="la la-pencil"></span></a></li> --}}
                                                                 <li>
                                                                     <a href="{{ route('employee.job.delete', ['id' => $job->id]) }}"
                                                                         onclick="confirmDelete(event)"
@@ -86,8 +71,9 @@
                                                                         event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
 
                                                                         if (confirm("Bạn có muốn xóa không?")) {
+                                                                            console.log(123);
                                                                             var url = event.target.getAttribute('href');
-                                                                            window.location.href = url; // Chuyển hướng đến URL xóa
+                                                                            window.location.href = {{ route('employee.job.delete', ['id' => $job->id]) }}; // Chuyển hướng đến URL xóa
                                                                         }
                                                                     }
                                                                 </script>

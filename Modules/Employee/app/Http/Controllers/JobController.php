@@ -38,12 +38,19 @@ class JobController extends Controller
         try {
             $job = new Job();
             $job->name = $request->name;
+            $job->slug = $request->slug;
             $job->career = $request->career;
-            $job->Work_address = $request->Work_address;
-            $job->Job_description = $request->Job_description;
-            $job->Job_requirements = $request->Job_requirements;
-            $job->wage = $request->wage;
             $job->type_work = $request->type_work;
+            $job->deadline = $request->deadline;
+            $job->experience = $request->experience;
+            $job->wage_min = $request->wage_min;
+            $job->wage_max = $request->wage_max;
+            $job->gender = $request->gender;
+            $job->work_address = $request->work_address;
+            $job->degree = $request->degree;
+            $job->job_description = $request->job_description;
+            $job->job_requirements = $request->job_requirements;
+            $job->jobStatusId = $request->jobStatusId;
             $job->user_id = Auth::id();
 
             $job->save();
@@ -60,9 +67,10 @@ class JobController extends Controller
     /**
      * Show the specified resource.
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
-        return view('employee::show');
+        $job = Job::findOrFail($request->id);
+        return view('employee::job.show',compact('job'));
     }
 
     /**
@@ -70,8 +78,8 @@ class JobController extends Controller
      */
     public function edit(Request $request,$id)
     {
-        $job = Job::findOrFail($request->id);
-        return view('employee::job.edit',compact('job'));
+        // $job = Job::findOrFail($request->id);
+        // return view('employee::job.edit',compact('job'));
     }
 
     /**
@@ -82,12 +90,19 @@ class JobController extends Controller
         try {
             $job = Job::findOrFail($request->id);
             $job->name = $request->name;
+            $job->slug = $request->slug;
             $job->career = $request->career;
-            $job->Work_address = $request->Work_address;
-            $job->Job_description = $request->Job_description;
-            $job->Job_requirements = $request->Job_requirements;
-            $job->wage = $request->wage;
             $job->type_work = $request->type_work;
+            $job->deadline = $request->deadline;
+            $job->experience = $request->experience;
+            $job->wage_min = $request->wage_min;
+            $job->wage_max = $request->wage_max;
+            $job->gender = $request->gender;
+            $job->work_address = $request->work_address;
+            $job->degree = $request->degree;
+            $job->job_description = $request->job_description;
+            $job->job_requirements = $request->job_requirements;
+            $job->jobStatusId = $request->jobStatusId;
             $job->user_id = Auth::id();
 
             $job->save();
@@ -97,7 +112,7 @@ class JobController extends Controller
         } catch (\Exception $e) {
             DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
             Log::error('Lỗi xảy ra: ' . $e->getMessage());
-            return redirect()->route('employee.job.edit')->with('error', 'Cập Nhật bị lỗi!');
+            return redirect()->route('employee.job.show')->with('error', 'Cập Nhật bị lỗi!');
         }
     }
 
