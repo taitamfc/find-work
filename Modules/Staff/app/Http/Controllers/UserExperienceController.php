@@ -24,7 +24,8 @@ class UserExperienceController extends Controller
             'user' => $user,
             'items' => $items,
         ];
-        return ;
+        return view('staff::cv.tabs.experience', $params);
+
     }
 
     /**
