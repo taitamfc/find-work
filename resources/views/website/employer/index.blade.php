@@ -11,7 +11,7 @@
         <div class="title-outer">
             <h1>Nhà tuyển dụng</h1>
             <ul class="page-breadcrumb">
-                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="{{ route('home') }}">Trang chủ</a></li>
                 <li>Nhà tuyển dụng</li>
             </ul>
         </div>
@@ -39,10 +39,12 @@
                             <!-- ls Switcher -->
                             <div class="ls-switcher">
                                 <div class="showing-result">
-                                    <div class="text">Showing <strong>41-60</strong> of <strong>944</strong> employer
+                                    {{-- <div class="text">Showing <strong>41-60</strong> of <strong>944</strong> employer
+                                    </div> --}}
+                                    <div class="text">Tất cả các công việc
                                     </div>
                                 </div>
-                                <div class="sort-by">
+                                {{-- <div class="sort-by">
                                     <select class="chosen-select">
                                         <option>New Jobs</option>
                                         <option>Freelance</option>
@@ -60,7 +62,7 @@
                                         <option>Show 50</option>
                                         <option>Show 60</option>
                                     </select>
-                                </div>
+                                </div> --}}
                             </div>
 
 
@@ -80,141 +82,10 @@
                                         <div class="job-type">Open Jobs – 2</div>
                                     </div>
                                 </div>
-
-                                <!-- Company Block Four -->
-                                <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="inner-box">
-                                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                        <span class="featured">Featured</span>
-                                        <span class="company-logo"><img src="images/resource/company-logo/6-2.png"
-                                                alt=""></span>
-                                        <h4><a href="#">Opendoor</a></h4>
-                                        <ul class="job-info">
-                                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                                            <li><span class="icon flaticon-briefcase"></span> Accounting / Finance</li>
-                                        </ul>
-                                        <div class="job-type">Open Jobs – 2</div>
-                                    </div>
-                                </div>
-
-                                <!-- Company Block Four -->
-                                <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="inner-box">
-                                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                        <span class="featured">Featured</span>
-                                        <span class="company-logo"><img src="images/resource/company-logo/6-3.png"
-                                                alt=""></span>
-                                        <h4><a href="#">Checkr</a></h4>
-                                        <ul class="job-info">
-                                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                                            <li><span class="icon flaticon-briefcase"></span> Accounting / Finance</li>
-                                        </ul>
-                                        <div class="job-type">Open Jobs – 2</div>
-                                    </div>
-                                </div>
-
-                                <!-- Company Block Four -->
-                                <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="inner-box">
-                                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                        <span class="featured">Featured</span>
-                                        <span class="company-logo"><img src="images/resource/company-logo/6-4.png"
-                                                alt=""></span>
-                                        <h4><a href="#">Mural</a></h4>
-                                        <ul class="job-info">
-                                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                                            <li><span class="icon flaticon-briefcase"></span> Accounting / Finance</li>
-                                        </ul>
-                                        <div class="job-type">Open Jobs – 2</div>
-                                    </div>
-                                </div>
-
-                                <!-- Company Block Four -->
-                                <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="inner-box">
-                                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                        <span class="featured">Featured</span>
-                                        <span class="company-logo"><img src="images/resource/company-logo/6-5.png"
-                                                alt=""></span>
-                                        <h4><a href="#">Astronomer</a></h4>
-                                        <ul class="job-info">
-                                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                                            <li><span class="icon flaticon-briefcase"></span> Accounting / Finance</li>
-                                        </ul>
-                                        <div class="job-type">Open Jobs – 2</div>
-                                    </div>
-                                </div>
-
-                                <!-- Company Block Four -->
-                                <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="inner-box">
-                                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                        <span class="featured">Featured</span>
-                                        <span class="company-logo"><img src="images/resource/company-logo/6-6.png"
-                                                alt=""></span>
-                                        <h4><a href="#">Figma</a></h4>
-                                        <ul class="job-info">
-                                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                                            <li><span class="icon flaticon-briefcase"></span> Accounting / Finance</li>
-                                        </ul>
-                                        <div class="job-type">Open Jobs – 2</div>
-                                    </div>
-                                </div>
-
-
-                                <!-- Company Block Four -->
-                                <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="inner-box">
-                                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                        <span class="featured">Featured</span>
-                                        <span class="company-logo"><img src="images/resource/company-logo/6-7.png"
-                                                alt=""></span>
-                                        <h4><a href="#">Mural</a></h4>
-                                        <ul class="job-info">
-                                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                                            <li><span class="icon flaticon-briefcase"></span> Accounting / Finance</li>
-                                        </ul>
-                                        <div class="job-type">Open Jobs – 2</div>
-                                    </div>
-                                </div>
-
-                                <!-- Company Block Four -->
-                                <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="inner-box">
-                                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                        <span class="featured">Featured</span>
-                                        <span class="company-logo"><img src="images/resource/company-logo/6-8.png"
-                                                alt=""></span>
-                                        <h4><a href="#">Astronomer</a></h4>
-                                        <ul class="job-info">
-                                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                                            <li><span class="icon flaticon-briefcase"></span> Accounting / Finance</li>
-                                        </ul>
-                                        <div class="job-type">Open Jobs – 2</div>
-                                    </div>
-                                </div>
-
-                                <!-- Company Block Four -->
-                                <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="inner-box">
-                                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                        <span class="featured">Featured</span>
-                                        <span class="company-logo"><img src="images/resource/company-logo/6-9.png"
-                                                alt=""></span>
-                                        <h4><a href="#">Figma</a></h4>
-                                        <ul class="job-info">
-                                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                                            <li><span class="icon flaticon-briefcase"></span> Accounting / Finance</li>
-                                        </ul>
-                                        <div class="job-type">Open Jobs – 2</div>
-                                    </div>
-                                </div>
-
-
                             </div>
 
                             <!-- Pagination -->
-                            <nav class="ls-pagination">
+                            {{-- <nav class="ls-pagination">
                                 <ul>
                                     <li class="prev"><a href="#"><i class="fa fa-arrow-left"></i></a></li>
                                     <li><a href="#">1</a></li>
@@ -222,7 +93,7 @@
                                     <li><a href="#">3</a></li>
                                     <li class="next"><a href="#"><i class="fa fa-arrow-right"></i></a></li>
                                 </ul>
-                            </nav>
+                            </nav> --}}
                         </div>
                     </div>
                 </div>
