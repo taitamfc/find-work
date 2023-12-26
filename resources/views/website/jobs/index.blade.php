@@ -12,7 +12,7 @@
             <h1>Nhà tuyển dụng</h1>
             <ul class="page-breadcrumb">
                 <li><a href="{{ route('home') }}">Trang chủ</a></li>
-                <li>Nhà tuyển dụng</li>
+                <li><a href="{{ route('website.employee') }}">Nhà tuyển dụng</a></li>
             </ul>
         </div>
     </div>
