@@ -14,31 +14,6 @@ use Illuminate\Support\Facades\Auth;
 class UserExperienceController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $user = Auth::user();
-        $items = UserExperience::where('user_id', $user->id)->get(); 
-        dd($items);
-        // dd($items);
-        $params = [
-            'user' => $user,
-            'items' => $items,
-        ];
-        return view('staff::cv.tabs.experience', $params);
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('staff::create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreUserExperienceRequest $request): RedirectResponse
@@ -54,26 +29,12 @@ class UserExperienceController extends Controller
             'job_description' => $request->job_description,
             'user_id' => $user->id,
             'cv_id' => $request->cv_id,
+            'is_current' => $request->is_current,
         ]);
         $experience->save();
-        return redirect()->back()->with('success', 'Công việc mới đã được thêm thành công.');
+        return redirect()->back()->with('success', 'Kinh nghiệm đã được thêm thành công.');
     }
 
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
-    {
-        return view('staff::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('staff::edit');
-    }
 
     /**
      * Update the specified resource in storage.
@@ -83,7 +44,6 @@ class UserExperienceController extends Controller
 
         $experience = UserExperience::findOrFail($id);
         $experience->update([
-            'user_id' => Auth::id(),
             'numerical' => $request->numerical,
             'position' => $request->position,
             'company' => $request->company,
@@ -91,7 +51,8 @@ class UserExperienceController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'job_description' => $request->job_description,
-        ]);
+            'is_current' => $request->is_current ? $request->is_current : 0,
+        ]); 
         return redirect()->back()->with('success', 'Công việc đã được cập nhật thành công.');
     }
 

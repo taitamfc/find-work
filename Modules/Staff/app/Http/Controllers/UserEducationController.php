@@ -12,25 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserEducationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return view('staff::index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('staff::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request): RedirectResponse
     {
         $cvId = session('cv_id');
@@ -48,22 +30,6 @@ class UserEducationController extends Controller
         // dd($education);
         $education->save();
         return redirect()->back()->with('success', 'Education information has been added successfully.');
-    }
-
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
-    {
-        return view('staff::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('staff::edit');
     }
 
     /**
