@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ use App\Http\Controllers\JobController;
 Route::get('/', [JobController::class,'index'])->name('home');
 
 Route::prefix('website')->group(function () {
+    Route::get('/employee', [EmployeeController::class,'index'])->name('website.employee');
+    Route::get('/employee/{id}', [EmployeeController::class,'show'])->name('website.employee.show');
     
 
 });
