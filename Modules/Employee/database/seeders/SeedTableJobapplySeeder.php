@@ -3,7 +3,7 @@
 namespace Modules\Employee\database\seeders;
 
 use Illuminate\Database\Seeder;
-use Modules\Employee\app\Models\SeedTableJobapplySeeder;
+use Modules\Employee\app\Models\JobapplicationModel;
 
 
 class SeedTableJobapplySeeder extends Seeder
