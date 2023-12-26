@@ -221,7 +221,7 @@
                                         <div class="company-logo"><img src="images/resource/company-7.png"
                                                 alt=""></div>
                                         <h5 class="company-name">Thông tin nhà tuyển dụng</h5>
-                                        <a href="{{route('website.employee.show')}}" class="profile-link">Xem hồ sơ nhà tuyển dụng</a>
+                                        <a href="{{route('website.employee.show',$job->user->userEmployee->id)}}" class="profile-link">Xem hồ sơ nhà tuyển dụng</a>
                                     </div>
 
                                     <ul class="company-info">
