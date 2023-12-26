@@ -16,7 +16,7 @@
             <div class="user-greeting">
                 <h5>Hi,{{ Auth::user()->name }}</h5>
             </div>
-            <a href="{{ route('dashboards.index') }}" class="theme-btn btn-style-one">Tin tuyển dụng</a>
+            <!-- <a href="{{ route('dashboards.index') }}" class="theme-btn btn-style-one">Tin tuyển dụng</a> -->
             @else
             <div class="btn-box">
                 <a href="{{ route('staff.login') }}" class="theme-btn btn-style-three">Đăng nhập / Đăng ký</a>
