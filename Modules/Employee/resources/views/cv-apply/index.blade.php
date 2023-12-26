@@ -34,7 +34,7 @@
                                                 <th>Tên công việc</th>
                                                 <th>Hồ sơ ứng tuyển</th>
                                                 <th>Trạng thái hồ sơ</th>
-                                                <th>Thao tác</th>
+                                                {{-- <th>Thao tác</th> --}}
                                             </tr>
                                         </thead>
 
@@ -58,7 +58,7 @@
                                                                 <li><a href="{{ route('employee.job.edit', $job->id) }}"
                                                                         data-text="Reject Aplication"><span
                                                                             class="la la-pencil"></span></a></li> --}}
-                                                                <li>
+                                                                {{-- <li>
                                                                     <a href="{{ route('employee.cv.delete', ['id' => $cv->id]) }}"
                                                                         onclick="confirmDelete(event)"
                                                                         data-text="Delete Application">
@@ -77,7 +77,7 @@
                                                                         }
                                                                     }
                                                                 </script>
-                                                            </ul>
+                                                            </ul> --}}
                                                         </div>
                                                     </td>
                                                 </tr>
