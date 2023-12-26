@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li> 
-                <a href="{{ route('adminpost.index') }}">
+            <a href="{{ route('adminpost.index',['type'=>'UserCV']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>Hồ Sơ</a>
             </li>
         </ul>
@@ -40,11 +40,12 @@
                     <span class="material-symbols-outlined">arrow_right</span>Danh Sách</a>
             </li>
             <li> 
-                <a href="{{ route('adminpost.index') }}">
+                <a href="{{ route('adminpost.index',['type'=>'Job']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>Tin Đăng</a>
             </li>
         </ul>
     </li>
+    <li class="menu-label">Cấu Hình Việc Làm</li>
     <li>
         <a class="has-arrow" href="javascript:;">
             <div class="parent-icon">
@@ -60,11 +61,26 @@
             </li>
             <li> 
                 <a href="{{ route('admintaxonomy.index',['type'=>'Level']) }}">
-                    <span class="material-symbols-outlined">arrow_right</span>Cấp Bậc
+                    <span class="material-symbols-outlined">arrow_right</span>Trình độ
+                </a>
+            </li>
+            <li> 
+                <a href="{{ route('admintaxonomy.index',['type'=>'Rank']) }}">
+                    <span class="material-symbols-outlined">arrow_right</span>Cấp bậc
+                </a>
+            </li>
+            <li> 
+                <a href="{{ route('admintaxonomy.index',['type'=>'Wage']) }}">
+                    <span class="material-symbols-outlined">arrow_right</span>Mức lương
+                </a>
+            </li>
+            <li> 
+                <a href="{{ route('admintaxonomy.index',['type'=>'FormWork']) }}">
+                    <span class="material-symbols-outlined">arrow_right</span>Hình Thức Làm Việc
                 </a>
             </li>
         </ul>
     </li>
-    <li class="menu-label">Nhà Tuyển Dụng</li>
+    
 </ul>
 <!--end navigation-->
