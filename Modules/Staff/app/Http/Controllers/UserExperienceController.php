@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Staff\app\Models\UserExperience;
+use Modules\Staff\app\Http\Requests\StoreUserExperienceRequest;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -19,6 +20,7 @@ class UserExperienceController extends Controller
     {
         $user = Auth::user();
         $items = UserExperience::where('user_id', $user->id)->get(); 
+        dd($items);
         // dd($items);
         $params = [
             'user' => $user,
@@ -39,7 +41,7 @@ class UserExperienceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreUserExperienceRequest $request): RedirectResponse
     {
         $user = Auth::user();
         $experience = new UserExperience([
@@ -51,7 +53,7 @@ class UserExperienceController extends Controller
             'end_date' => $request->end_date,
             'job_description' => $request->job_description,
             'user_id' => $user->id,
-            'cv_id' => session('cv_id'),
+            'cv_id' => $request->cv_id,
         ]);
         $experience->save();
         return redirect()->back()->with('success', 'Công việc mới đã được thêm thành công.');
@@ -76,13 +78,12 @@ class UserExperienceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(StoreUserExperienceRequest $request, $id): RedirectResponse
     {
 
         $experience = UserExperience::findOrFail($id);
         $experience->update([
             'user_id' => Auth::id(),
-            'cv_id' => session('cv_id'),
             'numerical' => $request->numerical,
             'position' => $request->position,
             'company' => $request->company,
@@ -94,12 +95,6 @@ class UserExperienceController extends Controller
         return redirect()->back()->with('success', 'Công việc đã được cập nhật thành công.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-  /**
- * Remove the specified resource from storage.
- */
 public function destroy($id)
 {
     $experience = UserExperience::findOrFail($id);

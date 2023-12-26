@@ -24,6 +24,7 @@ class UserExperiencesSeeder extends Seeder
                 'start_date' => '2022-01-01',
                 'end_date' => '2023-01-01',
                 'job_description' => 'Responsible for developing web applications.',
+                'is_current' => false,
             ],
             // Add more experiences as needed
         ];

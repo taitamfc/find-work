@@ -15,6 +15,7 @@ class UserExperience extends Model
      */
     protected $fillable = [
             'user_id',
+            'is_current',
             'cv_id',
             'numerical',
             'position',
