@@ -26,6 +26,7 @@ Route::prefix('website')->group(function () {
     Route::get('/employee', [EmployeeController::class,'index'])->name('website.employee');
     Route::get('/employee/{id}', [EmployeeController::class,'show'])->name('website.employee.show');
     
+    Route::get('/aplication/{job_id}', [JobController::class,'aplication'])->name('website.aplication');
     Route::get('/showjob/{id}', [JobController::class,'show'])->name('website.job.show');
 });
 
@@ -39,9 +40,9 @@ Route::prefix('themes')->group(function () {
         return view('website/contacts/index');
     })->name('contacts.index');
 
-    Route::get('/aplications', function () {
-        return view('website/aplications/index');
-    })->name('aplications.index');
+    // Route::get('/aplications', function () {
+    //     return view('website/aplications/index');
+    // })->name('aplications.index');
 
     Route::get('/prices', function () {
         return view('website/prices/index');
