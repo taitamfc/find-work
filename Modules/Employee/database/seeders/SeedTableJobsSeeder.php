@@ -26,7 +26,7 @@ class SeedTableJobsSeeder extends Seeder
             'gender' => 1,
             'work_address' => 'Address 1',
             'degree' => 'Degree 1',
-            'jobStatusId' => 'Status 1',
+            'jobStatusId' => 1,
             'job_description' => 'Description 1',
             'job_requirements' => 'Requirements 1',
         ]);
