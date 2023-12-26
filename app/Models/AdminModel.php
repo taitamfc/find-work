@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\UploadFileTrait;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Schema;
 
 class AdminModel extends Model
 {
     use HasFactory;
     use UploadFileTrait;
     const ACTIVE    = 1;
-    const INACTIVE  = 2;
+    const INACTIVE  = 0;
     const DRAFT     = -1;
 
     static $upload_dir = 'uploads';
@@ -20,28 +21,26 @@ class AdminModel extends Model
     public static function setUploadDir( $upload_dir ){
         self::$upload_dir = $upload_dir;
     }
+    public static function setTableName($tableName)
+    {
+        $instance = new static;
+        $instance->setTable($tableName);
+        return $instance;
+    }
 
-    public static function getItems($request = null,$limit = 20){
+    public static function getItems($request = null,$limit = 20,$table = ''){
+        $model = new self;
+        $tableName = $model->getTable();
+        
         $query = self::query(true);
+        if($request->type && Schema::hasColumn($tableName, 'type')){
+            $query->where('type',$request->type);
+        }
         if($request->name){
             $query->where('name','LIKE','%'.$request->name.'%');
         }
         if($request->status){
             $query->where('status',$request->status);
-        }
-        switch ($request->sortBy) {
-            case 'id_asc':
-                $query->orderBy('id','asc');
-                break;
-            case 'name_asc':
-                $query->orderBy('name','asc');
-                break;
-            case 'created_asc':
-                $query->orderBy('created_at','asc');
-                break;
-            default : 
-                $query->orderBy('id','desc');
-                break;
         }
         $items = $query->paginate($limit);
         return $items;

@@ -46,12 +46,24 @@
         </ul>
     </li>
     <li>
-        <a href="{{ route('admintaxonomy.index') }}">
+        <a class="has-arrow" href="javascript:;">
             <div class="parent-icon">
                 <span class="material-symbols-outlined">account_circle</span>
             </div>
-            <div class="menu-title">D</div>
+            <div class="menu-title">Công Việc</div>
         </a>
+        <ul class="mm-collapse">
+            <li> 
+                <a href="{{ route('admintaxonomy.index',['type'=>'careers']) }}">
+                    <span class="material-symbols-outlined">arrow_right</span>Ngành Nghề
+                </a>
+            </li>
+            <li> 
+                <a href="{{ route('admintaxonomy.index',['type'=>'levels']) }}">
+                    <span class="material-symbols-outlined">arrow_right</span>Cấp Bậc
+                </a>
+            </li>
+        </ul>
     </li>
     <li class="menu-label">Nhà Tuyển Dụng</li>
 </ul>

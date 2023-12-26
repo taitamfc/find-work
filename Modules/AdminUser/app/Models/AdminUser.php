@@ -34,4 +34,10 @@ class AdminUser extends Model
         $items = $query->paginate($limit);
         return $items;
     }
+
+    // Custom relation
+    public function staff(){
+        return $this->hasOne(\Modules\Staff\app\Models\UserStaff::class,'user_id');
+    }
+    
 }
