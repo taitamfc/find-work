@@ -28,4 +28,5 @@ class User extends Model
     public function job(){
         return $this->hasMany(UserEmployee::class);
     }
+    
 }

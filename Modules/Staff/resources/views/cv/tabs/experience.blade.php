@@ -1,6 +1,5 @@
 <div class="row">
     <div class="col-md-12">
-
         <div class="card">
             <div class="card-header">
                 <div class="card-title">
@@ -13,7 +12,7 @@
             </div>
             <div class="card-body collapse" id="collapseExperience-">
                 <form class="default-form" method="POST"
-                    action="{{ route('staff.experience.store',['cv_id'=>$item->id]) }}">
+                    action="{{ route('staff.experience.store',['cv_id'=>$cv_id]) }}">
                     @csrf
                     @include('staff::cv.tabs.includes.form-experience',['experience' => null])
                 </form>
@@ -22,7 +21,7 @@
 
         @if(count($userExperiences))
         @foreach($userExperiences as $userExperience)
-        <div class="card mt-5">
+        <div class="card mt-4">
             <div class="card-header">
                 <h5 class="card-title">
                     #{{ $userExperience->numerical }} - {{ $userExperience->position }}
