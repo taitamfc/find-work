@@ -18,10 +18,24 @@ class AdminModel extends Model
 
     static $upload_dir = 'uploads';
 
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+        'image',
+        'status',
+        'position'
+    ];
+
     public static function setUploadDir( $upload_dir ){
         self::$upload_dir = $upload_dir;
     }
-    
+    // Relations
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    // Methods
     public static function getItems($request = null,$limit = 20,$table = ''){
         $model = new self;
         $tableName = $model->getTable();
@@ -47,7 +61,7 @@ class AdminModel extends Model
         if($table){
             $model = '\App\Models\\' . $table;
         }else{
-            $model = self;
+            $model = self::class;
         }
         return $model::findOrFail($id);
     }
@@ -55,7 +69,7 @@ class AdminModel extends Model
         if($table){
             $model = '\App\Models\\' . $table;
         }else{
-            $model = self;
+            $model = self::class;
         }
         $data = $request->except(['_token', '_method','type']);
 
@@ -71,7 +85,7 @@ class AdminModel extends Model
         if($table){
             $model = '\App\Models\\' . $table;
         }else{
-            $model = self;
+            $model = self::class;
         }
 
         $item = $model::findOrFail($id);
@@ -87,7 +101,7 @@ class AdminModel extends Model
         if($table){
             $model = '\App\Models\\' . $table;
         }else{
-            $model = self;
+            $model = self::class;
         }
         $item = $model::findItem($id);
         self::deleteFile($item->image);

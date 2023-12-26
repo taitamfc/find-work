@@ -13,7 +13,12 @@ class AdminUser extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'type'
+    ];
     
     protected static function newFactory(): AdminUserFactory
     {
@@ -24,6 +29,8 @@ class AdminUser extends Model
         $query = self::query(true);
         if($request->type){
             $query->where('type',$request->type);
+        }else{
+            $query->where('type','user');
         }
         if($request->status !== NULL){
             $query->where('status',$request->status);
@@ -35,12 +42,12 @@ class AdminUser extends Model
         return self::findOrFail($id);
     }
     public static function saveItem($request,$type = ''){
-        $data = $request->except(['_token', '_method','type']);
-        if(!$request->slug && $request->name){
-            $data['slug'] = Str::slug($request->name);
-        }
+        $data = $request->except(['_token', '_method']);
         if ($request->hasFile('image')) {
             $data['image'] = self::uploadFile($request->file('image'), self::$upload_dir);
+        }
+        if ($data['password']) {
+            $data['password'] = bcrypt($data['password']);
         } 
         self::create($data);
     }
@@ -51,6 +58,9 @@ class AdminUser extends Model
         if ($request->hasFile('image')) {
             self::deleteFile($item->image);
             $data['image'] = self::uploadFile($request->file('image'), self::$upload_dir);
+        }
+        if ($data['password']) {
+            $data['password'] = bcrypt($data['password']);
         } 
         $item->update($data);
     }

@@ -81,6 +81,25 @@
             </li>
         </ul>
     </li>
+    <li class="menu-label">Hệ Thống</li>
+    <li>
+        <a class="has-arrow" aria-expanded="false" href="javascript:;">
+            <div class="parent-icon">
+                <span class="material-symbols-outlined">account_circle</span>
+            </div>
+            <div class="menu-title">Tài Khoản</div>
+        </a>
+        <ul class="mm-collapse">
+            <li> 
+            <a href="{{ route('adminuser.index') }}">
+                    <span class="material-symbols-outlined">arrow_right</span>Quản Trị Viên</a>
+            </li>
+            <li> 
+                <a href="{{ route('adminuser.index') }}">
+                    <span class="material-symbols-outlined">arrow_right</span>Nhóm</a>
+            </li>
+        </ul>
+    </li>
     
 </ul>
 <!--end navigation-->

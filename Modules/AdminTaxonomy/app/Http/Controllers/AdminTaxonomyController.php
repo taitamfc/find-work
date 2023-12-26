@@ -73,7 +73,7 @@ class AdminTaxonomyController extends Controller
             return view($this->view_path.'show', $params);
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
-            return redirect()->back()->with('error', __('sys.item_not_found'));
+            return redirect()->route( $this->route_prefix.'index' )->with('error', __('sys.item_not_found'));
         }
     }
 
@@ -93,7 +93,7 @@ class AdminTaxonomyController extends Controller
             return view($this->view_path.'edit', $params);
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
-            return redirect()->back()->with('error', __('sys.item_not_found'));
+            return redirect()->route( $this->route_prefix.'index' )->with('error', __('sys.item_not_found'));
         }
     }
 
@@ -104,7 +104,7 @@ class AdminTaxonomyController extends Controller
     {
         $type = $request->type;
         try {
-            $this->model::updateItem($id,$request,$type);
+            $this->model::updateItem($id,$request,);
             return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.update_item_success'));
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
@@ -125,10 +125,10 @@ class AdminTaxonomyController extends Controller
             return redirect()->route($this->route_prefix.'index')->with('success', __('sys.destroy_item_success'));
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
-            return redirect()->back()->with('error', __('sys.item_not_found'));
+            return redirect()->route( $this->route_prefix.'index' )->with('error', __('sys.item_not_found'));
         } catch (QueryException $e) {
             Log::error('Error in destroy method: ' . $e->getMessage());
-            return redirect()->back()->with('error', __('sys.destroy_item_error'));
+            return redirect()->route( $this->route_prefix.'index' )->with('error', __('sys.destroy_item_error'));
         }
     }
 }
