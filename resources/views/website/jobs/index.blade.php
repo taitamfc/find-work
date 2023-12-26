@@ -9,7 +9,7 @@
 <section class="page-title">
     <div class="auto-container">
         <div class="title-outer">
-            <h1>Nhà tuyển dụng</h1>
+            <h1>Tất cả các công việc</h1>
             <ul class="page-breadcrumb">
                 <li><a href="{{ route('home') }}">Trang chủ</a></li>
                 <li><a href="{{ route('website.employee') }}">Nhà tuyển dụng</a></li>
