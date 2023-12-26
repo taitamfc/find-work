@@ -19,6 +19,7 @@ class SeedTableJobapplySeeder extends Seeder
             'status' => 0,
         ]);
 
+        
         // Add more job application records as needed
         // JobApplication::create([...]);
         // JobApplication::create([...]);
