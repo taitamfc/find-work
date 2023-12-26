@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,15 +13,22 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    return view('website/homes/index');
-})->name('home');
+// Route::get('/', function () {
+//     return view('website/employer/index');
+// })->name('home');
+
+Route::get('/', [EmployeeController::class,'index'])->name('home');
+
+Route::prefix('website')->group(function () {
+    
+
+});
 
 Route::prefix('themes')->group(function () {
     
-    Route::get('/employer', function () {
-        return view('website/employer/index');
-    })->name('employer.index');
+    // Route::get('/employer', function () {
+    //     return view('website/employer/index');
+    // })->name('employer.index');
 
     Route::get('/contacts', function () {
         return view('website/contacts/index');
@@ -74,3 +82,4 @@ Route::prefix('themes')->group(function () {
         return view('website/dashboards/profile/index');
     })->name('profile.index');
 });
+
