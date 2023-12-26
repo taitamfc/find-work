@@ -15,10 +15,10 @@
             <div class="form-group">
                 <div class="btn-box row">
                     <div class="col-lg-6 col-md-12">
-                        <a href="#" class="theme-btn btn-style-seven"><i class="la la-user"></i> Ứng viên </a>
+                        <a href="{{route('staff.login')}}" class="theme-btn btn-style-seven"><i class="la la-user"></i> Ứng viên </a>
                     </div>
                     <div class="col-lg-6 col-md-12">
-                        <a href="#" class="theme-btn btn-style-four"><i class="la la-briefcase"></i> Nhà tuyển dụng </a>
+                        <a href="{{route('employee.login')}}" class="theme-btn btn-style-four"><i class="la la-briefcase"></i> Nhà tuyển dụng </a>
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
             </div>
         </form>
         <div class="bottom-box">
-            <div class="text">Đã có tài khoản? <a href="{{ route('website.login')}}">Đăng nhập</a></div>
+            <div class="text">Đã có tài khoản? <a href="{{ route('staff.login')}}">Đăng nhập</a></div>
             <div class="divider"><span>Hoặc</span></div>
             <div class="btn-box row">
                 <div class="col-lg-6 col-md-12">

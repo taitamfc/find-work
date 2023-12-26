@@ -43,11 +43,11 @@
                     </td>
                     <td class="text-center">{{ $userCv->created_at->format('d/m/Y') }}</td>
                     <td class="text-center">
-                        <a href="#" onclick="return openResumeModel('{{ $userCv->id }}')"
+                        <a href="{{ route('staff.cv.show', $userCv->id) }}" onclick="return openResumeModel('{{ $userCv->id }}')"
                             class="btn btn-sm btn-primary my-2 my-sm-0">
                             <i class="fa fa-eye"></i>
                         </a>
-                        <a href="/Candidate/ResumeAdd" class="btn btn-sm btn-outline-primary">
+                        <a href="{{ route('staff.cv.edit', $userCv->id) }}" class="btn btn-sm btn-outline-primary">
                             <i class="fa fa-edit"></i>
                         </a>
                     </td>
