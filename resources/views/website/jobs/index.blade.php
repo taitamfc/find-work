@@ -11,11 +11,8 @@
         <div class="title-outer">
             <h1>Nhà tuyển dụng</h1>
             <ul class="page-breadcrumb">
-
                 <li><a href="{{ route('home') }}">Trang chủ</a></li>
-                <li><a href="{{ route('website.employee') }}">Nhà tuyển dụng</a></li>
-                </li>
-
+                <li>Nhà tuyển dụng</li>
             </ul>
         </div>
     </div>
@@ -67,31 +64,36 @@
                                     </select>
                                 </div> --}}
                             </div>
-                            <div class="row">
 
-                                @foreach($userEmployees as $userEmployee)
-                                <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="inner-box">
-                                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                        <span class="featured">2 việc làm đang tuyển</span>
-                                        <span class="company-logo"><img src="images/resource/company-logo/6-1.png"
-                                                alt=""></span>
-                                        <h4><a href="#">{{ $userEmployee->company_name ?? ''  }}</a></h4>
-                                        <ul class="job-info">
-                                            <li><span class="icon flaticon-map-locator"></span>
-                                                {{ $userEmployee->company_address ?? '' }}</li>
-                                            <li><span class="icon flaticon-briefcase"></span>
-                                                {{ $userEmployee->company_phone ?? '' }}</li>
-                                            <li><span class="icon flaticon-briefcase"></span>
-                                                {{ $userEmployee->company_address ?? '' }}</li>
-                                            <li><span class="icon flaticon-briefcase"></span>
-                                                {{ $userEmployee->company_address ?? '' }}</li>
-                                        </ul>
-                                        <!-- <div class="job-type">2 việc làm đang tuyển</div> -->
+
+                            <div class="row">
+                                <!-- Company Block Four -->
+                                @foreach ($jobs as $job )
+                                    <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="inner-box">
+                                            <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
+                                            @if ($job->jobStatusId == 1)
+                                                <span class="featured">Đang tuyển</span>
+                                            @else
+                                                <span style="background: red !important;
+                                                color: white !important;" class="featured">Dừng tuyển</span>
+                                            @endif
+                                            <span class="company-logo"><img src="images/resource/company-logo/6-1.png"
+                                                    alt=""></span>
+                                            <h4><a href="#">{{$job->name}}</a></h4>
+                                            <ul class="job-info">
+                                                <li><span class="icon flaticon-map-locator"></span>{{$job->work_address}}</li>
+                                                <li><span class="icon flaticon-briefcase"></span>Lương: {{$job->wage_min}} VNĐ - {{$job->wage_max}} VNĐ</li>
+                                            </ul>
+                                            @if ($job->jobStatusId == 1)
+                                                <div class="job-type"><a href="{{route('website.job.show',$job->id)}}">Chi tiết công việc</a></div>
+                                            @endif
+                                        </div>
                                     </div>
-                                </div>
                                 @endforeach
                             </div>
+
+                            <!-- Pagination -->
                             {{-- <nav class="ls-pagination">
                                 <ul>
                                     <li class="prev"><a href="#"><i class="fa fa-arrow-left"></i></a></li>
@@ -110,4 +112,5 @@
     </div>
 </section>
 <!--End Listing Page Section -->
+
 @endsection

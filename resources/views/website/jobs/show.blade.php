@@ -9,13 +9,10 @@
 <section class="page-title">
     <div class="auto-container">
         <div class="title-outer">
-            <h1>Nhà tuyển dụng</h1>
+            <h1>Chi Tiết Công Việc</h1>
             <ul class="page-breadcrumb">
-
                 <li><a href="{{ route('home') }}">Trang chủ</a></li>
-                <li><a href="{{ route('website.employee') }}">Nhà tuyển dụng</a></li>
-                </li>
-
+                <li>Nhà tuyển dụng</li>
             </ul>
         </div>
     </div>
@@ -44,7 +41,7 @@
                                 <div class="showing-result">
                                     {{-- <div class="text">Showing <strong>41-60</strong> of <strong>944</strong> employer
                                     </div> --}}
-                                    <div class="text">Tất cả các công việc
+                                    <div class="text"><h1>{{$job->name}}</h1>
                                     </div>
                                 </div>
                                 {{-- <div class="sort-by">
@@ -67,31 +64,40 @@
                                     </select>
                                 </div> --}}
                             </div>
-                            <div class="row">
 
-                                @foreach($userEmployees as $userEmployee)
-                                <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="inner-box">
-                                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                        <span class="featured">2 việc làm đang tuyển</span>
-                                        <span class="company-logo"><img src="images/resource/company-logo/6-1.png"
-                                                alt=""></span>
-                                        <h4><a href="#">{{ $userEmployee->company_name ?? ''  }}</a></h4>
-                                        <ul class="job-info">
-                                            <li><span class="icon flaticon-map-locator"></span>
-                                                {{ $userEmployee->company_address ?? '' }}</li>
-                                            <li><span class="icon flaticon-briefcase"></span>
-                                                {{ $userEmployee->company_phone ?? '' }}</li>
-                                            <li><span class="icon flaticon-briefcase"></span>
-                                                {{ $userEmployee->company_address ?? '' }}</li>
-                                            <li><span class="icon flaticon-briefcase"></span>
-                                                {{ $userEmployee->company_address ?? '' }}</li>
-                                        </ul>
-                                        <!-- <div class="job-type">2 việc làm đang tuyển</div> -->
-                                    </div>
-                                </div>
-                                @endforeach
+
+                            <div class="row">
+                                <!-- Company Block Four -->
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Ngành Nghề :</strong> {{$job->name}}</li>
+                                    <li class="list-group-item"><strong>Ngành Nghề : </strong>{{$job->career}}</li>
+                                    @if ($job->type_work == 1)
+                                    <li class="list-group-item"><strong>Hình Thức : </strong>Toàn thời gian</li>
+                                    @else
+                                    <li class="list-group-item"><strong>Hình Thức : </strong>Bán thời gian</li>
+                                    @endif
+                                    <li class="list-group-item"><strong>Hạn Đến Ngày : </strong>{{$job->deadline}}</li>
+                                    @if ($job->experience == 1)
+                                    <li class="list-group-item"><strong>Kinh Nghiệm : </strong>Không yêu cầu</li>
+                                    @else
+                                    <li class="list-group-item"><strong>Kinh Nghiệm : </strong>Có yêu cầu</li>
+                                    @endif
+                                    <li class="list-group-item"><strong>Lương : </strong>{{$job->wage_min}} - {{$job->wage_max}}</li>
+                                    @if ($job->gender == 1)
+                                    <li class="list-group-item"><strong>yêu Cầu Giới tính : </strong>Nam</li>
+                                    @else
+                                    <li class="list-group-item"><strong>yêu Cầu Giới tính : </strong>Nữ</li>
+                                    @endif
+                                    <li class="list-group-item"><strong>Nơi Làm Việc : </strong>{{$job->work_address}}</li>
+                                    <li class="list-group-item"><strong>Bằng Cấp : </strong>{{$job->degree}}</li>
+                                    <li class="list-group-item"><strong>Mô Tả Công Việc : </strong>{{$job->job_description}}</li>
+                                    <li class="list-group-item"><strong>Yêu Cầu Công Việc : </strong>{{$job->job_requirements	}}</li>
+                                  </ul>
                             </div>
+                            <a href="" type="button" class="btn btn-primary">Ứng Tuyển</a>
+                            <a href="{{route('home')}}" type="button" class="btn btn-danger">Quay Lại</a>
+
+                            <!-- Pagination -->
                             {{-- <nav class="ls-pagination">
                                 <ul>
                                     <li class="prev"><a href="#"><i class="fa fa-arrow-left"></i></a></li>
@@ -110,4 +116,5 @@
     </div>
 </section>
 <!--End Listing Page Section -->
+
 @endsection
