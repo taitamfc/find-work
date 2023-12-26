@@ -5,7 +5,7 @@ use Modules\Employee\app\Http\Controllers\EmployeeController;
 use Modules\Employee\app\Http\Controllers\AuthController;
 use Modules\Employee\app\Http\Controllers\ProfileController;
 use Modules\Employee\app\Http\Controllers\JobController;
-
+use Modules\Employee\app\Http\Controllers\JobapplicationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +46,12 @@ Route::group([
 	Route::get('/job/show/{id}', [JobController::class,'show'])->name('job.show');
 	Route::post('/job/update/{id}', [JobController::class,'update'])->name('job.update');
 	Route::get('/job/delete/{id}', [JobController::class,'destroy'])->name('job.delete');
+
+	// CV apply
+	Route::get('/cv', [JobapplicationController::class,'index'])->name('cv.index');
+	Route::get('/cv/{id}/{cv_applyID}', [JobapplicationController::class,'show'])->name('cv.show');
+	Route::put('/cv/update/{id}', [JobapplicationController::class,'update'])->name('cv.update');
+	Route::get('/cv/delete/{id}', [JobapplicationController::class,'destroy'])->name('cv.delete');
 
 });
 
