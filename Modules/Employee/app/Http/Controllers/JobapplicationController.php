@@ -37,18 +37,18 @@ class JobapplicationController extends Controller
         try {
             $cv_apply = new JobapplicationModel();
 
-            $cv_apply->status = 0;
-            $cv_apply->status = 0;
+            $cv_apply->cv_id = $request->cv_id;
+            $cv_apply->job_id  = $request->job_id;
             $cv_apply->status = 0;
 
             $cv_apply->save();
 
-            $message = "Thêm mới thành công!";
-            return redirect()->route('employee.cv.index')->with('success', $message);
+            $message = "Nộp hồ sơ thành công!";
+            return redirect()->route('website.job.show',$request->job_id)->with('success', $message);
         } catch (\Exception $e) {
-            DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
+            // DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
             Log::error('Lỗi xảy ra: ' . $e->getMessage());
-            return redirect()->route('employee.cv.create')->with('error', 'Thêm mới bị lỗi!');
+            return redirect()->route('website.job.show',$request->job_id)->with('error', 'Nộp hồ sơ thất bại!');
         }
     }
 
@@ -99,11 +99,11 @@ class JobapplicationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
         try {
-            $cv =  JobapplicationModel::find($request->id);
-            $cv->delete();
+            $cv = JobApplication::find($request->id);
+            $cv->forceDelete();
             $message = "Xóa thành công!";
             return redirect()->route('employee.cv.index')->with('success', $message);
         } catch (QueryException $e) {
