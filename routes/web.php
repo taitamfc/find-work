@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\JobController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +17,11 @@ use App\Http\Controllers\EmployeeController;
 //     return view('website/employer/index');
 // })->name('home');
 
-Route::get('/', [EmployeeController::class,'index'])->name('home');
+Route::get('/', [JobController::class,'index'])->name('home');
 
 Route::prefix('website')->group(function () {
     
-
+    Route::get('/showjob/{id}', [JobController::class,'show'])->name('website.job.show');
 });
 
 Route::prefix('themes')->group(function () {

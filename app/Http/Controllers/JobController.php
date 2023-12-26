@@ -12,8 +12,8 @@ class JobController extends Controller
      */
     public function index()
     {
-        
-        return view('website/employer/index');
+        $jobs = Job::all();
+        return view('website/jobs/index',compact('jobs'));
     }
 
     /**
@@ -37,7 +37,8 @@ class JobController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $job = Job::find($id);
+        return view('website/jobs/show',compact('job'));
     }
 
     /**
