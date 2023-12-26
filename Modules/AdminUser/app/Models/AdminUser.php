@@ -20,18 +20,10 @@ class AdminUser extends Model
         //return AdminUserFactory::new();
     }
 
-    public static function getItems($request = null,$limit = 20){
-        $query = self::query(true);
-        if($request->type){
-            $query->where('type',$request->type);
-        }
-        if($request->name){
-            $query->where('name','LIKE','%'.$request->name.'%');
-        }
-        if($request->status){
-            $query->where('status',$request->status);
-        }
-        $items = $query->paginate($limit);
-        return $items;
+
+    // Custom relation
+    public function staff(){
+        return $this->hasOne(\Modules\Staff\app\Models\UserStaff::class,'user_id');
     }
+    
 }

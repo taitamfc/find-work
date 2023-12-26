@@ -58,17 +58,7 @@
                                 <td>
                                     <input class="form-check-input" type="checkbox">
                                 </td>
-                                <td>
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="product-box">
-                                            <img src="{{ $item->image_fm }}" alt="">
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="javascript:;" class="product-title">{{ $item->name }}</a>
-                                            <p class="mb-0 product-category">(0)</p>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td>{!! $item->name !!}</td>
                                 <td>{!! $item->status_fm !!}</td>
                                 <td>{{ $item->created_at_fm }}</td>
                                 <td>
