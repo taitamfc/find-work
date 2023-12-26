@@ -15,9 +15,9 @@ class EmployeeDatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            SeedTableJobapplySeeder::class,
+            UserEmployeeSeeder::class,
             SeedTableJobsSeeder::class,
-            UserEmployeeSeeder::class
+            SeedTableJobapplySeeder::class,
         ]);
     }
 }
