@@ -11,7 +11,7 @@
         <div class="title-outer">
             <h1>Công Ty</h1>
             <ul class="page-breadcrumb">
-                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="{{route('home')}}">Trang chủ</a></li>
                 <li>Công Ty</li>
             </ul>
         </div>
@@ -158,55 +158,7 @@
                 <div class="ls-outer">
                     <button type="button" class="theme-btn btn-style-two toggle-filters">Show Filters</button>
 
-                    <!-- ls Switcher -->
-                    <div class="ls-switcher">
-                        <div class="showing-result">
-                            <div class="text">Showing <strong>41-60</strong> of <strong>944</strong> employer</div>
-                        </div>
-                        <div class="sort-by">
-                            <select class="chosen-select" style="display: none;">
-                                <option>Most Recent</option>
-                                <option>Freelance</option>
-                                <option>Full Time</option>
-                                <option>Internship</option>
-                                <option>Part Time</option>
-                                <option>Temporary</option>
-                            </select>
-                            <div class="chosen-container chosen-container-single chosen-container-single-nosearch"
-                                title="" style="width: 100%;"><a class="chosen-single">
-                                    <span>Most Recent</span>
-                                    <div><b></b></div>
-                                </a>
-                                <div class="chosen-drop">
-                                    <div class="chosen-search">
-                                        <input class="chosen-search-input" type="text" autocomplete="off" readonly="">
-                                    </div>
-                                    <ul class="chosen-results"></ul>
-                                </div>
-                            </div>
-
-                            <select class="chosen-select" style="display: none;">
-                                <option>Show 10</option>
-                                <option>Show 20</option>
-                                <option>Show 30</option>
-                                <option>Show 40</option>
-                                <option>Show 50</option>
-                                <option>Show 60</option>
-                            </select>
-                            <div class="chosen-container chosen-container-single chosen-container-single-nosearch"
-                                title="" style="width: 100%;"><a class="chosen-single">
-                                    <span>Show 10</span>
-                                    <div><b></b></div>
-                                </a>
-                                <div class="chosen-drop">
-                                    <div class="chosen-search">
-                                        <input class="chosen-search-input" type="text" autocomplete="off" readonly="">
-                                    </div>
-                                    <ul class="chosen-results"></ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     @foreach($userEmployees as $userEmployee)
                     <!-- Block Block -->
