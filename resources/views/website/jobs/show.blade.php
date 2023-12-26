@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="btn-box">
-                            <a href="#" class="theme-btn btn-style-one">Nộp Hồ Sơ Ứng Tuyển</a>
+                            <a href="{{route('website.aplication',['job_id' =>$job->id])}}" class="theme-btn btn-style-one">Nộp Hồ Sơ Ứng Tuyển</a>
                             {{-- <button class="bookmark-btn"><i class="flaticon-bookmark"></i></button> --}}
                         </div>
                     </div>
