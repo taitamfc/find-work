@@ -20,18 +20,16 @@
                         style="border-radius: 50%;">
                     @endif
                     <div class="file-input-wrapper">
-                        <!-- <h2><span class="student-name">{{ Auth::user()->name }}</span></h2> -->
-                        <!-- <input class="uploadButton-input" type="file" name="student_images[]"
-                                            accept="image/*" id="upload_student_images" multiple /> -->
                     </div>
                 </div>
             </div>
-            <form class="default-form" method="POST" action="{{ route('staff.cv.store',['tab'=>$tab]) }}">
+            <form class="default-form" method="POST" action="{{ route('staff.cv.update',$cv_id,['cv_id'=>$cv_id,'tab'=>$tab]) }}">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Họ và tên</label>
-                        <input type="text" name="name" value="{{ $item->user->name }}">
+                        <input type="text" class="form-control" name="name" value="{{ $item->name ?? $user->name}}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('name') }}</p>
                         @endif
@@ -39,7 +37,7 @@
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Email</label>
-                        <input type="text" name="email" value="{{ $item->user->email }}" placeholder="creativelayers">
+                        <input type="text" class="form-control" name="email" value="{{ $item->email ?? $staff->email }}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('email') }}</p>
                         @endif
@@ -47,7 +45,7 @@
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Phone</label>
-                        <input type="text" name="phone" value="{{ $item->phone }}">
+                        <input type="text" class="form-control" name="phone" value="{{ $item->phone ?? $staff->phone }}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('phone') }}</p>
                         @endif
@@ -55,7 +53,7 @@
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Năm Sinh</label>
-                        <input type="text" name="birthdate" value="{{ $item->birthdate }}">
+                        <input type="date" class="form-control" name="birthdate" class="form-control" value="{{ $item->birthdate ?? $staff->birthdate }}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('birthdate') }}</p>
                         @endif
@@ -63,7 +61,7 @@
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Số năm kinh nghiệm</label>
-                        <input type="text" name="experience_years" value="{{ $item->experience_years }}">
+                        <input type="text" class="form-control" name="experience_years" value="{{ $item->experience_years ?? $staff->experience_years }}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('experience_years') }}</p>
                         @endif
@@ -71,19 +69,20 @@
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Giới tính</label>
-                        <select name="gender" class="form-control">
-                            <option value="nam" {{ $item->gender == 'nam' ? 'selected' : '' }}>Nam
-                            </option>
-                            <option value="nu" {{ $item->gender == 'nu' ? 'selected' : '' }}>Nữ</option>
-                            <option value="khac" {{ $item->gender == 'khac' ? 'selected' : '' }}>Khác
-                            </option>
+                        @php
+                            $item->gender = $item->gender ? $staff->gender : '';
+                        @endphp
+                        <select class="form-control" name="gender">
+                            <option value="nam" @selected($item->gender == 'nam')>Nam</option>
+                            <option value="nu" @selected($item->gender == 'nu')>Nữ</option>
+                            <option value="khac" @selected($item->gender == 'khac')>Khác</option>
                         </select>
                     </div>
 
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Tỉnh\Thành phố</label>
-                        <input type="text" name="city" value="{{ $item->city }}">
+                        <input type="text" class="form-control" name="city" value="{{ $item->city ?? $staff->city }}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('city') }}</p>
                         @endif
@@ -91,7 +90,7 @@
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Địa chỉ</label>
-                        <input type="text" name="address" value="{{ $item->address }}">
+                        <input type="text" class="form-control" name="address" value="{{ $item->address ?? $staff->address }}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('address') }}</p>
                         @endif
@@ -99,8 +98,7 @@
 
                     <div class="form-group col-lg-12 col-md-12">
                         <label>Thành tích nổi bật</label>
-                        <input type="text" name="outstanding_achievements"
-                            value="{{ $item->outstanding_achievements }}">
+                        <textarea class="form-control" name="outstanding_achievements" >{{ $item->outstanding_achievements ?? $staff->outstanding_achievements }}</textarea>
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('outstanding_achievements') }}</p>
                         @endif

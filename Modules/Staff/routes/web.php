@@ -32,10 +32,6 @@ Route::group([
     Route::resource('experience', UserExperienceController::class)->names('experience');
     Route::resource('education', UserEducationController::class)->names('education');
     Route::resource('skill', UserSkillController::class)->names('skill');
-
-    Route::get('/personal_information', function () {
-        return view('staff::personal_information');
-    })->name('personal_information.index');
 });
 Route::group([
     'prefix' => 'staff',

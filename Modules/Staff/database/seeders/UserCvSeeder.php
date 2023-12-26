@@ -29,10 +29,6 @@ class UserCvSeeder extends Seeder
             'industry' => 'Your Industry',
             'desired_location' => 'Desired Location',
             'desired_salary' => '$50,000', // Replace with your desired salary format
-            'career_objective' => 'Your career objective goes here',
-            'work_experience' => 'Your work experience details go here',
-            'education' => 'Your education details go here',
-            'skill' => 'Your skills go here',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

@@ -29,10 +29,9 @@ return new class extends Migration
             $table->string('industry')->nullable(); 
             $table->string('desired_location')->nullable(); 
             $table->string('desired_salary')->nullable(); 
+            $table->string('experience_years')->nullable(); 
             $table->text('career_objective')->nullable(); 
-            $table->text('work_experience')->nullable();
-            $table->text('education')->nullable();
-            $table->text('skill')->nullable();
+            $table->integer('status')->default(-1);
             $table->timestamps();
         });
     }

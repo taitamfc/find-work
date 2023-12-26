@@ -45,17 +45,14 @@ class UserCvController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-// UserCvController.php
-public function create(Request $request)
-{
-    $user   = Auth::user();
-    $saved = UserCv::create([
-        'user_id' => $user->id
-    ]);
-    return redirect()->route('staff.cv.edit',$saved->id)->with('success', 'Hồ sơ được cập nhật thành công');
-
-    
-}
+    public function create(Request $request)
+    {
+        $user   = Auth::user();
+        $saved = UserCv::create([
+            'user_id' => $user->id
+        ]);
+        return redirect()->route('staff.cv.edit',$saved->id)->with('success', 'Hồ sơ được cập nhật thành công');
+    }
 
 
     /**
@@ -63,56 +60,6 @@ public function create(Request $request)
      */
     public function store(Request $request): RedirectResponse
     {
-        // dd($request->all());
-        $cv_id = session()->get('cv_id', 0);
-        $user = Auth::user();
-        $request->merge(['user_id' => $user->id]);
-        $tab  = $request->tab;
-        switch ($tab) {
-            case 'personal-information':
-                $saved = UserCv::savePersonalInformation($request,$cv_id);
-                session(['cv_id' => $saved->id]);
-                return redirect()->route('staff.cv.create',['tab'=>'job-information']);
-                break;
-            case 'job-information':
-                $saved = UserCv::saveJobInformation($request,$cv_id);
-                session(['cv_id' => $saved->id]);
-                return redirect()->route('staff.cv.create',['tab'=>'experience']);
-                break;
-            case 'experience':
-                $saved = UserExperience::saveExperienceInformation($request,$cv_id);
-                session(['cv_id' => $saved->id]);
-                return redirect()->route('staff.cv.create',['tab'=>'education']);
-                break;
-            // case 'education':
-            //     $data = $request->all();
-            //     $data['user_id'] = $user->id;
-            //     $saved = UserCv::savePersonalInformation($data,$cv_id);
-            //     session(['cv_id' => $saved]);
-            //     return redirect()->route('staff.cv.create',['tab'=>'skill']);
-            //     break;
-            // case 'skill':
-            //     $data = $request->all();
-            //     $data['user_id'] = $user->id;
-            //     $saved = UserCv::savePersonalInformation($data,$cv_id);
-            //     session(['cv_id' => $saved]);
-            //     return redirect()->route('staff.cv.create',['tab'=>'skill']);
-            //     break;
-            default:
-                # code...
-                break;
-        }
-    
-        $data = $request->all();
-        $data['user_id'] = $user->id;
-        try {
-            UserCv::create($data);
-            return redirect()->route('staff.cv.index')->with('success', 'Hồ sơ được tạo thành công');
-        } catch (\Exception $e) {
-            Log::error('Exception while creating profile: ' . $e->getMessage());
-            dd($e);
-            return redirect()->back()->withInput()->with('error', 'Không tạo được hồ sơ');
-        }
     }
     /**
      * Show the specified resource.
@@ -132,16 +79,18 @@ public function create(Request $request)
      */
     public function edit(Request $request,$id)
     {
-        $user   = Auth::user();
-        $item = UserCv::findOrFail($id);
-        $tab    = $request->tab ? $request->tab : 'personal-information';
-        $item   = StaffUser::where('user_id', $user->id)->first();
+        $user       = Auth::user();
+        $tab        = $request->tab ? $request->tab : 'personal-information';
+        $item       = UserCv::findOrFail($id);
+        $staff      = StaffUser::where('user_id', $user->id)->first();
         $userExperiences = UserExperience::where('user_id', $user->id)->where('cv_id',$id)->get();
         $params = [
-            'user' => $user,
-            'item' => $item,
-            'tab' => $tab,
-            'userExperiences' => $userExperiences,
+            'user'              => $user,
+            'staff'             => $staff,
+            'item'              => $item,
+            'cv_id'             => $id,
+            'tab'               => $tab,
+            'userExperiences'   => $userExperiences,
         ];
         return view('staff::cv.edit', $params);
     }
@@ -149,15 +98,25 @@ public function create(Request $request)
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserCvRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $userCv = UserCv::findOrFail($id);
-    
-        $data = $request->all();
-    
-        $userCv->update($data);
-    
-        return redirect()->route('staff.cv.edit',$id)->with('success', 'Hồ sơ được cập nhật thành công');
+        $cv_id = $id;
+        $user = Auth::user();
+        $request->merge(['user_id' => $user->id]);
+        $tab  = $request->tab ? $request->tab : 'personal-information';
+        switch ($tab) {
+            case 'personal-information':
+                $saved = UserCv::savePersonalInformation($request,$cv_id);
+                return redirect()->route('staff.cv.edit', ['cv' => $id, 'tab' => 'job-information']);
+                break;
+            case 'job-information':
+                $saved = UserCv::saveJobInformation($request,$cv_id);
+                return redirect()->route('staff.cv.edit', ['cv' => $id, 'tab' => 'experience']);
+                break;
+            default:
+                return redirect()->route('staff.cv.edit',$id,['id'=>$id,'tab'=>'personal-information']);
+                break;
+        }
     }
     /**
      * Remove the specified resource from storage.

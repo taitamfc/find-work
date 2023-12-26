@@ -32,7 +32,6 @@ class UserCv extends Model
         'career_objective',
     ];
     public static function savePersonalInformation($request,$cv_id = 0){
-        // dd($data);
         if($cv_id){
             $item = self::find($cv_id);
             if(!$item){
@@ -54,7 +53,6 @@ class UserCv extends Model
         return $item;
     }
     public static function saveJobInformation($request,$cv_id = 0){
-        // dd($data);
         if($cv_id){
             $item = self::find($cv_id);
         }else{
