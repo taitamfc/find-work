@@ -20,18 +20,50 @@ class AdminUser extends Model
         //return AdminUserFactory::new();
     }
 
-    public static function getItems($request = null,$limit = 20){
+    public static function getItems($request = null,$limit = 20,$type = ''){
         $query = self::query(true);
         if($request->type){
             $query->where('type',$request->type);
         }
-        if($request->name){
-            $query->where('name','LIKE','%'.$request->name.'%');
-        }
-        if($request->status){
+        if($request->status !== NULL){
             $query->where('status',$request->status);
         }
         $items = $query->paginate($limit);
         return $items;
     }
+    public static function findItem($id,$type = ''){
+        return self::findOrFail($id);
+    }
+    public static function saveItem($request,$type = ''){
+        $data = $request->except(['_token', '_method','type']);
+        if(!$request->slug && $request->name){
+            $data['slug'] = Str::slug($request->name);
+        }
+        if ($request->hasFile('image')) {
+            $data['image'] = self::uploadFile($request->file('image'), self::$upload_dir);
+        } 
+        self::create($data);
+    }
+    public static function updateItem($id,$request,$type = ''){
+        $item = self::findOrFail($id);
+        $data = $request->all();
+        $data = $request->except(['_token', '_method']);
+        if ($request->hasFile('image')) {
+            self::deleteFile($item->image);
+            $data['image'] = self::uploadFile($request->file('image'), self::$upload_dir);
+        } 
+        $item->update($data);
+    }
+    public static function deleteItem($id,$type = ''){
+        $item = self::findItem($id);
+        self::deleteFile($item->image);
+        return $item->delete();
+    }
+
+
+    // Custom relation
+    public function staff(){
+        return $this->hasOne(\Modules\Staff\app\Models\UserStaff::class,'user_id');
+    }
+    
 }

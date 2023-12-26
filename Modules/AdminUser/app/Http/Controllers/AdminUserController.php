@@ -28,7 +28,7 @@ class AdminUserController extends Controller
                 'items'         => $items
             ];
             if($type){
-                return view($this->view_path.'index-'.$type, $params); 
+                // return view($this->view_path.'index-'.$type, $params); 
             }
             return view($this->view_path.'index', $params);
         } catch (QueryException $e) {

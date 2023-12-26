@@ -42,12 +42,11 @@ class EmployeeController extends Controller
     public function show(string $id)
     {
         $userEmployee = UserEmployee::with('user')->find($id);
-        // dd($userEmployee);
-        // dd($userEmployee);
+        $jobs = $userEmployee->jobs;
         $params = [
             'userEmployee' => $userEmployee,
+            'jobs' => $jobs,
         ];
-    
         return view('website.employer.show', $params);
     }
 

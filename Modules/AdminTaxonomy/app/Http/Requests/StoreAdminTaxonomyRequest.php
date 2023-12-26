@@ -12,8 +12,14 @@ class StoreAdminTaxonomyRequest extends FormRequest
      */
     public function rules(): array
     {
+        $tableName = 'taxonomies';
+        $modelName = $this->type ? $this->type : '';
+        if($modelName){
+            $modelClass = '\App\Models\\' . $modelName;
+            $tableName = with(new $modelClass)->getTable();
+        }
         $rules = [
-            'name' => 'required|unique:taxonomies,name',
+            'name' => 'required|unique:'.$tableName.',name',
         ];
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             $rules['name'] = 'required';

@@ -4,6 +4,7 @@
 .page-title {
     margin-top: 100px;
 }
+
 .upper-box {
     margin-top: 100px;
 }
@@ -90,75 +91,34 @@
                     <!-- Related Jobs -->
                     <div class="related-jobs">
                         <div class="title-box">
-                            <h3>3 việc làm tại Invision</h3>
-                            <div class="text">2020 jobs live - 293 added today.</div>
+                        <h3>{{ $jobs->count() }} việc làm tại {{ $userEmployee->company_name }}</h3>
                         </div>
-
-                        <!-- Job Block -->
+                        @foreach($jobs as $job)
                         <div class="job-block">
                             <div class="inner-box">
                                 <div class="content">
                                     <span class="company-logo"><img src="images/resource/company-logo/1-3.png"
                                             alt=""></span>
-                                    <h4><a href="#">Senior Full Stack Engineer, Creator Success</a></h4>
+                                    <h4><a href="#">{{ $job->name }}</a></h4>
                                     <ul class="job-info">
-                                        <li><span class="icon flaticon-briefcase"></span> Segment</li>
-                                        <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                                        <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
-                                        <li><span class="icon flaticon-money"></span> $35k - $45k</li>
+                                        <li><span class="icon flaticon-briefcase"></span>
+                                            {{ $job->company_name }}</li>
+                                        <li><span class="icon flaticon-map-locator"></span> {{ $job->work_address }}
+                                        </li>
+                                        <li><span class="icon flaticon-clock-3"></span>
+                                            {{ $job->created_at->diffForHumans() }}</li>
+                                        <li><span class="icon flaticon-money"></span> ${{ $job->wage_min }} -
+                                            ${{ $job->wage_max }}</li>
                                     </ul>
                                     <ul class="job-other-info">
-                                        <li class="time">Full Time</li>
-                                        <li class="required">Urgent</li>
+                                        <li class="time">{{ $job->type_work }}</li>
+                                        <li class="required">{{ $job->jobStatusId == 1 ? 'Urgent' : 'Not Urgent' }}</li>
                                     </ul>
                                     <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Job Block -->
-                        <div class="job-block">
-                            <div class="inner-box">
-                                <div class="content">
-                                    <span class="company-logo"><img src="images/resource/company-logo/1-3.png"
-                                            alt=""></span>
-                                    <h4><a href="#">Web Developer</a></h4>
-                                    <ul class="job-info">
-                                        <li><span class="icon flaticon-briefcase"></span> Segment</li>
-                                        <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                                        <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
-                                        <li><span class="icon flaticon-money"></span> $35k - $45k</li>
-                                    </ul>
-                                    <ul class="job-other-info">
-                                        <li class="time">Part Time</li>
-                                        <li class="required">Urgent</li>
-                                    </ul>
-                                    <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Job Block -->
-                        <div class="job-block">
-                            <div class="inner-box">
-                                <div class="content">
-                                    <span class="company-logo"><img src="images/resource/company-logo/1-3.png"
-                                            alt=""></span>
-                                    <h4><a href="#">Sr. Full Stack Engineer</a></h4>
-                                    <ul class="job-info">
-                                        <li><span class="icon flaticon-briefcase"></span> Segment</li>
-                                        <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                                        <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
-                                        <li><span class="icon flaticon-money"></span> $35k - $45k</li>
-                                    </ul>
-                                    <ul class="job-other-info">
-                                        <li class="time">Part Time</li>
-                                    </ul>
-                                    <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                </div>
-                            </div>
-                        </div>
-
+                        @endforeach
                     </div>
                 </div>
 

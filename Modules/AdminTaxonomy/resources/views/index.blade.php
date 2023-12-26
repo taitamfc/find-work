@@ -3,29 +3,22 @@
     @include('admintheme::includes.globals.breadcrumb',[
         'page_title' => __('admintaxonomy::general.title_index'),
         'actions' => [
-            'add_new' => route($route_prefix.'create'),
+            'add_new' => route($route_prefix.'create',['type'=>request()->type]),
             //'export' => route($route_prefix.'export'),
         ]
     ])
 
     <!-- Item actions -->
     <form action="{{ route($route_prefix.'index') }}" method="get">
+        <input type="hidden" name="type" value="{{ request()->type }}">
         <div class="row g-3">
             <div class="col-auto flex-grow-1">
                 <div class="position-relative">
-                    <input class="form-control" name="name" type="text" placeholder="Search name">
+                    <input class="form-control" name="name" type="text" placeholder="Search name" value="{{ request()->name }}">
                 </div>
             </div>
             <div class="col-auto">
                 <x-admintheme::form-status model="{{ $model }}" status="{{ request()->status }}" showAll="1"/>
-            </div>
-            <div class="col-auto">
-                <select class="form-control dropdown-toggle" name="sortBy">
-                    <option value="" @selected( request()->sortBy == '' )>{{ __('sys.sort_default') }}</option>
-                    <option value="id_asc" @selected( request()->sortBy == 'id_asc' )>{{ __('sys.id_asc') }}</option>
-                    <option value="name_asc" @selected( request()->sortBy == 'name_asc' )>{{ __('sys.name_asc') }}</option>
-                    <option value="created_asc" @selected( request()->sortBy == 'created_asc' )>{{ __('sys.created_asc') }}</option>
-                </select>
             </div>
             <div class="col-auto">
                 <div class="d-flex align-items-center gap-2 justify-content-lg-end">
@@ -58,17 +51,7 @@
                                 <td>
                                     <input class="form-check-input" type="checkbox">
                                 </td>
-                                <td>
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="product-box">
-                                            <img src="{{ $item->image_fm }}" alt="">
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="javascript:;" class="product-title">{{ $item->name }}</a>
-                                            <p class="mb-0 product-category">(0)</p>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td>{!! $item->name !!}</td>
                                 <td>{!! $item->status_fm !!}</td>
                                 <td>{{ $item->created_at_fm }}</td>
                                 <td>
@@ -79,12 +62,12 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a class="dropdown-item" href="{{ route($route_prefix.'edit',$item->id) }}">
+                                                <a class="dropdown-item" href="{{ route($route_prefix.'edit',['type'=>request()->type,'admintaxonomy'=>$item->id]) }}">
                                                     {{ __('sys.edit') }}        
                                                 </a>
                                             </li>
                                             <li>
-                                                <form action="{{ route($route_prefix.'destroy',$item->id) }}" method="post">
+                                                <form action="{{ route($route_prefix.'destroy',['type'=>request()->type,'admintaxonomy'=>$item->id]) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button onclick=" return confirm('{{ __('sys.confirm_delete') }}') " class="dropdown-item">

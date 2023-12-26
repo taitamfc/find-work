@@ -5,6 +5,7 @@
     ])
     <form action="{{ route('admintaxonomy.store') }}" method="post" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="type" value="{{ request()->type }}">
         <div class="row">
             <div class="col-12 col-lg-8">
                 @include('admintaxonomy::includes.form-left')
