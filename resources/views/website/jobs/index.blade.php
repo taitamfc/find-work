@@ -82,8 +82,10 @@
                                                     alt=""></span>
                                             <h4><a href="#">{{$job->name}}</a></h4>
                                             <ul class="job-info">
+                                                <li><span class="icon flaticon-briefcase"></span>{{$job->career}}</li>
                                                 <li><span class="icon flaticon-map-locator"></span>{{$job->work_address}}</li>
-                                                <li><span class="icon flaticon-briefcase"></span>Lương: {{$job->wage_min}} VNĐ - {{$job->wage_max}} VNĐ</li>
+                                                {{-- <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li> --}}
+                                                <li><span class="icon flaticon-money"></span> {{$job->wage_min}} - {{$job->wage_max}} VNĐ</li>
                                             </ul>
                                             @if ($job->jobStatusId == 1)
                                                 <div class="job-type"><a href="{{route('website.job.show',$job->id)}}">Chi tiết công việc</a></div>

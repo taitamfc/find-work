@@ -5,6 +5,8 @@ namespace Modules\Employee\app\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Employee\Database\factories\UserFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Model
 {
@@ -21,12 +23,14 @@ class User extends Model
     }
 
     // Relationships
-    public function userEmployee(){
+    public function userEmployee(): HasOne
+    {
         return $this->hasOne(UserEmployee::class);
     }
 
-    public function job(){
-        return $this->hasMany(UserEmployee::class);
+    public function jobs(): HasMany
+    {
+        return $this->hasMany(Job::class);
     }
     
 }
