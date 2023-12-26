@@ -6,17 +6,35 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\AdminUser\app\Models\AdminUser;
 use Illuminate\Support\Facades\Auth;
 
 class AdminUserController extends Controller
 {
+    protected $view_path    = 'adminuser::';
+    protected $route_prefix = 'adminuser.';
+    protected $model        = AdminUser::class;
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        var_dump(Auth::id());
-        return view('adminuser::index');
+        $type = $request->type ?? '';
+        try {
+            $items = $this->model::getItems($request);
+            $params = [
+                'route_prefix'  => $this->route_prefix,
+                'model'         => $this->model,
+                'items'         => $items
+            ];
+            if($type){
+                return view($this->view_path.'index-'.$type, $params); 
+            }
+            return view($this->view_path.'index', $params);
+        } catch (QueryException $e) {
+            Log::error('Error in index method: ' . $e->getMessage());
+            return redirect()->back()->with('error',  __('sys.get_items_error'));
+        }
     }
 
     /**

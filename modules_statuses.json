@@ -8,5 +8,6 @@
     "Auth": true,
     "Employee": true,
     "Staff": true,
-    "Job": true
+    "Job": true,
+    "AdminHome": true
 }
