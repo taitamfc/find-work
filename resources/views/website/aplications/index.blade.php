@@ -33,18 +33,17 @@
                     <th class="text-center">Ngày tạo</th>
                     <th class="text-center">Chức năng</th>
                 </tr>
-                @foreach ($userStaffs as $userStaff)
+                @foreach ($userCvs as $userCv)
                 <tr>
                     <td class="text-center">
-                        <input type="radio" name="cv_id" value="{{ $userStaff->id }}" id="rdo-{{ $userStaff->id }}">
+                        <input type="radio" name="cv_id" value="{{ $userCv->id }}" id="rdo-{{ $userCv->id }}">
                     </td>
                     <td>
-                        <label for="rdo-{{ $userStaff->id }}">{{ $userStaff->name }}</label>
-                        <span class="alert alert-primary p-1"> Online </span>
+                        <label for="rdo-{{ $userCv->id }}">{{ $userCv->cv_file }}</label>
                     </td>
-                    <td class="text-center">{{ $userStaff->created_at->format('d/m/Y') }}</td>
+                    <td class="text-center">{{ $userCv->created_at->format('d/m/Y') }}</td>
                     <td class="text-center">
-                        <a href="#" onclick="return openResumeModel('{{ $userStaff->id }}')"
+                        <a href="#" onclick="return openResumeModel('{{ $userCv->id }}')"
                             class="btn btn-sm btn-primary my-2 my-sm-0">
                             <i class="fa fa-eye"></i>
                         </a>
