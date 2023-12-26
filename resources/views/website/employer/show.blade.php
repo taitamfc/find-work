@@ -105,8 +105,6 @@
                                             {{ $job->company_name }}</li>
                                         <li><span class="icon flaticon-map-locator"></span> {{ $job->work_address }}
                                         </li>
-                                        <li><span class="icon flaticon-clock-3"></span>
-                                            {{ $job->created_at->diffForHumans() }}</li>
                                         <li><span class="icon flaticon-money"></span> ${{ $job->wage_min }} -
                                             ${{ $job->wage_max }}</li>
                                     </ul>
