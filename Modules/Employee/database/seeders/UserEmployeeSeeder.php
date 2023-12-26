@@ -4,6 +4,8 @@ namespace Modules\Employee\database\seeders;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Database\Seeder;
+use Modules\Employee\app\Models\UserEmployee;
+
 
 class UserEmployeeSeeder extends Seeder
 {
