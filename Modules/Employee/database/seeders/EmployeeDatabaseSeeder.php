@@ -3,7 +3,7 @@
 namespace Modules\Employee\database\seeders;
 
 use Illuminate\Database\Seeder;
-use Modules\Employee\app\Models\SeedTableJobapplySeeder;
+use Modules\Employee\app\Models\JobapplicationModel;
 use Modules\Employee\app\Models\Job;
 use Modules\Employee\app\Models\UserEmployee;
 
