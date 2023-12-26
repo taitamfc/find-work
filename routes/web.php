@@ -39,6 +39,10 @@ Route::prefix('themes')->group(function () {
         return view('website/contacts/index');
     })->name('contacts.index');
 
+    Route::get('/aplications', function () {
+        return view('website/aplications/index');
+    })->name('aplications.index');
+
     Route::get('/prices', function () {
         return view('website/prices/index');
     })->name('prices.index');
