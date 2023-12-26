@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Modules\Employee\app\Models\Job;
 use Modules\Staff\app\Models\UserStaff;
+use Modules\Staff\app\Models\UserCv;
 class JobController extends Controller
 {
     /**
@@ -59,9 +60,11 @@ class JobController extends Controller
     public function aplication($job_id)
     {
         $userStaffs = UserStaff::all();
+        $userCvs = UserCv::all();
         $job = Job::find($job_id);
         $params = [
             'userStaffs' => $userStaffs,
+            'userCvs' => $userCvs,
             'job' =>$job
         ];
         return view('website/aplications/index',$params);
