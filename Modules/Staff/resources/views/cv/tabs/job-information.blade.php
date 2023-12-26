@@ -24,9 +24,8 @@
                     <!-- Thông tin công việc -->
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Nhập vị trí muốn ứng tuyển</label>
-                        <input type="text" name="desired_position"
-                            value="{{ old('desired_position') }}">
-                                @if ($errors->any())
+                        <input type="text" name="desired_position" value="{{ old('desired_position') }}">
+                        @if ($errors->any())
                         <p style="color:red">{{ $errors->first('desired_position') }}</p>
                         @endif
                     </div>
@@ -34,7 +33,7 @@
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Cấp bậc mong muốn</label>
                         <input type="text" name="desired_rank" value="{{ old('desired_rank') }}">
-                            @if ($errors->any())
+                        @if ($errors->any())
                         <p style="color:red">{{ $errors->first('desired_rank') }}</p>
                         @endif
                     </div>
@@ -42,7 +41,7 @@
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Hình thức làm việc</label>
                         <input type="text" name="employment_type" value="{{ old('employment_type') }}">
-                            @if ($errors->any())
+                        @if ($errors->any())
                         <p style="color:red">{{ $errors->first('employment_type') }}</p>
                         @endif
                     </div>
@@ -50,16 +49,15 @@
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Ngành nghề</label>
                         <input type="text" name="industry" value="{{ old('industry') }}">
-                            @if ($errors->any())
+                        @if ($errors->any())
                         <p style="color:red">{{ $errors->first('industry') }}</p>
                         @endif
                     </div>
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Nơi làm việc mong muốn</label>
-                        <input type="text" name="desired_location"
-                            value="{{ old('desired_location') }}">
-                                @if ($errors->any())
+                        <input type="text" name="desired_location" value="{{ old('desired_location') }}">
+                        @if ($errors->any())
                         <p style="color:red">{{ $errors->first('desired_location') }}</p>
                         @endif
                     </div>
@@ -67,16 +65,15 @@
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Mức lương mong muốn</label>
                         <input type="number" name="desired_salary" value="{{ old('desired_salary') }}">
-                            @if ($errors->any())
+                        @if ($errors->any())
                         <p style="color:red">{{ $errors->first('desired_salary') }}</p>
                         @endif
                     </div>
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Mục tiêu nghề nghiệp</label>
-                        <input type="text" name="career_objective"
-                            value="{{ old('career_objective') }}">
-                                @if ($errors->any())
+                        <input type="text" name="career_objective" value="{{ old('career_objective') }}">
+                        @if ($errors->any())
                         <p style="color:red">{{ $errors->first('career_objective') }}</p>
                         @endif
                     </div>

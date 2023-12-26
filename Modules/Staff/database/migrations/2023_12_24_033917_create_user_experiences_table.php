@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->text('job_description')->nullable();
+            $table->boolean('is_current')->default(false);
             $table->timestamps();
         });
     }

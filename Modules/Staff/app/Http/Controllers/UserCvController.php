@@ -136,10 +136,12 @@ public function create(Request $request)
         $item = UserCv::findOrFail($id);
         $tab    = $request->tab ? $request->tab : 'personal-information';
         $item   = StaffUser::where('user_id', $user->id)->first();
+        $userExperiences = UserExperience::where('user_id', $user->id)->where('cv_id',$id)->get();
         $params = [
             'user' => $user,
             'item' => $item,
             'tab' => $tab,
+            'userExperiences' => $userExperiences,
         ];
         return view('staff::cv.edit', $params);
     }

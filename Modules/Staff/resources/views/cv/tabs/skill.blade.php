@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header" data-toggle="collapse" data-target="#collapseExperience-"
-                    aria-expanded="true" style="background-color: white;">
+                <div class="card-header" data-toggle="collapse" data-target="#collapseExperience-" aria-expanded="true"
+                    style="background-color: white;">
                     <div class="card-title">
                         <span class="btn btn-primary"> <i class="fas fa-plus"></i> Thêm mới chuyên môn </span>
                     </div>
