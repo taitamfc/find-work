@@ -51,6 +51,7 @@ Route::group([
 	Route::get('/cv', [JobapplicationController::class,'index'])->name('cv.index');
 	Route::get('/cv/{id}/{cv_applyID}', [JobapplicationController::class,'show'])->name('cv.show');
 	Route::put('/cv/update/{id}', [JobapplicationController::class,'update'])->name('cv.update');
+	Route::post('/cv/store', [JobapplicationController::class,'store'])->name('cv.store');
 	Route::get('/cv/delete/{id}', [JobapplicationController::class,'destroy'])->name('cv.delete');
 
 });
