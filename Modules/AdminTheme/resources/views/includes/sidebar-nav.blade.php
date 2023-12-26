@@ -54,12 +54,12 @@
         </a>
         <ul class="mm-collapse">
             <li> 
-                <a href="{{ route('admintaxonomy.index',['type'=>'careers']) }}">
+                <a href="{{ route('admintaxonomy.index',['type'=>'Career']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>Ngành Nghề
                 </a>
             </li>
             <li> 
-                <a href="{{ route('admintaxonomy.index',['type'=>'levels']) }}">
+                <a href="{{ route('admintaxonomy.index',['type'=>'Level']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>Cấp Bậc
                 </a>
             </li>

@@ -19,18 +19,14 @@ class AdminTaxonomyController extends Controller
     protected $model        = AdminTaxonomy::class;
     public function index(Request $request)
     {
-        try {
-            $items = $this->model::getItems($request);
-            $params = [
-                'route_prefix'  => $this->route_prefix,
-                'model'         => $this->model,
-                'items'         => $items
-            ];
-            return view($this->view_path.'index', $params);
-        } catch (QueryException $e) {
-            Log::error('Error in index method: ' . $e->getMessage());
-            return redirect()->back()->with('error',  __('sys.get_items_error'));
-        }
+        $type = $request->type;
+        $items = $this->model::getItems($request,null,$type);
+        $params = [
+            'route_prefix'  => $this->route_prefix,
+            'model'         => $this->model,
+            'items'         => $items
+        ];
+        return view($this->view_path.'index', $params);
     }
 
     /**

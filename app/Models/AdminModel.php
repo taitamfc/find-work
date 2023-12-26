@@ -21,18 +21,16 @@ class AdminModel extends Model
     public static function setUploadDir( $upload_dir ){
         self::$upload_dir = $upload_dir;
     }
-    public static function setTableName($tableName)
-    {
-        $instance = new static;
-        $instance->setTable($tableName);
-        return $instance;
-    }
-
+    
     public static function getItems($request = null,$limit = 20,$table = ''){
         $model = new self;
         $tableName = $model->getTable();
-        
-        $query = self::query(true);
+        if($table){
+            $modelClass = '\App\Models\\' . $table;
+            $query = $modelClass::query(true);
+        }else{
+            $query = self::query(true);
+        }
         if($request->type && Schema::hasColumn($tableName, 'type')){
             $query->where('type',$request->type);
         }
