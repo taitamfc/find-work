@@ -22,10 +22,7 @@ class UserEmployee extends Model
         'user_id',
     ];
     
-    protected static function newFactory(): UserEmployeeFactory
-    {
-        //return UserEmployeeFactory::new();
-    }
+   
 
     /**
      * Get the user that owns the UserEmployee
@@ -35,5 +32,9 @@ class UserEmployee extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function jobs()
+    {
+        return $this->hasMany(Job::class, 'user_id', 'user_id');
     }
 }

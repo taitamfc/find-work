@@ -8,8 +8,8 @@
             </ul>
         </li>
 
-        <li><a href="{{ route('home') }}">Nhà tuyển dụng</a></li>
-        <li><a href="{{ route('home') }}">Cẩm nang nghề nghiệp</a></li>
+        <li><a href="{{ route('home') }}">Công việc</a></li>
+        <li><a href="{{ route('website.employee') }}">Nhà tuyển dụng</a></li>
         <li><a href="{{ route('prices.index') }}">Bảng giá</a></li>
         <li><a href="{{ route('contacts.index') }}">Liên hệ</a></li>
 
