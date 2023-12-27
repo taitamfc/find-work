@@ -8,6 +8,7 @@ use Modules\Staff\app\Http\Controllers\UserExperienceController;
 use Modules\Staff\app\Http\Controllers\UserEducationController;
 use Modules\Staff\app\Http\Controllers\UserSkillController;
 use Modules\Staff\app\Http\Controllers\UserJobAppliedController;
+use Modules\Staff\app\Http\Controllers\UserJobFavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,13 +27,13 @@ Route::group([
     'as' => 'staff.'
 ], function () {
     Route::get('/', [ProfileController::class, 'index'])->name('home1');
-    Route::get('/', function () {
-        return view('staff::index1');
-    })->name('home');
-
-    Route::get('/job-favorite', function () {
-        return view('staff::job-favorite.index');
-    })->name('job-favorite');
+    // Route::get('/', function () {
+    //     return view('staff::index1');
+    // })->name('home');
+    Route::get('/',[UserJobAppliedController::class,'showdashboard'])->name('home');
+    Route::get('job-favorite',[UserJobFavoriteController::class,'index'])->name('favorite');
+    Route::get('job-favorite/{id}',[UserJobFavoriteController::class,'job_favorite'])->name('job-favorite');
+    Route::delete('job-favorite/{id}',[UserJobFavoriteController::class,'destroy'])->name('job-favorite.destroy');
 
     Route::get('job-applied',[UserJobAppliedController::class,'index'])->name('job-applied');
     Route::delete('job-applied/{id}',[UserJobAppliedController::class,'destroy'])->name('job-applied.destroy');

@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Employee\Database\factories\JobFactory;
 use Modules\Employee\app\Models\User;
+use Modules\Staff\app\Models\UserJobFavorite;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 class Job extends Model
 {
     use HasFactory;
@@ -25,11 +27,6 @@ class Job extends Model
         'type_work ',
     ];
     
-    protected static function newFactory(): JobFactory
-    {
-        //return JobFactory::new();
-    }
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -43,4 +40,5 @@ class Job extends Model
     {
         return $this->belongsTo(UserEmployee::class, 'user_id', 'user_id');
     }
+    
 }

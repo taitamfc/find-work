@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->text('outstanding_achievements')->nullable();
-            $table->string('img')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

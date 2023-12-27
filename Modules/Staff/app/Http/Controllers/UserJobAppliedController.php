@@ -21,6 +21,15 @@ class UserJobAppliedController extends Controller
         ];
         return view('staff::job-applied.index', $params);
     }
+    public function showdashboard()
+    {
+        $user = auth()->user();
+        $userJobApplies = UserJobAplied::where('user_id', $user->id)->get();
+        $params = [
+            'userJobApplies' => $userJobApplies,
+        ];
+        return view('staff::index1', $params);
+    }
 
     /**
      * Show the form for creating a new resource.
