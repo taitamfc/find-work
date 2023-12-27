@@ -7,6 +7,7 @@ use Modules\Staff\app\Http\Controllers\UserCvController;
 use Modules\Staff\app\Http\Controllers\UserExperienceController;
 use Modules\Staff\app\Http\Controllers\UserEducationController;
 use Modules\Staff\app\Http\Controllers\UserSkillController;
+use Modules\Staff\app\Http\Controllers\UserJobAppliedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +34,8 @@ Route::group([
         return view('staff::job-favorite.index');
     })->name('job-favorite');
 
-    Route::get('/job-applied', function () {
-        return view('staff::job-applied.index');
-    })->name('job-applied');
+    Route::get('job-applied',[UserJobAppliedController::class,'index'])->name('job-applied');
+    Route::delete('job-applied/{id}',[UserJobAppliedController::class,'destroy'])->name('job-applied.destroy');
 
     Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('update');
     Route::resource('profile', ProfileController::class)->names('profile');

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use Modules\Staff\app\Models\UserJobAplied;
 class UserJobAppliedController extends Controller
 {
     /**
@@ -14,7 +14,12 @@ class UserJobAppliedController extends Controller
      */
     public function index()
     {
-        return view('staff::index');
+        $user = auth()->user();
+        $userJobApplies = UserJobAplied::where('user_id', $user->id)->get();
+        $params = [
+            'userJobApplies' => $userJobApplies,
+        ];
+        return view('staff::job-applied.index', $params);
     }
 
     /**
@@ -62,6 +67,16 @@ class UserJobAppliedController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $userJobApplied = UserJobAplied::findOrFail($id);
+            $userJobApplied->delete();
+    
+            return redirect()->route('staff.job-applied')
+                ->with('success', 'Xóa ứng tuyển thành công!');
+        } catch (\Exception $exception) {
+            // Xử lý nếu có lỗi khi xóa
+            return redirect()->route('staff.job-applied')
+                ->with('error', 'Đã có lỗi xảy ra khi xóa ứng tuyển.');
+        }
     }
 }
