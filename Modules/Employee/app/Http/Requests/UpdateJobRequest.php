@@ -28,14 +28,17 @@ class UpdateJobRequest extends FormRequest
             'type_work' => 'required',
             'deadline' => 'required',
             'experience' => 'required',
-            'wage_min' => 'required',
-            'wage_max' => 'required',
+            'wage' => 'required',
             'gender' => 'required',
             'work_address' => 'required',
             'degree' => 'required',
-            'status' => 'required',
             'description' => 'required',
             'requirements' => 'required',
+            'rank' => 'required',
+            'number_day' => 'required',
+            'start_day' => 'required',
+            'job_package' => 'required',
+            'price' => 'required',
             
         ];
     }
@@ -49,14 +52,17 @@ class UpdateJobRequest extends FormRequest
             'type_work.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'deadline.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'experience.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'wage_min.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'wage_max.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'wage.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'gender.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'work_address.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'degree.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'status.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'description.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'requirements.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'rank.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'number_day.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'start_day.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'job_package.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'price.required' => 'Vui lòng nhập đầy đủ thông tin!',
             
             ];
     }

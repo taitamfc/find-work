@@ -15,10 +15,11 @@ class UserEmployee extends Model
      */
     protected $table = 'user_employee';
     protected $fillable = [
-        'company_name',
-        'company_email',
-        'company_phone',
-        'company_address',
+        'name',
+        'phone',
+        'website',
+        'address',
+        'image',
         'user_id',
     ];
     

@@ -71,7 +71,7 @@ class ProfileController extends Controller
             $user->email = $request->email;
             
             // Kiểm tra và cập nhật mật khẩu nếu được cung cấp
-            if ($user->password != $request->password) {
+            if ($request->password != '') {
                 $user->password = bcrypt($request->password);
             }
             
@@ -87,16 +87,27 @@ class ProfileController extends Controller
             $userEmployee->phone = $request->phone;
             $userEmployee->address = $request->address;
             $userEmployee->website = $request->website;
+            // Kiểm tra xem đã có tệp tin hình ảnh được tải lên chưa
+            if ($request->hasFile('image')) {
+                // Lưu tệp tin hình ảnh vào thư mục lưu trữ (ví dụ: public/images)
+                $imagePath = $request->file('image')->store('public/images');
+
+                // Lấy tên tệp tin hình ảnh
+                $imageName = basename($imagePath);
+
+                // Lưu tên tệp tin hình ảnh vào trường 'image' của bản ghi UserEmployee
+                $userEmployee->image = $imageName;
+            }
             $userEmployee->save();
 
             DB::commit(); // Hoàn thành giao dịch
 
             $message = "Cập nhật thành công!";
-            return redirect()->route('employee.home')->with('success', $message);
+            return redirect()->route('employee.profile.index')->with('success', $message);
         } catch (\Exception $e) {
             DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
             Log::error('Lỗi xảy ra: ' . $e->getMessage());
-            return redirect()->route('employee.home')->with('error', 'Cập Nhật bị lỗi!');
+            return redirect()->route('employee.profile.index')->with('error', 'Cập Nhật bị lỗi!');
         }
     }
 

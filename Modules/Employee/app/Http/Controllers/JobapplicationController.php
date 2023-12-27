@@ -100,10 +100,10 @@ class JobapplicationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
         try {
-            $cv = JobApplication::find($request->id);
+            $cv = JobApplication::find($id);
             $cv->forceDelete();
             $message = "Xóa thành công!";
             return redirect()->route('employee.cv.index')->with('success', $message);

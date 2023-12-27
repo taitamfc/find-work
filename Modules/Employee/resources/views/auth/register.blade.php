@@ -5,7 +5,7 @@
     <div class="form-inner">
         <h3>Tạo tài khoản tuyển dụng miễn phí</h3>
         <!--Login Form-->
-        <form action="{{ route('employee.postRegister') }}" method='post'>
+        <form action="{{ route('employee.postRegister') }}" method='post' enctype="multipart/form-data">
             @if (session('error'))
             <div class="alert alert-danger" role="alert">
                 {{ session('error') }}
@@ -81,18 +81,18 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Tên công ty </label>
-                            <input type="text" name="company_name" placeholder="Tên công ty"  value="{{ old('company_name') }}">
+                            <input type="text" name="cp_name" placeholder="Tên công ty"  value="{{ old('cp_name') }}">
                             @if ($errors->any())
-                            <p style="color:red">{{ $errors->first('company_name') }}</p>
+                            <p style="color:red">{{ $errors->first('cp_name') }}</p>
                             @endif
                         </div>
                     </div>
                     <div class="col-lg-6">                      
                         <div class="form-group">
                             <label>Website công ty </label>
-                            <input type="text" name="company_website" placeholder="company_website công ty"  value="{{ old('company_website') }}">
+                            <input type="text" name="website" placeholder="website công ty"  value="{{ old('website') }}">
                             @if ($errors->any())
-                            <p style="color:red">{{ $errors->first('company_website') }}</p>
+                            <p style="color:red">{{ $errors->first('website') }}</p>
                             @endif
                         </div>
                     </div>
@@ -102,9 +102,9 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>SĐT công ty </label>
-                            <input type="number" name="company_phone" placeholder="Số điện thoại" value="{{ old('company_phone') }}">
+                            <input type="number" name="phone" placeholder="Số điện thoại" value="{{ old('phone') }}">
                             @if ($errors->any())
-                            <p style="color:red">{{ $errors->first('company_phone') }}</p>
+                            <p style="color:red">{{ $errors->first('phone') }}</p>
                             @endif
                         </div>
                     </div>
@@ -112,14 +112,25 @@
                     <div class="col-lg-6">                     
                         <div class="form-group">
                             <label>Địa chỉ công ty </label>
-                            <input type="text" name="company_address" placeholder="Địa chỉ công ty" value="{{ old('company_address') }}">
+                            <input type="text" name="address" placeholder="Địa chỉ công ty" value="{{ old('address') }}">
                             @if ($errors->any())
-                            <p style="color:red">{{ $errors->first('company_address') }}</p>
+                            <p style="color:red">{{ $errors->first('address') }}</p>
                             @endif
                         </div>
                     </div>
                 </div>
-     
+                <div class="row mb-3">
+                    <div class="col-lg-12">                     
+                        <div class="form-group">
+                            <label>Logo công ty </label>
+                            <input type="file" name="image" class="form-control" id="inputGroupFile02">
+                            @if ($errors->any())
+                            <p style="color:red">{{ $errors->first('image') }}</p>
+                            @endif
+                        </div>
+                    </div>
+                   
+                </div>
                 <div class="form__check" style="margin-bottom: 50px;">
                             <input id="accept_pp" type="checkbox" name="accept_pp" >
                             <label for="accept_pp">Chấp nhận các điều khoản và chính sách bảo mật</label>
