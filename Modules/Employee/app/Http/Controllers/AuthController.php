@@ -37,11 +37,10 @@ class AuthController extends Controller
             $user = User::where('email',$dataUser['email'])->first();
             if (Auth::attempt($dataUser, $request->remember)) {
                 $data = [
-                    'id' => $user->id,
                     'name' => $user->name,
                     'email' => $user->email,
                 ];
-                SendEmail::dispatch($user,$data,'send_mail');
+                SendEmail::dispatch($data,'send_mail');
                 return redirect()->route('employee.home'); 
             } else {
                 return redirect()->route('employee.login')->with('error', 'Account or password is incorrect');
