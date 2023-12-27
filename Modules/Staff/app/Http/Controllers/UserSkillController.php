@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Staff\app\Http\Requests\StoreUserSkillRequest;
+
 use Modules\Staff\app\Models\UserSkill;
 
 use Illuminate\Support\Facades\Auth;
@@ -30,12 +32,12 @@ class UserSkillController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreUserSkillRequest $request): RedirectResponse
     {
         $user = Auth::user();
         $skill = new UserSkill([
             'user_id' => $user->id,
-            'cv_id' => session('cv_id'),
+            'cv_id' => $request->cv_id,
             'numerical' => $request->numerical,
             'special_skill' => $request->special_skill,
             'skill_level' => $request->skill_level,
@@ -64,13 +66,10 @@ class UserSkillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(StoreUserSkillRequest $request, $id): RedirectResponse
     {
-        $user = Auth::user();
         $userSkill = UserSkill::findOrFail($id);
         $userSkill->update([
-            'user_id' => $user->id,
-            'cv_id' => session('cv_id'),
             'numerical' => $request->numerical,
             'special_skill' => $request->special_skill,
             'skill_level' => $request->skill_level,
