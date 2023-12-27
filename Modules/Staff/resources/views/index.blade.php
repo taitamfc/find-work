@@ -1,6 +1,7 @@
 @extends('staff::dashboards.layouts.dashboard')
 @section('content')
 <!-- Dashboard -->
+
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
@@ -23,24 +24,52 @@
                             </div>
                             @endif
 
-                            <form class="default-form" method="POST" action="{{ route('staff.update', $item->id) }}" enctype="multipart/form-data">
+                            <form class="default-form" method="POST" action="{{ route('staff.update', $item->id) }}"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
-                                <div class="form-group col-lg-12 col-md-12">
+                
+                                <span><strong>Tải lên logo</strong></span>
                                     <div class="uploading-outer">
-                                        <!-- Hiển thị hình ảnh nếu có -->
-                                        @if($item->user->image_path)
-                                        <img src="{{ asset($item->user->image_path) }}" alt="User Image">
-                                        @else
-                                        <!-- Hiển thị ảnh mặc định nếu không có ảnh -->
-                                        <img src="{{ asset('website-assets/images/profile.jpg') }}" alt="Default Image"
-                                            style="border-radius: 50%;">
-                                        @endif
-                                        <div class="file-input-wrapper">
-                                            <input type="file" name="img" id="profile_image" accept="image/*">
+                                        <div class="uploadButton">
+                                            <input class="uploadButton-input" type="file" name="image"
+                                                accept="image/*, application/pdf" id="upload" multiple>
+                                            <label class="uploadButton-button ripple-effect" for="upload">Browse
+                                                Logo</label>
+                                            <span class="uploadButton-file-name"></span>
+                                        </div>
+                                        <div class="image-preview"></div>
+                                        <div class="new-image-preview">
+                                            <?php if ($item->image):?>
+                                                <img src="<?php echo asset('/storage/images/'.$item->image); ?>" alt="Preview Image" style="max-width: 150px; max-height: 120px;">
+                                            <?php endif; ?>
                                         </div>
                                     </div>
-                                </div>
+                                <!-- <script>
+                                const uploadInput = document.querySelector('.uploadButton-input');
+                                const fileNameSpan = document.querySelector('.uploadButton-file-name');
+                                const imagePreviewDiv = document.querySelector('.image-preview');
+
+                                uploadInput.addEventListener('change', function() {
+                                    const files = Array.from(uploadInput.files);
+                                    const fileNames = files.map(file => file.name);
+                                    fileNameSpan.textContent = fileNames.join(', ');
+
+                                    if (files.length > 0) {
+                                        const fileReader = new FileReader();
+                                        fileReader.onload = function(event) {
+                                            const imagePreview = document.createElement('img');
+                                            imagePreview.src = event.target.result;
+                                            imagePreviewDiv.innerHTML = ''; // Xóa hình ảnh trước nếu có
+                                            imagePreviewDiv.appendChild(imagePreview);
+                                        };
+                                        fileReader.readAsDataURL(files[0]);
+                                    } else {
+                                        imagePreviewDiv.innerHTML =
+                                        ''; // Xóa hình ảnh khi không có tệp tin nào được chọn
+                                    }
+                                });
+                                </script> -->
                                 <div class="row">
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Họ và tên</label>

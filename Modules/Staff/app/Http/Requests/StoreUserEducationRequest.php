@@ -14,7 +14,7 @@ class StoreUserEducationRequest extends FormRequest
         return [
             'numerical' => 'required',
             'education_level	' => 'required',
-            'school_course' => 'required|email',
+            'school_course' => 'required',
             'graduation_date' => 'required',
             'language' => 'required',
             'major' => 'required',

@@ -13,13 +13,13 @@ class StoreUserExperienceRequest extends FormRequest
     {
         return [
             'numerical' => 'required',
-            'is_current' => 'nullable|boolean',
+            'is_current' => 'required|boolean',
             'company' => 'required|string|max:255',
-            'start_date' => 'required|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'start_date' => 'required',
+            'end_date' => 'required',
             'level' => 'required',
-            'position' => 'nullable|string|max:255',
-            'job_description' => 'nullable|string',
+            'position' => 'required|string|max:255',
+            'job_description' => 'required|string',
         ];
     }
 
