@@ -7,19 +7,21 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Staff\app\Models\UserEducation;
+use Modules\Staff\app\Http\Requests\StoreUserEducationRequest;
+
 use Illuminate\Support\Facades\Auth;
 
 
 class UserEducationController extends Controller
 {
     
-    public function store(Request $request): RedirectResponse
+    public function store(StoreUserEducationRequest $request): RedirectResponse
     {
-        $cvId = session('cv_id');
+        // dd($request->all());
         $user = Auth::user();
         $education = new UserEducation([
             'user_id' => $user->id,
-            'cv_id' => $cvId,
+            'cv_id' => $request->cv_id,
             'numerical' => $request->numerical,
             'education_level' => $request->education_level,
             'school_course' => $request->school_course,
@@ -35,7 +37,7 @@ class UserEducationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(StoreUserEducationRequest $request, $id): RedirectResponse
     {
         $education = UserEducation::findOrFail($id);
         $education->update([
