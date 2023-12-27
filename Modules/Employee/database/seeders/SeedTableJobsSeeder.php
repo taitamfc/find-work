@@ -26,9 +26,9 @@ class SeedTableJobsSeeder extends Seeder
             'gender' => 1,
             'work_address' => 'Address 1',
             'degree' => 'Degree 1',
-            'jobStatusId' => 1,
-            'job_description' => 'Description 1',
-            'job_requirements' => 'Requirements 1',
+            'status' => 1,
+            'description' => 'Description 1',
+            'requirements' => 'Requirements 1',
         ]);
 
         Job::create([
@@ -44,9 +44,9 @@ class SeedTableJobsSeeder extends Seeder
             'gender' => 1,
             'work_address' => 'Địa chỉ 1',
             'degree' => 'Bằng cấp 1',
-            'jobStatusId' => 1,
-            'job_description' => 'Mô tả công việc 1',
-            'job_requirements' => 'Yêu cầu công việc 1',
+            'status' => 1,
+            'description' => 'Mô tả công việc 1',
+            'requirements' => 'Yêu cầu công việc 1',
         ]);
 
         Job::create([
@@ -62,9 +62,9 @@ class SeedTableJobsSeeder extends Seeder
             'gender' => 1,
             'work_address' => 'Địa chỉ 2',
             'degree' => 'Bằng cấp 2',
-            'jobStatusId' => 1,
-            'job_description' => 'Mô tả công việc 2',
-            'job_requirements' => 'Yêu cầu công việc 2',
+            'status' => 1,
+            'description' => 'Mô tả công việc 2',
+            'requirements' => 'Yêu cầu công việc 2',
         ]);
 
         Job::create([
@@ -80,9 +80,9 @@ class SeedTableJobsSeeder extends Seeder
             'gender' => 1,
             'work_address' => 'Địa chỉ 2',
             'degree' => 'Bằng cấp 2',
-            'jobStatusId' => 1,
-            'job_description' => 'Mô tả công việc 2',
-            'job_requirements' => 'Yêu cầu công việc 2',
+            'status' => 1,
+            'description' => 'Mô tả công việc 2',
+            'requirements' => 'Yêu cầu công việc 2',
         ]);
 
         Job::create([
@@ -98,9 +98,9 @@ class SeedTableJobsSeeder extends Seeder
             'gender' => 1,
             'work_address' => 'Địa chỉ 2',
             'degree' => 'Bằng cấp 2',
-            'jobStatusId' => 1,
-            'job_description' => 'Mô tả công việc 2',
-            'job_requirements' => 'Yêu cầu công việc 2',
+            'status' => 1,
+            'description' => 'Mô tả công việc 2',
+            'requirements' => 'Yêu cầu công việc 2',
         ]);
 
         Job::create([
@@ -116,9 +116,9 @@ class SeedTableJobsSeeder extends Seeder
             'gender' => 1,
             'work_address' => 'Địa chỉ 2',
             'degree' => 'Bằng cấp 2',
-            'jobStatusId' => 1,
-            'job_description' => 'Mô tả công việc 2',
-            'job_requirements' => 'Yêu cầu công việc 2',
+            'status' => 1,
+            'description' => 'Mô tả công việc 2',
+            'requirements' => 'Yêu cầu công việc 2',
         ]);
 
         Job::create([
@@ -134,9 +134,9 @@ class SeedTableJobsSeeder extends Seeder
             'gender' => 1,
             'work_address' => 'Địa chỉ 2',
             'degree' => 'Bằng cấp 2',
-            'jobStatusId' => 1,
-            'job_description' => 'Mô tả công việc 2',
-            'job_requirements' => 'Yêu cầu công việc 2',
+            'status' => 1,
+            'description' => 'Mô tả công việc 2',
+            'requirements' => 'Yêu cầu công việc 2',
         ]);
 
         Job::create([
@@ -152,9 +152,9 @@ class SeedTableJobsSeeder extends Seeder
             'gender' => 1,
             'work_address' => 'Địa chỉ 2',
             'degree' => 'Bằng cấp 2',
-            'jobStatusId' => 1,
-            'job_description' => 'Mô tả công việc 2',
-            'job_requirements' => 'Yêu cầu công việc 2',
+            'status' => 1,
+            'description' => 'Mô tả công việc 2',
+            'requirements' => 'Yêu cầu công việc 2',
         ]);
 
         Job::create([
@@ -170,9 +170,9 @@ class SeedTableJobsSeeder extends Seeder
             'gender' => 1,
             'work_address' => 'Địa chỉ 2',
             'degree' => 'Bằng cấp 2',
-            'jobStatusId' => 1,
-            'job_description' => 'Mô tả công việc 2',
-            'job_requirements' => 'Yêu cầu công việc 2',
+            'status' => 1,
+            'description' => 'Mô tả công việc 2',
+            'requirements' => 'Yêu cầu công việc 2',
         ]);
 
         Job::create([
@@ -188,9 +188,9 @@ class SeedTableJobsSeeder extends Seeder
             'gender' => 1,
             'work_address' => 'Địa chỉ 2',
             'degree' => 'Bằng cấp 2',
-            'jobStatusId' => 1,
-            'job_description' => 'Mô tả công việc 2',
-            'job_requirements' => 'Yêu cầu công việc 2',
+            'status' => 1,
+            'description' => 'Mô tả công việc 2',
+            'requirements' => 'Yêu cầu công việc 2',
         ]);
 
         Job::create([
@@ -206,9 +206,9 @@ class SeedTableJobsSeeder extends Seeder
             'gender' => 1,
             'work_address' => 'Địa chỉ 2',
             'degree' => 'Bằng cấp 2',
-            'jobStatusId' => 1,
-            'job_description' => 'Mô tả công việc 2',
-            'job_requirements' => 'Yêu cầu công việc 2',
+            'status' => 1,
+            'description' => 'Mô tả công việc 2',
+            'requirements' => 'Yêu cầu công việc 2',
         ]);
 
         Job::create([
@@ -224,9 +224,9 @@ class SeedTableJobsSeeder extends Seeder
             'gender' => 1,
             'work_address' => 'Địa chỉ 2',
             'degree' => 'Bằng cấp 2',
-            'jobStatusId' => 1,
-            'job_description' => 'Mô tả công việc 2',
-            'job_requirements' => 'Yêu cầu công việc 2',
+            'status' => 1,
+            'description' => 'Mô tả công việc 2',
+            'requirements' => 'Yêu cầu công việc 2',
         ]);
         // Add more job records as needed
         // Job::create([...]);

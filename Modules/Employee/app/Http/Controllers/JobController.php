@@ -48,9 +48,9 @@ class JobController extends Controller
             $job->gender = $request->gender;
             $job->work_address = $request->work_address;
             $job->degree = $request->degree;
-            $job->job_description = $request->job_description;
-            $job->job_requirements = $request->job_requirements;
-            $job->jobStatusId = $request->jobStatusId;
+            $job->description = $request->description;
+            $job->requirements = $request->requirements;
+            $job->status = $request->status;
             $job->user_id = Auth::id();
 
             $job->save();
@@ -100,9 +100,9 @@ class JobController extends Controller
             $job->gender = $request->gender;
             $job->work_address = $request->work_address;
             $job->degree = $request->degree;
-            $job->job_description = $request->job_description;
-            $job->job_requirements = $request->job_requirements;
-            $job->jobStatusId = $request->jobStatusId;
+            $job->description = $request->description;
+            $job->requirements = $request->requirements;
+            $job->status = $request->status;
             $job->user_id = Auth::id();
 
             $job->save();

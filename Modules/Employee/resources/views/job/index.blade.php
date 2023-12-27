@@ -45,9 +45,9 @@
                                                         <h6>{{ $job->name }}</h6>
                                                     </td>
                                                     <td>{{ $job->deadline }}</td>
-                                                    @if($job->jobStatusId == 1)
+                                                    @if($job->status == 1)
                                                         <td><span class="green-button">Đang tuyển</span></td>
-                                                    @elseif ($job->jobStatusId == 0)
+                                                    @elseif ($job->status == 0)
                                                         <td><span class="danger-button">Dừng tuyển</span></td>
                                                     @endif
                                                     <td>

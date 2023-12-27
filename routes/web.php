@@ -19,36 +19,30 @@ use App\Http\Controllers\EmployeeController;
 // Route::get('/', function () {
 //     return view('website/employer/index');
 // })->name('home');
+Route::get('/', function () {
+    return view('website/dashboards/index');
+})->name('dashboards.index');
 
-Route::get('/', [JobController::class,'index'])->name('home');
-
-Route::prefix('website')->group(function () {
-    Route::get('/employee', [EmployeeController::class,'index'])->name('website.employee');
-    Route::get('/employee/{id}', [EmployeeController::class,'show'])->name('website.employee.show');
-    
-    Route::get('/aplication/{job_id}', [JobController::class,'aplication'])->name('website.aplication');
-    Route::get('/showjob/{id}', [JobController::class,'show'])->name('website.job.show');
-});
 
 Route::prefix('themes')->group(function () {
     
-    // Route::get('/employer', function () {
-    //     return view('website/employer/index');
-    // })->name('employer.index');
+    Route::get('/employer', function () {
+        return view('website/employer/index');
+    })->name('employer.index');
 
     Route::get('/contacts', function () {
         return view('website/contacts/index');
     })->name('contacts.index');
 
-    // Route::get('/aplications', function () {
-    //     return view('website/aplications/index');
-    // })->name('aplications.index');
+    Route::get('/aplications', function () {
+        return view('website/aplications/index');
+    })->name('aplications.index');
 
     Route::get('/prices', function () {
         return view('website/prices/index');
     })->name('prices.index');
 
-    Route::get('/dashboards', function () {
+    Route::get('/', function () {
         return view('website/dashboards/index');
     })->name('dashboards.index');
 

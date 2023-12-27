@@ -1,20 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace Modules\Employee\app\Http\Controllers;
+use Modules\Employee\app\Models\User;
+use Modules\Employee\app\Models\UserEmployee;
 use Illuminate\Http\Request;
-use Modules\Employee\app\Models\Job;
-use Modules\Staff\app\Models\UserStaff;
-use Modules\Staff\app\Models\UserCv;
-class JobController extends Controller
+use App\Http\Controllers\Controller;
+
+
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $jobs = Job::all();
-        return view('website/jobs/index',compact('jobs'));
+        $userEmployees = UserEmployee::all();
+        
+        $params = [
+            'userEmployees' => $userEmployees,
+        ];
+        return view('employee::employer/index',$params);
     }
 
     /**
@@ -38,8 +43,13 @@ class JobController extends Controller
      */
     public function show(string $id)
     {
-        $job = Job::find($id);
-        return view('website/jobs/show',compact('job'));
+        $userEmployee = UserEmployee::with('user')->find($id);
+        $jobs = $userEmployee->jobs;
+        $params = [
+            'userEmployee' => $userEmployee,
+            'jobs' => $jobs,
+        ];
+        return view('employee::employer.show', $params);
     }
 
     /**
@@ -57,18 +67,7 @@ class JobController extends Controller
     {
         //
     }
-    public function aplication($job_id)
-    {
-        $userStaffs = UserStaff::all();
-        $userCvs = UserCv::all();
-        $job = Job::find($job_id);
-        $params = [
-            'userStaffs' => $userStaffs,
-            'userCvs' => $userCvs,
-            'job' =>$job
-        ];
-        return view('website/aplications/index',$params);
-    }
+
     /**
      * Remove the specified resource from storage.
      */

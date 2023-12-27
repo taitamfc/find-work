@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('user_employee', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name') ->nullable();
-            $table->string('company_phone')->nullable();
-            $table->string('company_address')->nullable();
-            $table->string('company_website')->nullable();
+            $table->string('name') ->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('website')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

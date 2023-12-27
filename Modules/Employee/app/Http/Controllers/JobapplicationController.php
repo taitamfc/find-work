@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Modules\Employee\app\Models\JobapplicationModel;
+use Modules\Employee\app\Models\UserJobApply;
 use Modules\Staff\app\Models\UserCv;
 use Illuminate\Support\Facades\Log;
 
@@ -17,7 +17,7 @@ class JobapplicationController extends Controller
      */
     public function index()
     {
-        $cv_apllys = JobapplicationModel::all();
+        $cv_apllys = UserJobApply::all();
         return view('employee::cv-apply.index',compact('cv_apllys'));
     }
 
@@ -35,9 +35,10 @@ class JobapplicationController extends Controller
     public function store(Request $request): RedirectResponse
     {
         try {
-            $cv_apply = new JobapplicationModel();
+            $cv_apply = new UserJobApply();
 
             $cv_apply->cv_id = $request->cv_id;
+            $cv_apply->user_id = $request->user_id;
             $cv_apply->job_id  = $request->job_id;
             $cv_apply->status = 0;
 
@@ -58,7 +59,7 @@ class JobapplicationController extends Controller
     public function show($id,$cv_applyID)
     {
         $item = UserCv::findOrFail($id);
-        $cv_apply = JobapplicationModel::findOrFail($cv_applyID);
+        $cv_apply = UserJobApply::findOrFail($cv_applyID);
         $params = [
             'item' => $item,
             'cv_apply' =>$cv_apply
@@ -81,7 +82,7 @@ class JobapplicationController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         try {
-            $cv_apply = JobapplicationModel::findOrFail($request->id);
+            $cv_apply = UserJobApply::findOrFail($request->id);
            
             $cv_apply->status = $request->status;
 

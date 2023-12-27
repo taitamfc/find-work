@@ -59,35 +59,35 @@
                                     <!-- Input -->
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Tên Công Ty</label>
-                                        <input type="text" name="company_name" value="{{ isset($user_employee->company_name) ? $user_employee->company_name : '' }}" placeholder="">
+                                        <input type="text" name="name" value="{{ isset($user_employee->name) ? $user_employee->name : '' }}" placeholder="">
                                         @if ($errors->any())
-                                        <p style="color:red">{{ $errors->first('company_name') }}</p>
+                                        <p style="color:red">{{ $errors->first('name') }}</p>
                                         @endif
                                     </div>
                                     
                                     <!-- Input -->
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Địa Chỉ Công Ty</label>
-                                        <input type="text" name="company_address" value="{{ isset($user_employee->company_address) ? $user_employee->company_address : ''}}" placeholder="">
+                                        <input type="text" name="address" value="{{ isset($user_employee->address) ? $user_employee->address : ''}}" placeholder="">
                                         @if ($errors->any())
-                                        <p style="color:red">{{ $errors->first('company_address') }}</p>
+                                        <p style="color:red">{{ $errors->first('address') }}</p>
                                         @endif
                                     </div>
 
                                     <!-- Input -->
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Số Điện Thoại Công Ty</label>
-                                        <input type="text" name="company_phone" value="{{isset($user_employee->company_phone) ? $user_employee->company_phone : ''}}" placeholder="">
+                                        <input type="text" name="phone" value="{{isset($user_employee->phone) ? $user_employee->phone : ''}}" placeholder="">
                                         @if ($errors->any())
-                                        <p style="color:red">{{ $errors->first('company_phone') }}</p>
+                                        <p style="color:red">{{ $errors->first('phone') }}</p>
                                         @endif
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Website Công ty</label>
-                                        <input type="text" name="company_website" value="{{isset($user_employee->company_website) ? $user_employee->company_website : ''}}" placeholder="">
+                                        <input type="text" name="website" value="{{isset($user_employee->website) ? $user_employee->website : ''}}" placeholder="">
                                         @if ($errors->any())
-                                        <p style="color:red">{{ $errors->first('company_website') }}</p>
+                                        <p style="color:red">{{ $errors->first('website') }}</p>
                                         @endif
                                     </div>
 

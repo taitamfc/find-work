@@ -12,7 +12,7 @@
             <h1>Tất cả các công việc</h1>
             <ul class="page-breadcrumb">
                 <li><a href="{{ route('home') }}">Trang chủ</a></li>
-                <li><a href="{{ route('website.employee') }}">Nhà tuyển dụng</a></li>
+                <li><a href="{{ route('employee.website.index') }}">Nhà tuyển dụng</a></li>
             </ul>
         </div>
     </div>
@@ -69,7 +69,7 @@
                             <div class="row">
                                 <!-- Company Block Four -->
                                 @foreach ($jobs as $job )
-                                    @if ($job->jobStatusId == 1)
+                                    @if ($job->status == 1)
                                         <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
                                             <div class="inner-box">
                                                 <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
@@ -83,7 +83,7 @@
                                                     {{-- <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li> --}}
                                                     <li><span class="icon flaticon-money"></span> {{$job->wage_min}} - {{$job->wage_max}} VNĐ</li>
                                                 </ul>
-                                                @if ($job->jobStatusId == 1)
+                                                @if ($job->status == 1)
                                                     <div class="job-type"><a href="{{route('website.job.show',$job->id)}}">Chi tiết công việc</a></div>
                                                 @endif
                                             </div>
