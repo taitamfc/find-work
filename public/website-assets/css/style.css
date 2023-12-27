@@ -198,7 +198,10 @@ button {
   cursor: pointer;
   min-width: auto;
 }
-
+.gridarea__small__icon .job_favorite .flaticon-bookmark.active {
+  color: red; /* Màu xanh */
+ 
+}
 p,
 .text {
   font-size: 15px;

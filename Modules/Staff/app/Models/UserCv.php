@@ -87,9 +87,13 @@ class UserCv extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function jobApplications()
+    // public function jobApplications()
+    // {
+    //     return $this->hasMany(JobApplication::class, 'cv_id');
+    // }
+    public function userJobAplies()
     {
-        return $this->hasMany(JobApplication::class, 'cv_id');
+        return $this->hasMany(UserJobAplied::class, 'user_id');
     }
    
 }

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="form-group col-lg-6 col-md-12">
                 <label>Thứ tự</label>
-                <input type="number" name="numerical" value="{{$education->numerical ?? ''}}">
+                <input type="number" name="numerical" value="{{ old('numerical', $education->numerical ?? '') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('numerical') }}</p>
                 @endif
@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label class="required">Ngày nhận bằng / Ngày tốt nghiệp</label>
                     <input class="form-control" name="graduation_date" type="date"
-                        value="{{$experience->graduation_date ?? ''}}">
+                    value="{{ old('graduation_date', $education->graduation_date ?? '') }}">
                     @if ($errors->any())
                     <p style="color:red">{{ $errors->first('graduation_date') }}</p>
                     @endif
@@ -56,14 +56,14 @@
         <div class="row">
             <div class="form-group col-12">
                 <label>Trường / Khóa học</label>
-                <input type="text" name="school_course" value="{{$education->school_course ?? ''}}">
+                <input type="text" name="school_course"  value="{{ old('school_course', $education->school_course ?? '') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('school_course') }}</p>
                 @endif
             </div>
             <div class="form-group col-12">
                 <label>Ngành / Chuyên ngành</label>
-                <input type="text" name="major" value="{{$education->major ?? ''}}">
+                <input type="text" name="major"  value="{{ old('major', $education->major ?? '') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('major') }}</p>
                 @endif

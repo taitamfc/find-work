@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use Modules\Staff\app\Models\UserStaff;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 class ProfileController extends Controller
 {
     /**
@@ -64,6 +65,8 @@ class ProfileController extends Controller
      */
     public function update(UpdateUserStaffRequest $request, $id)
     {
+        // dd($request->hasFile('img'));
+        // dd($request->all());
         $staff = UserStaff::findOrFail($id);
         $user = $staff->user;
         $user->update([
@@ -71,6 +74,16 @@ class ProfileController extends Controller
             'email' => $request->input('email'),
         ]);
 
+        if ($request->hasFile('image')) {
+            // Lưu tệp tin hình ảnh vào thư mục lưu trữ (ví dụ: public/images)
+            $imagePath = $request->file('image')->store('public/images');
+
+            // Lấy tên tệp tin hình ảnh
+            $imageName = basename($imagePath);
+
+            // Lưu tên tệp tin hình ảnh vào trường 'image' của bản ghi UserEmployee
+            $user->image = $imageName;
+        }
         $staff->update([
             'phone' => $request->input('phone'),
             'birthdate' => $request->input('birthdate'),
@@ -79,8 +92,8 @@ class ProfileController extends Controller
             'city' => $request->input('city'),
             'address' => $request->input('address'),
             'outstanding_achievements' => $request->input('outstanding_achievements'),
-     
-        ]);
+            'image' => $user->image
+        ]);    
         return back()->with('success', 'Thông tin đã được cập nhật thành công.');
     }
 
