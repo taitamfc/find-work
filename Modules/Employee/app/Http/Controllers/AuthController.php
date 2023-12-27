@@ -12,7 +12,6 @@ use Modules\Employee\app\Http\Requests\StoreRegisterRequest;
 use Modules\Auth\app\Http\Requests\ForgotPasswordRequest;
 use Modules\Auth\app\Http\Requests\ResetPasswordRequest;
 use Modules\Auth\app\Models\PasswordResetToken;
-use Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Modules\Employee\app\Models\User;
@@ -33,9 +32,9 @@ class AuthController extends Controller
     public function postLogin(StoreLoginRequest $request)
     {
         $dataUser = $request->only('email', 'password');
+        $user = User::where('email',$dataUser['email'])->first();
         if (Auth::attempt($dataUser, $request->remember)) {
             $data = [
-                'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
             ];
