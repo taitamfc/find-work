@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Staff\app\Models\UserCv;
 use Modules\Staff\app\Models\UserExperience;
+use Modules\Staff\app\Models\UserEducation;
+use Modules\Staff\app\Models\UserSkill;
 use Illuminate\Support\Facades\Auth;
 use Modules\Staff\app\Models\StaffUser;
 use Illuminate\Support\Facades\Log;
@@ -84,6 +86,8 @@ class UserCvController extends Controller
         $item       = UserCv::findOrFail($id);
         $staff      = StaffUser::where('user_id', $user->id)->first();
         $userExperiences = UserExperience::where('user_id', $user->id)->where('cv_id',$id)->get();
+        $userEducations = UserEducation::where('user_id', $user->id)->where('cv_id',$id)->get();
+        $userSkills = UserSkill::where('user_id', $user->id)->where('cv_id',$id)->get();
         $params = [
             'user'              => $user,
             'staff'             => $staff,
@@ -91,6 +95,8 @@ class UserCvController extends Controller
             'cv_id'             => $id,
             'tab'               => $tab,
             'userExperiences'   => $userExperiences,
+            'userEducations'    => $userEducations,
+            'userSkills'         => $userSkills,
         ];
         return view('staff::cv.edit', $params);
     }
