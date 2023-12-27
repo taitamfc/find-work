@@ -40,7 +40,7 @@ class SendEmail implements ShouldQueue
                 try {
                     Mail::send('admintheme::mail.mail',compact('data'), function($email) use ($item){
                         $email->subject('Store Member');
-                        $email->to($item->email, $item->name );
+                        $email->to($item->email, $item->name);
                     });
                 } catch (\Exception $e) {
                     Log::error('Bug send email error : '.$e->getMessage());
