@@ -24,7 +24,18 @@ Route::group([
     'middleware'=>'auth.staff',
     'as' => 'staff.'
 ], function () {
-    Route::get('/', [ProfileController::class, 'index'])->name('home');
+    Route::get('/', [ProfileController::class, 'index'])->name('home1');
+    Route::get('/', function () {
+        return view('staff::index1');
+    })->name('home');
+
+    Route::get('/job-favorite', function () {
+        return view('staff::job-favorite.index');
+    })->name('job-favorite');
+
+    Route::get('/job-applied', function () {
+        return view('staff::job-applied.index');
+    })->name('job-applied');
 
     Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('update');
     Route::resource('profile', ProfileController::class)->names('profile');

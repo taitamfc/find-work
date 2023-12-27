@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use Modules\Staff\app\Models\UserStaff;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 class ProfileController extends Controller
 {
     /**
@@ -64,6 +65,8 @@ class ProfileController extends Controller
      */
     public function update(UpdateUserStaffRequest $request, $id)
     {
+        // dd($request->hasFile('img'));
+        // dd($request->all());
         $staff = UserStaff::findOrFail($id);
         $user = $staff->user;
         $user->update([
@@ -81,6 +84,18 @@ class ProfileController extends Controller
             'outstanding_achievements' => $request->input('outstanding_achievements'),
      
         ]);
+        // if ($request->hasFile('img')) {
+        //     if ($user->image_path) {
+        //         Storage::delete($user->image_path);
+        //     }
+        
+        //     $image = $request->file('img');
+        //     $imageName = time() . '.' . $image->getClientOriginalExtension();
+        //     $imagePath = $image->storeAs('public/website-assets/images', $imageName);
+            
+        //     $user->update(['image_path' => $imagePath]);
+        // }
+        
         return back()->with('success', 'Thông tin đã được cập nhật thành công.');
     }
 
