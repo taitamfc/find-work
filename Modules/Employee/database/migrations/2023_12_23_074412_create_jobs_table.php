@@ -20,10 +20,14 @@ return new class extends Migration
             $table->string('career')->nullable();
             $table->string('type_work')->nullable();
             $table->string('deadline')->nullable();
+            $table->string('start_day')->nullable();
             $table->string('experience')->nullable();
-            $table->integer('wage_min')->nullable();
-            $table->integer('wage_max')->nullable();
+            $table->integer('wage')->nullable();
             $table->integer('gender')->nullable();
+            $table->integer('rank')->nullable();
+            $table->integer('job_package')->nullable();
+            $table->integer('price')->nullable();
+            $table->integer('number_day')->nullable();
             $table->string('work_address')->nullable();
             $table->string('degree')->nullable();
             $table->string('status')->nullable();

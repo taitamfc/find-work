@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Career extends Model
+class JobPackage extends Model
 {
     use HasFactory;
+    protected $table = 'job_packages';
     protected $fillable = [
         'name',
         'slug',
@@ -15,9 +16,9 @@ class Career extends Model
         'image',
         'parent_id',
         'status',
-        'position'
+        'position',
+        'price'
     ];
-    
     
     const ACTIVE    = 1;
     const INACTIVE  = 0;

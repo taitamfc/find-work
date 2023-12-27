@@ -5,6 +5,7 @@ use Modules\Employee\app\Http\Controllers\EmployeeController;
 use Modules\Employee\app\Http\Controllers\AuthController;
 use Modules\Employee\app\Http\Controllers\ProfileController;
 use Modules\Employee\app\Http\Controllers\JobController;
+use Modules\Employee\app\Http\Controllers\HomeEmployeeController;
 use Modules\Employee\app\Http\Controllers\JobapplicationController;
 /*
 |--------------------------------------------------------------------------
@@ -34,12 +35,15 @@ Route::group([
 	'as' => 'employee.'
 ], function () {
 
+	Route::get('/', [HomeEmployeeController::class,'index'])->name('home');
+
+
 	// profile
-	Route::get('/', [ProfileController::class,'index'])->name('home');
+	Route::get('/profile', [ProfileController::class,'index'])->name('profile.index');
 	Route::post('/update/{id}', [ProfileController::class,'update'])->name('profile.update');
 
 	//Job
-	Route::get('/job', [JobController::class,'index'])->name('job.index');
+	Route::get('/jobs', [JobController::class,'index'])->name('job.index');
 	Route::get('/job/create', [JobController::class,'create'])->name('job.create');
 	Route::post('/job/store', [JobController::class,'store'])->name('job.store');
 	Route::get('/job/edit/{id}', [JobController::class,'edit'])->name('job.edit');
@@ -48,7 +52,7 @@ Route::group([
 	Route::get('/job/delete/{id}', [JobController::class,'destroy'])->name('job.delete');
 
 	// CV apply
-	Route::get('/cv', [JobapplicationController::class,'index'])->name('cv.index');
+	Route::get('/applied-jobs', [JobapplicationController::class,'index'])->name('cv.index');
 	Route::get('/cv/{id}/{cv_applyID}', [JobapplicationController::class,'show'])->name('cv.show');
 	Route::put('/cv/update/{id}', [JobapplicationController::class,'update'])->name('cv.update');
 	Route::post('/cv/store', [JobapplicationController::class,'store'])->name('cv.store');

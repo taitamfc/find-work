@@ -4,8 +4,8 @@
     <section class="user-dashboard">
         <div class="dashboard-outer">
             <div class="upper-title-box">
-                <h3>Chi tiết công việc</h3>
-                {{-- <div class="text">Lao động là vinh quang!</div> --}}
+                <h3>Thêm mới một công việc!</h3>
+                <div class="text">Lao động là vinh quang!</div>
             </div>
 
             <div class="row">
@@ -14,13 +14,29 @@
                     <div class="ls-widget">
                         <div class="tabs-box">
                             <div class="widget-title">
-                                <h4>Chỉnh sửa</h4>
+                                <h4>Đăng tin</h4>
                             </div>
 
                             <div class="widget-content">
 
+                                <div class="post-job-steps">
+                                    <div class="step">
+                                        <span class="icon flaticon-briefcase"></span>
+                                        <h5>Chi tiết công việc</h5>
+                                    </div>
 
-                                <form action="{{route('employee.job.update',$job->id)}}" method="post" class="default-form">
+                                    <div class="step">
+                                        <span class="icon flaticon-money"></span>
+                                        <h5>Gói và thanh toán</h5>
+                                    </div>
+
+                                    <div class="step">
+                                        <span class="icon flaticon-checked"></span>
+                                        <h5>Xác Nhận công việc</h5>
+                                    </div>
+                                </div>
+
+                                <form action="{{route('employee.job.store')}}" method="post" class="default-form">
                                     @if (session('error'))
                                     <div class="alert alert-danger" role="alert">
                                         {{ session('error') }}
@@ -37,7 +53,7 @@
                                         <!-- Input -->
                                         <div class="form-group col-lg-12 col-md-12">
                                             <label>Tên công việc</label>
-                                            <input type="text" name="name" value="{{$job->name}}" id="nameInput" placeholder="Tên công việc">
+                                            <input type="text" name="name" id="nameInput" placeholder="Tên công việc">
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('name') }}</p>
@@ -47,7 +63,7 @@
                                         <!-- Input -->
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Đường dẫn</label>
-                                            <input type="text" name="slug" value="{{$job->slug}}" id="slugInput" placeholder="Đường dẫn">
+                                            <input type="text" name="slug" id="slugInput" placeholder="Đường dẫn">
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('slug') }}</p>
@@ -73,7 +89,7 @@
                                             <label>Ngành Nghề</label>
                                             <select name="career" class="chosen-select" >
                                                 @foreach ($careers as $career )
-                                                    <option @selected($job->career = $career->id) value="{{$career->id}}">{{$career->name}}</option>
+                                                    <option value="{{$career->id}}">{{$career->name}}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->any())
@@ -86,7 +102,7 @@
                                             <label>Hình thức làm việc</label>
                                             <select name="type_work" class="chosen-select">
                                                 @foreach ($formworks as $formwork )
-                                                    <option @selected($job->type_work = $formwork->id) value="{{$formwork->id}}">{{$formwork->name}}</option>
+                                                    <option value="{{$formwork->id}}">{{$formwork->name}}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->any())
@@ -97,7 +113,7 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Ngày đăng</label>
-                                            <input type="date" value="{{$job->start_day}}" name="start_day" placeholder="">
+                                            <input type="date" name="start_day" placeholder="">
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('start_day') }}</p>
@@ -108,7 +124,7 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Hạn cuối nộp hồ sơ</label>
-                                            <input type="date" value="{{$job->deadline}}" name="deadline" placeholder="">
+                                            <input type="date" name="deadline" placeholder="">
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('deadline') }}</p>
@@ -117,7 +133,7 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Số ngày :</label>
-                                            <input type="number" value="{{$job->number_day}}" name="number_day" id="nameInput" placeholder="Số ngày...">
+                                            <input type="number" name="number_day" id="nameInput" placeholder="Số ngày...">
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('number_day') }}</p>
@@ -128,8 +144,8 @@
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Kinh Nghiệm</label>
                                             <select name="experience" class="chosen-select">
-                                                <option @selected($job->experience == 2) value="2">Có yêu cầu</option>
-                                                <option @selected($job->experience == 1) value="1"><Kbd></Kbd>hông yêu cầu</option>
+                                                <option value="2">Có yêu cầu</option>
+                                                <option value="1"><Kbd></Kbd>hông yêu cầu</option>
                                             </select>
                                             @if ($errors->any())
                                                 <p style="color:red">
@@ -142,7 +158,7 @@
                                             <label>Lương</label>
                                             <select name="wage" class="chosen-select">
                                                 @foreach ($wages as $wage )
-                                                    <option @selected($job->experience == $wage->id) value="{{$wage->id}}">{{$wage->name}}</option>
+                                                    <option value="{{$wage->id}}">{{$wage->name}}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->any())
@@ -156,8 +172,8 @@
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>giới tính</label>
                                             <select name="gender" class="chosen-select">
-                                                <option @selected($job->gender == 1) value="1">Nam</option>
-                                                <option @selected($job->gender == 2) value="2">Nữ</option>
+                                                <option value="1">Nam</option>
+                                                <option value="2">Nữ</option>
                                             </select>
                                             @if ($errors->any())
                                                 <p style="color:red">
@@ -167,7 +183,7 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Nơi làm việc</label>
-                                            <input type="text" value="{{$job->work_address}}" name="work_address" id="nameInput" placeholder="Nơi làm việc...">
+                                            <input type="text" name="work_address" id="nameInput" placeholder="Nơi làm việc...">
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('work_address') }}</p>
@@ -178,7 +194,7 @@
                                             <label>Bằng cấp</label>
                                             <select name="degree" class="chosen-select">
                                                 @foreach ($degrees as $degree )
-                                                    <option @selected($job->degree == $degree->id) value="{{$degree->id}}">{{$degree->name}}</option>
+                                                    <option value="{{$degree->id}}">{{$degree->name}}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->any())
@@ -191,7 +207,7 @@
                                             <label>Vị trí</label>
                                             <select name="rank" class="chosen-select">
                                                 @foreach ($ranks as $rank )
-                                                    <option @selected($job->rank == $rank->id) value="{{$rank->id}}">{{$rank->name}}</option>
+                                                    <option value="{{$rank->id}}">{{$rank->name}}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->any())
@@ -204,7 +220,7 @@
                                             <label>Loại tin</label>
                                             <select name="job_package" class="chosen-select">
                                                 @foreach ($job_packages as $job_package )
-                                                    <option @selected($job->job_package == $job_package->id) value="{{$job_package->id}}">{{$job_package->name}}</option>
+                                                    <option value="{{$job_package->id}}">{{$job_package->name}}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->any())
@@ -215,7 +231,7 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Tổng thah toán cho tin đăng :</label>
-                                            <input type="number" value="{{$job->price}}" name="price" id="nameInput" placeholder="Giá...">
+                                            <input type="number" name="price" id="nameInput" placeholder="Giá...">
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('price') }}</p>
@@ -228,7 +244,7 @@
                                         <div class="form-group col-lg-12 col-md-12">
                                             <label>Mô tả công việc</label>
                                             <textarea name="description"
-                                                placeholder="Mô tả...">{{$job->description}}</textarea>
+                                                placeholder="Mô tả..."></textarea>
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('description') }}</p>
@@ -239,7 +255,7 @@
                                         <div class="form-group col-lg-12 col-md-12">
                                             <label>Yêu cầu công việc</label>
                                             <textarea name="requirements"
-                                                placeholder="Yêu cầu...">{{$job->requirements}}</textarea>
+                                                placeholder="Yêu cầu..."></textarea>
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('requirements') }}</p>
@@ -248,7 +264,7 @@
 
                                         <!-- Input -->
                                         <div class="form-group col-lg-12 col-md-12 text-right">
-                                            <button class="theme-btn btn-style-one">Cập Nhật</button>
+                                            <button class="theme-btn btn-style-one">Đăng Tin</button>
                                         </div>
                                     </div>
                                 </form>

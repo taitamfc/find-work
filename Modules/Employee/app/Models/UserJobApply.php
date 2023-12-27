@@ -14,7 +14,9 @@ class UserJobApply extends Model
      * The attributes that are mass assignable.
      */
     protected $table = 'user_job_applies';
-    protected $fillable = [];
+    protected $fillable = [
+        
+    ];
     
     protected static function newFactory(): UserJobApplyFactory
     {
@@ -25,6 +27,7 @@ class UserJobApply extends Model
     {
         return $this->belongsTo(UserCv::class, 'cv_id');
     }
+
 
     /**
      * Get the job associated with the job application.

@@ -10,6 +10,13 @@ use Modules\Employee\app\Models\Job;
 use Illuminate\Support\Facades\Auth;
 use Modules\Employee\app\Http\Requests\CreateJobRequest;
 use Modules\Employee\app\Http\Requests\UpdateJobRequest;
+use App\Models\Career;
+use App\Models\Level;
+use App\Models\Rank;
+use App\Models\Wage;
+use App\Models\FormWork;
+use App\Models\JobPackage;
+
 
 class JobController extends Controller
 {
@@ -27,7 +34,13 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('employee::job.create');
+        $careers = Career::where('status',Career::ACTIVE)->get();
+        $degrees = Level::where('status',Level::ACTIVE)->get();
+        $ranks = Rank::where('status',Rank::ACTIVE)->get();
+        $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
+        $wages = Wage::where('status',Wage::ACTIVE)->get();
+        $job_packages = JobPackage::where('status',JobPackage::ACTIVE)->get();
+        return view('employee::job.create_copy',compact(['careers','degrees','ranks','formworks','wages','job_packages']));
     }
 
     /**
@@ -42,16 +55,21 @@ class JobController extends Controller
             $job->career = $request->career;
             $job->type_work = $request->type_work;
             $job->deadline = $request->deadline;
+            $job->start_day = $request->start_day;
             $job->experience = $request->experience;
-            $job->wage_min = $request->wage_min;
-            $job->wage_max = $request->wage_max;
+            $job->wage = $request->wage;
             $job->gender = $request->gender;
+            $job->rank = $request->rank;
+            $job->job_package = $request->job_package;
+            $job->price = $request->price;
+            $job->number_day = $request->number_day;
             $job->work_address = $request->work_address;
             $job->degree = $request->degree;
             $job->description = $request->description;
             $job->requirements = $request->requirements;
-            $job->status = $request->status;
             $job->user_id = Auth::id();
+            
+            $job->status = 1;
 
             $job->save();
 
@@ -69,8 +87,14 @@ class JobController extends Controller
      */
     public function show(Request $request,$id)
     {
+        $careers = Career::where('status',Career::ACTIVE)->get();
+        $degrees = Level::where('status',Level::ACTIVE)->get();
+        $ranks = Rank::where('status',Rank::ACTIVE)->get();
+        $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
+        $wages = Wage::where('status',Wage::ACTIVE)->get();
+        $job_packages = JobPackage::where('status',JobPackage::ACTIVE)->get();
         $job = Job::findOrFail($request->id);
-        return view('employee::job.show',compact('job'));
+        return view('employee::job.show',compact(['job','careers','degrees','ranks','formworks','wages','job_packages']));
     }
 
     /**
@@ -94,15 +118,19 @@ class JobController extends Controller
             $job->career = $request->career;
             $job->type_work = $request->type_work;
             $job->deadline = $request->deadline;
+            $job->start_day = $request->start_day;
             $job->experience = $request->experience;
-            $job->wage_min = $request->wage_min;
-            $job->wage_max = $request->wage_max;
+            $job->wage = $request->wage;
             $job->gender = $request->gender;
+            $job->rank = $request->rank;
+            $job->job_package = $request->job_package;
+            $job->price = $request->price;
+            $job->number_day = $request->number_day;
             $job->work_address = $request->work_address;
             $job->degree = $request->degree;
             $job->description = $request->description;
             $job->requirements = $request->requirements;
-            $job->status = $request->status;
+            $job->status = 1;
             $job->user_id = Auth::id();
 
             $job->save();
