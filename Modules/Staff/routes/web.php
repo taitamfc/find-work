@@ -22,7 +22,7 @@ use Modules\Staff\app\Http\Controllers\UserJobAppliedController;
 
 Route::group([
     'prefix' => 'staff',
-    'middleware'=>'auth.staff',
+	'middleware' => ['auth.staff'],
     'as' => 'staff.'
 ], function () {
     Route::get('/', [ProfileController::class, 'index'])->name('home1');
