@@ -26,9 +26,9 @@ return new class extends Migration
             $table->integer('gender')->nullable();
             $table->string('work_address')->nullable();
             $table->string('degree')->nullable();
-            $table->string('jobStatusId')->nullable();
-            $table->string('job_description')->nullable();
-            $table->string('job_requirements')->nullable();
+            $table->string('status')->nullable();
+            $table->string('description')->nullable();
+            $table->string('requirements')->nullable();
             $table->timestamps();
         });
     }

@@ -54,6 +54,10 @@ Route::group([
 	Route::post('/cv/store', [JobapplicationController::class,'store'])->name('cv.store');
 	Route::get('/cv/delete/{id}', [JobapplicationController::class,'destroy'])->name('cv.delete');
 
+
+	// list employ website
+	Route::get('/employerlist', [EmployeeController::class,'index'])->name('website.index');
+    Route::get('/{id}', [EmployeeController::class,'show'])->name('website.show');
 });
 
 

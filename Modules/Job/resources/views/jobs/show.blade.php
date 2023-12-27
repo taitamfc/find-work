@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="btn-box">
-                            <a href="{{route('website.aplication',['job_id' =>$job->id])}}" class="theme-btn btn-style-one">Nộp Hồ Sơ Ứng Tuyển</a>
+                            <a href="{{route('website.aplication',['job_id' => $job->id, 'user_id' => $user_id])}}" class="theme-btn btn-style-one">Nộp Hồ Sơ Ứng Tuyển</a>
                             {{-- <button class="bookmark-btn"><i class="flaticon-bookmark"></i></button> --}}
                         </div>
                     </div>
@@ -67,11 +67,11 @@
                             @endif
                             <h4>Mô Tả Công Việc</h4>
                             <p>
-                                {{$job->job_description}}
+                                {{$job->description}}
                             </p>
                             <h4>Yêu Cầu Công việc</h4>
                             <p>
-                                {{$job->job_requirements}}
+                                {{$job->requirements}}
                             </p>
                         </div>
 
@@ -232,15 +232,15 @@
                                         <div class="company-logo"><img src="images/resource/company-7.png"
                                                 alt=""></div>
                                         <h5 class="company-name">Thông tin nhà tuyển dụng</h5>
-                                        <a href="{{route('website.employee.show',$job->user->userEmployee->id)}}" class="profile-link">Xem hồ sơ nhà tuyển dụng</a>
+                                        <a href="{{route('employee.website.show',$job->user->userEmployee->id)}}" class="profile-link">Xem hồ sơ nhà tuyển dụng</a>
                                     </div>
 
                                     <ul class="company-info">
-                                        <li>Tên Công ty: <span>{{$job->user->userEmployee->company_name}}</span></li>
-                                        <li>Số Điện Thoại: <span>{{$job->user->userEmployee->company_phone}}</span></li>
-                                        <li>Địa Chỉ: <span>{{$job->user->userEmployee->company_address}}</span></li>
+                                        <li>Tên Công ty: <span>{{$job->user->userEmployee->name}}</span></li>
+                                        <li>Số Điện Thoại: <span>{{$job->user->userEmployee->phone}}</span></li>
+                                        <li>Địa Chỉ: <span>{{$job->user->userEmployee->address}}</span></li>
                                         <li>Email: <span>info@joio.com</span></li>
-                                        <li>Website: <span>{{$job->user->userEmployee->company_website}}</span></li>
+                                        <li>Website: <span>{{$job->user->userEmployee->website}}</span></li>
                                     </ul>
                                 </div>
                             </div>

@@ -4,21 +4,21 @@ namespace Modules\Employee\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Modules\Employee\Database\factories\JobapplicationModelFactory;
+use Modules\Employee\Database\factories\UserJobApplyFactory;
 use Modules\Staff\app\Models\UserCv;
-class JobapplicationModel extends Model
+class UserJobApply extends Model
 {
     use HasFactory;
 
     /**
      * The attributes that are mass assignable.
      */
-    protected $table = 'job_applications';
+    protected $table = 'user_job_applies';
     protected $fillable = [];
     
-    protected static function newFactory(): JobapplicationModelFactory
+    protected static function newFactory(): UserJobApplyFactory
     {
-        //return JobapplicationModelFactory::new();
+        //return UserJobApplyFactory::new();
     }
 
     public function cv()

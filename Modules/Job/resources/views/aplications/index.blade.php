@@ -18,12 +18,13 @@
     </style>
     <div class="apply-job p-3 mb-3" style="background-color: rgba(238,121,49,0.16);">
         <h5 class="font-def bold mb-0">{{ $job->name }}</h5>
-        <p class="font-sm mb-2">{{ $job->user->userEmployee->company_name }}</p>
+        <p class="font-sm mb-2">{{ $job->user->userEmployee->name }}</p>
     </div>
 
     <form action="{{route('employee.cv.store')}}" method="post" id="frmSelectCV"><input type="hidden" name="JobId" value="3266" required="">
         @csrf
         <input type="hidden" name="job_id" value="{{ $job->id }}">
+        <input type="hidden" name="user_id" value="{{ $job->id }}">
         <div class="table-responsive">
             <table class="table table-bordered my-3">
                 <tbody>

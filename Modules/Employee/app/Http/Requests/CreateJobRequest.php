@@ -54,9 +54,9 @@ class CreateJobRequest extends FormRequest
             'gender.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'work_address.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'degree.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'jobStatusId.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'job_description.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'job_requirements.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'status.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'description.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'requirements.required' => 'Vui lòng nhập đầy đủ thông tin!',
             
             ];
     }

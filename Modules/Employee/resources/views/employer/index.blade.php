@@ -11,7 +11,7 @@
         <div class="title-outer">
             <h1>Công Ty</h1>
             <ul class="page-breadcrumb">
-                <li><a href="">Trang chủ</a></li>
+                <li><a href="{{route('employee.website.index')}}">Trang chủ</a></li>
                 <li>Công Ty</li>
             </ul>
         </div>
@@ -79,6 +79,7 @@
             <div class="content-column col-lg-8 col-md-12 col-sm-12">
                 <div class="ls-outer">
                     <button type="button" class="theme-btn btn-style-two toggle-filters">Show Filters</button>
+                    @foreach($userEmployees as $userEmployee)
                     <!-- Block Block -->
                     <div class="company-block-three">
                         <div class="inner-box">
@@ -86,10 +87,10 @@
                                 <div class="content-inner">
                                     <span class="company-logo"><img src="images/resource/company-logo/6-1.png"
                                             alt=""></span>
-                                            <h4><a href="">Tên Công ty</a></h4>
+                                            <h4><a href="{{ route('employee.website.show', ['id' => $userEmployee->id]) }}">{{ $userEmployee->company_name }}</a></h4>
                                     <ul class="job-info">
-                                    <li><span class="icon flaticon-map-locator"></span> ĐỊa chỉ công ty</li>
-                                        <li><span class="icon flaticon-briefcase"></span> nơi làm việc</li>
+                                    <li><span class="icon flaticon-map-locator"></span> {{ $userEmployee->company_address }}</li>
+                                        <li><span class="icon flaticon-briefcase"></span> {{ $userEmployee->company_address }}</li>
                                     </ul>
                                 </div>
                                 <ul class="job-other-info">
@@ -103,6 +104,7 @@
                             <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                         </div>
                     </div>
+                    @endforeach
                     <!-- Listing Show More -->
                     <div class="ls-show-more">
                         <p>Showing 36 of 497 Jobs</p>

@@ -33,9 +33,9 @@ class UpdateJobRequest extends FormRequest
             'gender' => 'required',
             'work_address' => 'required',
             'degree' => 'required',
-            'jobStatusId' => 'required',
-            'job_description' => 'required',
-            'job_requirements' => 'required',
+            'status' => 'required',
+            'description' => 'required',
+            'requirements' => 'required',
             
         ];
     }
@@ -54,9 +54,9 @@ class UpdateJobRequest extends FormRequest
             'gender.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'work_address.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'degree.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'jobStatusId.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'job_description.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'job_requirements.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'status.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'description.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'requirements.required' => 'Vui lòng nhập đầy đủ thông tin!',
             
             ];
     }

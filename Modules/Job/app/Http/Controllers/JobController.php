@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Employee\app\Models\Job;
+use Modules\Staff\app\Models\UserStaff;
+use Modules\Staff\app\Models\UserCv;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -14,7 +18,8 @@ class JobController extends Controller
      */
     public function index()
     {
-        return view('job::index');
+        $jobs = Job::all();
+        return view('job::jobs.index',compact('jobs'));
     }
 
     /**
@@ -22,45 +27,58 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('job::create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         //
     }
 
     /**
-     * Show the specified resource.
+     * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-        return view('job::show');
+        $user_id = Auth::id();
+        $job = Job::find($id);
+        return view('job::jobs.show',compact(['job','user_id']));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
-    {
-        return view('job::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id): RedirectResponse
+    public function edit(string $id)
     {
         //
     }
 
     /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+    public function aplication($job_id)
+    {
+        $userStaffs = UserStaff::all();
+        $userCvs = UserCv::all();
+        $job = Job::find($job_id);
+        $params = [
+            'userStaffs' => $userStaffs,
+            'userCvs' => $userCvs,
+            'job' =>$job
+        ];
+        return view('job::aplications.index',$params);
+    }
+    /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
         //
     }

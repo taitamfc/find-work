@@ -83,10 +83,10 @@ class ProfileController extends Controller
                 $userEmployee = new UserEmployee();
                 $userEmployee->user_id = $user->id;
             }
-            $userEmployee->company_name = $request->company_name;
-            $userEmployee->company_phone = $request->company_phone;
-            $userEmployee->company_address = $request->company_address;
-            $userEmployee->company_website = $request->company_website;
+            $userEmployee->name = $request->name;
+            $userEmployee->phone = $request->phone;
+            $userEmployee->address = $request->address;
+            $userEmployee->website = $request->website;
             $userEmployee->save();
 
             DB::commit(); // Hoàn thành giao dịch

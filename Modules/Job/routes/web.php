@@ -14,6 +14,16 @@ use Modules\Job\app\Http\Controllers\JobController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('job', JobController::class)->names('job');
+// Route::group([], function () {
+//     Route::resource('job', JobController::class)->names('job');
+// });
+
+
+Route::prefix('job')->group(function () {
+    Route::get('/', [JobController::class,'index'])->name('home');
+    Route::get('/aplication/{job_id}', [JobController::class,'aplication'])->name('website.aplication');
+    Route::get('/showjob/{id}', [JobController::class,'show'])->name('website.job.show');
+
+
+    
 });

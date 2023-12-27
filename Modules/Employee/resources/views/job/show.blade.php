@@ -257,10 +257,10 @@
                                                                 <div class="form-group"><label
                                                                         for="Description"><strong>Mô tả:</strong>
                                                                         (*)</label>
-                                                                    <textarea class="form-control" name="job_description" id="" cols="30" rows="10">{{$job->job_description}}</textarea>
+                                                                    <textarea class="form-control" name="description" id="" cols="30" rows="10">{{$job->description}}</textarea>
                                                                     @if ($errors->any())
                                                                         <p style="color:red">
-                                                                            {{ $errors->first('job_description') }}</p>
+                                                                            {{ $errors->first('description') }}</p>
                                                                     @endif
                                                                 </div>
                                                             </div>
@@ -269,10 +269,10 @@
                                                                         for="Description"><strong>Yêu cầu công
                                                                             việc:</strong>Yêu cầu công việc
                                                                         (*)</label>
-                                                                    <textarea class="form-control" name="job_requirements" id="" cols="30" rows="10">{{$job->job_requirements}}</textarea>
+                                                                    <textarea class="form-control" name="requirements" id="" cols="30" rows="10">{{$job->requirements}}</textarea>
                                                                     @if ($errors->any())
                                                                         <p style="color:red">
-                                                                            {{ $errors->first('job_requirements') }}</p>
+                                                                            {{ $errors->first('requirements') }}</p>
                                                                     @endif
                                                                 </div>
                                                             </div>
@@ -280,7 +280,7 @@
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="form-group"><label
-                                                                        for="jobStatusId"><strong>Trạng
+                                                                        for="status"><strong>Trạng
                                                                             thái
                                                                             tuyển dụng:</strong> (*)</label> <select
                                                                         class="form-control" data-val="true"
@@ -288,9 +288,9 @@
                                                                         data-val-range-max="2147483647"
                                                                         data-val-range-min="1"
                                                                         data-val-required="Trạng thái tuyển dụng không được để trống"
-                                                                        id="JobStatusId" name="jobStatusId">
-                                                                        <option @selected($job->jobStatusId == 1) value="1">Đang tuyển</option>
-                                                                        <option @selected($job->jobStatusId == 0) value="0">Dừng tuyển</option>
+                                                                        id="status" name="status">
+                                                                        <option @selected($job->status == 1) value="1">Đang tuyển</option>
+                                                                        <option @selected($job->status == 0) value="0">Dừng tuyển</option>
                                                                     </select> 
                                                                 </div>
                                                     </div>

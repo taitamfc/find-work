@@ -3,7 +3,7 @@
 namespace Modules\Employee\database\seeders;
 
 use Illuminate\Database\Seeder;
-use Modules\Employee\app\Models\JobapplicationModel;
+use Modules\Employee\app\Models\UserJobApply;
 
 
 class SeedTableJobapplySeeder extends Seeder
@@ -13,8 +13,9 @@ class SeedTableJobapplySeeder extends Seeder
      */
     public function run()
     {
-        JobapplicationModel::create([
+        UserJobApply::create([
             'cv_id' => 1,
+            'user_id' => 1,
             'job_id' => 1,
             'status' => 0,
         ]);

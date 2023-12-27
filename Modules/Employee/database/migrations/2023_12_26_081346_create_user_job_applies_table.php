@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_applications', function (Blueprint $table) {
+        Schema::create('user_job_applies', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cv_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('job_id');
             $table->integer('status');
             
@@ -21,6 +22,7 @@ return new class extends Migration
 
             // Add foreign key constraints
             $table->foreign('cv_id')->references('id')->on('user_cvs');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('job_id')->references('id')->on('jobs');
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_applications');
+        Schema::dropIfExists('user_job_applies');
     }
 };
