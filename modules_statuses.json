@@ -9,5 +9,6 @@
     "Employee": true,
     "Staff": true,
     "Job": true,
-    "AdminHome": true
+    "AdminHome": true,
+    "Transaction": true
 }
