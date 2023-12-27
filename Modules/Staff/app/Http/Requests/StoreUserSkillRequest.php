@@ -18,7 +18,6 @@ class StoreUserSkillRequest extends FormRequest
             // 'description' => 'required',
         ];
     }
-
     /**
      * Determine if the user is authorized to make this request.
      */
