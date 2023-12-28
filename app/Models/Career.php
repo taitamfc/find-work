@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Employee\app\Models\Job;
 
 class Career extends Model
 {
@@ -38,5 +39,10 @@ class Career extends Model
     }
     public function getCreatedAtFmAttribute(){
         return date('d-m-Y',strtotime($this->created_at));
+    }
+
+    public function job()
+    {
+        return $this->belongsToMany(Job::class, 'carrer_job', 'carrer_id', 'job_id');
     }
 }

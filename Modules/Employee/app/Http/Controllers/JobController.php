@@ -18,6 +18,8 @@ use App\Models\FormWork;
 use App\Models\JobPackage;
 use Modules\Employee\app\Models\UserJobApply;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+use Modules\Employee\app\Models\CareerJob;
 
 
 class JobController extends Controller
@@ -65,12 +67,12 @@ class JobController extends Controller
      */
     public function store(CreateJobRequest $request): RedirectResponse
     {
-        
+        DB::beginTransaction();
         try {
             $job = new Job();
             $job->name = $request->name;
             $job->slug = $request->slug;
-            $job->career = implode(',', $request->input('career'));
+            // $job->career = implode(',', $request->input('career'));
             $job->type_work = $request->type_work;
             $job->deadline = $request->deadline;
             $job->start_day = $request->start_day;
@@ -92,9 +94,16 @@ class JobController extends Controller
             $job->status = Job::INACTIVE;
             $job->save();
 
+
+            // lưu vào bảng career_job
+            if($request->career_ids){
+                $job->careers()->attach($request->career_ids);
+            }
+            DB::commit();
             $message = "Thêm mới thành công!";
             return redirect()->route('employee.job.index')->with('success', $message);
         } catch (\Exception $e) {
+            DB::rollback();
             Log::error('Lỗi xảy ra: ' . $e->getMessage());
             return redirect()->route('employee.job.create')->with('error', 'Thêm mới bị lỗi!');
         }
@@ -143,7 +152,8 @@ class JobController extends Controller
             'wages' => $wages,
             'job_packages' => $job_packages
         ];
-        return view('employee::job.edit',compact(['job','param']));
+        $careerjobs = $job->careers()->pluck('career_id');
+        return view('employee::job.edit',compact(['job','param','careerjobs']));
     }
 
     /**
@@ -151,11 +161,12 @@ class JobController extends Controller
      */
     public function update(UpdateJobRequest $request, $id): RedirectResponse
     {
+        DB::beginTransaction();
         try {
             $job = Job::findOrFail($request->id);
             $job->name = $request->name;
             $job->slug = $request->slug;
-            $job->career = implode(',', $request->input('career'));
+            // $job->career = implode(',', $request->input('career'));
             $job->type_work = $request->type_work;
             $job->deadline = $request->deadline;
             $job->start_day = $request->start_day;
@@ -178,6 +189,14 @@ class JobController extends Controller
 
             $job->save();
 
+            // lưu vào bảng career_job
+            if($request->career_ids){
+                $job->careers()->sync($request->career_ids);
+            }
+
+
+
+            DB::commit();
             $message = "Cập Nhật thành công!";
             return redirect()->route('employee.job.index')->with('success', $message);
         } catch (\Exception $e) {
@@ -192,6 +211,7 @@ class JobController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        dd(0);
         try {
             $job =  Job::find($request->id);
             $job->delete();

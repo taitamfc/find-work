@@ -8,6 +8,7 @@ use Modules\Employee\Database\factories\JobFactory;
 use Modules\Employee\app\Models\User;
 use Modules\Staff\app\Models\UserJobFavorite;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Career;
 
 class Job extends Model
 {
@@ -43,5 +44,12 @@ class Job extends Model
     public function userEmployee()
     {
         return $this->belongsTo(UserEmployee::class, 'user_id', 'user_id');
-    }  
+
+    }
+    
+    public function careers()
+    {
+        return $this->belongsToMany(Career::class, 'career_job', 'job_id', 'career_id');
+    }
 }
+

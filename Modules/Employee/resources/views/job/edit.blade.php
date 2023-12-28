@@ -74,19 +74,19 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Ngành Nghề</label>
-                                            <select name="career[]" class="chosen-select js-example-basic-multiple"
+                                            <select name="career_ids[]" class="chosen-select js-example-basic-multiple"
                                                 multiple="multiple">
                                                 @foreach ($param['careers'] as $career)
                                                     @php
-                                                        $selected = in_array($career->id, explode(',', $job->career)) ? 'selected' : '';
+                                                        $selected = $careerjobs->contains($career->id) ? 'selected' : '';
                                                     @endphp
                                                     <option value="{{ $career->id }}" {{ $selected }}>
                                                         {{ $career->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @if ($errors->any())
-                                                <p style="color: red">{{ $errors->first('career') }}</p>
+                                            @if ($errors->has('career_ids'))
+                                                <p style="color: red">{{ $errors->first('career_ids') }}</p>
                                             @endif
                                         </div>
 

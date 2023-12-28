@@ -76,7 +76,7 @@
                                                             <ul class="option-list">
                                                                 <li><a href="{{route('employee.cv.show',[$cv_aplly->id,$cv_aplly->cv->id])}}" data-text="View Aplication"><span
                                                                             class="la la-eye"></span></a></li>
-                                                                <li><a href="{{route('employee.cv.delete',$cv_aplly->id)}}" data-text="Delete Aplication"><span
+                                                                <li><a href="{{route('employee.cvs.delete',$cv_aplly->id)}}" data-text="Delete Aplication"><span
                                                                             class="la la-trash"></span></a href=""></li>
                                                             </ul>
                                                         </div>
