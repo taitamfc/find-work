@@ -11,23 +11,33 @@ class StoreUserCvRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'cv_file' => 'required',
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'birthdate' => 'required',
-            'gender' => 'required',
-            'city' => 'required',
-            'address' => 'required',
-            'desired_position' => 'required',
-            'desired_rank' => 'required',
-            'employment_type' => 'required',
-            'industry' => 'required',
-            'desired_location' => 'required',
-            'desired_salary' => 'required|numeric',
-            'career_objective' => 'required',
-        ];
+        $rules = [];
+        if($this->tab == 'personal-information'){
+            $rules = [
+                'name' => 'required',
+                'email' => 'required|email',
+                'phone' => 'required',
+                'birthdate' => 'required',
+                'gender' => 'required',
+                'city' => 'required',
+                'address' => 'required',
+                'experience_years' => 'required',
+            ];
+        } 
+        if($this->tab == 'job-information'){
+            $rules = [
+                'cv_file' => 'required',
+                'desired_position' => 'required',
+                'desired_rank' => 'required',
+                'employment_type' => 'required',
+                'industry' => 'required',
+                'desired_location' => 'required',
+                'desired_salary' => 'required|numeric',
+                'career_objective' => 'required',
+            ];
+        }
+        
+        return $rules;
     }
 
     /**

@@ -3,10 +3,9 @@
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
-            <h3>Shorlisted Jobs</h3>
+            <h3>Việc làm lọt vào danh sách</h3>
             <div class="text">Ready to jump back in?</div>
         </div>
-
         <div class="row">
             <div class="col-lg-12">
                 <!-- Ls widget -->

@@ -45,31 +45,6 @@
                                             <?php endif; ?>
                                         </div>
                                     </div>
-                                <!-- <script>
-                                const uploadInput = document.querySelector('.uploadButton-input');
-                                const fileNameSpan = document.querySelector('.uploadButton-file-name');
-                                const imagePreviewDiv = document.querySelector('.image-preview');
-
-                                uploadInput.addEventListener('change', function() {
-                                    const files = Array.from(uploadInput.files);
-                                    const fileNames = files.map(file => file.name);
-                                    fileNameSpan.textContent = fileNames.join(', ');
-
-                                    if (files.length > 0) {
-                                        const fileReader = new FileReader();
-                                        fileReader.onload = function(event) {
-                                            const imagePreview = document.createElement('img');
-                                            imagePreview.src = event.target.result;
-                                            imagePreviewDiv.innerHTML = ''; // Xóa hình ảnh trước nếu có
-                                            imagePreviewDiv.appendChild(imagePreview);
-                                        };
-                                        fileReader.readAsDataURL(files[0]);
-                                    } else {
-                                        imagePreviewDiv.innerHTML =
-                                        ''; // Xóa hình ảnh khi không có tệp tin nào được chọn
-                                    }
-                                });
-                                </script> -->
                                 <div class="row">
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Họ và tên</label>
