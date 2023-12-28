@@ -104,7 +104,7 @@ class UserCvController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(StoreUserCvRequest $request, $id)
     {
         $cv_id = $id;
         $user = Auth::user();

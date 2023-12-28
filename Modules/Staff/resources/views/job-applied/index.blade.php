@@ -3,7 +3,7 @@
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
-            <h3>Applied Jobs</h3>
+            <h3>Việc làm đã ứng tuyển</h3>
             <div class="text">Ready to jump back in?</div>
         </div>
 

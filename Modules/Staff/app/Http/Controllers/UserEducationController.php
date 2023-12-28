@@ -17,7 +17,7 @@ class UserEducationController extends Controller
     
     public function store(StoreUserEducationRequest $request): RedirectResponse
     {
-        // dd($request->all());
+        // dd($request->all());    
         $user = Auth::user();
         $education = new UserEducation([
             'user_id' => $user->id,
@@ -37,7 +37,7 @@ class UserEducationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreUserEducationRequest $request, $id): RedirectResponse
+    public function update(Request $request, $id): RedirectResponse
     {
         $education = UserEducation::findOrFail($id);
         $education->update([
@@ -57,6 +57,7 @@ class UserEducationController extends Controller
     public function destroy($id): RedirectResponse
     {
         $education = UserEducation::findOrFail($id);
+        // dd($education);
         $education->delete();
         return redirect()->back()->with('success', 'Education information has been deleted successfully.');
     }

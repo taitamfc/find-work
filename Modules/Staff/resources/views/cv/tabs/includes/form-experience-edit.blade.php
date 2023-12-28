@@ -3,9 +3,9 @@
         <div class="row">
             <div class="form-group col-lg-6 col-md-12">
                 <label>Thứ tự</label>
-                <input type="number" name="numerical"  value="{{ old('numerical', $experience->numerical ?? '') }}">
+                <input type="number" name="numerical"  value="{{ $experience->numerical }}">
                 @if ($errors->any())
-                <p style="color:red">{{ $errors->first('numerical') }}</p>
+                <!-- <p style="color:red">{{ $errors->first('numerical1') }}</p> -->
                 @endif
             </div>
             <div class="col-12 col-md-6">
@@ -17,26 +17,26 @@
             </div>
             <div class="form-group col-12">
                 <label>Công ty</label>
-                <input type="text" name="company" value="{{ old('company', $experience->company ?? '') }}" placeholder="creativelayers">
+                <input type="text" name="company" value="{{ old('company', $experience->company ?? '') }}">
                 @if ($errors->any())
-                <p style="color:red">{{ $errors->first('company') }}</p>
+                <!-- <p style="color:red">{{ $errors->first('company') }}</p> -->
                 @endif
             </div>
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label class="required">Thời gian bắt đầu</label>
-                    <input class="form-control" name="start_date" type="date"  value="{{ old('start_date', $experience->start_date ?? '') }}">
+                    <input class="form-control" name="start_date" type="date"  value="{{ $experience->start_date }}">
                     @if ($errors->any())
-                    <p style="color:red">{{ $errors->first('start_date') }}</p>
+                    <!-- <p style="color:red">{{ $errors->first('start_date') }}</p> -->
                     @endif
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="WorkTo">Thời gian kết thúc</label> 
-                    <input class="form-control" name="end_date" type="date" value="{{$experience->end_date ?? old('end_date')}}">
+                    <input class="form-control" name="end_date" type="date" value="{{ $experience->end_date }}">
                     @if ($errors->any())
-                    <p style="color:red">{{ $errors->first('end_date') }}</p>
+                    <!-- <p style="color:red">{{ $errors->first('end_date') }}</p> -->
                     @endif
                 </div>
             </div>
@@ -62,25 +62,25 @@
 
             <div class="form-group col-12">
                 <label>Vị trí chức danh</label>
-                <input type="text" name="position" value="{{ old('position', $experience->position ?? '') }}">
+                <input type="text" name="position" value="{{ $experience->position }}">
                 @if ($errors->any())
-                <p style="color:red">{{ $errors->first('position') }}</p>
+                <!-- <p style="color:red">{{ $errors->first('position') }}</p> -->
                 @endif
             </div>
         </div>
         <div class="row">
             <div class="form-group col-12">
                 <label>Mô tả công việc</label>
-                <input type="text" name="job_description" value="{{ old('job_description', $experience->job_description ?? '') }}">
+                <input type="text" name="job_description" value="{{ $experience->job_description }}">
                 @if ($errors->any())
-                <p style="color:red">{{ $errors->first('job_description') }}</p>
+                <!-- <p style="color:red">{{ $errors->first('job_description') }}</p> -->
                 @endif
             </div>
         </div>
     </div>
 </div>
-<div class="text-right">
-    <button class="d-flex btn btn-primary ms-auto mt-2" type="submit">
-        <i class="fas fa-plus"></i> Lưu
+<div class="text-right" style="display: flex; align-items: center;">
+    <button class="d-flex btn btn-primary ms-auto" type="submit" style="margin-top: 20px;">
+        <i class="far fa-save"></i>Cập nhật
     </button>
 </div>

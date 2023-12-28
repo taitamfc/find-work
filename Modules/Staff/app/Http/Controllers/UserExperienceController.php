@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Staff\app\Models\UserExperience;
 use Modules\Staff\app\Http\Requests\StoreUserExperienceRequest;
+use Modules\Staff\app\Http\Requests\UpdateUserExperienceRequest;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -34,14 +35,11 @@ class UserExperienceController extends Controller
         $experience->save();
         return redirect()->back()->with('success', 'Kinh nghiệm đã được thêm thành công.');
     }
-
-
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreUserExperienceRequest $request, $id): RedirectResponse
+    public function update(Request $request, $id): RedirectResponse
     {
-
         $experience = UserExperience::findOrFail($id);
         $experience->update([
             'numerical' => $request->numerical,

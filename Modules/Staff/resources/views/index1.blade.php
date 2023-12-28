@@ -3,8 +3,7 @@
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
-            <h3>Howdy, Jerome!!</h3>
-            <div class="text">Ready to jump back in?</div>
+            <h3>Chào, {{ auth()->user()->name }}!!</h3>
         </div>
         <div class="row">
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
@@ -13,8 +12,9 @@
                         <i class="icon flaticon-briefcase"></i>
                     </div>
                     <div class="right">
-                        <h4>22</h4>
-                        <p>Applied Jobs</p>
+                        <h4>{{ $userJobApplies->count() }}</h4>
+                        <p>Việc làm đã ứng tuyển</p>
+
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="right">
                         <h4>9382</h4>
-                        <p>Job Alerts</p>
+                        <p>Thông báo công việc</p>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="right">
                         <h4>74</h4>
-                        <p>Messages</p>
+                        <p>Tin nhắn</p>
                     </div>
                 </div>
             </div>
@@ -46,6 +46,7 @@
                         <i class="icon la la-bookmark-o"></i>
                     </div>
                     <div class="right">
+                    <!-- <h4>{{ optional(auth()->user()->userJobFavorites)->count() ?? 0 }}</h4> -->
                         <h4>32</h4>
                         <p>Shortlist</p>
                     </div>
@@ -142,24 +143,29 @@
                     </div>
                     <div class="widget-content">
                         <div class="row">
-                        @foreach($userJobApplies as $userJobApplie)
-                    <!-- Job Block -->
-                    <div class="job-block col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-box">
-                            <div class="content">
-                                <span class="company-logo"><img src="{{ asset('images/resource/company-logo/1-1.png') }}" alt=""></span>
-                                <h4><a href="#">{{ $userJobApplie->job->name }}</a></h4>
-                                <ul class="job-info">
-                                    <li><span class="icon flaticon-briefcase"></span> {{ $userJobApplie->job->career }}</li>
-                                    <li><span class="icon flaticon-map-locator"></span> {{ $userJobApplie->job->work_address }}</li>
-                                    <li><span class="icon flaticon-clock-3"></span> {{ $userJobApplie->job->created_at->diffForHumans() }}</li>
-                                    <li><span class="icon flaticon-money"></span> {{ $userJobApplie->job->salary }}</li>
-                                </ul>
-                                <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
+                            @foreach($userJobApplies as $userJobApplie)
+                            <!-- Job Block -->
+                            <div class="job-block col-lg-6 col-md-12 col-sm-12">
+                                <div class="inner-box">
+                                    <div class="content">
+                                        <span class="company-logo"><img
+                                                src="{{ asset('images/resource/company-logo/1-1.png') }}" alt=""></span>
+                                        <h4><a href="#">{{ $userJobApplie->job->name }}</a></h4>
+                                        <ul class="job-info">
+                                            <li><span class="icon flaticon-briefcase"></span>
+                                                {{ $userJobApplie->job->career }}</li>
+                                            <li><span class="icon flaticon-map-locator"></span>
+                                                {{ $userJobApplie->job->work_address }}</li>
+                                            <li><span class="icon flaticon-clock-3"></span>
+                                                {{ $userJobApplie->job->created_at->diffForHumans() }}</li>
+                                            <li><span class="icon flaticon-money"></span>
+                                                {{ $userJobApplie->job->salary }}</li>
+                                        </ul>
+                                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                @endforeach
+                            @endforeach
                         </div>
                     </div>
                 </div>

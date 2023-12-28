@@ -16,7 +16,7 @@ class UserStaffSeeder extends Seeder
         DB::table('user_staff')->insert([
             'user_id' => 1, 
             'phone' => '123456789',
-            'birthdate' => '2002',
+            'birthdate' => '2002-01-01',
             'experience_years' => 3,
             'gender' => 'Nữ',
             'city' => 'QT',
