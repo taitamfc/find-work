@@ -13,12 +13,13 @@ class StaffDatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UserCvSeeder::class,
-            UserStaffSeeder::class,
-            UserExperiencesSeeder::class,
-            UserEducationSeeder::class,
-            UserSkillSeeder::class,
-            UserJobFavoriteSeeder::class,
+            // UserCvSeeder::class,
+            // UserStaffSeeder::class,
+            // UserExperiencesSeeder::class,
+            // UserEducationSeeder::class,
+            // UserSkillSeeder::class,
+            // UserJobFavoriteSeeder::class,
+            StaffSeeder::class,
 
         ]);
     }
