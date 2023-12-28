@@ -3,27 +3,41 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>@yield('title')</title>
+    <!-- Stylesheets -->
+    <link href="{{ asset('website-assets/css/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{ asset('website-assets/css/style.css')}}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('website-assets/images/favicon.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('website-assets/images/favicon.png')}}" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <title>Job Module - {{ config('app.name', 'Laravel') }}</title>
-
-    <meta name="description" content="{{ $description ?? '' }}">
-    <meta name="keywords" content="{{ $keywords ?? '' }}">
-    <meta name="author" content="{{ $author ?? '' }}">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-    {{-- Vite CSS --}}
-    {{-- {{ module_vite('build-job', 'resources/assets/sass/app.scss') }} --}}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 </head>
 
-<body>
-    @yield('content')
-
-    {{-- Vite JS --}}
-    {{-- {{ module_vite('build-job', 'resources/assets/js/app.js') }} --}}
+<body data-anm=".anm">
+    <div class="page-wrapper">
+        <!-- Preloader -->
+        <!-- <div class="preloader"></div> -->
+        @include('job::includes.header')
+        @yield('content')
+        @include('job::includes.footer')
+    </div><!-- End Page Wrapper -->
+    <script src="{{ asset('website-assets/js/jquery.js')}}"></script>
+    <script src="{{ asset('website-assets/js/popper.min.js')}}"></script>
+    <script src="{{ asset('website-assets/js/chosen.min.js')}}"></script>
+    <script src="{{ asset('website-assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('website-assets/js/jquery.fancybox.js')}}"></script>
+    <script src="{{ asset('website-assets/js/jquery.modal.min.js')}}"></script>
+    <script src="{{ asset('website-assets/js/mmenu.polyfills.js')}}"></script>
+    <script src="{{ asset('website-assets/js/mmenu.js')}}"></script>
+    <script src="{{ asset('website-assets/js/appear.js')}}"></script>
+    <script src="{{ asset('website-assets/js/anm.min.js')}}"></script>
+    <script src="{{ asset('website-assets/js/ScrollMagic.min.js')}}"></script>
+    <script src="{{ asset('website-assets/js/rellax.min.js')}}"></script>
+    <script src="{{ asset('website-assets/js/owl.js')}}"></script>
+    <script src="{{ asset('website-assets/js/wow.js')}}"></script>
+    <script src="{{ asset('website-assets/js/script.js')}}"></script>
+    <script src="{{ asset('website-assets/js/repeater.js')}}"></script>
+    @yield('footer')
 </body>
+
+</html>
