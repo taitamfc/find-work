@@ -87,10 +87,10 @@
                                 <div class="content-inner">
                                     <span class="company-logo"><img src="images/resource/company-logo/6-1.png"
                                             alt=""></span>
-                                            <h4><a href="{{ route('employee.website.show', ['id' => $userEmployee->id]) }}">{{ $userEmployee->company_name }}</a></h4>
+                                            <h4><a href="{{ route('employee.website.show', ['id' => $userEmployee->id]) }}">{{ $userEmployee->name }}</a></h4>
                                     <ul class="job-info">
-                                    <li><span class="icon flaticon-map-locator"></span> {{ $userEmployee->company_address }}</li>
-                                        <li><span class="icon flaticon-briefcase"></span> {{ $userEmployee->company_address }}</li>
+                                    <li><span class="icon flaticon-map-locator"></span> {{ $userEmployee->address }}</li>
+                                        <!-- <li><span class="icon flaticon-briefcase"></span> {{ $userEmployee->address }}</li> -->
                                     </ul>
                                 </div>
                                 <ul class="job-other-info">
@@ -98,9 +98,9 @@
                                     <li class="time">Việc làm mở – 2</li>
                                 </ul>
                             </div>
-                            <div class="text">Netflix is the world's leading streaming entertainment service with over
+                            <!-- <div class="text">Netflix is the world's leading streaming entertainment service with over
                                 195 million paid memberships in over 190 countries enjoying TV series, documentaries and
-                                feature films across a wide variety...</div>
+                                feature films across a wide variety...</div> -->
                             <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                         </div>
                     </div>

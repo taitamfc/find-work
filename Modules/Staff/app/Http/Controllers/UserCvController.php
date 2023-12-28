@@ -12,7 +12,7 @@ use Modules\Staff\app\Models\UserExperience;
 use Modules\Staff\app\Models\UserEducation;
 use Modules\Staff\app\Models\UserSkill;
 use Illuminate\Support\Facades\Auth;
-use Modules\Staff\app\Models\StaffUser;
+use Modules\Staff\app\Models\UserStaff;
 use Illuminate\Support\Facades\Log;
 class UserCvController extends Controller
 {
@@ -84,7 +84,7 @@ class UserCvController extends Controller
         $user       = Auth::user();
         $tab        = $request->tab ? $request->tab : 'personal-information';
         $item       = UserCv::findOrFail($id);
-        $staff      = StaffUser::where('user_id', $user->id)->first();
+        $staff      = UserStaff::where('user_id', $user->id)->first();
         $userExperiences = UserExperience::where('user_id', $user->id)->where('cv_id',$id)->get();
         $userEducations = UserEducation::where('user_id', $user->id)->where('cv_id',$id)->get();
         $userSkills = UserSkill::where('user_id', $user->id)->where('cv_id',$id)->get();
