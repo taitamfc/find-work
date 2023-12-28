@@ -23,7 +23,7 @@
         <!-- Header Span -->
         <span class="header-span"></span>
 
-        @include('website.dashboards.includes.header')
+        @include('staff::dashboards.includes.header')
 
         @include('staff::dashboards.includes.sidebar')
         @yield('content')

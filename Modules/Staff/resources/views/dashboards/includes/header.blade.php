@@ -27,7 +27,7 @@
                  <!-- Dashboard Option -->
                  <div class="dropdown dashboard-option">
                      <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
-                         <img src="images/resource/company-6.png" alt="avatar" class="thumb">
+                         <img src="{{ asset(Auth::user()->image_fm) }}" alt="avatar" class="thumb">
                          <span class="name">My Account</span>
                      </a>
                      <ul class="dropdown-menu">
@@ -68,7 +68,7 @@
                      <a href="login-popup.html" class="call-modal"><span class="icon-user"></span></a>
                  </div>
 
-                 <button id="toggle-user-sidebar"><img src="images/resource/company-6.png" alt="avatar"
+                 <button id="toggle-user-sidebar"><img src="{{ asset(Auth::user()->image_fm) }}" alt="avatar"
                          class="thumb"></button>
                  <a href="#nav-mobile" class="mobile-nav-toggler navbar-trigger"><span
                          class="flaticon-menu-1"></span></a>
