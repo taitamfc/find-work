@@ -12,7 +12,6 @@ $currentRouteName = \Request::route()->getName();
         </div>
         <div class="outer-box">
             @if(Auth::check())
-            <div class="outer-box">
                 <button class="menu-btn">
                     <span class="count">1</span>
                     <span class="icon la la-heart-o"></span>
@@ -56,7 +55,6 @@ $currentRouteName = \Request::route()->getName();
                     <a href="{{ route('dashboards.index') }}" class="theme-btn btn-style-one">Tin tuyển dụng</a>
                 </div>
                 @endif
-            </div>
             </div>
         </div>
         @include('website.includes.header.mobile-menu')
