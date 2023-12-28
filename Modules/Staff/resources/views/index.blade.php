@@ -28,7 +28,6 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
-                
                                 <span><strong>Tải lên logo</strong></span>
                                     <div class="uploading-outer">
                                         <div class="uploadButton">
@@ -41,7 +40,7 @@
                                         <div class="image-preview"></div>
                                         <div class="new-image-preview">
                                             <?php if ($item->image):?>
-                                                <img src="<?php echo asset('/storage/images/'.$item->image); ?>" alt="Preview Image" style="max-width: 150px; max-height: 120px;">
+                                                <img src="<?php echo asset($item->image); ?>" alt="Preview Image" style="max-width: 150px; max-height: 120px;">
                                             <?php endif; ?>
                                         </div>
                                     </div>

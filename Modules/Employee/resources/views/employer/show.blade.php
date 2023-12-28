@@ -17,11 +17,11 @@
                 <div class="inner-box">
                     <div class="content">
                         <span class="company-logo"><img src="images/resource/company-logo/5-1.png" alt=""></span>
-                        <h4><a href="#">{{ $userEmployee->company_name}}</a></h4>
+                        <h4><a href="#">{{ $userEmployee->name}}</a></h4>
                         <ul class="job-info">
-                            <li><span class="icon flaticon-map-locator"></span>{{ $userEmployee->company_address }}</li>
+                            <li><span class="icon flaticon-map-locator"></span>{{ $userEmployee->address }}</li>
                             <li><span class="icon flaticon-briefcase"></span> Accounting / Finance</li>
-                            <li><span class="icon flaticon-telephone-1"></span> {{ $userEmployee->company_phone }}</li>
+                            <li><span class="icon flaticon-telephone-1"></span> {{ $userEmployee->phone }}</li>
                             <li><span class="icon flaticon-mail"></span> {{ $userEmployee->user->email }}</li>
                         </ul>
                         <ul class="job-other-info">
@@ -91,7 +91,7 @@
                     <!-- Related Jobs -->
                     <div class="related-jobs">
                         <div class="title-box">
-                        <h3>{{ $jobs->count() }} việc làm tại {{ $userEmployee->company_name }}</h3>
+                            <h3>{{ $jobs->count() }} việc làm tại {{ $userEmployee->name }}</h3>
                         </div>
                         @foreach($jobs as $job)
                         <div class="job-block">
@@ -99,14 +99,13 @@
                                 <div class="content">
                                     <span class="company-logo"><img src="images/resource/company-logo/1-3.png"
                                             alt=""></span>
-                                    <h4><a href="#">{{ $job->name }}</a></h4>
+                                    <h4><a href="{{ route('website.job.show', $userEmployee->id) }}">{{ $job->name }}</a></h4>
                                     <ul class="job-info">
                                         <li><span class="icon flaticon-briefcase"></span>
-                                            {{ $job->company_name }}</li>
+                                            {{ $job->name }}</li>
                                         <li><span class="icon flaticon-map-locator"></span> {{ $job->work_address }}
                                         </li>
-                                        <li><span class="icon flaticon-money"></span> ${{ $job->wage_min }} -
-                                            ${{ $job->wage_max }}</li>
+                                        <li><span class="icon flaticon-money"></span> ${{ $job->wage }}</li>
                                     </ul>
                                     <ul class="job-other-info">
                                         <li class="time">{{ $job->type_work }}</li>
@@ -129,9 +128,9 @@
                                     <li>Ngành công nghiệp chính: <span>Phần mềm</span></li>
                                     <li>Quy mô công ty: <span>501-1,000</span></li>
                                     <li>Được thành lập vào: <span>2011</span></li>
-                                    <li>Điện thoại:: <span>{{ $userEmployee->company_phone }}</span></li>
+                                    <li>Điện thoại:: <span>{{ $userEmployee->phone }}</span></li>
                                     <li>Email: <span>{{ $userEmployee->user->email }}</span></li>
-                                    <li>Vị trí: <span>{{ $userEmployee->company_address }}</span></li>
+                                    <li>Vị trí: <span>{{ $userEmployee->address }}</span></li>
                                     <li>Truyền thông xã hội:
                                         <div class="social-links">
                                             <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -143,9 +142,10 @@
                                 </ul>
 
                                 <div class="btn-box">
-                                    <a href="#"
-                                        class="theme-btn btn-style-three">{{ $userEmployee->company_website }}</a>
+                                    <a href="{{ $userEmployee->website }}" class="theme-btn btn-style-three"
+                                        target="_blank">{{ $userEmployee->website }}</a>
                                 </div>
+
                             </div>
                         </div>
 

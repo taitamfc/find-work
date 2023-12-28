@@ -26,13 +26,20 @@
                     <!-- Thông tin công việc -->
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Nhập vị trí muốn ứng tuyển</label>
-                        <input type="text" name="desired_position"
-                            value="{{ old('desired_position') ?? $item->desired_position }}">
+                        <select name="desired_position[]" class="chosen-select js-example-basic-multiple" id=""
+                            multiple="multiple">
+                            <option value="1">Nhân viên</option>
+                            <option value="2">Giám đốc</option>
+                        </select>
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('desired_position') }}</p>
                         @endif
                     </div>
-
+                    <script>
+                    $(document).ready(function() {
+                        $('.js-example-basic-multiple').select2();
+                    });
+                    </script>
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Cấp bậc mong muốn</label>
                         <input type="text" name="desired_rank" value="{{ old('desired_rank') ?? $item->desired_rank }}">
