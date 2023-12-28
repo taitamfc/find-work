@@ -55,7 +55,7 @@
                                                 <div class="option-box">
                                                     <ul class="option-list">
                                                         <li>
-                                                            <a href="{{ route('website.job.show', $userJobFavorite->id) }}"
+                                                            <a href="{{ route('website.jobs.show', $userJobFavorite->id) }}"
                                                                 data-text="View Application">
                                                                 <span class="la la-eye"></span>
                                                             </a>
