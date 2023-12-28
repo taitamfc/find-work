@@ -16,6 +16,8 @@ use App\Models\Rank;
 use App\Models\Wage;
 use App\Models\FormWork;
 use App\Models\JobPackage;
+use Modules\Employee\app\Models\UserJobApply;
+use Illuminate\Support\Facades\Log;
 
 
 class JobController extends Controller
@@ -25,8 +27,14 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::all();  
-        return view('employee::job.index',compact('jobs'));
+        $jobs = Job::all();
+        $countID = [];
+        foreach ($jobs as $job) {
+            $count = UserJobApply::where('job_id', $job->id)->count();
+            $countID[$job->id] = $count;   
+        }
+
+        return view('employee::job.index',compact(['jobs','countID']));
     }
 
     /**
@@ -34,13 +42,22 @@ class JobController extends Controller
      */
     public function create()
     {
+
         $careers = Career::where('status',Career::ACTIVE)->get();
         $degrees = Level::where('status',Level::ACTIVE)->get();
         $ranks = Rank::where('status',Rank::ACTIVE)->get();
         $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
         $wages = Wage::where('status',Wage::ACTIVE)->get();
         $job_packages = JobPackage::where('status',JobPackage::ACTIVE)->get();
-        return view('employee::job.create_copy',compact(['careers','degrees','ranks','formworks','wages','job_packages']));
+        $param = [
+            'careers' => $careers,
+            'degrees' => $degrees,
+            'ranks' => $ranks,
+            'formworks' => $formworks,
+            'wages' => $wages,
+            'job_packages' => $job_packages
+        ];
+        return view('employee::job.create',compact('param'));
     }
 
     /**
@@ -48,11 +65,12 @@ class JobController extends Controller
      */
     public function store(CreateJobRequest $request): RedirectResponse
     {
+        
         try {
             $job = new Job();
             $job->name = $request->name;
             $job->slug = $request->slug;
-            $job->career = $request->career;
+            $job->career = implode(',', $request->input('career'));
             $job->type_work = $request->type_work;
             $job->deadline = $request->deadline;
             $job->start_day = $request->start_day;
@@ -67,16 +85,16 @@ class JobController extends Controller
             $job->degree = $request->degree;
             $job->description = $request->description;
             $job->requirements = $request->requirements;
+            $job->end_dead = $request->end_dead;
+            $job->start_hour = $request->start_hour;
+            $job->end_hour = $request->end_hour;
             $job->user_id = Auth::id();
-            
-            $job->status = 1;
-
+            $job->status = Job::INACTIVE;
             $job->save();
 
             $message = "Thêm mới thành công!";
             return redirect()->route('employee.job.index')->with('success', $message);
         } catch (\Exception $e) {
-            DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
             Log::error('Lỗi xảy ra: ' . $e->getMessage());
             return redirect()->route('employee.job.create')->with('error', 'Thêm mới bị lỗi!');
         }
@@ -94,7 +112,15 @@ class JobController extends Controller
         $wages = Wage::where('status',Wage::ACTIVE)->get();
         $job_packages = JobPackage::where('status',JobPackage::ACTIVE)->get();
         $job = Job::findOrFail($request->id);
-        return view('employee::job.show',compact(['job','careers','degrees','ranks','formworks','wages','job_packages']));
+        $param = [
+            'careers' => $careers,
+            'degrees' => $degrees,
+            'ranks' => $ranks,
+            'formworks' => $formworks,
+            'wages' => $wages,
+            'job_packages' => $job_packages
+        ];
+        return view('employee::job.show',compact(['job','param']));
     }
 
     /**
@@ -102,8 +128,22 @@ class JobController extends Controller
      */
     public function edit(Request $request,$id)
     {
-        // $job = Job::findOrFail($request->id);
-        // return view('employee::job.edit',compact('job'));
+        $careers = Career::where('status',Career::ACTIVE)->get();
+        $degrees = Level::where('status',Level::ACTIVE)->get();
+        $ranks = Rank::where('status',Rank::ACTIVE)->get();
+        $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
+        $wages = Wage::where('status',Wage::ACTIVE)->get();
+        $job_packages = JobPackage::where('status',JobPackage::ACTIVE)->get();
+        $job = Job::findOrFail($request->id);
+        $param = [
+            'careers' => $careers,
+            'degrees' => $degrees,
+            'ranks' => $ranks,
+            'formworks' => $formworks,
+            'wages' => $wages,
+            'job_packages' => $job_packages
+        ];
+        return view('employee::job.edit',compact(['job','param']));
     }
 
     /**
@@ -115,7 +155,7 @@ class JobController extends Controller
             $job = Job::findOrFail($request->id);
             $job->name = $request->name;
             $job->slug = $request->slug;
-            $job->career = $request->career;
+            $job->career = implode(',', $request->input('career'));
             $job->type_work = $request->type_work;
             $job->deadline = $request->deadline;
             $job->start_day = $request->start_day;
@@ -130,7 +170,10 @@ class JobController extends Controller
             $job->degree = $request->degree;
             $job->description = $request->description;
             $job->requirements = $request->requirements;
-            $job->status = 1;
+            $job->end_dead = $request->end_dead;
+            $job->start_hour = $request->start_hour;
+            $job->end_hour = $request->end_hour;
+            $job->status = $request->status;
             $job->user_id = Auth::id();
 
             $job->save();
@@ -158,5 +201,19 @@ class JobController extends Controller
             Log::error('Bug occurred: ' . $e->getMessage());
             return redirect()->route('employee.job.index')->with('error', 'Xóa thất bại!');
         }
+    }
+
+    public function showjobcv(Request $request, $id){
+        $cv_apllys = UserJobApply::where('job_id', $request->id)->get();
+        $count_job = UserJobApply::where('job_id', $request->id)->count();
+        $count_cv_appled = UserJobApply::where('status', 1)->count();
+        $count_not_applly = UserJobApply::where('status', 0)->count();
+        $param_count = [
+            'count_job' => $count_job,
+            'count_cv_appled' => $count_cv_appled,
+            'count_not_applly' => $count_not_applly
+        ];
+        $job = Job::findOrFail($request->id);
+        return view('employee::job.show_cvJob',compact('cv_apllys','job','param_count'));
     }
 }

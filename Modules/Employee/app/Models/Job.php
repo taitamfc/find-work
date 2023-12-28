@@ -26,6 +26,10 @@ class Job extends Model
         'wage ',
         'type_work ',
     ];
+
+    const ACTIVE    = 1;
+    const INACTIVE  = 0;
+    const DRAFT     = -1;
     
     public function user(): BelongsTo
     {
@@ -34,7 +38,7 @@ class Job extends Model
 
     public function jobApplications()
     {
-        return $this->hasMany(JobApplication::class, 'job_id');
+        return $this->hasMany(UserJobApply::class, 'job_id');
     }
     public function userEmployee()
     {
