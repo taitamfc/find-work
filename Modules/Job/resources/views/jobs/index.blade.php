@@ -1,4 +1,7 @@
-@extends('website.layouts.master')
+@extends('job::layouts.master')
+@section('title')
+Tất cả các công việc
+@endsection
 @section('content')
 <style>
 .page-title {
@@ -23,103 +26,74 @@
     <div class="auto-container">
         <div class="filters-backdrop"></div>
 
-        <!-- Listing Section -->
-        <section class="ls-section">
-            <div class="auto-container">
-                <div class="filters-backdrop"></div>
+        <div class="row">
 
-                <div class="row">
+            <!-- Filter Search -->
+            @include('job::includes.components.filters')
 
+            <!-- Content Column -->
+            <div class="content-column col-lg-8 col-md-12 col-sm-12">
+                <div class="ls-outer">
+                    <button type="button" class="theme-btn btn-style-two toggle-filters">Show Filters</button>
 
-                    <!-- Content Column -->
-                    <div class="content-column col-lg-12 col-md-12 col-sm-12">
-                        <div class="ls-outer">
-                            <button type="button" class="theme-btn btn-style-two toggle-filters">Show Filters</button>
-
-                            <!-- ls Switcher -->
-                            <div class="ls-switcher">
-                                <div class="showing-result">
-                                    {{-- <div class="text">Showing <strong>41-60</strong> of <strong>944</strong> employer
-                                    </div> --}}
-                                    <div class="text">Tất cả các công việc
-                                    </div>
-                                </div>
-                                {{-- <div class="sort-by">
-                                    <select class="chosen-select">
-                                        <option>New Jobs</option>
-                                        <option>Freelance</option>
-                                        <option>Full Time</option>
-                                        <option>Internship</option>
-                                        <option>Part Time</option>
-                                        <option>Temporary</option>
-                                    </select>
-
-                                    <select class="chosen-select">
-                                        <option>Show 10</option>
-                                        <option>Show 20</option>
-                                        <option>Show 30</option>
-                                        <option>Show 40</option>
-                                        <option>Show 50</option>
-                                        <option>Show 60</option>
-                                    </select>
-                                </div> --}}
+                    <!-- ls Switcher -->
+                    <div class="ls-switcher">
+                        <div class="showing-result">
+                            <!-- <div class="text">Showing <strong>41-60</strong> of <strong>944</strong> jobs</div> -->
+                        </div>
+                        <form action="" method="get">
+                            <div class="sort-by">
+                                <select class="chosen-select" name="searchTypeWork" onchange="this.form.submit()">
+                                    <option selected disabled>----Search Type Work----</option>
+                                    <option value="1" @selected($request->searchTypeWork == '1')>1</option>
+                                    <option value="Type 1" @selected($request->searchTypeWork == 'Type 1')>Type 1
+                                    </option>
+                                    <option value="0" @selected($request->searchTypeWork == '0')>0</option>
+                                </select>
+                                <select class="chosen-select" name="pagination" onchange="this.form.submit()">
+                                    <option selected disabled>----Pagination----</option>
+                                    <option value="10" @selected($request->pagination == '10')>Show 10</option>
+                                    <option value="20" @selected($request->pagination == '20')>Show 20</option>
+                                    <option value="30" @selected($request->pagination == '30')>Show 30</option>
+                                    <option value="40" @selected($request->pagination == '40')>Show 40</option>
+                                    <option value="50" @selected($request->pagination == '50')>Show 50</option>
+                                    <option value="60" @selected($request->pagination == '60')>Show 60</option>
+                                </select>
                             </div>
-
-
-                            <div class="row">
-                                <!-- Company Block Four -->
-                                @foreach ($jobs as $job )
-                                @if ($job->status == 1)
-                                <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                    <div class="inner-box">
-
-                                        <!-- <button class="bookmark-btn">
-                                            <span class="flaticon-bookmark"></span>
-                                        </button> -->
-                                        <div class="gridarea__small__icon">
-                                            <a href="javascript:;" class="job_favorite"
-                                                data-href="{{ route('staff.job-favorite',['id'=> $job->id]) }}">
-                                                <span class="flaticon-bookmark {{ $job->is_added_whitlist ? 'active' : '' }}"></span>
-                                            </a>
-                                        </div>
-                                        <span class="featured">Đang tuyển</span>
-                                        <span class="company-logo"><img src="images/resource/company-logo/6-1.png"
-                                                alt=""></span>
-                                        <h4><a href="#">{{$job->name}}</a></h4>
-                                        <ul class="job-info">
-                                            <li><span class="icon flaticon-briefcase"></span>{{$job->career}}</li>
-                                            <li><span class="icon flaticon-map-locator"></span>{{$job->work_address}}
-                                            </li>
-                                            {{-- <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li> --}}
-                                            <li><span class="icon flaticon-money"></span> {{$job->wage_min}} -
-                                                {{$job->wage_max}} VNĐ</li>
-                                        </ul>
-                                        @if ($job->status == 1)
-                                        <div class="job-type"><a href="{{route('website.job.show',$job->id)}}">Chi tiết
-                                                công việc</a></div>
-                                        @endif
-                                    </div>
+                        </form>
+                    </div>
+                    <!-- Job Block -->
+                    @foreach($items as $item)
+                    <div class="job-block">
+                        <div class="inner-box">
+                            <div class="content">
+                                <span class="company-logo"><img src="{{ asset($item->image_fm) }}" alt=""></span>
+                                <h4><a href="#">{{$item->name}}</a></h4>
+                                <div>
+                                    {{$item->description}}
                                 </div>
-                                @endif
-                                @endforeach
-                            </div>
-
-                            <!-- Pagination -->
-                            {{-- <nav class="ls-pagination">
-                                <ul>
-                                    <li class="prev"><a href="#"><i class="fa fa-arrow-left"></i></a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#" class="current-page">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li class="next"><a href="#"><i class="fa fa-arrow-right"></i></a></li>
+                                <ul class="job-info">
+                                    <li><span class="icon flaticon-briefcase"></span> Ngành nghề (Career)</li>
+                                    <li><span class="icon flaticon-map-locator"></span>{{$item->work_address}}</li>
+                                    <li><span class="icon flaticon-clock-3"></span>{{ $item->time_create }}</li>
+                                    <li><span class="icon flaticon-money"></span>{{$item->wage_fm}} đ</li>
                                 </ul>
-                            </nav> --}}
+                                <ul class="job-other-info">
+                                    <li class="time">Thời gian làm việc (Type_work)</li>
+                                    <li class="privacy">Private</li>
+                                    <li class="required">Urgent</li>
+                                </ul>
+                                <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
+                            </div>
                         </div>
                     </div>
+                    @endforeach
+
+                    <!-- Listing Show More -->
+                    @include('job::includes.components.pagination')
                 </div>
             </div>
-        </section>
-        <!--End Listing Page Section -->
+        </div>
     </div>
 </section>
 <!--End Listing Page Section -->
