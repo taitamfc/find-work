@@ -23,7 +23,7 @@ class UserJobFavoriteSeeder extends Seeder
     {
         for ($i = 1; $i <= 5; $i++) {
             DB::table('user_job_favorites')->insert([
-                'user_id' => $i,
+                'user_id' => 1,
                 'job_id' => $i,
                 'created_at' => now(),
                 'updated_at' => now(),
