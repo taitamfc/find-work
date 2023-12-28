@@ -3,8 +3,8 @@
     <div class="main-box">
         <div class="nav-outer">
             <div class="logo-box">
-                <div class="logo"><a href="{{ route('website.jobs') }}"><img
-                            src="{{ asset('website-assets/images/logo.svg')}}" alt="" title=""></a></div>
+                <div class="logo"><a href="{{ route('home') }}"><img src="{{ asset('website-assets/images/logo.svg')}}"
+                            alt="" title=""></a></div>
             </div>
             @include('job::includes.header.main-menu')
         </div>

@@ -19,11 +19,11 @@ use Modules\Job\app\Http\Controllers\JobController;
 // });
 
 
+Route::get('/', [JobController::class,'index'])->name('home');
 Route::group([
     'prefix'=>'jobs',
     'as'=>'website.',
 ],function () {
-    Route::get('/', [JobController::class,'index'])->name('jobs');
     Route::get('/aplication/{id}', [JobController::class,'aplication'])->name('jobs.aplication');
     Route::get('/showjob/{id}', [JobController::class,'show'])->name('jobs.show');
 });
