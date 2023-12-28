@@ -24,7 +24,7 @@ class CreateJobRequest extends FormRequest
         return [
             'name' => 'required',
             'slug' => 'required',
-            'career' => 'required',
+            'career_ids' => 'required',
             'type_work' => 'required',
             'deadline' => 'required',
             'experience' => 'required',
@@ -51,7 +51,7 @@ class CreateJobRequest extends FormRequest
         return  [
             'name.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'slug.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'career.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'career_ids.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'type_work.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'deadline.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'experience.required' => 'Vui lòng nhập đầy đủ thông tin!',
