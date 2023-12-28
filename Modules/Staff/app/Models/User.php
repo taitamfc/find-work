@@ -20,7 +20,10 @@ class User extends Model
         'status',
     ];
     // Trong mô hình User.php
-
+    public function userJobFavorites()
+    {
+        return $this->hasMany(UserJobFavorite::class);
+    }
     public function userExperiences()
     {
         return $this->hasMany(UserExperience::class);
@@ -41,9 +44,15 @@ class User extends Model
     {
         return $this->hasOne(UserStaff::class);
     }
+    
     public function userCv()
     {
         return $this->hasOne(UserCv::class);
     }
-   
+   // Trong User.php
+   public function jobs()
+   {
+       return $this->belongsToMany(Job::class, 'user_job_favorites', 'user_id', 'job_id')->withTimestamps();
+   }
+
 }

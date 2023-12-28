@@ -40,9 +40,9 @@
                                                             <h4><a href="#">{{ $userJobApplie->job->name }}</a></h4>
                                                             <ul class="job-info">
                                                                 <li><span class="icon flaticon-briefcase"></span>
-                                                                    Segment</li>
+                                                                {{ $userJobApplie->job->career }}</li>
                                                                 <li><span class="icon flaticon-map-locator"></span>
-                                                                    {{ $userJobApplie->job->name }}</li>
+                                                                    {{ $userJobApplie->job->work_address }}</li>
                                                             </ul>
                                                         </div>
                                                     </div>

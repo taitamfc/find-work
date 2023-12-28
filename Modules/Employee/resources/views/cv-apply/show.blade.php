@@ -1,4 +1,4 @@
-@extends('staff::dashboards.layouts.dashboard')
+@extends('employee::layouts.master')
 @section('content')
 <!-- Dashboard -->
 <section class="user-dashboard">

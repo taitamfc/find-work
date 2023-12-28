@@ -22,6 +22,7 @@ class UserStaff extends Model
         'city',
         'address',
         'outstanding_achievements',
+        'image',
     ];
     
     public function user()

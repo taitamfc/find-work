@@ -74,6 +74,16 @@ class ProfileController extends Controller
             'email' => $request->input('email'),
         ]);
 
+        if ($request->hasFile('image')) {
+            // Lưu tệp tin hình ảnh vào thư mục lưu trữ (ví dụ: public/images)
+            $imagePath = $request->file('image')->store('public/images');
+
+            // Lấy tên tệp tin hình ảnh
+            $imageName = basename($imagePath);
+
+            // Lưu tên tệp tin hình ảnh vào trường 'image' của bản ghi UserEmployee
+            $user->image = $imageName;
+        }
         $staff->update([
             'phone' => $request->input('phone'),
             'birthdate' => $request->input('birthdate'),
@@ -82,20 +92,8 @@ class ProfileController extends Controller
             'city' => $request->input('city'),
             'address' => $request->input('address'),
             'outstanding_achievements' => $request->input('outstanding_achievements'),
-     
-        ]);
-        // if ($request->hasFile('img')) {
-        //     if ($user->image_path) {
-        //         Storage::delete($user->image_path);
-        //     }
-        
-        //     $image = $request->file('img');
-        //     $imageName = time() . '.' . $image->getClientOriginalExtension();
-        //     $imagePath = $image->storeAs('public/website-assets/images', $imageName);
-            
-        //     $user->update(['image_path' => $imagePath]);
-        // }
-        
+            'image' => $user->image
+        ]);    
         return back()->with('success', 'Thông tin đã được cập nhật thành công.');
     }
 

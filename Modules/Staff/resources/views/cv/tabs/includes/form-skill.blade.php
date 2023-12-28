@@ -3,7 +3,7 @@
         <div class="row">
         <div class="form-group col-lg-6 col-md-12">
                 <label>Thứ tự</label>
-                <input type="number" name="numerical" value="{{$skill->numerical ?? ''}}">
+                <input type="number" name="numerical" value="{{ old('numerical', $skill->numerical ?? '') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('numerical') }}</p>
                 @endif
@@ -27,14 +27,14 @@
         <div class="row">
             <div class="form-group col-12">
                 <label>Special Skill</label>
-                <input type="text" name="special_skill" value="{{$skill->special_skill ?? ''}}">
+                <input type="text" name="special_skill" value="{{ old('special_skill', $skill->special_skill ?? '') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('special_skill') }}</p>
                 @endif
             </div>
             <div class="form-group col-12">
                 <label>Description</label>
-                <textarea name="description" rows="3">{{$skill->description ?? ''}}</textarea>
+                <textarea name="description" rows="3">{{ old('description', $skill->description ?? '') }}</textarea>
             </div>
         </div>
     </div>

@@ -69,26 +69,38 @@
                             <div class="row">
                                 <!-- Company Block Four -->
                                 @foreach ($jobs as $job )
-                                    @if ($job->status == 1)
-                                        <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                            <div class="inner-box">
-                                                <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                                    <span class="featured">Đang tuyển</span>
-                                                <span class="company-logo"><img src="images/resource/company-logo/6-1.png"
-                                                        alt=""></span>
-                                                <h4><a href="#">{{$job->name}}</a></h4>
-                                                <ul class="job-info">
-                                                    <li><span class="icon flaticon-briefcase"></span>{{$job->career}}</li>
-                                                    <li><span class="icon flaticon-map-locator"></span>{{$job->work_address}}</li>
-                                                    {{-- <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li> --}}
-                                                    <li><span class="icon flaticon-money"></span> {{$job->wage_min}} - {{$job->wage_max}} VNĐ</li>
-                                                </ul>
-                                                @if ($job->status == 1)
-                                                    <div class="job-type"><a href="{{route('website.job.show',$job->id)}}">Chi tiết công việc</a></div>
-                                                @endif
-                                            </div>
+                                @if ($job->status == 1)
+                                <div class="company-block-four col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                    <div class="inner-box">
+
+                                        <!-- <button class="bookmark-btn">
+                                            <span class="flaticon-bookmark"></span>
+                                        </button> -->
+                                        <div class="gridarea__small__icon">
+                                            <a href="javascript:;" class="job_favorite"
+                                                data-href="{{ route('staff.job-favorite',['id'=> $job->id]) }}">
+                                                <span class="flaticon-bookmark {{ $job->is_added_whitlist ? 'active' : '' }}"></span>
+                                            </a>
                                         </div>
-                                    @endif
+                                        <span class="featured">Đang tuyển</span>
+                                        <span class="company-logo"><img src="images/resource/company-logo/6-1.png"
+                                                alt=""></span>
+                                        <h4><a href="#">{{$job->name}}</a></h4>
+                                        <ul class="job-info">
+                                            <li><span class="icon flaticon-briefcase"></span>{{$job->career}}</li>
+                                            <li><span class="icon flaticon-map-locator"></span>{{$job->work_address}}
+                                            </li>
+                                            {{-- <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li> --}}
+                                            <li><span class="icon flaticon-money"></span> {{$job->wage_min}} -
+                                                {{$job->wage_max}} VNĐ</li>
+                                        </ul>
+                                        @if ($job->status == 1)
+                                        <div class="job-type"><a href="{{route('website.job.show',$job->id)}}">Chi tiết
+                                                công việc</a></div>
+                                        @endif
+                                    </div>
+                                </div>
+                                @endif
                                 @endforeach
                             </div>
 
@@ -112,4 +124,32 @@
 </section>
 <!--End Listing Page Section -->
 
+@endsection
+@section('footer')
+<script>
+$(document).ready(function() {
+    $('.job_favorite').on('click', function(e) {
+        var btnWhitlist = $(this)
+        e.preventDefault();
+
+        var url = $(this).data('href');
+
+        $.ajax({
+            url: url,
+            method: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    if (response.type == 'add') {
+                        btnWhitlist.find('span').addClass('active');
+                    } else {
+                        btnWhitlist.find('span').removeClass('active');
+                    }
+                }
+            },
+            error: function() {}
+        });
+    });
+});
+</script>
 @endsection

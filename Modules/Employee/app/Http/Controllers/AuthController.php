@@ -24,7 +24,7 @@ class AuthController extends Controller
     public function login()
     {
         if (Auth::check()) {
-            return redirect()->route('employee.home');
+            return redirect()->route('employee.profile.index');
         } else {
             return view('employee::auth.login');
         }
@@ -57,7 +57,7 @@ class AuthController extends Controller
     }
     public function register(){
         if (Auth::check()) {
-            return redirect()->route('employee.home');
+            return redirect()->route('employee.profile.index');
         } else {
             return view('employee::auth.register');
         }
@@ -74,11 +74,18 @@ class AuthController extends Controller
             $user->password = bcrypt($request->password);
             $user->save();
 
+            
+            // Lưu tệp tin hình ảnh vào thư mục lưu trữ (ví dụ: public/images)
+            $imagePath = $request->file('image')->store('public/images');
+            // Lấy tên tệp tin hình ảnh
+            $imageName = basename($imagePath);
+
             $user->userEmployee()->create([
-                'company_name' => $request->company_name,
-                'company_website' => $request->company_website,
-                'company_phone' => $request->company_phone,
-                'company_address' => $request->company_address
+                'name' => $request->cp_name,
+                'website' => $request->website,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'image' => $imageName
             ]);
             $message = "Đăng ký thành công!";
             DB::commit(); // Hoàn thành giao dịch

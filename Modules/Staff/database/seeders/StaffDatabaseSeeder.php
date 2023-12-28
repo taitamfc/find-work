@@ -18,6 +18,7 @@ class StaffDatabaseSeeder extends Seeder
             UserExperiencesSeeder::class,
             UserEducationSeeder::class,
             UserSkillSeeder::class,
+            UserJobFavoriteSeeder::class,
 
         ]);
     }

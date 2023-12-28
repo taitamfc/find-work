@@ -3,7 +3,7 @@
         <div class="row">
             <div class="form-group col-lg-6 col-md-12">
                 <label>Thứ tự</label>
-                <input type="number" name="numerical" value="{{$experience->numerical ?? ''}}">
+                <input type="number" name="numerical"  value="{{ old('numerical', $experience->numerical ?? '') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('numerical') }}</p>
                 @endif
@@ -17,7 +17,7 @@
             </div>
             <div class="form-group col-12">
                 <label>Công ty</label>
-                <input type="text" name="company" value="{{$experience->company ?? ''}}" placeholder="creativelayers">
+                <input type="text" name="company" value="{{ old('company', $experience->company ?? '') }}" placeholder="creativelayers">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('company') }}</p>
                 @endif
@@ -25,7 +25,7 @@
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label class="required">Thời gian bắt đầu</label>
-                    <input class="form-control" name="start_date" type="date" value="{{$experience->start_date ?? ''}}">
+                    <input class="form-control" name="start_date" type="date"  value="{{ old('start_date', $experience->start_date ?? '') }}">
                     @if ($errors->any())
                     <p style="color:red">{{ $errors->first('start_date') }}</p>
                     @endif
@@ -62,7 +62,7 @@
 
             <div class="form-group col-12">
                 <label>Vị trí chức danh</label>
-                <input type="text" name="position" value="{{$experience->position ?? ''}}">
+                <input type="text" name="position" value="{{ old('position', $experience->position ?? '') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('position') }}</p>
                 @endif
@@ -71,7 +71,7 @@
         <div class="row">
             <div class="form-group col-12">
                 <label>Mô tả công việc</label>
-                <input type="text" name="job_description" value="{{$experience->job_description ?? ''}}">
+                <input type="text" name="job_description" value="{{ old('job_description', $experience->job_description ?? '') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('job_description') }}</p>
                 @endif
