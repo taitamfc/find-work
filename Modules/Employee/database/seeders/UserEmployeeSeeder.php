@@ -25,7 +25,7 @@ class UserEmployeeSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 2,
+                'user_id' => 1,
                 'name' => 'Công ty Thanh Bắc',
                 'website' => 'cong_ty_xyz@example.com',
                 'phone' => '987-654-3210',
@@ -34,7 +34,7 @@ class UserEmployeeSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 3,
+                'user_id' => 1,
                 'name' => 'Công ty Hoa Kỳ',
                 'website' => 'cong_ty_mno@example.com',
                 'phone' => '555-555-5555',
@@ -43,7 +43,7 @@ class UserEmployeeSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 4,
+                'user_id' => 1,
                 'name' => 'Công ty Đại Phát',
                 'website' => 'cong_ty_pqr@example.com',
                 'phone' => '111-222-3333',
@@ -52,7 +52,7 @@ class UserEmployeeSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 5,
+                'user_id' => 1,
                 'name' => 'Công ty GHI',
                 'website' => 'cong_ty_ghi@example.com',
                 'phone' => '444-444-4444',
