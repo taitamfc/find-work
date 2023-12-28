@@ -31,6 +31,9 @@ return new class extends Migration
             $table->string('work_address')->nullable();
             $table->string('degree')->nullable();
             $table->string('status')->nullable();
+            $table->string('end_dead')->nullable();
+            $table->string('start_hour')->nullable();
+            $table->string('end_hour')->nullable();
             $table->string('description')->nullable();
             $table->string('requirements')->nullable();
             $table->timestamps();

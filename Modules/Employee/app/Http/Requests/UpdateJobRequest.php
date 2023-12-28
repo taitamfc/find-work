@@ -39,6 +39,9 @@ class UpdateJobRequest extends FormRequest
             'start_day' => 'required',
             'job_package' => 'required',
             'price' => 'required',
+            'end_dead' => 'required',
+            'start_hour' => 'required',
+            'end_hour' => 'required',
             
         ];
     }
@@ -63,6 +66,9 @@ class UpdateJobRequest extends FormRequest
             'start_day.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'job_package.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'price.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'end_dead.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'start_hour.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'end_hour.required' => 'Vui lòng nhập đầy đủ thông tin!',
             
             ];
     }

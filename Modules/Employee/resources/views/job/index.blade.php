@@ -32,6 +32,7 @@
                                             @endif
                                             <tr>
                                                 <th>Tên công việc</th>
+                                                <th>Số hồ sơ ứng tuyển</th>
                                                 <th>Thời hạn</th>
                                                 <th>Trạng thái công việc</th>
                                                 <th>Thao tác</th>
@@ -44,8 +45,14 @@
                                                     <td>
                                                         <h6>{{ $job->name }}</h6>
                                                     </td>
+                                                    <td>
+                                                        <ul class="option-list">
+                                                            <li>{{ $countID[$job->id] }} hồ sơ </li>
+                                                            <li><a href="{{route('employee.job.showjobcv',$job->id)}}" data-text="View Aplication"><span class="la la-eye"></span></a></li>
+                                                        </ul>
+                                                    </td>
                                                     <td>{{ $job->deadline }}</td>
-                                                    @if($job->status == 1)
+                                                    @if ($job->status == 1)
                                                         <td><span class="green-button">Đang tuyển</span></td>
                                                     @elseif ($job->status == 0)
                                                         <td><span class="danger-button">Dừng tuyển</span></td>
@@ -53,11 +60,12 @@
                                                     <td>
                                                         <div class="option-box">
                                                             <ul class="option-list">
-                                                                <li><a href="{{ route('employee.job.show', $job->id) }}" data-text="View Aplication"><span
+                                                                <li><a href="{{ route('employee.job.show', $job->id) }}"
+                                                                        data-text="View Aplication"><span
                                                                             class="la la-eye"></span></a></li>
-                                                                {{-- <li><a href="{{ route('employee.job.edit', $job->id) }}"
+                                                                <li><a href="{{ route('employee.job.edit', $job->id) }}"
                                                                         data-text="Reject Aplication"><span
-                                                                            class="la la-pencil"></span></a></li> --}}
+                                                                            class="la la-pencil"></span></a></li>
                                                                 <li>
                                                                     <a href="{{ route('employee.job.delete', ['id' => $job->id]) }}"
                                                                         onclick="confirmDelete(event)"

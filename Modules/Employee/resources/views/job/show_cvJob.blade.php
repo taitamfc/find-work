@@ -4,7 +4,7 @@
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
-            <h3>Tất Cả Hồ Sơ Ứng Tuyển</h3>
+            <h3>Hồ Sơ Ứng Tuyển cho công việc: {{$job->name}}</h3>
             <div class="text"></div>
         </div>
 
@@ -39,7 +39,7 @@
 
                             <div class="tabs-box">
                                 <div class="aplicants-upper-bar">
-                                    <h6></h6>
+                                    <h6>{{$job->name}}</h6>
                                     <ul class="aplicantion-status tab-buttons clearfix">
                                         <li class="tab-btn active-btn totals" data-tab="#totals">Tổng số hồ sơ: {{$param_count['count_job']}}</li>
                                         <li class="tab-btn approved" data-tab="#approved">Đã duyệt: {{$param_count['count_cv_appled']}}</li>

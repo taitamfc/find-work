@@ -18,7 +18,15 @@ class JobapplicationController extends Controller
     public function index()
     {
         $cv_apllys = UserJobApply::all();
-        return view('employee::cv-apply.index',compact('cv_apllys'));
+        $count_job = UserJobApply::all()->count();
+        $count_cv_appled = UserJobApply::where('status', 1)->count();
+        $count_not_applly = UserJobApply::where('status', 0)->count();
+        $param_count = [
+            'count_job' => $count_job,
+            'count_cv_appled' => $count_cv_appled,
+            'count_not_applly' => $count_not_applly
+        ];
+        return view('employee::cv-apply.index',compact('cv_apllys','param_count'));
     }
 
     /**
