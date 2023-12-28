@@ -11,7 +11,7 @@ class SeedTableJobsSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function up(): void
+    public function run(): void
     {
         DB::table('jobs')->insert([
             [
