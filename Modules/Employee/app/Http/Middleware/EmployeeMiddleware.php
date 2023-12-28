@@ -14,7 +14,12 @@ class EmployeeMiddleware
     public function handle(Request $request, Closure $next)
     {
         if ($request->user()) {
-            return $next($request);
+            if ($request->user()->status == 1 && $request->user()->type == 'employee') {
+                return $next($request);
+            }else{
+                Auth::logout();
+                return redirect()->route('employee.login')->with('error','Tài khoản không hoạt động. Vui lòng liên hệ quản trị viên!!');
+            }
         }
         return redirect()->route('employee.login');
     }

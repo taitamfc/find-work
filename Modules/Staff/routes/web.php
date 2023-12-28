@@ -23,7 +23,7 @@ use Modules\Staff\app\Http\Controllers\UserJobFavoriteController;
 
 Route::group([
     'prefix' => 'staff',
-    'middleware'=>'auth.staff',
+	'middleware' => ['auth.staff'],
     'as' => 'staff.'
 ], function () {
     Route::get('/', [ProfileController::class, 'index'])->name('home1');

@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Modules\Employee\app\Models\User;
 use Modules\Employee\app\Models\UserEmployee;
-
+use App\Jobs\SendEmail;
 
 class AuthController extends Controller
 {
@@ -32,11 +32,22 @@ class AuthController extends Controller
 
     public function postLogin(StoreLoginRequest $request)
     {
-        $dataUser = $request->only('email', 'password');
-        if (Auth::attempt($dataUser, $request->remember)) {
-            return redirect()->route('employee.profile.index'); 
-        } else {
-            return redirect()->route('employee.login')->with('error', 'Account or password is incorrect');
+        try {
+            $dataUser = $request->only('email', 'password');
+            $user = User::where('email',$dataUser['email'])->first();
+            if (Auth::attempt($dataUser, $request->remember)) {
+                $data = [
+                    'name' => $user->name,
+                    'email' => $user->email,
+                ];
+                SendEmail::dispatch($data,'send_mail');
+                return redirect()->route('employee.home'); 
+            } else {
+                return redirect()->route('employee.login')->with('error', 'Account or password is incorrect');
+            }
+        } catch (\Exception $e) {
+            Log::error('Bug send email : '.$e->getMessage());
+            return redirect()->route('employee.home'); 
         }
     }
     public function logout(Request $request)
@@ -58,6 +69,8 @@ class AuthController extends Controller
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
+            $user->type = "employee";
+            $user->status = 1;
             $user->password = bcrypt($request->password);
             $user->save();
 
@@ -74,8 +87,8 @@ class AuthController extends Controller
                 'address' => $request->address,
                 'image' => $imageName
             ]);
-            DB::commit(); // Hoàn thành giao dịch
             $message = "Đăng ký thành công!";
+            DB::commit(); // Hoàn thành giao dịch
             return redirect()->route('employee.login')->with('success', $message);
         } catch (\Exception $e) {
             DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
