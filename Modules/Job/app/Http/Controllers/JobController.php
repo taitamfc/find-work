@@ -2,24 +2,40 @@
 
 namespace Modules\Job\app\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Modules\Employee\app\Models\Job;
-use Modules\Staff\app\Models\UserStaff;
-use Modules\Staff\app\Models\UserCv;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\Controller;
+
+use Modules\Staff\app\Models\UserStaff;
+use Modules\Staff\app\Models\UserCv;
+use Modules\Job\app\Models\Job;
 class JobController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    protected $model = Job::class;
+    protected $link_view = "job::jobs.";
+    public function index(Request $request)
     {
-        $jobs = Job::all();
-        return view('job::jobs.index',compact('jobs'));
+        $query = $this->model::query();
+        if ($request->pagination) {
+            $paginate = $request->pagination;
+        }else{
+            $paginate = 5;
+        }
+        if ($request->has('searchTypeWork')) {
+            $query->where('type_work',$request->searchTypeWork);
+        }
+        $items = $query->paginate($paginate);
+        $param = [
+            'items' => $items,
+            'request' => $request
+        ];
+        return view($this->link_view.'index', $param);
     }
 
     /**

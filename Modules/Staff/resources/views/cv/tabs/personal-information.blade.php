@@ -12,17 +12,13 @@
             @endif
             <div class="form-group col-lg-12 col-md-12">
                 <div class="uploading-outer">
-                    <!-- Hiển thị hình ảnh mặc định -->
-                    @if(Auth::user()->image_path)
-                    <img src="{{ asset(Auth::user()->image_path) }}" alt="User Image">
-                    @else
-                    <img src="{{ asset('website-assets/images/profile.jpg')}}" alt="Default Image"
-                        style="border-radius: 50%;">
-                    @endif
+                    <img src="{{ asset($staff->image_fm)}}" alt="Default Image"
+                        style="max-width: 150px; max-height: 120px;">
                     <div class="file-input-wrapper">
                     </div>
                 </div>
             </div>
+
             <form class="default-form" method="POST"
                 action="{{ route('staff.cv.update',$cv_id,['cv_id'=>$cv_id,'tab'=>$tab]) }}">
                 @csrf
@@ -39,8 +35,7 @@
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Email</label>
-                        <input type="text" class="form-control" name="email"
-                            value="{{ $item->email ?? $user->email }}">
+                        <input type="text" class="form-control" name="email" value="{{ $item->email ?? $user->email }}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('email') }}</p>
                         @endif
