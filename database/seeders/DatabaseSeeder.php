@@ -19,7 +19,13 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]); $this->call([
             $this->call([
-                UserSeeder::class,
+                // UserSeeder::class,
+                CareerSeed::class,
+                FormWorkSeed::class,
+                JobPackageSeed::class,
+                LevelSeed::class,
+                RankSeed::class,
+                WageSeed::class,
                 // Các Seeder khác nếu có
             ]);
     }
