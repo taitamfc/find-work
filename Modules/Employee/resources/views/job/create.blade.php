@@ -78,7 +78,7 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Ngành Nghề</label>
-                                            <select name="career[]" class="chosen-select js-example-basic-multiple"
+                                            <select name="career_ids[]" class="chosen-select career_ids"
                                                 multiple="multiple">
                                                 @foreach ($param['careers'] as $career)
                                                     <option value="{{ $career->id }}">{{ $career->name }}</option>
@@ -86,7 +86,7 @@
                                             </select>
                                             @if ($errors->any())
                                                 <p style="color:red">
-                                                    {{ $errors->first('career') }}</p>
+                                                    {{ $errors->first('career_ids') }}</p>
                                             @endif
                                         </div>
 
@@ -319,7 +319,7 @@
     </section>
     <script>
         $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
+            $('.career_ids').select2();
         });
     </script>
     <!-- End Dashboard -->
