@@ -4,8 +4,8 @@
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
-            <h3>Howdy, Invision!</h3>
-            <div class="text">Ready to jump back in?</div>
+            <h3>Xin Chào, bạn!</h3>
+            <div class="text">Chúc bạn một ngày tốt lành!</div>
         </div>
         <div class="row">
             <div class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
@@ -15,7 +15,7 @@
                     </div>
                     <div class="right">
                         <h4>22</h4>
-                        <p>Posted Jobs</p>
+                        <p>Công việc đang tuyển</p>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="right">
                         <h4>9382</h4>
-                        <p>Application</p>
+                        <p>Hồ Sơ</p>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="right">
                         <h4>74</h4>
-                        <p>Messages</p>
+                        <p>Tin nhắn</p>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="right">
                         <h4>32</h4>
-                        <p>Shortlist</p>
+                        <p>Yêu Thích</p>
                     </div>
                 </div>
             </div>

@@ -211,7 +211,6 @@ class JobController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        dd(0);
         try {
             $job =  Job::find($request->id);
             $job->delete();

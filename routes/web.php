@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\EmployeeController;
 
@@ -19,9 +20,11 @@ use App\Http\Controllers\EmployeeController;
 // Route::get('/', function () {
 //     return view('website/employer/index');
 // })->name('home');
-Route::get('/', function () {
-    return view('website.dashboards.index');
-})->name('home');
+// Route::get('/', function () {
+//     return view('website.dashboards.index');
+// })->name('home');
+
+Route::get('/', [HomeController::class,'index'])->name('home');
 
 
 Route::prefix('themes')->group(function () {

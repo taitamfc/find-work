@@ -20,6 +20,8 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
+            'type' => 'employee',
+            'status' => 1,
             'password' => Hash::make(123456),
             'created_at' => now(),
             'updated_at' => now(),

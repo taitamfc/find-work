@@ -6,9 +6,10 @@
 
     <div class="sidebar-inner">
         <ul class="navigation">
-            <li class="active"><a href="{{ route('dashboards.index')}}"> <i class="la la-home"></i> Bảng điều khiển</a>
+            <li class="active"><a href="{{ route('home')}}"> <i class="la la-home"></i> Bảng điều khiển</a>
             </li>
-            <li><a href="{{ route('profile.index')}}"><i class="la la-user-tie"></i>Hồ sơ công ty</a></li>
+            
+            <li><a href="{{ route('profile.index')}}"><i class="la la-user-tie"></i>Hồ Sơ</a></li>
             <li><a href="{{ route('postjob.index')}}"><i class="la la-paper-plane"></i>Đăng một công việc mới</a></li>
             <li><a href="{{ route('managejob.index')}}"><i class="la la-briefcase"></i> Quản lý công việc </a></li>
             <li><a href="{{ route('aplicants.index')}}"><i class="la la-file-invoice"></i> Tất cả ứng viên</a></li>
