@@ -100,30 +100,6 @@
                             'job_other_info' => true, 
                             'bookmark' => true,
                         ])
-                        <!-- <div class="job-block">
-                            <div class="inner-box">
-                                <div class="content">
-                                    <span class="company-logo"><img src="images/resource/company-logo/1-3.png"
-                                            alt=""></span>
-                                    <h4><a
-                                            href="{{ route('website.jobs.show', $userEmployee->id) }}">{{ $job->name }}</a>
-                                    </h4>
-                                    <ul class="job-info">
-                                        <li><span class="icon flaticon-briefcase"></span>
-                                            {{ $job->name }}</li>
-                                        <li><span class="icon flaticon-map-locator"></span> {{ $job->work_address }}
-                                        </li>
-                                        <li><span class="icon flaticon-money"></span> ${{ $job->wage->name }}</li>
-                                    </ul>
-                                    <ul class="job-other-info">
-                                        <li class="time">{{ $job->formwork->name }}</li>
-                                        <li class="required">{{ $job->status == 1 ? 'Urgent' : 'Not Urgent' }}</li>
-                                    </ul>
-                                    <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                </div>
-                            </div>
-                        </div> -->
-                      
                         @endforeach
                     </div>
                 </div>
