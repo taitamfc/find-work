@@ -99,7 +99,9 @@
                                 <div class="content">
                                     <span class="company-logo"><img src="images/resource/company-logo/1-3.png"
                                             alt=""></span>
-                                    <h4><a href="{{ route('website.jobs.show', $userEmployee->id) }}">{{ $job->name }}</a></h4>
+                                    <h4><a
+                                            href="{{ route('website.jobs.show', $userEmployee->id) }}">{{ $job->name }}</a>
+                                    </h4>
                                     <ul class="job-info">
                                         <li><span class="icon flaticon-briefcase"></span>
                                             {{ $job->name }}</li>
