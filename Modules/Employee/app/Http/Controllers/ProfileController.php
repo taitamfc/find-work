@@ -19,6 +19,12 @@ class ProfileController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function dashboard()
+     {
+         return view('employee::pages.home');
+     }
+    
     public function index()
     {
         $user = Auth::user();

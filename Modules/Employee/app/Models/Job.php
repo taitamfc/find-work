@@ -59,27 +59,27 @@ class Job extends Model
 
     public function formwork()
     {
-        return $this->hasOne(FormWork::class);
+        return $this->belongsTo(FormWork::class);
     }
 
     public function jobPackage()
     {
-        return $this->hasOne(JobPackage::class);
+        return $this->belongsTo(JobPackage::class);
     }
 
     public function level()
     {
-        return $this->hasOne(Level::class);
+        return $this->belongsTo(Level::class);
     }
 
     public function rank()
     {
-        return $this->hasOne(Rank::class);
+        return $this->belongsTo(Rank::class);
     }
 
     public function wage()
     {
-        return $this->hasOne(Wage::class);
+        return $this->belongsTo(Wage::class);
     }
 }
 

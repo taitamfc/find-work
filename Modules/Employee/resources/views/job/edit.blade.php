@@ -92,15 +92,15 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Hình thức làm việc</label>
-                                            <select name="type_work" class="chosen-select">
+                                            <select name="formwork_id" class="chosen-select">
                                                 @foreach ($param['formworks'] as $formwork)
-                                                    <option @selected($job->type_work == $formwork->id) value="{{ $formwork->id }}">
+                                                    <option @selected($job->formwork_id == $formwork->id) value="{{ $formwork->id }}">
                                                         {{ $formwork->name }}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->any())
                                                 <p style="color:red">
-                                                    {{ $errors->first('type_work') }}</p>
+                                                    {{ $errors->first('formwork_id') }}</p>
                                             @endif
                                         </div>
 
@@ -131,15 +131,15 @@
                                         <!-- Input -->
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Lương</label>
-                                            <select name="wage" class="chosen-select">
+                                            <select name="wage_id" class="chosen-select">
                                                 @foreach ($param['wages'] as $wage)
-                                                    <option @selected($job->experience == $wage->id) value="{{ $wage->id }}">
+                                                    <option @selected($job->wage_id == $wage->id) value="{{ $wage->id }}">
                                                         {{ $wage->name }}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->any())
                                                 <p style="color:red">
-                                                    {{ $errors->first('wage') }}</p>
+                                                    {{ $errors->first('wage_id') }}</p>
                                             @endif
                                         </div>
 
@@ -169,29 +169,29 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Bằng cấp</label>
-                                            <select name="degree" class="chosen-select">
+                                            <select name="degree_id" class="chosen-select">
                                                 @foreach ($param['degrees'] as $degree)
-                                                    <option @selected($job->degree == $degree->id) value="{{ $degree->id }}">
+                                                    <option @selected($job->degree_id == $degree->id) value="{{ $degree->id }}">
                                                         {{ $degree->name }}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->any())
                                                 <p style="color:red">
-                                                    {{ $errors->first('degree') }}</p>
+                                                    {{ $errors->first('degree_id') }}</p>
                                             @endif
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Vị trí</label>
-                                            <select name="rank" class="chosen-select">
+                                            <select name="rank_id" class="chosen-select">
                                                 @foreach ($param['ranks'] as $rank)
-                                                    <option @selected($job->rank == $rank->id) value="{{ $rank->id }}">
+                                                    <option @selected($job->rank_id == $rank->id) value="{{ $rank->id }}">
                                                         {{ $rank->name }}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->any())
                                                 <p style="color:red">
-                                                    {{ $errors->first('rank') }}</p>
+                                                    {{ $errors->first('rank_id') }}</p>
                                             @endif
                                         </div>
 
@@ -240,16 +240,16 @@
                                                 <div class="row">
                                                     <div class="form-group col-lg-12 col-md-12">
                                                         <label>Loại tin đăng</label>
-                                                        <select name="job_package" class="chosen-select">
+                                                        <select name="jobpackage_id" class="chosen-select">
                                                             @foreach ($param['job_packages'] as $job_package)
-                                                                <option @selected($job->job_package == $job_package->id)
+                                                                <option @selected($job->jobpackage_id == $job_package->id)
                                                                     value="{{ $job_package->id }}">
                                                                     {{ $job_package->name }}</option>
                                                             @endforeach
                                                         </select>
                                                         @if ($errors->any())
                                                             <p style="color:red">
-                                                                {{ $errors->first('job_package') }}</p>
+                                                                {{ $errors->first('jobpackage_id') }}</p>
                                                         @endif
                                                     </div>
 
@@ -265,11 +265,11 @@
 
                                                     <div class="form-group col-lg-3 col-md-12">
                                                         <label>Ngày hết hạn</label>
-                                                        <input type="date" name="end_dead"
-                                                            value="{{ $job->end_dead }}" placeholder="">
+                                                        <input type="date" name="end_day"
+                                                            value="{{ $job->end_day }}" placeholder="">
                                                         @if ($errors->any())
                                                             <p style="color:red">
-                                                                {{ $errors->first('end_dead') }}</p>
+                                                                {{ $errors->first('end_day') }}</p>
                                                         @endif
                                                     </div>
 
