@@ -18,20 +18,7 @@ use Modules\Employee\app\Http\Controllers\JobapplicationController;
 |
 */
 
-Route::group([
-	'prefix' => 'employee',
-	'as' => 'employee.'
-], function () {
-	Route::get('login',[AuthController::class,'login'])->name('login');
-	Route::post('postLogin',[AuthController::class,'postLogin'])->name('postLogin');
-	// Register
-	Route::get('register',[AuthController::class,'register'])->name('register');
-	Route::post('postRegister',[AuthController::class,'postRegister'])->name('postRegister');
-	Route::get('logout',[AuthController::class,'logout'])->name('logout');
-	// list employ website
-	Route::get('/', [EmployeeController::class,'index'])->name('index');
-    Route::get('/{id}', [EmployeeController::class,'show'])->name('show');
-});
+
 Route::group([
 	'prefix' => 'employee',
 	'middleware' => ['auth.employee'],
@@ -62,4 +49,19 @@ Route::group([
 	Route::put('/cv/update/{id}', [JobapplicationController::class,'update'])->name('cv.update');
 	Route::post('/cv/store', [JobapplicationController::class,'store'])->name('cv.store');
 	Route::get('/cv/delete/{id}', [JobapplicationController::class,'destroy'])->name('cvs.delete');
+});
+
+Route::group([
+	'prefix' => 'employee',
+	'as' => 'employee.'
+], function () {
+	Route::get('login',[AuthController::class,'login'])->name('login');
+	Route::post('postLogin',[AuthController::class,'postLogin'])->name('postLogin');
+	// Register
+	Route::get('register',[AuthController::class,'register'])->name('register');
+	Route::post('postRegister',[AuthController::class,'postRegister'])->name('postRegister');
+	Route::get('logout',[AuthController::class,'logout'])->name('logout');
+	// list employ website
+	Route::get('/', [EmployeeController::class,'index'])->name('index');
+    Route::get('/{id}', [EmployeeController::class,'show'])->name('show');
 });
