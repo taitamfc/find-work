@@ -17,7 +17,7 @@
     <div class="page-wrapper">
         <!-- Preloader -->
         <!-- <div class="preloader"></div> -->
-        @include('job::includes.header')
+        @include('website.includes.header')
         @yield('content')
         @include('job::includes.footer')
     </div><!-- End Page Wrapper -->
