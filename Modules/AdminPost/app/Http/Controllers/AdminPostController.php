@@ -26,6 +26,9 @@ class AdminPostController extends Controller
             'model'         => $this->model,
             'items'         => $items
         ];
+        if ($type) {
+            return view($this->view_path.'types.'.$type.'.index', $params);
+        }
         return view($this->view_path.'index', $params);
     }
 
