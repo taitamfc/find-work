@@ -7,6 +7,9 @@ Tất cả các công việc
 .page-title {
     margin-top: 100px;
 }
+span.flaticon-bookmark.active {
+    color: red;
+}
 </style>
 <!--Page Title-->
 <section class="page-title">
@@ -83,7 +86,11 @@ Tất cả các công việc
                                     <li class="privacy">Private</li>
                                     <li class="required">Urgent</li>
                                 </ul>
-                                <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
+                                <!-- <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button> -->
+                                <a href="javascript:;" class="bookmark-btn"
+                                    data-href="{{ route('staff.job-favorite',['id'=> $item->id]) }}">
+                                    <span class="flaticon-bookmark {{ $item->is_added_whitlist ? 'active' : '' }}"></span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -102,7 +109,7 @@ Tất cả các công việc
 @section('footer')
 <script>
 $(document).ready(function() {
-    $('.job_favorite').on('click', function(e) {
+    $('.bookmark-btn').on('click', function(e) {
         var btnWhitlist = $(this)
         e.preventDefault();
 

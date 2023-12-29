@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Staff\app\Models\Job;
 use Modules\Staff\app\Models\UserJobFavorite;
+use Illuminate\Support\Facades\Log;
 class UserJobFavoriteController extends Controller
 {
     /**
@@ -89,13 +90,16 @@ class UserJobFavoriteController extends Controller
     public function destroy($id)
     {
         try {
-            $userFavorite = UserJobFavorite::findOrFail($id);
+            $user = auth()->user();
+            $userFavorite = UserJobFavorite::where('user_id', $user->id)->where('job_id', $id)->first();
             $userFavorite->delete();
     
-            return redirect()->route('staff.job-favorite')
+            return redirect()->route('staff.favorite')
                 ->with('success', 'Xóa ứng tuyển thành công!');
         } catch (\Exception $exception) {
-            return redirect()->route('staff.job-favorite')
+            Log::error("Error deleting UserJobFavorite with ID: $id. Error message: " . $exception->getMessage());
+    
+            return redirect()->route('staff.favorite')
                 ->with('error', 'Đã có lỗi xảy ra khi xóa ứng tuyển.');
         }
     }
