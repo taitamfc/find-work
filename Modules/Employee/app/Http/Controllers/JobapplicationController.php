@@ -53,11 +53,11 @@ class JobapplicationController extends Controller
             $cv_apply->save();
 
             $message = "Nộp hồ sơ thành công!";
-            return redirect()->route('website.job.show',$request->job_id)->with('success', $message);
+            return redirect()->route('website.jobs.show',$request->job_id)->with('success', $message);
         } catch (\Exception $e) {
             // DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
             Log::error('Lỗi xảy ra: ' . $e->getMessage());
-            return redirect()->route('website.job.show',$request->job_id)->with('error', 'Nộp hồ sơ thất bại!');
+            return redirect()->route('website.jobs.show',$request->job_id)->with('error', 'Nộp hồ sơ thất bại!');
         }
     }
 
@@ -110,7 +110,6 @@ class JobapplicationController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        dd(123);
         try {
             $cv = UserJobApply::find($request->id);
             $cv->forceDelete();

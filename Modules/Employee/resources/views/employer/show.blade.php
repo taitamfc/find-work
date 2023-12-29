@@ -29,10 +29,10 @@
                         </ul>
                     </div>
 
-                    <!-- <div class="btn-box">
-                        <a href="#" class="theme-btn btn-style-one">Apply For Job</a>
+                    {{-- <div class="btn-box">
+                        <a href="#" class="theme-btn btn-style-one">Nộp Hồ sơ Ứng Tuyển</a>
                         <button class="bookmark-btn"><i class="flaticon-bookmark"></i></button>
-                    </div> -->
+                    </div>  --}}
                 </div>
             </div>
         </div>
@@ -105,11 +105,11 @@
                                             {{ $job->name }}</li>
                                         <li><span class="icon flaticon-map-locator"></span> {{ $job->work_address }}
                                         </li>
-                                        <li><span class="icon flaticon-money"></span> ${{ $job->wage }}</li>
+                                        <li><span class="icon flaticon-money"></span> ${{ $job->wage->name }}</li>
                                     </ul>
                                     <ul class="job-other-info">
-                                        <li class="time">{{ $job->type_work }}</li>
-                                        <li class="required">{{ $job->jobStatusId == 1 ? 'Urgent' : 'Not Urgent' }}</li>
+                                        <li class="time">{{ $job->formwork->name }}</li>
+                                        <li class="required">{{ $job->status == 1 ? 'Urgent' : 'Not Urgent' }}</li>
                                     </ul>
                                     <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                                 </div>

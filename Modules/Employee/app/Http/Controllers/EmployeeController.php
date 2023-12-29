@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 
 class EmployeeController extends Controller
 {
+
+
+    
     /**
      * Display a listing of the resource.
      */
@@ -47,7 +50,7 @@ class EmployeeController extends Controller
         $jobs = $userEmployee->jobs;
         $params = [
             'userEmployee' => $userEmployee,
-            // 'jobs' => $jobs,
+            'jobs' => $jobs,
         ];
         return view('employee::employer.show', $params);
     }
