@@ -26,9 +26,9 @@ Route::get('/', function () {
 
 Route::prefix('themes')->group(function () {
     
-    Route::get('/employer', function () {
-        return view('website/employer/index');
-    })->name('employer.index');
+    // Route::get('/employer', function () {
+    //     return view('website/employer/index');
+    // })->name('employer.index');
 
     Route::get('/contacts', function () {
         return view('website/contacts/index');
