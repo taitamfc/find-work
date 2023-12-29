@@ -13,6 +13,7 @@ use Modules\Staff\app\Models\UserEducation;
 use Modules\Staff\app\Models\UserSkill;
 use Illuminate\Support\Facades\Auth;
 use Modules\Staff\app\Models\UserStaff;
+use Modules\Staff\app\Models\Rank;
 use Illuminate\Support\Facades\Log;
 class UserCvController extends Controller
 {
@@ -88,6 +89,7 @@ class UserCvController extends Controller
         $userExperiences = UserExperience::where('user_id', $user->id)->where('cv_id',$id)->get();
         $userEducations = UserEducation::where('user_id', $user->id)->where('cv_id',$id)->get();
         $userSkills = UserSkill::where('user_id', $user->id)->where('cv_id',$id)->get();
+        $ranks = Rank::all();
         $params = [
             'user'              => $user,
             'staff'             => $staff,
@@ -96,7 +98,8 @@ class UserCvController extends Controller
             'tab'               => $tab,
             'userExperiences'   => $userExperiences,
             'userEducations'    => $userEducations,
-            'userSkills'         => $userSkills,
+            'userSkills'        => $userSkills,
+            'ranks'             => $ranks,
         ];
         return view('staff::cv.edit', $params);
     }

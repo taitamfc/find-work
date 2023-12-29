@@ -24,7 +24,7 @@ class UserCv extends Model
         'address',
         'outstanding_achievements',
         'desired_position',
-        'desired_rank',
+        'rank_id',
         'employment_type',
         'industry',
         'desired_location',
@@ -60,7 +60,7 @@ class UserCv extends Model
         }
         $item->cv_file = $request->cv_file;
         $item->desired_position = $request->desired_position;
-        $item->desired_rank = $request->desired_rank;
+        $item->rank_id = $request->rank_id;
         $item->employment_type = $request->employment_type;
         $item->industry = $request->industry;
         $item->desired_location = $request->desired_location;
@@ -95,5 +95,8 @@ class UserCv extends Model
     {
         return $this->hasMany(UserJobAplied::class, 'user_id');
     }
-   
+    public function rank()
+    {
+        return $this->belongsTo(Rank::class);
+    }
 }

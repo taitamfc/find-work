@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="btn-box">
-                            <a href="{{route('website.aplication',['job_id' => $job->id, 'user_id' => $user_id])}}" class="theme-btn btn-style-one">Nộp Hồ Sơ Ứng Tuyển</a>
+                            <a href="{{route('website.jobs.aplication',['id' => $job->id, 'user_id' => $user_id])}}" class="theme-btn btn-style-one">Nộp Hồ Sơ Ứng Tuyển</a>
                             {{-- <button class="bookmark-btn"><i class="flaticon-bookmark"></i></button> --}}
                         </div>
                     </div>
@@ -232,7 +232,7 @@
                                         <div class="company-logo"><img src="images/resource/company-7.png"
                                                 alt=""></div>
                                         <h5 class="company-name">Thông tin nhà tuyển dụng</h5>
-                                        <a href="{{route('employee.website.show',$job->user->userEmployee->id)}}" class="profile-link">Xem hồ sơ nhà tuyển dụng</a>
+                                        <a href="{{route('employee.show',$job->user->userEmployee->id)}}" class="profile-link">Xem hồ sơ nhà tuyển dụng</a>
                                     </div>
 
                                     <ul class="company-info">

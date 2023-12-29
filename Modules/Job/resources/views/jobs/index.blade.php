@@ -68,7 +68,7 @@ Tất cả các công việc
                         <div class="inner-box">
                             <div class="content">
                                 <span class="company-logo"><img src="{{ asset($item->image_fm) }}" alt=""></span>
-                                <h4><a href="#">{{$item->name}}</a></h4>
+                                <h4><a href="{{ route('website.jobs.show', $item->id) }}">{{$item->name}}</a></h4>
                                 <div>
                                     {{$item->description}}
                                 </div>

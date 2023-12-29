@@ -28,7 +28,7 @@ class StoreUserCvRequest extends FormRequest
             $rules = [
                 'cv_file' => 'required',
                 'desired_position' => 'required',
-                'desired_rank' => 'required',
+                'rank_id' => 'required',
                 'employment_type' => 'required',
                 'industry' => 'required',
                 'desired_location' => 'required',
