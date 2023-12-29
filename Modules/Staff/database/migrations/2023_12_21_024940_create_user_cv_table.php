@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->text('outstanding_achievements')->nullable();
             $table->string('desired_position')->nullable(); 
-            $table->string('desired_rank')->nullable(); 
+            $table->unsignedBigInteger('rank_id')->nullable(); 
             $table->string('employment_type')->nullable();
             $table->string('industry')->nullable(); 
             $table->string('desired_location')->nullable(); 

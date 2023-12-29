@@ -24,30 +24,29 @@
                         @endif
                     </div>
                     <!-- Thông tin công việc -->
+
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Nhập vị trí muốn ứng tuyển</label>
-                        <select name="desired_position[]" class="chosen-select js-example-basic-multiple" id=""
-                            multiple="multiple">
-                            <option value="1">Nhân viên</option>
-                            <option value="2">Giám đốc</option>
-                        </select>
+                        <input type="text" name="desired_position"
+                            value="{{ old('desired_position') ?? $item->desired_position }}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('desired_position') }}</p>
                         @endif
                     </div>
-                    <script>
-                    $(document).ready(function() {
-                        $('.js-example-basic-multiple').select2();
-                    });
-                    </script>
+
                     <div class="form-group col-lg-6 col-md-12">
-                        <label>Cấp bậc mong muốn</label>
-                        <input type="text" name="desired_rank" value="{{ old('desired_rank') ?? $item->desired_rank }}">
+                        <label for="rank_id">Cấp bậc mong muốn</label>
+                        <select name="rank_id" class="form-control">
+                            @foreach ($ranks as $rank)
+                            <option value="{{ $rank->id }}" {{ $item->rank_id == $rank->id ? 'selected' : '' }}>
+                                {{ $rank->name }}
+                            </option>
+                            @endforeach
+                        </select>
                         @if ($errors->any())
-                        <p style="color:red">{{ $errors->first('desired_rank') }}</p>
+                        <p style="color:red">{{ $errors->first('rank_id') }}</p>
                         @endif
                     </div>
-
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Hình thức làm việc</label>
                         <input type="text" name="employment_type"
@@ -56,15 +55,18 @@
                         <p style="color:red">{{ $errors->first('employment_type') }}</p>
                         @endif
                     </div>
-
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Ngành nghề</label>
-                        <input type="text" name="industry" value="{{ old('industry') ?? $item->industry }}">
+                        <select name="industry[]" class="chosen-select js-example-basic-multiple" id=""
+                            multiple="multiple">
+                            <option value="1">Xây dựng</option>
+                            <option value="2">Nhà hàng</option>
+                            <option value="2">May mặc</option>
+                        </select>
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('industry') }}</p>
                         @endif
                     </div>
-
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Nơi làm việc mong muốn</label>
                         <input type="text" name="desired_location"
@@ -100,3 +102,8 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+</script>
