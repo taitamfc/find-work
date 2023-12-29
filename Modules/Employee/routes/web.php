@@ -28,6 +28,9 @@ Route::group([
 	Route::get('register',[AuthController::class,'register'])->name('register');
 	Route::post('postRegister',[AuthController::class,'postRegister'])->name('postRegister');
 	Route::get('logout',[AuthController::class,'logout'])->name('logout');
+	// list employ website
+	Route::get('/', [EmployeeController::class,'index'])->name('index');
+    Route::get('/{id}', [EmployeeController::class,'show'])->name('show');
 });
 Route::group([
 	'prefix' => 'employee',
@@ -35,7 +38,7 @@ Route::group([
 	'as' => 'employee.'
 ], function () {
 
-	Route::get('/', [HomeEmployeeController::class,'index'])->name('home');
+	Route::get('/dashboard', [HomeEmployeeController::class,'index'])->name('home');
 
 
 	// profile
@@ -59,11 +62,4 @@ Route::group([
 	Route::put('/cv/update/{id}', [JobapplicationController::class,'update'])->name('cv.update');
 	Route::post('/cv/store', [JobapplicationController::class,'store'])->name('cv.store');
 	Route::get('/cv/delete/{id}', [JobapplicationController::class,'destroy'])->name('cvs.delete');
-
-
-	// list employ website
-	Route::get('/employerlist', [EmployeeController::class,'index'])->name('website.index');
-    Route::get('/{id}', [EmployeeController::class,'show'])->name('website.show');
 });
-
-

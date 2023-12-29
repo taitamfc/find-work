@@ -20,8 +20,8 @@ use App\Http\Controllers\EmployeeController;
 //     return view('website/employer/index');
 // })->name('home');
 Route::get('/', function () {
-    return view('website/dashboards/index');
-})->name('dashboards.index');
+    return view('website.dashboards.index');
+})->name('home');
 
 
 Route::prefix('themes')->group(function () {

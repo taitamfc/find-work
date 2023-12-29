@@ -11,7 +11,7 @@
         <div class="title-outer">
             <h1>Công Ty</h1>
             <ul class="page-breadcrumb">
-                <li><a href="{{route('employee.website.index')}}">Trang chủ</a></li>
+                <li><a href="{{route('employee.index')}}">Trang chủ</a></li>
                 <li>Công Ty</li>
             </ul>
         </div>
@@ -87,7 +87,7 @@
                                 <div class="content-inner">
                                     <span class="company-logo"><img src="images/resource/company-logo/6-1.png"
                                             alt=""></span>
-                                            <h4><a href="{{ route('employee.website.show', ['id' => $userEmployee->id]) }}">{{ $userEmployee->name }}</a></h4>
+                                            <h4><a href="{{ route('employee.show', ['id' => $userEmployee->id]) }}">{{ $userEmployee->name }}</a></h4>
                                     <ul class="job-info">
                                     <li><span class="icon flaticon-map-locator"></span> {{ $userEmployee->address }}</li>
                                         <!-- <li><span class="icon flaticon-briefcase"></span> {{ $userEmployee->address }}</li> -->
