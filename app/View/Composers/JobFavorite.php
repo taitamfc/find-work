@@ -19,10 +19,11 @@ class JobFavorite
      */
     public function compose(View $view): void
     {
+        $items = [];
         if( Auth::user() ){
             $items = UserJobFavorite::where( 'user_id', Auth::id())->pluck('job_id')->toArray();
-            $view->with('cr_user_favorites', $items);
         }
+        $view->with('cr_user_favorites', $items);
         
     }
 }
