@@ -36,7 +36,7 @@
                             <th>Giới tính:</th>
                         </tr>
                         <tr class="col-6">
-                            <td>{{ $item->birthday }}</td>
+                            <td>{{ $item->birthdate }}</td>
                             <td>{{ $item->gender }}</td>
                         </tr>
                         <tr class="col-6">
