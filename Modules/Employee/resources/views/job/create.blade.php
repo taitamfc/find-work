@@ -44,7 +44,7 @@
                                         <!-- Input -->
                                         <div class="form-group col-lg-12 col-md-12">
                                             <label>Tên công việc</label>
-                                            <input type="text" name="name" id="nameInput" placeholder="Tên công việc">
+                                            <input type="text" value="{{old('name')}}" name="name" id="nameInput" placeholder="Tên công việc">
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('name') }}</p>
@@ -92,7 +92,7 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Hạn nộp hồ sơ</label>
-                                            <input type="date" name="deadline" placeholder="">
+                                            <input type="date" value="{{old('deadline')}}" name="deadline" placeholder="">
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('deadline') }}</p>
@@ -154,7 +154,7 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Nơi làm việc</label>
-                                            <input type="text" name="work_address" id="nameInput"
+                                            <input type="text" value="{{old('work_address')}}" name="work_address" id="nameInput"
                                                 placeholder="Nơi làm việc...">
                                             @if ($errors->any())
                                                 <p style="color:red">
@@ -191,7 +191,7 @@
                                         <!-- About Company -->
                                         <div class="form-group col-lg-12 col-md-12">
                                             <label>Mô tả công việc</label>
-                                            <textarea name="description" placeholder="Mô tả..."></textarea>
+                                            <textarea name="description" placeholder="Mô tả...">{{old('description')}}</textarea>
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('description') }}</p>
@@ -201,7 +201,7 @@
                                         <!-- About Company -->
                                         <div class="form-group col-lg-12 col-md-12">
                                             <label>Yêu cầu công việc</label>
-                                            <textarea name="requirements" placeholder="Yêu cầu..."></textarea>
+                                            <textarea name="requirements" placeholder="Yêu cầu...">{{old('requirements')}}</textarea>
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('requirements') }}</p>
@@ -251,7 +251,7 @@
 
                                         <div class="form-group col-lg-3 col-md-12">
                                             <label>Ngày bắt đầu</label>
-                                            <input type="date" name="start_day" placeholder="">
+                                            <input type="date" value="{{old('start_day')}}" name="start_day" placeholder="">
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('start_day') }}</p>
@@ -260,7 +260,7 @@
 
                                         <div class="form-group col-lg-3 col-md-12">
                                             <label>Ngày hết hạn</label>
-                                            <input type="date" name="end_dead" placeholder="">
+                                            <input type="date" value="{{old('end_dead')}}" name="end_dead" placeholder="">
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('end_dead') }}</p>
@@ -269,7 +269,7 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Số ngày :</label>
-                                            <input type="number" name="number_day" id="nameInput"
+                                            <input type="number" value="{{old('number_day')}}" name="number_day" id="nameInput"
                                                 placeholder="Số ngày...">
                                             @if ($errors->any())
                                                 <p style="color:red">
@@ -279,7 +279,7 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Tổng thah toán cho tin đăng :</label>
-                                            <input type="number" name="price" id="nameInput" placeholder="Giá...">
+                                            <input type="number" value="{{old('price')}}" name="price" id="nameInput" placeholder="Giá...">
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('price') }}</p>
@@ -288,7 +288,7 @@
 
                                         <div class="form-group col-lg-3 col-md-12">
                                             <label>Giờ bắt đầu đăng :</label>
-                                            <input type="text" name="start_hour" id="nameInput" placeholder="Giờ...">
+                                            <input type="text" value="{{old('start_hour')}}" name="start_hour" id="nameInput" placeholder="Giờ...">
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('start_hour') }}</p>
@@ -296,7 +296,7 @@
                                         </div>
                                         <div class="form-group col-lg-3 col-md-12">
                                             <label>Giờ Kết thúc :</label>
-                                            <input type="text" name="end_hour" id="nameInput" placeholder="Giờ...">
+                                            <input type="text" value="{{old('end_hour')}}" name="end_hour" id="nameInput" placeholder="Giờ...">
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('end_hour') }}</p>
