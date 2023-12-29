@@ -28,9 +28,6 @@ class AdminUserController extends Controller
                 'model'         => $this->model,
                 'items'         => $items
             ];
-            if($type){
-                // return view($this->view_path.'index-'.$type, $params); 
-            }
             return view($this->view_path.'index', $params);
         } catch (QueryException $e) {
             Log::error('Error in index method: ' . $e->getMessage());
@@ -68,9 +65,37 @@ class AdminUserController extends Controller
     /**
      * Show the specified resource.
      */
-    public function show($id)
+    public function showCVs(Request $request)
     {
-        return view($this->view_path.'show');
+        $type = $request->type;
+        try {
+            $items = $this->model::showUserCVs($request,null,$type);
+            $params = [
+                'route_prefix'  => $this->route_prefix,
+                'model'         => $this->model,
+                'items'         => $items
+            ];
+            return view($this->view_path.'showCVs', $params);
+        } catch (QueryException $e) {
+            Log::error('Error in index method: ' . $e->getMessage());
+            return redirect()->route( $this->route_prefix.'index' )->with('error',  __('sys.get_items_error'));
+        }
+    }
+    public function showCV(Request $request)
+    {
+        $type = $request->type;
+        try {
+            $item = $this->model::showCV($request,$type);
+            $params = [
+                'route_prefix'  => $this->route_prefix,
+                'model'         => $this->model,
+                'item'         => $item
+            ];
+            return view($this->view_path.'showCV', $params);
+        } catch (QueryException $e) {
+            Log::error('Error in index method: ' . $e->getMessage());
+            return redirect()->route( $this->route_prefix.'index' )->with('error',  __('sys.get_items_error'));
+        }
     }
 
     /**

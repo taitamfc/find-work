@@ -16,15 +16,15 @@
             <div class="menu-title">Ứng Viên</div>
         </a>
         <ul class="mm-collapse">
-            <li> 
+            <li>
                 <a href="{{ route('adminuser.index',['type'=>'staff']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>Danh Sách
                 </a>
             </li>
-            <li> 
-            <a href="{{ route('adminpost.index',['type'=>'UserCV']) }}">
+            <li>
+                <!-- <a href="{{ route('adminpost.index',['type'=>'UserCV']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>Hồ Sơ</a>
-            </li>
+            </li> -->
         </ul>
     </li>
     <li>
@@ -35,11 +35,11 @@
             <div class="menu-title">Nhà Tuyển Dụng</div>
         </a>
         <ul class="mm-collapse">
-            <li> 
-            <a href="{{ route('adminuser.index',['type'=>'employee']) }}">
+            <li>
+                <a href="{{ route('adminuser.index',['type'=>'employee']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>Danh Sách</a>
             </li>
-            <li> 
+            <li>
                 <a href="{{ route('adminpost.index',['type'=>'Job']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>Tin Đăng</a>
             </li>
@@ -54,27 +54,27 @@
             <div class="menu-title">Công Việc</div>
         </a>
         <ul class="mm-collapse">
-            <li> 
+            <li>
                 <a href="{{ route('admintaxonomy.index',['type'=>'Career']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>Ngành Nghề
                 </a>
             </li>
-            <li> 
+            <li>
                 <a href="{{ route('admintaxonomy.index',['type'=>'Level']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>Trình độ
                 </a>
             </li>
-            <li> 
+            <li>
                 <a href="{{ route('admintaxonomy.index',['type'=>'Rank']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>Cấp bậc
                 </a>
             </li>
-            <li> 
+            <li>
                 <a href="{{ route('admintaxonomy.index',['type'=>'Wage']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>Mức lương
                 </a>
             </li>
-            <li> 
+            <li>
                 <a href="{{ route('admintaxonomy.index',['type'=>'FormWork']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>Hình Thức Làm Việc
                 </a>
@@ -90,16 +90,16 @@
             <div class="menu-title">Tài Khoản</div>
         </a>
         <ul class="mm-collapse">
-            <li> 
-            <a href="{{ route('adminuser.index') }}">
+            <li>
+                <a href="{{ route('adminuser.index') }}">
                     <span class="material-symbols-outlined">arrow_right</span>Quản Trị Viên</a>
             </li>
-            <li> 
+            <li>
                 <a href="{{ route('adminuser.index') }}">
                     <span class="material-symbols-outlined">arrow_right</span>Nhóm</a>
             </li>
         </ul>
     </li>
-    
+
 </ul>
 <!--end navigation-->

@@ -64,6 +64,20 @@ class AdminUser extends Model
         } 
         $item->update($data);
     }
+    public static function showUserCVs($request,$limit = 20,$type = ''){
+        $id = $request->id;
+        $modelClass = '\App\Models\\' .$type;
+        $query = $modelClass::query(true);
+        $items = $query->where('user_id',$id)->paginate($limit);
+        return $items;
+    }
+    public static function showCV($request,$type = ''){
+        $id = $request->id;
+        $modelClass = '\App\Models\\' .$type;
+        $query = $modelClass::query(true);
+        $item = $query->findOrfail($id);
+        return $item;
+    }
     public static function deleteItem($id,$type = ''){
         $item = self::findItem($id);
         self::deleteFile($item->image);
