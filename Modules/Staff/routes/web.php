@@ -30,7 +30,7 @@ Route::group([
     // Route::get('/', function () {
     //     return view('staff::index1');
     // })->name('home');
-    Route::get('/',[UserJobAppliedController::class,'showdashboard'])->name('home');
+    Route::get('/',[ProfileController::class,'dashboard'])->name('home');
     Route::get('job-favorite',[UserJobFavoriteController::class,'index'])->name('favorite');
     Route::get('job-favorite/{id}',[UserJobFavoriteController::class,'job_favorite'])->name('job-favorite');
     Route::delete('job-favorite/{id}',[UserJobFavoriteController::class,'destroy'])->name('job-favorite.destroy');

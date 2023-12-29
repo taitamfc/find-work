@@ -81,5 +81,16 @@ class Job extends Model
     {
         return $this->belongsTo(Wage::class);
     }
+    public function getImage($user_id)
+    {
+        $userEmployee = $this->userEmployee;
+
+        if ($userEmployee && $userEmployee->image != null) {
+            return $userEmployee->image;
+        }
+
+        // You might want to provide a default image here
+        return "/website-assets/images/favicon.png";
+    }
 }
 

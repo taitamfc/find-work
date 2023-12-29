@@ -51,8 +51,8 @@
     <script src="{{ asset('website-assets/js/wow.js')}}"></script>
     <script src="{{ asset('website-assets/js/script.js')}}"></script>
     <script src="{{ asset('website-assets/js/repeater.js')}}"></script>
-     <!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
-     <script src="{{ asset('website-assets/js/chart.min.js')}}"></script>
+    <!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
+    <script src="{{ asset('website-assets/js/chart.min.js')}}"></script>
     <script>
     Chart.defaults.global.defaultFontFamily = "Sofia Pro";
     Chart.defaults.global.defaultFontColor = '#888';
@@ -128,6 +128,33 @@
                 intersect: false
             }
         },
+    });
+    </script>
+
+    <script>
+    $(document).ready(function() {
+        $('.bookmark-btn').on('click', function(e) {
+            var btnWhitlist = $(this)
+            e.preventDefault();
+
+            var url = $(this).data('href');
+
+            $.ajax({
+                url: url,
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        if (response.type == 'add') {
+                            btnWhitlist.find('span').addClass('active');
+                        } else {
+                            btnWhitlist.find('span').removeClass('active');
+                        }
+                    }
+                },
+                error: function() {}
+            });
+        });
     });
     </script>
     @yield('footer')

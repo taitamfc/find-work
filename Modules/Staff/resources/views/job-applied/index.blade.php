@@ -30,23 +30,12 @@
                                         @foreach($userJobApplies as $userJobApplie)
                                         <tr>
                                             <td>
-                                                <!-- Job Block -->
-                                                <div class="job-block">
-                                                    <div class="inner-box">
-                                                        <div class="content">
-                                                            <span class="company-logo"><img
-                                                                    src="images/resource/company-logo/1-1.png"
-                                                                    alt=""></span>
-                                                            <h4><a href="#">{{ $userJobApplie->job->name }}</a></h4>
-                                                            <ul class="job-info">
-                                                                <li><span class="icon flaticon-briefcase"></span>
-                                                                {{ $userJobApplie->job->career }}</li>
-                                                                <li><span class="icon flaticon-map-locator"></span>
-                                                                    {{ $userJobApplie->job->work_address }}</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            @include('job::includes.components.job-item',[
+                                                'job' => $userJobApplie->job,
+                                                'job_info' => true, 
+                                                'job_other_info' => false, 
+                                                'bookmark' => false,
+                                            ])
                                             </td>
                                             <td>{{ $userJobApplie->job->created_at->format('d M, Y') }}</td>
                                             <td class="status">{!! $userJobApplie->job->status_fm !!}</td>

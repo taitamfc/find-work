@@ -23,4 +23,7 @@ class UserJobFavorite extends Model
     {
         return $this->belongsTo(User::class);
     }
+    function getImageFmAttribute(){
+        return $this->userEmployee && $this->userEmployee->image != null ? $this->userEmployee->image :"/website-assets/images/favicon.png";
+    }
 }

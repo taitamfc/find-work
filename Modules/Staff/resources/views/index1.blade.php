@@ -46,7 +46,7 @@
                         <i class="icon la la-bookmark-o"></i>
                     </div>
                     <div class="right">
-                    <!-- <h4>{{ optional(auth()->user()->userJobFavorites)->count() ?? 0 }}</h4> -->
+                        <!-- <h4>{{ optional(auth()->user()->userJobFavorites)->count() ?? 0 }}</h4> -->
                         <h4>32</h4>
                         <p>Shortlist</p>
                     </div>
@@ -145,25 +145,13 @@
                         <div class="row">
                             @foreach($userJobApplies as $userJobApplie)
                             <!-- Job Block -->
-                            <div class="job-block col-lg-6 col-md-12 col-sm-12">
-                                <div class="inner-box">
-                                    <div class="content">
-                                        <span class="company-logo"><img
-                                                src="{{ asset('images/resource/company-logo/1-1.png') }}" alt=""></span>
-                                        <h4><a href="#">{{ $userJobApplie->job->name }}</a></h4>
-                                        <ul class="job-info">
-                                            <li><span class="icon flaticon-briefcase"></span>
-                                                {{ $userJobApplie->job->career }}</li>
-                                            <li><span class="icon flaticon-map-locator"></span>
-                                                {{ $userJobApplie->job->work_address }}</li>
-                                            <li><span class="icon flaticon-clock-3"></span>
-                                                {{ $userJobApplie->job->created_at->diffForHumans() }}</li>
-                                            <li><span class="icon flaticon-money"></span>
-                                                {{ $userJobApplie->job->salary }}</li>
-                                        </ul>
-                                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                    </div>
-                                </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @include('job::includes.components.job-item',[
+                                    'job' => $userJobApplie->job,
+                                    'job_info' => true,
+                                    'job_other_info' => true,
+                                    'bookmark' => false,
+                                    ])
                             </div>
                             @endforeach
                         </div>
