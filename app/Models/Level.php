@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Employee\app\Models\Job;
 
 class Level extends AdminModel
 {
@@ -17,4 +18,9 @@ class Level extends AdminModel
         'status',
         'position'
     ];
+
+    public function job()
+    {
+        return $this->hasOne(Job::class);
+    }
 }

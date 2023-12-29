@@ -9,6 +9,11 @@ use Modules\Employee\app\Models\User;
 use Modules\Staff\app\Models\UserJobFavorite;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Career;
+use App\Models\FormWork;
+use App\Models\JobPackage;
+use App\Models\Level;
+use App\Models\Rank;
+use App\Models\Wage;
 
 class Job extends Model
 {
@@ -50,6 +55,31 @@ class Job extends Model
     public function careers()
     {
         return $this->belongsToMany(Career::class, 'career_job', 'job_id', 'career_id');
+    }
+
+    public function formwork()
+    {
+        return $this->hasOne(FormWork::class);
+    }
+
+    public function jobPackage()
+    {
+        return $this->hasOne(JobPackage::class);
+    }
+
+    public function level()
+    {
+        return $this->hasOne(Level::class);
+    }
+
+    public function rank()
+    {
+        return $this->hasOne(Rank::class);
+    }
+
+    public function wage()
+    {
+        return $this->hasOne(Wage::class);
     }
 }
 
