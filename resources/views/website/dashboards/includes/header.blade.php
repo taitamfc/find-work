@@ -25,6 +25,7 @@
                  </button>
 
                  <!-- Dashboard Option -->
+                 @if(Auth::check())
                  <div class="dropdown dashboard-option">
                      <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
                          <img src="{{ asset(Auth::user()->image_fm) }}" alt="avatar" class="thumb">
@@ -51,6 +52,7 @@
                          <li><a href="index.html"><i class="la la-trash"></i>Delete Profile</a></li>
                      </ul>
                  </div>
+                 @endif
              </div>
          </div>
      </div>

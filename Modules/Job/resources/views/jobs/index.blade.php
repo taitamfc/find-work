@@ -15,7 +15,7 @@ Tất cả các công việc
             <h1>Tất cả các công việc</h1>
             <ul class="page-breadcrumb">
                 <li><a href="{{ route('home') }}">Trang chủ</a></li>
-                <li><a href="{{ route('employee.website.index') }}">Nhà tuyển dụng</a></li>
+                <li><a href="{{ route('employee.index') }}">Nhà tuyển dụng</a></li>
             </ul>
         </div>
     </div>
