@@ -11,6 +11,8 @@ use Modules\Staff\app\Models\UserStaff;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Modules\Staff\app\Models\UserJobAplied;
+
 class ProfileController extends Controller
 {
     /**
@@ -94,5 +96,14 @@ class ProfileController extends Controller
     public function destroy($id)
     {
 
+    }
+    public function dashboard()
+    {
+        $user = auth()->user();
+        $userJobApplies = UserJobAplied::where('user_id', $user->id)->get();
+        $params = [
+            'userJobApplies' => $userJobApplies,
+        ];
+        return view('staff::index1', $params);
     }
 }

@@ -28,4 +28,7 @@ class UserJobAplied extends Model
     {
         return $this->belongsTo(Job::class, 'job_id');
     }
+    function getImageFmAttribute(){
+        return $this->userEmployee && $this->userEmployee->image != null ? $this->userEmployee->image :"/website-assets/images/favicon.png";
+    }
 }

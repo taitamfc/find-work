@@ -30,25 +30,12 @@
                                         @foreach($userJobFavorites as $userJobFavorite )
                                         <tr>
                                             <td>
-                                                <!-- Job Block -->
-                                                <div class="job-block">
-                                                    <div class="inner-box">
-                                                        <div class="content">
-                                                            <span class="company-logo"><img
-                                                                    src="images/resource/company-logo/1-4.png"
-                                                                    alt=""></span>
-                                                            <h4>                                                           
-                                                                <a href="#">{{ $userJobFavorite->name }}</a>                                                   
-                                                            </h4>
-                                                            <ul class="job-info">
-                                                                <li><span class="icon flaticon-briefcase"></span>
-                                                                {{ $userJobFavorite->career }}</li>
-                                                                <li><span class="icon flaticon-map-locator"></span>
-                                                                    {{ $userJobFavorite->work_address }}</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            @include('job::includes.components.job-item',[
+                                                'job' => $userJobFavorite,
+                                                'job_info' => true, 
+                                                'job_other_info' => false, 
+                                                'bookmark' => false,
+                                            ])
                                             </td>
                                             <td>{{ $userJobFavorite->created_at->format('d M, Y') }}</td>   
                                             <td>

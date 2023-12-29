@@ -47,7 +47,7 @@ class EmployeeController extends Controller
         $jobs = $userEmployee->jobs;
         $params = [
             'userEmployee' => $userEmployee,
-            // 'jobs' => $jobs,
+            'jobs' => $jobs,
         ];
         return view('employee::employer.show', $params);
     }

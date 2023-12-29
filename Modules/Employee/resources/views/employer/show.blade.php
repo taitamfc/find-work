@@ -94,7 +94,13 @@
                             <h3>{{ $jobs->count() }} việc làm tại {{ $userEmployee->name }}</h3>
                         </div>
                         @foreach($jobs as $job)
-                        <div class="job-block">
+                        @include('job::includes.components.job-item',[
+                            'job' => $job,
+                            'job_info' => true, 
+                            'job_other_info' => true, 
+                            'bookmark' => true,
+                        ])
+                        <!-- <div class="job-block">
                             <div class="inner-box">
                                 <div class="content">
                                     <span class="company-logo"><img src="images/resource/company-logo/1-3.png"
@@ -116,7 +122,8 @@
                                     <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+                      
                         @endforeach
                     </div>
                 </div>

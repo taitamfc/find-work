@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Staff\Database\factories\JobFactory;
 use Illuminate\Support\Facades\Auth;
-
+use Modules\Employee\app\Models\UserEmployee;
 class Job extends Model
 {
     use HasFactory;
@@ -35,13 +35,13 @@ class Job extends Model
         return $this->belongsTo(User::class);
     }
   //is_added_whitlist
-  function getIsAddedWhitlistAttribute(){
-    $user = Auth::user();
-    if($user){
-        return UserJobFavorite::where('job_id',$this->id)->where('user', $user)->exists();
-    }
-    return false;
-} 
+    function getIsAddedWhitlistAttribute(){
+        $user = Auth::user();
+        if($user){
+            return UserJobFavorite::where('job_id',$this->id)->where('user', $user)->exists();
+        }
+        return false;
+    } 
     function getStatusFmAttribute(){
         if($this->status == self::INACTIVE){
             return '<span>In Active</span>';
@@ -49,4 +49,22 @@ class Job extends Model
             return '<span>Active</span>';
         }
     }
+    public function getImage($user_id)
+    {
+        $userEmployee = UserEmployee::where('user_id', $user_id)->first();
+
+        if ($userEmployee && $userEmployee->image != null) {
+            return $userEmployee->image;
+        }
+        return "/website-assets/images/favicon.png";
+    }
+
+    // public function getImageFmAttribute(){
+    //     $user_id = $this->user_id;
+    //     $userEmployee = UserEmployee::where('user_id',$user_id)->get();
+    //     if ($userEmployee && $userEmployee->image != null) {
+    //         return $userEmployee->image;
+    //     }
+    //     return "/website-assets/images/favicon.png";
+    // }
 }

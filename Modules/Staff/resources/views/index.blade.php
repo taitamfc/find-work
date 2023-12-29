@@ -29,21 +29,22 @@
                                 @csrf
                                 @method('PUT')
                                 <span><strong>Tải lên logo</strong></span>
-                                    <div class="uploading-outer">
-                                        <div class="uploadButton">
-                                            <input class="uploadButton-input" type="file" name="image"
-                                                accept="image/*, application/pdf" id="upload" multiple>
-                                            <label class="uploadButton-button ripple-effect" for="upload">Browse
-                                                Logo</label>
-                                            <span class="uploadButton-file-name"></span>
-                                        </div>
-                                        <div class="image-preview"></div>
-                                        <div class="new-image-preview">
-                                            <?php if ($item->image):?>
-                                                <img src="<?php echo asset($item->image); ?>" alt="Preview Image" style="max-width: 150px; max-height: 120px;">
-                                            <?php endif; ?>
-                                        </div>
+                                <div class="uploading-outer">
+                                    <div class="uploadButton">
+                                        <input class="uploadButton-input" type="file" name="image"
+                                            accept="image/*, application/pdf" id="upload" multiple>
+                                        <label class="uploadButton-button ripple-effect" for="upload">Browse
+                                            Logo</label>
+                                        <span class="uploadButton-file-name"></span>
                                     </div>
+                                    <div class="image-preview"></div>
+                                    <div class="new-image-preview">
+                                        <?php if ($item->image):?>
+                                        <img src="<?php echo asset($item->image); ?>" alt="Preview Image"
+                                            style="max-width: 150px; max-height: 120px;">
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Họ và tên</label>

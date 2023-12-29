@@ -67,33 +67,12 @@ span.flaticon-bookmark.active {
                     </div>
                     <!-- Job Block -->
                     @foreach($items as $item)
-                    <div class="job-block">
-                        <div class="inner-box">
-                            <div class="content">
-                                <span class="company-logo"><img src="{{ asset($item->image_fm) }}" alt=""></span>
-                                <h4><a href="{{ route('website.jobs.show', $item->id) }}">{{$item->name}}</a></h4>
-                                <div>
-                                    {{$item->description}}
-                                </div>
-                                <ul class="job-info">
-                                    <li><span class="icon flaticon-briefcase"></span> Ngành nghề (Career)</li>
-                                    <li><span class="icon flaticon-map-locator"></span>{{$item->work_address}}</li>
-                                    <li><span class="icon flaticon-clock-3"></span>{{ $item->time_create }}</li>
-                                    <li><span class="icon flaticon-money"></span>{{$item->wage_fm}} đ</li>
-                                </ul>
-                                <ul class="job-other-info">
-                                    <li class="time">Thời gian làm việc (Type_work)</li>
-                                    <li class="privacy">Private</li>
-                                    <li class="required">Urgent</li>
-                                </ul>
-                                <!-- <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button> -->
-                                <a href="javascript:;" class="bookmark-btn"
-                                    data-href="{{ route('staff.job-favorite',['id'=> $item->id]) }}">
-                                    <span class="flaticon-bookmark {{ $item->is_added_whitlist ? 'active' : '' }}"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                        @include('job::includes.components.job-item',[
+                            'job' => $item,
+                            'job_info' => true, 
+                            'job_other_info' => true, 
+                            'bookmark' => true,
+                        ])
                     @endforeach
 
                     <!-- Listing Show More -->
@@ -105,32 +84,4 @@ span.flaticon-bookmark.active {
 </section>
 <!--End Listing Page Section -->
 
-@endsection
-@section('footer')
-<script>
-$(document).ready(function() {
-    $('.bookmark-btn').on('click', function(e) {
-        var btnWhitlist = $(this)
-        e.preventDefault();
-
-        var url = $(this).data('href');
-
-        $.ajax({
-            url: url,
-            method: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                if (response.success) {
-                    if (response.type == 'add') {
-                        btnWhitlist.find('span').addClass('active');
-                    } else {
-                        btnWhitlist.find('span').removeClass('active');
-                    }
-                }
-            },
-            error: function() {}
-        });
-    });
-});
-</script>
 @endsection
