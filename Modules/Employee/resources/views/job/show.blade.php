@@ -181,7 +181,7 @@
                                             <label>Vị trí</label>
                                             <select name="rank_id" class="chosen-select" disabled>
                                                 @foreach ($param['ranks'] as $rank)
-                                                    <option @selected($job->rank == $rank->id) value="{{ $rank->id }}">
+                                                    <option @selected($job->rank_id == $rank->id) value="{{ $rank->id }}">
                                                         {{ $rank->name }}</option>
                                                 @endforeach
                                             </select>
