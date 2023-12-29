@@ -75,12 +75,12 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a class="dropdown-item" href="{{ route($route_prefix.'edit',$item->id) }}">
+                                                <a class="dropdown-item" href="{{ route($route_prefix.'edit',['adminpost'=>$item->id,'type'=>request()->type]) }}">
                                                     {{ __('sys.edit') }}        
                                                 </a>
                                             </li>
                                             <li>
-                                                <form action="{{ route($route_prefix.'destroy',$item->id) }}" method="post">
+                                                <form action="{{ route($route_prefix.'destroy',['adminpost'=>$item->id,'type'=>request()->type]) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button onclick=" return confirm('{{ __('sys.confirm_delete') }}') " class="dropdown-item">
