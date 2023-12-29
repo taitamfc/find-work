@@ -31,8 +31,8 @@ Route::group(['prefix'=>'admin'], function () {
     });
 
     Route::group(['middleware'=>['auth']], function () {
-        Route::get('adminuser/showCVs/{id}/{type}',[AdminUserController::class,'showCVs'])->name('adminuser.showCVs');
-        Route::get('adminuser/showCV/{id}/{type}',[AdminUserController::class,'showCV'])->name('adminuser.showCV');
+        Route::get('adminuser/{id}/cvs/{type}',[AdminUserController::class,'showCVs'])->name('adminuser.showCVs');
+        Route::get('adminuser/{id}/cv/{type}',[AdminUserController::class,'showCV'])->name('adminuser.showCV');
         Route::resource('adminuser', AdminUserController::class)->names('adminuser');
     });
     
