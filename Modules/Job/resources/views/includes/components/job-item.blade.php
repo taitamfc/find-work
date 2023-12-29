@@ -7,11 +7,12 @@ span.flaticon-bookmark.active {
     <div class="inner-box">
         <div class="content">
             <span class="company-logo"><img src="{{ asset($job->getImage($job->user_id)) }}" alt=""></span>
-            <h4><a href="{{ route('website.jobs.show', $job->id) }}">{{$job->name}}</a></h4>
+            <h4><a href="{{ route('website.jobs.show', $job->slug) }}">{{$job->name}}</a>
+            </h4>
             <div>
                 {{$job->description}}
             </div>
-         
+
             @if($job_info)
             <ul class="job-info">
                 <li><span class="icon flaticon-briefcase"></span> Ngành nghề (Career)</li>

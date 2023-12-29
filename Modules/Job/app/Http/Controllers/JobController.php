@@ -6,7 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 
 use Modules\Staff\app\Models\UserStaff;
@@ -57,10 +57,11 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
         $user_id = Auth::id();
-        $job = Job::find($id);
+        // $job = Job::find($id);
+        $job = Job::where('slug', $slug)->firstOrFail();
         return view('job::jobs.show',compact(['job','user_id']));
     }
 

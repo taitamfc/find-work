@@ -25,5 +25,6 @@ Route::group([
 ],function () {
     Route::get('/', [JobController::class,'index'])->name('home');
     Route::get('/aplication/{id}', [JobController::class,'aplication'])->name('jobs.aplication');
-    Route::get('/showjob/{id}', [JobController::class,'show'])->name('jobs.show');
+    Route::get('/{job:slug}', [JobController::class, 'show'])->name('jobs.show');
+    // Route::get('/showjob/{id}', [JobController::class,'show'])->name('jobs.show');
 });
