@@ -1,6 +1,11 @@
 @extends('website.layouts.master')
 @section('content')
 <!-- Banner Section-->
+<style>
+span.flaticon-bookmark.active {
+    color: red;
+}
+</style>
 <section class="banner-section">
     <div class="auto-container">
         <div class="row">
@@ -103,104 +108,19 @@
         </div>
 
         <div class="row wow fadeInUp">
+            @foreach($items as $item)
             <!-- Category Block -->
             <div class="category-block col-lg-4 col-md-6 col-sm-12">
                 <div class="inner-box">
                     <div class="content">
                         <span class="icon flaticon-money-1"></span>
-                        <h4><a href="#">Kế toán / Tài chính</a></h4>
-                        <p>(2 vị trí đang mở)</p>
+                        <h4><a href="#">{{ $item->name }}</a></h4>
+                        <p>{{ $item->description }} ({{ $item->open_positions }} vị trí mở)</p>
                     </div>
                 </div>
             </div>
+            @endforeach
 
-            <!-- Category Block -->
-            <div class="category-block col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="icon flaticon-promotion"></span>
-                        <h4><a href="#">Tiếp thị</a></h4>
-                        <p>(86 vị trí mở)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category Block -->
-            <div class="category-block col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="icon flaticon-vector"></span>
-                        <h4><a href="#">Thiết kế</a></h4>
-                        <p>(43 vị trí mở)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category Block -->
-            <div class="category-block col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="icon flaticon-web-programming"></span>
-                        <h4><a href="#">Phát triển</a></h4>
-                        <p>(12 vị trí mở)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category Block -->
-            <div class="category-block col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="icon flaticon-headhunting"></span>
-                        <h4><a href="#">Nguồn nhân lực</a></h4>
-                        <p>(55 vị trí mở)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category Block -->
-            <div class="category-block col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="icon flaticon-rocket-ship"></span>
-                        <h4><a href="#">Quản lý dự án</a></h4>
-                        <p>(2 vị trí đang mở)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category Block -->
-            <div class="category-block col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="icon flaticon-support-1"></span>
-                        <h4><a href="#">Dịch vụ khách hàng</a></h4>
-                        <p>(2 vị trí đang mở)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category Block -->
-            <div class="category-block col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="icon flaticon-first-aid-kit-1"></span>
-                        <h4><a href="#">Sức khỏe và Chăm sóc</a></h4>
-                        <p>(25 vị trí mở)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category Block -->
-            <div class="category-block col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="icon flaticon-car"></span>
-                        <h4><a href="#">Việc làm ô tô</a></h4>
-                        <p>92 vị trí mở</p>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>
@@ -216,143 +136,17 @@
         </div>
 
         <div class="row wow fadeInUp">
+            @foreach($jobs as $job)
             <!-- Job Block -->
-            <div class="job-block col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="company-logo"><img
-                                src="{{ asset('website-assets/images/resource/company-logo/1-1.png')}}" alt=""></span>
-                        <h4><a href="#">Kỹ sư phần mềm (Android), Thư viện</a></h4>
-                        <ul class="job-info">
-                            <li><span class="icon flaticon-briefcase"></span> Segment</li>
-                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                            <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
-                            <li><span class="icon flaticon-money"></span> $35k - $45k</li>
-                        </ul>
-                        <ul class="job-other-info">
-                            <li class="time">Full Time</li>
-                            <li class="privacy">Private</li>
-                            <li class="required">Urgent</li>
-                        </ul>
-                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                    </div>
-                </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                @include('job::includes.components.job-item',[
+                    'job' => $job,
+                    'job_info' => true, 
+                    'job_other_info' => true, 
+                    'bookmark' => true,
+                ])
             </div>
-
-            <!-- Job Block -->
-            <div class="job-block col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="company-logo"><img
-                                src="{{ asset('website-assets/images/resource/company-logo/1-2.png')}}" alt=""></span>
-                        <h4><a href="#">Điều phối viên tuyển dụng</a></h4>
-                        <ul class="job-info">
-                            <li><span class="icon flaticon-briefcase"></span> Segment</li>
-                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                            <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
-                            <li><span class="icon flaticon-money"></span> $35k - $45k</li>
-                        </ul>
-                        <ul class="job-other-info">
-                            <li class="time">Full Time</li>
-                            <li class="privacy">Private</li>
-                            <li class="required">Urgent</li>
-                        </ul>
-                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Job Block -->
-            <div class="job-block col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="company-logo"><img
-                                src="{{ asset('website-assets/images/resource/company-logo/1-3.png')}}" alt=""></span>
-                        <h4><a href="#">Giám đốc sản phẩm, Studio</a></h4>
-                        <ul class="job-info">
-                            <li><span class="icon flaticon-briefcase"></span> Segment</li>
-                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                            <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
-                            <li><span class="icon flaticon-money"></span> $35k - $45k</li>
-                        </ul>
-                        <ul class="job-other-info">
-                            <li class="time">Full Time</li>
-                            <li class="privacy">Private</li>
-                            <li class="required">Urgent</li>
-                        </ul>
-                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Job Block -->
-            <div class="job-block col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="company-logo"><img
-                                src="{{ asset('website-assets/images/resource/company-logo/1-4.png')}}" alt=""></span>
-                        <h4><a href="#">Nhà thiết kế sản phẩm cao cấp</a></h4>
-                        <ul class="job-info">
-                            <li><span class="icon flaticon-briefcase"></span> Segment</li>
-                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                            <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
-                            <li><span class="icon flaticon-money"></span> $35k - $45k</li>
-                        </ul>
-                        <ul class="job-other-info">
-                            <li class="time">Full Time</li>
-                            <li class="privacy">Private</li>
-                            <li class="required">Urgent</li>
-                        </ul>
-                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Job Block -->
-            <div class="job-block col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="company-logo"><img
-                                src="{{ asset('website-assets/images/resource/company-logo/1-5.png')}}" alt=""></span>
-                        <h4><a href="#">Kỹ sư Full Stack cấp cao, Người sáng tạo thành công</a></h4>
-                        <ul class="job-info">
-                            <li><span class="icon flaticon-briefcase"></span> Segment</li>
-                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                            <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
-                            <li><span class="icon flaticon-money"></span> $35k - $45k</li>
-                        </ul>
-                        <ul class="job-other-info">
-                            <li class="time">Full Time</li>
-                            <li class="privacy">Private</li>
-                            <li class="required">Urgent</li>
-                        </ul>
-                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Job Block -->
-            <div class="job-block col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="company-logo"><img
-                                src="{{ asset('website-assets/images/resource/company-logo/1-6.png')}}" alt=""></span>
-                        <h4><a href="#">Kỹ sư phần mềm (Android), Thư viện</a></h4>
-                        <ul class="job-info">
-                            <li><span class="icon flaticon-briefcase"></span> Segment</li>
-                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                            <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
-                            <li><span class="icon flaticon-money"></span> $35k - $45k</li>
-                        </ul>
-                        <ul class="job-other-info">
-                            <li class="time">Full Time</li>
-                            <li class="privacy">Private</li>
-                            <li class="required">Urgent</li>
-                        </ul>
-                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <div class="btn-box">
@@ -437,44 +231,26 @@
         </div>
 
         <div class="row wow fadeInUp">
-            <!-- Job Block -->
-            <div class="job-block col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="company-logo"><img
-                                src="{{ asset('website-assets/images/resource/company-logo/1-1.png')}}" alt=""></span>
-                        <h4><a href="#">HOTLINE CHO NGƯỜI TÌM VIỆC</a></h4>
-                        <ul class="job-info">
-                            <li><span class="icon flaticon-briefcase"></span> Segment</li>
-                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                            <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
-                            <li><span class="icon flaticon-money"></span> $35k - $45k</li>
-                        </ul>
-                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
+            @foreach($employees->take(4) as $employer)
+                <!-- Job Block -->
+                <div class="job-block col-lg-6 col-md-12 col-sm-12">
+                    <div class="inner-box">
+                        <div class="content">
+                            <span class="company-logo"><img src="{{ asset($employer->logo) }}" alt=""></span>
+                            <h4><a href="#">{{ $employer->name }}</a></h4>
+                            <ul class="job-info">
+                                <li><span class="icon flaticon-map-locator"></span> {{ $employer->address }}</li>
+                            </ul>
+                            <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Job Block -->
-            <div class="job-block col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="company-logo"><img
-                                src="{{ asset('website-assets/images/resource/company-logo/1-2.png')}}" alt=""></span>
-                        <h4><a href="#">HOTLINE CHO NHÀ TUYỂN DỤNG</a></h4>
-                        <ul class="job-info">
-                            <li><span class="icon flaticon-briefcase"></span> Segment</li>
-                            <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                            <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
-                            <li><span class="icon flaticon-money"></span> $35k - $45k</li>
-                        </ul>
-                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
+<!-- End Job Section -->
+
 <!-- End Job Section -->
 
 

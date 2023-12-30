@@ -18,10 +18,22 @@ class Job extends Model
     const ACTIVE = 1;
     const INACTIVE = 0;
 
-    public function userJobFavorites()
-{
-    return $this->hasMany(UserJobFavorite::class);
-}
+    public function career()
+    {
+        return $this->belongsTo(Career::class, 'career_id');
+    }
+    public function wage()
+    {
+        return $this->belongsTo(Wage::class, 'wage_id');
+    }
+    public function formWork()
+    {
+        return $this->belongsTo(FormWork::class, 'formwork_id');
+    }
+        public function userJobFavorites()
+    {
+        return $this->hasMany(UserJobFavorite::class);
+    }
     public function userJobApplied()
     {
         return $this->hasMany(UserJobAplied::class, 'job_id');
@@ -33,6 +45,9 @@ class Job extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    function getTimeCreateAttribute(){
+        return $this->created_at->diffForHumans();
     }
   //is_added_whitlist
     function getIsAddedWhitlistAttribute(){

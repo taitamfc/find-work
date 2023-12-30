@@ -37,6 +37,32 @@
     <script src="{{ asset('website-assets/js/wow.js')}}"></script>
     <script src="{{ asset('website-assets/js/script.js')}}"></script>
     <script src="{{ asset('website-assets/js/repeater.js')}}"></script>
+    <script>
+    $(document).ready(function() {
+        $('.bookmark-btn').on('click', function(e) {
+            var btnWhitlist = $(this)
+            e.preventDefault();
+
+            var url = $(this).data('href');
+
+            $.ajax({
+                url: url,
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        if (response.type == 'add') {
+                            btnWhitlist.find('span').addClass('active');
+                        } else {
+                            btnWhitlist.find('span').removeClass('active');
+                        }
+                    }
+                },
+                error: function() {}
+            });
+        });
+    });
+    </script>
     @yield('footer')
 </body>
 

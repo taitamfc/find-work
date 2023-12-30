@@ -15,15 +15,15 @@ span.flaticon-bookmark.active {
 
             @if($job_info)
             <ul class="job-info">
-                <li><span class="icon flaticon-briefcase"></span> Ngành nghề (Career)</li>
+                <li><span class="icon flaticon-briefcase"></span> {{ $job->career->name ?? ''}}</li>
                 <li><span class="icon flaticon-map-locator"></span>{{$job->work_address}}</li>
                 <li><span class="icon flaticon-clock-3"></span>{{ $job->time_create }}</li>
-                <li><span class="icon flaticon-money"></span>{{$job->wage_fm}} đ</li>
+                <li><span class="icon flaticon-money"></span>{{$job->wage->name ?? ''}} đ</li>
             </ul>
             @endif
             @if($job_other_info)
             <ul class="job-other-info">
-                <li class="time">Thời gian làm việc (Type_work)</li>
+                <li class="time">Thời gian làm việc ({{ $job->formWork->name ?? ''}})</li>
                 <li class="privacy">Private</li>
                 <li class="required">Urgent</li>
             </ul>

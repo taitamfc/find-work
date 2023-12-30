@@ -61,8 +61,15 @@ class JobController extends Controller
     {
         $user_id = Auth::id();
         // $job = Job::find($id);
-        $job = Job::where('slug', $slug)->firstOrFail();
-        return view('job::jobs.show',compact(['job','user_id']));
+        $job = Job::where('slug', $slug)->with('userEmployee')->firstOrFail();
+        // $related_jobs = Job::where('')
+        // dd($job);
+        $params = [
+            'job' => $job,
+            'user_id' => $user_id,
+        ];
+        // dd($params);
+        return view('job::jobs.show',$params);
     }
 
     /**
