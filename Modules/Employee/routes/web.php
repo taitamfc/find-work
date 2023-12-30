@@ -53,7 +53,7 @@ Route::group([
 
 // list employ website
 Route::get('/employees', [EmployeeController::class,'index'])->name('employee.index');
-Route::get('/employees/slug/{id}', [EmployeeController::class,'show'])->name('employee.show');
+Route::get('/employees/{id}', [EmployeeController::class,'show'])->name('employee.show');
 
 Route::group([
 	'prefix' => 'employee',
