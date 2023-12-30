@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Modules\Employee\app\Http\Requests\UpdateProfileEmployeeRequest;
+use Illuminate\Support\Str;
 
 
 class ProfileController extends Controller
@@ -22,14 +23,14 @@ class ProfileController extends Controller
 
      public function dashboard()
      {
-         return view('employee::pages.home');
+         return view('employee::profile.dashboard');
      }
     
     public function index()
     {
         $user = Auth::user();
         $user_employee = UserEmployee::where('user_id',$user->id)->first();
-        return view('employee::profileEmploy.index',compact(['user_employee','user']));
+        return view('employee::profile.index',compact(['user_employee','user']));
     }
 
     /**
@@ -72,7 +73,7 @@ class ProfileController extends Controller
         DB::beginTransaction();
         try {
             // Lấy đối tượng người dùng hiện tại
-            $user = User::findOrFail($request->id);
+            $user = User::findOrFail($id);
             $user->name = $request->name;
             $user->email = $request->email;
             
@@ -93,6 +94,16 @@ class ProfileController extends Controller
             $userEmployee->phone = $request->phone;
             $userEmployee->address = $request->address;
             $userEmployee->website = $request->website;
+
+            $request->slug = $request->slug ? $request->slug : $request->name;
+            $slug = $maybe_slug = Str::slug($request->slug);
+            $next = 2;
+            while (UserEmployee::where('slug', $slug)->where('user_id','!=',$userEmployee->user_id)->first()) {
+                $slug = "{$maybe_slug}-{$next}";
+                $next++;
+            }
+            $userEmployee->slug = $slug;
+
             // Kiểm tra xem đã có tệp tin hình ảnh được tải lên chưa
             if ($request->hasFile('image')) {
                 // Lưu tệp tin hình ảnh vào thư mục lưu trữ (ví dụ: public/images)

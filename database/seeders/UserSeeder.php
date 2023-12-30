@@ -17,14 +17,28 @@ class UserSeeder extends Seeder
         // Xoá dữ liệu cũ trong bảng users (nếu có)
         // DB::table('users')->truncate();
         // Thêm dữ liệu mới
-        DB::table('users')->insert([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'type' => 'employee',
-            'status' => 1,
-            'password' => Hash::make(123456),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+
+        $data = [
+            [
+                'name' => 'admin',
+                'email' => 'admin@gmail.com',
+                'type' => 'employee',
+                'status' => 1,
+                'password' => Hash::make(123456),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'admin2',
+                'email' => 'admin2@gmail.com',
+                'type' => 'staff',
+                'status' => 1,
+                'password' => Hash::make(123456),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ];
+        
+        DB::table('users')->insert();
     }
 }

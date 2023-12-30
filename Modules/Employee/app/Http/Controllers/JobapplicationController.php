@@ -64,16 +64,23 @@ class JobapplicationController extends Controller
     /**
      * Show the specified resource.
      */
-    public function show($id,$cv_applyID)
+    public function show($id)
     {
-        $item = UserCv::findOrFail($id);
-        $cv_apply = UserJobApply::findOrFail($cv_applyID);
-        $params = [
-            'item' => $item,
-            'cv_apply' =>$cv_apply
-        ];
+        try {
+            $item = UserJobApply::findOrFail($id);
+            if($item->user_id != auth()->id()){
+                return redirect()->route( 'employee.cv.index' );
+            }
+            $params = [
+                'item' => $item
+            ];
+            return view('employee::cv-apply.show',$params);
+        } catch (ModelNotFoundException $e) {
+            Log::error('Item not found: ' . $e->getMessage());
+            return redirect()->route( 'employee.cv.index' )->with('error', __('sys.item_not_found'));
+        }
     
-        return view('employee::cv-apply.show',$params);
+        
     }
 
     /**

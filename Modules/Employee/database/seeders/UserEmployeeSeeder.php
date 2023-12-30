@@ -18,6 +18,7 @@ class UserEmployeeSeeder extends Seeder
             [
                 'user_id' => 1,
                 'name' => 'Công ty Đại Hà',
+                'slug' => 'cong-ty-dai-ha',
                 'website' => 'cong_ty_abc@example.com',
                 'phone' => '123-456-7890',
                 'address' => '123 Đường Chính, Thành phố, Quốc gia',
@@ -27,6 +28,7 @@ class UserEmployeeSeeder extends Seeder
             [
                 'user_id' => 1,
                 'name' => 'Công ty Thanh Bắc',
+                'slug' => 'cong-ty-thanh-bac',
                 'website' => 'cong_ty_xyz@example.com',
                 'phone' => '987-654-3210',
                 'address' => '456 Đường Phụ, Thành phố, Quốc gia',
@@ -36,6 +38,7 @@ class UserEmployeeSeeder extends Seeder
             [
                 'user_id' => 1,
                 'name' => 'Công ty Hoa Kỳ',
+                'slug' => 'cong-ty-hoa-ky',
                 'website' => 'cong_ty_mno@example.com',
                 'phone' => '555-555-5555',
                 'address' => '789 Đường Bổ sung, Thành phố, Quốc gia',
@@ -45,6 +48,7 @@ class UserEmployeeSeeder extends Seeder
             [
                 'user_id' => 1,
                 'name' => 'Công ty Đại Phát',
+                'slug' => 'cong-ty-dai-phat',
                 'website' => 'cong_ty_pqr@example.com',
                 'phone' => '111-222-3333',
                 'address' => '999 Đường Chính, Thành phố, Quốc gia',
@@ -54,6 +58,7 @@ class UserEmployeeSeeder extends Seeder
             [
                 'user_id' => 1,
                 'name' => 'Công ty GHI',
+                'slug' => 'cong-ty-ghi',
                 'website' => 'cong_ty_ghi@example.com',
                 'phone' => '444-444-4444',
                 'address' => '222 Đường Gốc, Thành phố, Quốc gia',

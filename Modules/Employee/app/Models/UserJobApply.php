@@ -9,6 +9,8 @@ use Modules\Staff\app\Models\UserCv;
 class UserJobApply extends Model
 {
     use HasFactory;
+    const ACTIVE = 1;
+    const INACTIVE = 0;
 
     /**
      * The attributes that are mass assignable.

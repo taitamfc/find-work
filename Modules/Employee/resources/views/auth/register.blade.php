@@ -81,12 +81,14 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Tên công ty </label>
-                            <input type="text" name="cp_name" placeholder="Tên công ty"  value="{{ old('cp_name') }}">
+                            <input type="text" name="cp_name" id="cp_name" placeholder="Tên công ty"  value="{{ old('cp_name') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('cp_name') }}</p>
                             @endif
                         </div>
                     </div>
+
+
                     <div class="col-lg-6">                      
                         <div class="form-group">
                             <label>Website công ty </label>

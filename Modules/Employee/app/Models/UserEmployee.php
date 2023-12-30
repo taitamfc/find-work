@@ -9,7 +9,7 @@ use Modules\Employee\Database\factories\UserEmployeeFactory;
 class UserEmployee extends Model
 {
     use HasFactory;
-
+    const ACTIVE = 1;
     /**
      * The attributes that are mass assignable.
      */
