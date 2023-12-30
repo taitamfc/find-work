@@ -45,8 +45,7 @@ $showFormAdd = true;
                 <form action="{{route('staff.experience.destroy', $userExperience->id)}}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="d-flex btn btn-outline-danger"
-                        style="margin-top: 20px; margin-left: 10px;"
+                    <button type="submit" class="btn btn-outline-danger"
                         onclick="return confirm('Bạn có chắc chắn muốn xóa ứng tuyển này không?')">
                         <span class="fas fa-trash"></span>Xóa
                     </button>

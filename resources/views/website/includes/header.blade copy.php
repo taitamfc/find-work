@@ -43,8 +43,8 @@ $currentRouteName = \Request::route()->getName();
                                 href="{{ route('staff.job-applied')}}"><i class="la la-briefcase"></i>Việc làm đã
                                 nộp</a>
                         </li>
-                        <!-- <li class="@if($currentRouteName == '#') active @endif"><a href="#"><i
-                                    class="la la-file-invoice"></i>Công ty đang theo dõi</a></li> -->
+                        <li class="@if($currentRouteName == '#') active @endif"><a href="#"><i
+                                    class="la la-file-invoice"></i>Công ty đang theo dõi</a></li>
                         <li class="@if($currentRouteName == 'auth.logout') active @endif"><a
                                 href="{{ route('auth.logout')}}"><i class="la la-sign-out"></i>Đăng xuất</a></li>
                     </ul>

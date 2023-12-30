@@ -93,10 +93,6 @@ class ProfileController extends Controller
         $staff->update($data);    
         return back()->with('success', 'Thông tin đã được cập nhật thành công.');
     }
-    public function destroy($id)
-    {
-
-    }
     public function dashboard()
     {
         $user = auth()->user();
@@ -104,6 +100,6 @@ class ProfileController extends Controller
         $params = [
             'userJobApplies' => $userJobApplies,
         ];
-        return view('staff::index1', $params);
+        return view('staff::profile.dashboard', $params);
     }
 }

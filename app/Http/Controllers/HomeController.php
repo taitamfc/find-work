@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Career;
+use App\Models\Job;
+use App\Models\UserEmployee;
 
 use Illuminate\Http\Request;
 
@@ -11,8 +14,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('website.homes.index');
+        $items = Career::where('status', 1)->get();
+        $jobs = Job::where('status', 1)->limit(6)->get();
+        $employees = UserEmployee::get();
+        $params = [
+            'items' => $items,
+            'jobs' => $jobs,
+            'employees' => $employees,
+        ];
+        return view('website.homes.index',$params);
     }
+    
 
     /**
      * Show the form for creating a new resource.

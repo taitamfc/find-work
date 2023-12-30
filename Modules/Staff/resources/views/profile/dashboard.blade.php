@@ -150,7 +150,7 @@
                                     'job' => $userJobApplie->job,
                                     'job_info' => true,
                                     'job_other_info' => true,
-                                    'bookmark' => false,
+                                    'bookmark' => true,
                                     ])
                             </div>
                             @endforeach

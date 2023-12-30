@@ -24,19 +24,30 @@ class Job extends Model
     protected $fillable = [
         'user_id ',
         'name ',
-        'career ',
+        'career_id ',
         'Work_address ',
         'Job_description',
         'Job_requirements ',
-        'wage ',
-        'type_work ',
+        'wage_id',
+        'formwork_id',
     ];
     // Relationship
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
+    public function career()
+    {
+        return $this->belongsTo(Career::class, 'career_id');
+    }
+    public function wage()
+    {
+        return $this->belongsTo(Wage::class, 'wage_id');
+    }
+    public function formWork()
+    {
+        return $this->belongsTo(FormWork::class, 'formwork_id');
+    }
     public function jobApplications()
     {
         return $this->hasMany(JobApplication::class, 'job_id');
