@@ -85,7 +85,7 @@
                         <div class="inner-box">
                             <div class="content">
                                 <div class="content-inner">
-                                <span class="company-logo"><img src="{{ asset($userEmployee->image_fm) }}" alt=""></span>
+                                <span class="company-logo"><img src="{{ asset('/storage/images/' . $image) }}" alt=""></span>
                                             <h4><a href="{{ route('employee.show', ['id' => $userEmployee->slug]) }}">{{ $userEmployee->name }}</a></h4>
                                     <ul class="job-info">
                                     <li><span class="icon flaticon-map-locator"></span> {{ $userEmployee->address }}</li>

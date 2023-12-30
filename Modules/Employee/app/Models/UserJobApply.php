@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Employee\Database\factories\UserJobApplyFactory;
 use Modules\Staff\app\Models\UserCv;
+use Modules\Employee\app\Models\User;
 class UserJobApply extends Model
 {
     use HasFactory;
@@ -28,6 +29,11 @@ class UserJobApply extends Model
     public function cv()
     {
         return $this->belongsTo(UserCv::class, 'cv_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 
