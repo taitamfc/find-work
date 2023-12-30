@@ -24,7 +24,8 @@
         <!-- Header Span -->
         <span class="header-span"></span>
 
-        @include('employee::layouts.includes.header')
+        <!-- include('employee::layouts.includes.header') -->
+        @include('website.includes.header')
 
         @include('employee::layouts.includes.sidebar')
         @yield('content')

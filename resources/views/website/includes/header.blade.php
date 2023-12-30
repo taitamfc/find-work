@@ -23,7 +23,7 @@ $currentRouteName = \Request::route()->getName();
             <!-- Dashboard Option -->
             <div class="dropdown dashboard-option">
                 <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
-                    <h5>Hi,{{ Auth::user()->name }}</h5>
+                    <span>Hi,{{ Auth::user()->name }}</span>
                 </a>
                 <ul class="dropdown-menu">
                     @if(Auth::user()->type == 'staff')

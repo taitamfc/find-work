@@ -23,8 +23,8 @@ $currentRouteName = \Request::route()->getName();
                 <!-- Dashboard Option -->
                 <div class="dropdown dashboard-option">
                     <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
-                        <h5>Hi,{{ Auth::user()->name }}</h5>
-                        <img src="{{ asset(Auth::user()->image_fm) }}" alt="avatar" class="thumb">
+                        <span>Hi,{{ Auth::user()->name }}</span>
+                        <!-- <img src="{{ asset(Auth::user()->image_fm) }}" alt="avatar" class="thumb"> -->
                     </a>
                     <ul class="dropdown-menu">
                         <li class="@if($currentRouteName == 'staff.home') active @endif"><a

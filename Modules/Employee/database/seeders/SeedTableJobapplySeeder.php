@@ -20,9 +20,24 @@ class SeedTableJobapplySeeder extends Seeder
             'status' => 0,
         ]);
 
-        
-        // Add more job application records as needed
-        // JobApplication::create([...]);
-        // JobApplication::create([...]);
+        UserJobApply::create([
+            'cv_id' => 1,
+            'user_id' => 2,
+            'job_id' => 1,
+            'status' => 1,
+        ]);
+
+        UserJobApply::create([
+            'cv_id' => 2,
+            'user_id' => 2,
+            'job_id' => 2,
+            'status' => 1,
+        ]);
+        UserJobApply::create([
+            'cv_id' => 2,
+            'user_id' => 2,
+            'job_id' => 3,
+            'status' => 1,
+        ]);
     }
 }
