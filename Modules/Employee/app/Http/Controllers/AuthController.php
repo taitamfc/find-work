@@ -80,12 +80,21 @@ class AuthController extends Controller
             // Lấy tên tệp tin hình ảnh
             $imageName = basename($imagePath);
 
+            $request->cp_slug = $request->cp_slug ? $request->cp_slug : $request->cp_name;
+            $slug = $maybe_slug = Str::slug($request->cp_slug);
+            $next = 2;
+            while (UserEmployee::where('slug', $slug)->first()) {
+                $slug = "{$maybe_slug}-{$next}";
+                $next++;
+            }
+
             $user->userEmployee()->create([
                 'name' => $request->cp_name,
                 'website' => $request->website,
                 'phone' => $request->phone,
                 'address' => $request->address,
-                'image' => $imageName
+                'image' => $imageName,
+                'slug' => $slug
             ]);
             $message = "Đăng ký thành công!";
             DB::commit(); // Hoàn thành giao dịch

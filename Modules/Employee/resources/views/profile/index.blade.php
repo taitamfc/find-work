@@ -122,7 +122,7 @@
                                         <!-- Input -->
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Tên Công Ty</label>
-                                            <input type="text" name="name"
+                                            <input id="name" type="text" name="name"
                                                 value="{{ isset($user_employee->name) ? $user_employee->name : '' }}"
                                                 placeholder="">
                                             @if ($errors->any())

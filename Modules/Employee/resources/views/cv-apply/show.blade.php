@@ -23,7 +23,7 @@
                             </div>
                             @endif
 
-                            <form class="default-form" method="POST" action="{{ route('employee.cv.update',$cv_apply->id) }}">
+                            <form class="default-form" method="POST" action="{{ route('employee.cv.update',$item->id) }}">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
@@ -31,96 +31,96 @@
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Tên CV:</label>
                                         <br>
-                                        <span>{{ $item->cv_file }}</span>
+                                        <span>{{ $item->cv->cv_file }}</span>
                                     </div>
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Họ và tên:</label>
                                         <br>
-                                        <span>{{ $item->name }}</span>
+                                        <span>{{ $item->cv->name }}</span>
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Email:</label>
                                         <br>
-                                        <span>{{ $item->email }}</span>
+                                        <span>{{ $item->cv->email }}</span>
                                     </div>
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Số điện thoại:</label>
                                         <br>
-                                        <span>{{ $item->phone }}</span>
+                                        <span>{{ $item->cv->phone }}</span>
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Ngày sinh:</label>
                                         <br>
-                                        <span>{{ $item->birthdate }}</span>
+                                        <span>{{ $item->cv->birthdate }}</span>
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Giới tính:</label>
                                         <br>
-                                        <span>{{ $item->gender }}</span>
+                                        <span>{{ $item->cv->gender }}</span>
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Thành phố:</label>
                                         <br>
-                                        <span>{{ $item->city }}</span>
+                                        <span>{{ $item->cv->city }}</span>
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Địa chỉ:</label>
                                         <br>
-                                        <span>{{ $item->address }}</span>
+                                        <span>{{ $item->cv->address }}</span>
                                     </div>
 
                                     <!-- Thông tin công việc -->
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Chức vụ mong muốn:</label>
                                         <br>
-                                        <span>{{ $item->desired_position }}</span>
+                                        <span>{{ $item->cv->desired_position }}</span>
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Cấp bậc mong muốn:</label>
                                         <br>
-                                        <span>{{ $item->desired_rank }}</span>
+                                        <span>{{ $item->cv->desired_rank }}</span>
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Loại hình làm việc mong muốn:</label>
                                         <br>
-                                        <span>{{ $item->employment_type }}</span>
+                                        <span>{{ $item->cv->employment_type }}</span>
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Ngành nghề mong muốn:</label>
                                         <br>
-                                        <span>{{ $item->industry }}</span>
+                                        <span>{{ $item->cv->industry }}</span>
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Địa điểm làm việc mong muốn:</label>
                                         <br>
-                                        <span>{{ $item->desired_location }}</span>
+                                        <span>{{ $item->cv->desired_location }}</span>
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Mức lương mong muốn:</label>
                                         <br>
-                                        <span>{{ $item->desired_salary }}</span>
+                                        <span>{{ $item->cv->desired_salary }}</span>
                                     </div>
 
                                     <div class="form-group col-lg-12 col-md-12">
                                         <label>Mục tiêu nghề nghiệp:</label>
                                         <br>
-                                        <span>{{ $item->career_objective }}</span>
+                                        <span>{{ $item->cv->career_objective }}</span>
                                     </div>
                                 </div>
                                 <label><h4>Trạng thái hồ sơ</h4></label>
                                 <select class="form-control mb-3" name="status" id="">
-                                    <option @selected($cv_apply->status == 1) value="1">Duyệt</option>
-                                    <option @selected($cv_apply->status == 0) value="0">Không Duyệt</option>
+                                    <option @selected($item->status == \Modules\Employee\app\Models\UserJobApply::ACTIVE) value="1">Duyệt</option>
+                                    <option @selected($item->status == \Modules\Employee\app\Models\UserJobApply::INACTIVE) value="0">Không Duyệt</option>
                                 </select>
                                 <button type="submit" value="1" class="btn btn-primary">Cập Nhật</button>
                             </form>
