@@ -41,12 +41,12 @@
                                             <td>
                                                 <div class="option-box">
                                                     <ul class="option-list">
-                                                        <li>
+                                                        <!-- <li>
                                                             <a href="{{ route('website.jobs.show', $userJobFavorite->id) }}"
                                                                 data-text="View Application">
                                                                 <span class="la la-eye"></span>
                                                             </a>
-                                                        </li>
+                                                        </li> -->
                                                         <form
                                                             action="{{ route('staff.job-favorite.destroy', $userJobFavorite->id) }}"
                                                             method="POST">
