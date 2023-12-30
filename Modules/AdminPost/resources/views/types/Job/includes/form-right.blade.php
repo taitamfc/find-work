@@ -1,4 +1,7 @@
 <div class="card">
+    <div class="card-header">
+        <div class="text-uppercase fw-bold">Cấu hình tin</div>
+    </div>
     <div class="card-body">
         <div class="mb-4">
             <label class="mb-3">{{ __('adminpost::form.name') }}</label>
@@ -12,4 +15,3 @@
         </div>
     </div>
 </div>
-@yield('custom-fields-left')
