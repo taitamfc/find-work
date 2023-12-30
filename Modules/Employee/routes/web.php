@@ -47,10 +47,10 @@ Route::group([
 	Route::get('/applied-jobs', [JobapplicationController::class,'index'])->name('cv.index');
 	Route::get('/applied-jobs/{id}', [JobapplicationController::class,'show'])->name('cv.show');
 	Route::put('/cv/update/{id}', [JobapplicationController::class,'update'])->name('cv.update');
-	Route::post('/cv/store', [JobapplicationController::class,'store'])->name('cv.store');
 	Route::get('/cv/delete/{id}', [JobapplicationController::class,'destroy'])->name('cvs.delete');
 });
 
+Route::post('/applied-jobs/store', [JobapplicationController::class,'store'])->name('cv.store');
 // list employ website
 Route::get('/employees', [EmployeeController::class,'index'])->name('employee.index');
 Route::get('/employees/{id}', [EmployeeController::class,'show'])->name('employee.show');

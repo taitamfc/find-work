@@ -87,17 +87,18 @@ class JobController extends Controller
     {
         //
     }
-    public function aplication($job_id)
+    public function aplication($slug)
     {
+        // dd($slug);
         $userStaffs = UserStaff::all();
-        $userCvs = UserCv::all();
-        $job = Job::find($job_id);
+        $job = Job::where('slug', $slug)->first();
+        $userCvs = UserCv::where('user_id', $job->user_id)->get();
         $params = [
             'userStaffs' => $userStaffs,
             'userCvs' => $userCvs,
             'job' =>$job
         ];
-        return view('job::aplications.index',$params);
+        return view('job::aplications.index', $params);
     }
     /**
      * Remove the specified resource from storage.
