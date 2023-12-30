@@ -14,7 +14,7 @@ class UserCvSeeder extends Seeder
     {
         $data = [
             [
-                'user_id' => 1,
+                'user_id' => 2,
                 'cv_file' => 'Inter',
                 'name' => 'Admin1',
                 'email' => 'admin1@gmail.com',
@@ -34,7 +34,7 @@ class UserCvSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 1,
+                'user_id' => 2,
                 'cv_file' => 'Fresher',
                 'name' => 'Admin2',
                 'email' => 'admin2@gmail.com',
@@ -54,7 +54,7 @@ class UserCvSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 1,
+                'user_id' => 2,
                 'cv_file' => 'Iunior',
                 'name' => 'Admin3',
                 'email' => 'admin3@gmail.com',

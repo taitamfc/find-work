@@ -15,7 +15,7 @@ class UserExperiencesSeeder extends Seeder
         // Your sample data
         $experiences = [
             [
-                'user_id' => 1,
+                'user_id' => 2,
                 'cv_id' => 1,
                 'numerical' => 1,
                 'position' => 'Software Developer',
