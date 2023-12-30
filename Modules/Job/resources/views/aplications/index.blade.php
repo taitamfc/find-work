@@ -21,7 +21,7 @@
         <p class="font-sm mb-2">{{ $job->user->userEmployee->name }}</p>
     </div>
 
-    <form action="{{route('employee.cv.store')}}" method="post" id="frmSelectCV"><input type="hidden" name="JobId" value="3266" required="">
+    <form action="{{route('cv.store')}}" method="post" id="frmSelectCV"><input type="hidden" name="JobId" value="3266" required="">
         @csrf
         <input type="hidden" name="job_id" value="{{ $job->id }}">
         <input type="hidden" name="user_id" value="{{ $job->id }}">

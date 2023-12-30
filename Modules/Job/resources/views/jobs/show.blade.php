@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="btn-box">
-                        <a href="{{route('website.jobs.aplication',['id' => $job->id, 'user_id' => $user_id])}}"
+                        <a href="{{route('website.jobs.aplication',['id' => $job->slug])}}"
                             class="theme-btn btn-style-one">Nộp Hồ Sơ Ứng Tuyển</a>
                         {{-- <button class="bookmark-btn"><i class="flaticon-bookmark"></i></button> --}}
                     </div>
