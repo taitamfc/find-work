@@ -65,7 +65,7 @@ class AuthController extends Controller
             return redirect()->route('staff.login')->with('success', $message);
         } catch (\Exception $e) {
             Log::error('Bug occurred: ' . $e->getMessage());
-            return redirect()->back->with('error','Registration failed');
+            return redirect()->back()->with('error','Registration failed');
         }
     }
 }
