@@ -14,7 +14,7 @@ class UserStaffSeeder extends Seeder
     {
         DB::table('user_staff')->truncate();
         DB::table('user_staff')->insert([
-            'user_id' => 1, 
+            'user_id' => 2, 
             'phone' => '123456789',
             'birthdate' => '2002-01-01',
             'experience_years' => 3,

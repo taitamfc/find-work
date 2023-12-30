@@ -15,7 +15,7 @@ class UserEducationSeeder extends Seeder
         // Thêm seed dữ liệu cho bảng user_educations
         DB::table('user_educations')->insert([
             [
-                'user_id' => 1,
+                'user_id' => 2,
                 'cv_id' => 1,
                 'numerical' => 1,
                 'education_level' => 'Bachelor',

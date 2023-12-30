@@ -15,7 +15,7 @@ class UserSkillSeeder extends Seeder
         // Thêm seed dữ liệu cho bảng user_skills
         DB::table('user_skills')->insert([
             [
-                'user_id' => 1,
+                'user_id' => 2,
                 'cv_id' => 1,
                 'numerical' => 1,
                 'special_skill' => 'Web Development',
