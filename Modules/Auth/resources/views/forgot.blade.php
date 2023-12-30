@@ -5,7 +5,7 @@
     <div class="form-inner">
         <h3>Forgot password</h3>
         <!--Login Form-->
-        <form action="{{ route('website.postForgot')}}" method="POST">
+        <form action="{{ route('auth.postForgot')}}" method="POST">
             @if (session('error'))
             <div class="alert alert-danger" role="alert">
                 {{ session('error') }}
@@ -24,11 +24,7 @@
                 <p style="color:red">{{ $errors->first('email') }}</p>
                 @endif
             </div>
-            <div class="form-group">
-                <div class="field-outer">
-                <div class="text">Don't have an account? <a href="{{ route('website.register')}}">Signup</a></div>
-                </div>
-            </div>
+         
             <div class="form-group">
                 <button class="theme-btn btn-style-one" type="submit"  onclick="showLoading()">Submit <i class="ti-arrow-right"></i></button>
                 <div id="loadingSpinner" class="loading-spinner"></div>
