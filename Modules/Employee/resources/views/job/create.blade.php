@@ -163,7 +163,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>Bằng cấp</label>
+                                            <label>Vị Trí</label>
                                             <select name="degree_id" class="chosen-select">
                                                 @foreach ($param['degrees'] as $degree)
                                                     <option value="{{ $degree->id }}">{{ $degree->name }}</option>
@@ -176,7 +176,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>Vị trí</label>
+                                            <label>Bằng cấp</label>
                                             <select name="rank_id" class="chosen-select">
                                                 @foreach ($param['ranks'] as $rank)
                                                     <option value="{{ $rank->id }}">{{ $rank->name }}</option>
