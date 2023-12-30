@@ -4,8 +4,8 @@
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
-            <h3>Howdy, Invision!</h3>
-            <div class="text">Ready to jump back in?</div>
+            <h3>Hi, {{auth()->user()->name}}</h3>
+            <div class="text">Chúc bạn một ngày tốt lành!</div>
         </div>
         <div class="row">
             <div class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
@@ -14,8 +14,8 @@
                         <i class="icon flaticon-briefcase"></i>
                     </div>
                     <div class="right">
-                        <h4>22</h4>
-                        <p>Posted Jobs</p>
+                        <h4>1</h4>
+                        <p>Công việc</p>
                     </div>
                 </div>
             </div>
@@ -25,8 +25,8 @@
                         <i class="icon la la-file-invoice"></i>
                     </div>
                     <div class="right">
-                        <h4>9382</h4>
-                        <p>Application</p>
+                        <h4>1</h4>
+                        <p>Hồ sơ</p>
                     </div>
                 </div>
             </div>
@@ -36,8 +36,8 @@
                         <i class="icon la la-comment-o"></i>
                     </div>
                     <div class="right">
-                        <h4>74</h4>
-                        <p>Messages</p>
+                        <h4>0</h4>
+                        <p>Tin nhắn</p>
                     </div>
                 </div>
             </div>
@@ -47,8 +47,8 @@
                         <i class="icon la la-bookmark-o"></i>
                     </div>
                     <div class="right">
-                        <h4>32</h4>
-                        <p>Shortlist</p>
+                        <h4>0</h4>
+                        <p>Yêu thích</p>
                     </div>
                 </div>
             </div>
@@ -62,15 +62,11 @@
                 <div class="graph-widget ls-widget">
                     <div class="tabs-box">
                         <div class="widget-title">
-                            <h4>Your Profile Views</h4>
+                            <h4>Số người xem hồ sơ</h4>
                             <div class="chosen-outer">
                                 <!--Tabs Box-->
                                 <select class="chosen-select">
-                                    <option>Last 6 Months</option>
-                                    <option>Last 12 Months</option>
-                                    <option>Last 16 Months</option>
-                                    <option>Last 24 Months</option>
-                                    <option>Last 5 year</option>
+                                    <option>6 tháng trước</option>
                                 </select>
                             </div>
                         </div>
@@ -86,7 +82,7 @@
                 <!-- Notification Widget -->
                 <div class="notification-widget ls-widget">
                     <div class="widget-title">
-                        <h4>Notifications</h4>
+                        <h4>Thông Báo</h4>
                     </div>
                     <div class="widget-content">
                         <ul class="notification-list">

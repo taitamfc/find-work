@@ -15,14 +15,14 @@
 
              <div class="outer-box">
 
-                 <button class="menu-btn">
+                 {{-- <button class="menu-btn">
                      <span class="count">1</span>
                      <span class="icon la la-heart-o"></span>
                  </button>
 
                  <button class="menu-btn">
                      <span class="icon la la-bell"></span>
-                 </button>
+                 </button> --}}
 
                  <!-- Dashboard Option -->
                  <div class="dropdown dashboard-option">
@@ -32,7 +32,7 @@
                      </a>
                      <ul class="dropdown-menu">
                          {{-- <li><a href="dashboard.html"> <i class="la la-home"></i> Dashboard</a></li> --}}
-                         <li><a href="dashboard-company-profile.html"><i class="la la-user-tie"></i>Hồ sơ</a>
+                         <li><a href="{{ route('employee.profile.index')}}"><i class="la la-user-tie"></i>Hồ sơ</a>
                          </li>
                          {{-- <li class="active"><a href="dashboard-post-job.html"><i class="la la-paper-plane"></i>Post a
                                  New Job</a></li>
@@ -47,7 +47,7 @@
                          <li><a href="dashboard-change-password.html"><i class="la la-lock"></i>Change Password</a></li>
                          <li><a href="dashboard-company-profile.html"><i class="la la-user-alt"></i>View Profile</a>
                          </li> --}}
-                         <li><a href="index.html"><i class="la la-sign-out"></i>Đăng xuất</a></li>
+                         <li><a href="{{ route('employee.logout')}}"><i class="la la-sign-out"></i>Đăng xuất</a></li>
                          {{-- <li><a href="index.html"><i class="la la-trash"></i>Delete Profile</a></li> --}}
                      </ul>
                  </div>
