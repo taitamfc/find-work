@@ -5,7 +5,7 @@
     <div class="form-inner">
         <h3>Tạo tài khoản Superio miễn phí</h3>
         <!--Login Form-->
-        <form action="{{ route('website.postRegister') }}" method='post'>
+        <form action="{{ route('auth.postRegister') }}" method='post'>
             @if (session('error'))
             <div class="alert alert-danger" role="alert">
                 {{ session('error') }}

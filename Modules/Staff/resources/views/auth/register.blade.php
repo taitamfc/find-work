@@ -15,10 +15,10 @@
             <div class="form-group">
                 <div class="btn-box row">
                     <div class="col-lg-6 col-md-12">
-                        <a href="{{route('staff.login')}}" class="theme-btn btn-style-seven"><i class="la la-user"></i> Ứng viên </a>
+                        <a href="{{route('staff.register')}}" class="theme-btn btn-style-seven"><i class="la la-user"></i> Ứng viên </a>
                     </div>
                     <div class="col-lg-6 col-md-12">
-                        <a href="{{route('employee.login')}}" class="theme-btn btn-style-four"><i class="la la-briefcase"></i> Nhà tuyển dụng </a>
+                        <a href="{{route('employee.register')}}" class="theme-btn btn-style-four"><i class="la la-briefcase"></i> Nhà tuyển dụng </a>
                     </div>
                 </div>
             </div>
