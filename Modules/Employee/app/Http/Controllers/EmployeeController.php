@@ -20,9 +20,11 @@ class EmployeeController extends Controller
         $userEmployees = UserEmployee::whereHas('user', function ($query) {
             $query->where('status', UserEmployee::ACTIVE);
         })->get();
-        
+        $user = new User();
+        $image = $user->getImage($userEmployees[0]->user_id);
         $params = [
             'userEmployees' => $userEmployees,
+            'image' => $image,
         ];
         return view('employee::employers.index',$params);
     }
@@ -35,9 +37,12 @@ class EmployeeController extends Controller
         try {
             $userEmployee = UserEmployee::where('slug',$id)->firstOrFail();
             $jobs = $userEmployee->jobs;
+            $user = new User();
+            $image = $user->getImage($userEmployee->user_id);
             $params = [
                 'userEmployee' => $userEmployee,
                 'jobs' => $jobs,
+                'image' => $image
             ];
             return view('employee::employers.show', $params);
         } catch (ModelNotFoundException $e) {

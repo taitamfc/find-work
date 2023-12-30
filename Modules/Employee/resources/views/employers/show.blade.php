@@ -16,7 +16,7 @@
             <div class="job-block-seven">
                 <div class="inner-box">
                     <div class="content">
-                        <span class="company-logo"><img src="images/resource/company-logo/5-1.png" alt=""></span>
+                        <span class="company-logo"><img src="{{ asset('/storage/images/' . $image) }}" alt=""></span>
                         <h4><a href="#">{{ $userEmployee->name}}</a></h4>
                         <ul class="job-info">
                             <li><span class="icon flaticon-map-locator"></span>{{ $userEmployee->address }}</li>

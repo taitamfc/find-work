@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         // DB::table('users')->truncate();
         // Thêm dữ liệu mới
 
-        $data = [
+        $datas = [
             [
                 'name' => 'admin',
                 'email' => 'admin@gmail.com',
@@ -38,7 +38,9 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ]
         ];
-        
-        DB::table('users')->insert();
+        foreach ($datas as $data) {
+            # code...
+            DB::table('users')->insert($data);
+        }
     }
 }
