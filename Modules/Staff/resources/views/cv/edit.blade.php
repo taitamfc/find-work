@@ -31,7 +31,10 @@
                 type: 'POST', 
                 data: formData,
                 success: function (data) {
-                
+                    if (data.success) {
+                    let formData = data.data;
+                    formUpdate.find('.input-numerical-update input').val(formData.numerical);
+                }
                     console.log(data);
                 },
                 error: function (error) {

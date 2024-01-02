@@ -10,9 +10,9 @@
             </div>
             <div class="col-12 col-md-6">
                 <div class="form-check">
+                <input type="hidden" name="is_current" value="0"> 
                     <input class="form-check-input" name="is_current" type="checkbox" value="1" @checked( $experience &&
                         $experience->is_current == 1 )>
-
                     <label class="form-check-sign" for="chk-0">Đang làm ở đây?</label>
                 </div>
             </div>
