@@ -25,7 +25,7 @@
 
 
             <div class="form-group">
-                <label>Tên </label>
+                <label>Tên</label>
                 <input type="text" name="name" placeholder="name" value="{{ old('name') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('name') }}</p>

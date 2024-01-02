@@ -9,20 +9,13 @@
                 @endif
             </div>
             <div class="form-group col-lg-6 col-md-12">
-                <label>Trình độ</label>
-                <select name="education_level" class="form-control">
-                    <option @selected(!empty($education->education_level) && $education->education_level == '1')
-                        value="1">chưa tốt nghiệp</option>
-                    <option @selected(!empty($education->education_level) && $education->education_level == '2')
-                        value="2">Trung học</option>
-                    <option @selected(!empty($education->education_level) && $education->education_level == '3')
-                        value="3">Trung cấp</option>
-                    <option @selected(!empty($education->education_level) && $education->education_level == '4')
-                        value="4">Cao đẳng</option>
-                    <option @selected(!empty($education->education_level) && $education->education_level == '5')
-                        value="5">Đại học</option>
-                    <option @selected(!empty($education->education_level) && $education->education_level == '6')
-                        value="6">Khác</option>
+            <label for="rank_id">Trình độ</label>
+                <select name="rank_id" class="form-control">
+                    @foreach ($ranks as $rank)
+                    <option value="{{ $rank->id }}" {{ $item->rank_id == $rank->id ? 'selected' : '' }}>
+                        {{ $rank->name }}
+                    </option>
+                    @endforeach
                 </select>
             </div>
             <div class="col-12 col-md-6">

@@ -3,7 +3,8 @@
 namespace Modules\Staff\app\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 class UpdateUserExperienceRequest extends FormRequest
 {
     /**
@@ -13,13 +14,13 @@ class UpdateUserExperienceRequest extends FormRequest
     {
         return [
             'numerical1' => 'required',
-            'is_current' => 'required|boolean',
-            'company' => 'required|string|max:255',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'level' => 'required',
-            'position' => 'required|string|max:255',
-            'job_description' => 'required|string',
+            // 'is_current' => 'required|boolean',
+            // 'company' => 'required|string|max:255',
+            // 'start_date' => 'required',
+            // 'end_date' => 'required',
+            // 'rank_id' => 'required',
+            // 'position' => 'required|string|max:255',
+            // 'job_description' => 'required|string',
         ];
     }
 
@@ -29,5 +30,14 @@ class UpdateUserExperienceRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'errors' => $validator->errors(),
+            'success' => false,
+            'has_errors' => true,
+        ], 200));
     }
 }

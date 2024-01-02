@@ -2,6 +2,7 @@
     <div class="tabs-box">
         <div class="widget-title">
             <h4>Thông tin cá nhân</h4>
+            <a href="{{ route('staff.cv.index') }}" class="btn btn-secondary">Quay lại</a>
         </div>
 
         <div class="widget-content">

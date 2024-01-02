@@ -14,6 +14,9 @@ use Modules\Staff\app\Models\UserSkill;
 use Illuminate\Support\Facades\Auth;
 use Modules\Staff\app\Models\UserStaff;
 use Modules\Staff\app\Models\Rank;
+use Modules\Staff\app\Models\Wage;
+use Modules\Staff\app\Models\Career;
+use Modules\Staff\app\Models\FormWork;
 use Illuminate\Support\Facades\Log;
 class UserCvController extends Controller
 {
@@ -54,7 +57,7 @@ class UserCvController extends Controller
         $saved = UserCv::create([
             'user_id' => $user->id
         ]);
-        return redirect()->route('staff.cv.edit',$saved->id)->with('success', 'Hồ sơ được cập nhật thành công');
+        return redirect()->route('staff.cv.edit',$saved->id)->with('success', 'Bắt đầu tạo mới hồ sơ');
     }
 
 
@@ -70,9 +73,16 @@ class UserCvController extends Controller
     public function show($id)
     {
         $item = UserCv::findOrFail($id);
+        $educations = UserEducation::where('cv_id', $id)->get();
+        $userExperiences = UserExperience::where('cv_id',$id)->get();
+        $userSkills = UserSkill::where('cv_id',$id)->get();
+        // dd($educations);
         
         $params = [
             'item' => $item,
+            'educations' => $educations,
+            'userExperiences' => $userExperiences,
+            'userSkills' => $userSkills,
         ];
     
         return view('staff::cv.show', $params);
@@ -90,6 +100,9 @@ class UserCvController extends Controller
         $userEducations = UserEducation::where('user_id', $user->id)->where('cv_id',$id)->get();
         $userSkills = UserSkill::where('user_id', $user->id)->where('cv_id',$id)->get();
         $ranks = Rank::all();
+        $wages = Wage::all();
+        $careers = Career::all();
+        $formWorks = FormWork::all();
         $params = [
             'user'              => $user,
             'staff'             => $staff,
@@ -100,6 +113,9 @@ class UserCvController extends Controller
             'userEducations'    => $userEducations,
             'userSkills'        => $userSkills,
             'ranks'             => $ranks,
+            'wages'             => $wages,
+            'formWorks'         => $formWorks,
+            'careers'           => $careers,
         ];
         return view('staff::cv.edit', $params);
     }
@@ -116,14 +132,14 @@ class UserCvController extends Controller
         switch ($tab) {
             case 'personal-information':
                 $saved = UserCv::savePersonalInformation($request,$cv_id);
-                return redirect()->route('staff.cv.edit', ['cv' => $id, 'tab' => 'job-information']);
+                return redirect()->route('staff.cv.edit', ['cv' => $id, 'tab' => 'job-information']) ->with('success', 'Personal information updated successfully.');;
                 break;
             case 'job-information':
                 $saved = UserCv::saveJobInformation($request,$cv_id);
-                return redirect()->route('staff.cv.edit', ['cv' => $id, 'tab' => 'experience']);
+                return redirect()->route('staff.cv.edit', ['cv' => $id, 'tab' => 'experience'])  ->with('success', 'Job information updated successfully.');;
                 break;
             default:
-                return redirect()->route('staff.cv.edit',$id,['id'=>$id,'tab'=>'personal-information']);
+                return redirect()->route('staff.cv.edit',$id,['id'=>$id,'tab'=>'personal-information'])  ->with('success', 'Profile updated successfully.');;
                 break;
         }
     }

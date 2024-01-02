@@ -13,9 +13,9 @@ class StoreUserSkillRequest extends FormRequest
     {
         return [
             'numerical' => 'required',
-            // 'special_skill	' => 'required',
-            'skill_level' => 'required',
-            // 'description' => 'required',
+            'special_skill' => 'required',
+            // 'skill_level' => 'required',
+            'description' => 'required',
         ];
     }
     /**

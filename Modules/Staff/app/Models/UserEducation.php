@@ -17,7 +17,7 @@ class UserEducation extends Model
 
     protected $fillable = [
         'numerical',
-        'education_level',
+        'rank_id',
         'school_course',
         'graduation_date',
         'language',

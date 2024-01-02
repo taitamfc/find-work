@@ -44,7 +44,7 @@ class UserSkillController extends Controller
             'description' => $request->description,
         ]);
         $skill->save();
-        return redirect()->back()->with('success', 'Skill information has been added successfully.');
+        return redirect()->route('staff.cv.index')->with('success', 'Skill information has been added successfully.');
     }
 
     /**
