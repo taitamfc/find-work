@@ -20,6 +20,7 @@ use Modules\Employee\app\Models\UserJobApply;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Modules\Employee\app\Models\CareerJob;
+use Illuminate\Support\Str;
 
 
 class JobController extends Controller
@@ -69,10 +70,22 @@ class JobController extends Controller
     {
         DB::beginTransaction();
         try {
+
+            // xử lý slug
+            $slug = $maybe_slug = Str::slug($request->name);
+            $next = 2;
+            while (Job::where('slug', $slug)->first()) {
+                $slug = "{$maybe_slug}-{$next}";
+                $next++;
+            }
+
+
+
+            // lưu jobs
+
             $job = new Job();
             $job->name = $request->name;
-            $job->slug = $request->slug;
-            // $job->career = implode(',', $request->input('career'));
+            $job->slug = $slug;
             $job->formwork_id = $request->formwork_id;
             $job->deadline = $request->deadline;
             $job->start_day = $request->start_day;
@@ -129,7 +142,8 @@ class JobController extends Controller
             'wages' => $wages,
             'job_packages' => $job_packages
         ];
-        return view('employee::job.show',compact(['job','param']));
+        $careerjobs = $job->careers()->pluck('career_id');
+        return view('employee::job.show',compact(['job','param','careerjobs']));
     }
 
     /**
@@ -163,10 +177,22 @@ class JobController extends Controller
     {
         DB::beginTransaction();
         try {
+
+
+            // xử lý slug
+            $slug = $maybe_slug = Str::slug($request->name);
+            $next = 2;
+            while (Job::where('slug', $slug)->first()) {
+                $slug = "{$maybe_slug}-{$next}";
+                $next++;
+            }
+
+            // lưu jobs
+
+
             $job = Job::findOrFail($request->id);
             $job->name = $request->name;
-            $job->slug = $request->slug;
-            // $job->career = implode(',', $request->input('career'));
+            $job->slug = $slug;
             $job->formwork_id = $request->formwork_id;
             $job->deadline = $request->deadline;
             $job->start_day = $request->start_day;

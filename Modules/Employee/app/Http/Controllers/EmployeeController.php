@@ -19,7 +19,7 @@ class EmployeeController extends Controller
     {
         $userEmployees = UserEmployee::whereHas('user', function ($query) {
             $query->where('status', UserEmployee::ACTIVE);
-        })->get();
+        })->paginate(2);
         $user = new User();
         $image = $user->getImage($userEmployees[0]->user_id);
         $params = [
