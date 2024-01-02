@@ -194,7 +194,7 @@
                                                         {{ $item->city }}</p>
                                                     <p class="profile-item"><span>Mã hồ sơ:</span> {{ $item->id ?? '' }}</p>
                                                     <p class="profile-item"><span>Mức lương mong muốn:</span>
-                                                        {{ $item->wage->name }}</p>
+                                                        {{ $item->wage->name ?? ''}}</p>
                                                     <!-- <p class="profile-item"><span>Số năm kinh nghiệm:</span>
                                                         {{ $item->experience_years ?? '' }}</p> -->
                                                 </div>
