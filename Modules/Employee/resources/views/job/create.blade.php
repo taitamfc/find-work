@@ -95,7 +95,7 @@
                                             <label>Kinh Nghiệm</label>
                                             <select name="experience" class="chosen-select">
                                                 <option value="2">Có yêu cầu</option>
-                                                <option value="1"><Kbd></Kbd>hông yêu cầu</option>
+                                                <option value="1"><Kbd></Kbd>Không yêu cầu</option>
                                             </select>
                                             @if ($errors->any())
                                                 <p style="color:red">
