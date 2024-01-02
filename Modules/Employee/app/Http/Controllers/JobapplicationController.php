@@ -10,6 +10,7 @@ use Modules\Employee\app\Models\UserJobApply;
 use Modules\Employee\app\Models\Job;
 use Modules\Staff\app\Models\UserCv;
 use Illuminate\Support\Facades\Log;
+use Modules\Employee\app\Http\Requests\CvapplyRequest;
 
 class JobapplicationController extends Controller
 {
@@ -41,7 +42,7 @@ class JobapplicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CvapplyRequest $request)
     {
         try {
 

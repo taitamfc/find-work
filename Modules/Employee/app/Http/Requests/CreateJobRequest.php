@@ -22,7 +22,7 @@ class CreateJobRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:100',
             'career_ids' => 'required',
             'formwork_id' => 'required',
             'deadline' => 'required',
@@ -49,6 +49,7 @@ class CreateJobRequest extends FormRequest
     {
         return  [
             'name.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'name.max' => 'Tên không được vượt quá 100 ký tự!',
             'career_ids.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'formwork_id.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'deadline.required' => 'Vui lòng nhập đầy đủ thông tin!',
