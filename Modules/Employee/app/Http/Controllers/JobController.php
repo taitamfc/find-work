@@ -91,7 +91,7 @@ class JobController extends Controller
             $job->start_hour = $request->start_hour;
             $job->end_hour = $request->end_hour;
             $job->user_id = Auth::id();
-            $job->status = Job::INACTIVE;
+            $job->status = Job::ACTIVE;
             $job->save();
 
 
