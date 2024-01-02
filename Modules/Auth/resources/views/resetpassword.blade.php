@@ -5,7 +5,7 @@
     <div class="form-inner">
         <h3>Reset password</h3>
         <!--Login Form-->
-        <form action="{{ route('website.postReset',$data['token']) }}" method="POST">
+        <form action="{{ route('auth.postReset',$data['token']) }}" method="POST">
             @if (session('error'))
             <div class="alert alert-danger" role="alert">
                 {{ session('error') }}
@@ -35,7 +35,7 @@
 
             <div class="form-group">
                 <div class="field-outer">
-                    <div class="text">Don't have an account? <a href="{{ route('website.register')}}">Signup</a></div>
+                    <div class="text">Don't have an account? <a href="{{ route('auth.register')}}">Signup</a></div>
                 </div>
             </div>
             <div class="form-group">

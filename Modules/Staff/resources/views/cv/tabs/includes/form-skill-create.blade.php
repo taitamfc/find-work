@@ -9,31 +9,32 @@
                 @endif
             </div>
             <div class="form-group col-12">
-    <label for="skill_level">Skill Level</label>
-    <input type="range" id="skill_level" name="skill_level" class="form-control-range range-value"
-           data-val="true" data-val-range="The field Skill Level must be between 1 and 100."
-           data-val-range-max="100" data-val-range-min="1" data-val-required="Vui lòng chọn mức độ kỹ năng"
-           value="{{ old('skill_level', $skill->skill_level ?? 0) }}">
-    <small class="form-text text-muted">
-        <span class="field-validation-valid" data-valmsg-for="skill_level"
-              data-valmsg-replace="true"></span>
-    </small>
-    <small class="range-text" id="skill_level_display"> {{ old('skill_level', $skill->skill_level ?? 0) }} % </small>
-</div>
+                <label for="skill_level">Skill Level</label>
+                <input type="range" id="skill_level" name="skill_level" class="form-control-range range-value"
+                    data-val="true" data-val-range="The field Skill Level must be between 1 and 100."
+                    data-val-range-max="100" data-val-range-min="1" data-val-required="Vui lòng chọn mức độ kỹ năng"
+                    value="{{ old('skill_level', $skill->skill_level ?? 0) }}">
+                <small class="form-text text-muted">
+                    <span class="field-validation-valid" data-valmsg-for="skill_level"
+                        data-valmsg-replace="true"></span>
+                </small>
+                <small class="range-text" id="skill_level_display"> {{ old('skill_level', $skill->skill_level ?? 0) }} %
+                </small>
+            </div>
 
-<script>
-    // Add script to update the displayed percentage dynamically
-    const skillLevelInput = document.getElementById('skill_level');
-    const skillLevelDisplay = document.getElementById('skill_level_display');
+            <script>
+            // Add script to update the displayed percentage dynamically
+            const skillLevelInput = document.getElementById('skill_level');
+            const skillLevelDisplay = document.getElementById('skill_level_display');
 
-    // Initial update
-    skillLevelDisplay.textContent = skillLevelInput.value + ' %';
+            // Initial update
+            skillLevelDisplay.textContent = skillLevelInput.value + ' %';
 
-    // Update dynamically as the slider is moved
-    skillLevelInput.addEventListener('input', function () {
-        skillLevelDisplay.textContent = this.value + ' %';
-    });
-</script>
+            // Update dynamically as the slider is moved
+            skillLevelInput.addEventListener('input', function() {
+                skillLevelDisplay.textContent = this.value + ' %';
+            });
+            </script>
 
 
 
@@ -51,6 +52,9 @@
             <div class="form-group col-12">
                 <label>Description</label>
                 <textarea name="description" rows="3">{{ old('description', $skill->description ?? '') }}</textarea>
+                @if ($errors->any())
+                <p style="color:red">{{ $errors->first('description') }}</p>
+                @endif
             </div>
         </div>
     </div>

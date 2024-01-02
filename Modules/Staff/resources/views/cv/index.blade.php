@@ -28,7 +28,7 @@
                         <div class="candidate-block-three">
                             <div class="inner-box">
                                 <div class="content">
-                                
+
                                     <figure class="image"><img src="{{ asset($item->image_fm)}}" alt=""></figure>
                                     <h4 class="name"><a href="#">{{ $item->cv_file }}</a></h4>
                                     <ul class="candidate-info">
@@ -62,9 +62,10 @@
                                             class="delete-form">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="delete-btn" data-text="Delete Application">
-                                                <span class="la la-trash"></span>
-                                            </button>
+                                            <button type="submit"
+                                                onclick="return confirm('Bạn có chắc chắn muốn xóa ứng tuyển này không?')"
+                                                data-text="Delete Application"><span
+                                                    class="la la-trash"></span></button>
                                         </form>
                                     </li>
 

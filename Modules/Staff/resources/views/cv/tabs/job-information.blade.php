@@ -5,9 +5,9 @@
         </div>
 
         <div class="widget-content">
-            @if (session('error'))
-            <div class="alert alert-danger" role="alert">
-                {{ session('error') }}
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
             </div>
             @endif
             <form class="default-form" method="POST" action="{{ route('staff.cv.update',['cv'=>$cv_id,'tab'=>$tab]) }}">
@@ -48,14 +48,21 @@
                         @endif
                     </div>
                     <div class="form-group col-lg-6 col-md-12">
-                        <label>Hình thức làm việc</label>
-                        <input type="text" name="employment_type"
-                            value="{{ old('employment_type') ?? $item->employment_type }}">
+                        <label for="form_work_id">Loại hình làm việc</label>
+                        <select name="form_work_id" class="form-control">
+                            @foreach ($formWorks as $formWork)
+                            <option value="{{ $formWork->id }}"
+                                {{ $item->form_work_id == $formWork->id ? 'selected' : '' }}>
+                                {{ $formWork->name }}
+                            </option>
+                            @endforeach
+                        </select>
                         @if ($errors->any())
-                        <p style="color:red">{{ $errors->first('employment_type') }}</p>
+                        <p style="color:red">{{ $errors->first('form_work_id') }}</p>
                         @endif
                     </div>
-                    <div class="form-group col-lg-6 col-md-12">
+
+                    <!-- <div class="form-group col-lg-6 col-md-12">
                         <label>Ngành nghề</label>
                         <select name="industry[]" class="chosen-select js-example-basic-multiple" id=""
                             multiple="multiple">
@@ -66,7 +73,21 @@
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('industry') }}</p>
                         @endif
+                    </div> -->
+                    <div class="form-group col-lg-6 col-md-12">
+                        <label for="career_id">Ngành nghề</label>
+                        <select name="career_id" class="form-control">
+                            @foreach ($careers as $career)
+                            <option value="{{ $career->id }}" {{ $item->career_id == $career->id ? 'selected' : '' }}>
+                                {{ $career->name }}
+                            </option>
+                            @endforeach
+                        </select>
+                        @if ($errors->any())
+                        <p style="color:red">{{ $errors->first('career_id') }}</p>
+                        @endif
                     </div>
+
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Nơi làm việc mong muốn</label>
                         <input type="text" name="desired_location"
@@ -78,8 +99,13 @@
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Mức lương mong muốn</label>
-                        <input type="number" name="desired_salary"
-                            value="{{ old('desired_salary') ?? $item->desired_salary }}">
+                        <select name="wage_id" class="form-control">
+                            @foreach ($wages as $wage)
+                            <option value="{{ $wage->id }}" {{ $item->wage_id == $wage->id ? 'selected' : '' }}>
+                                {{ $wage->name }}
+                            </option>
+                            @endforeach
+                        </select>
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('desired_salary') }}</p>
                         @endif

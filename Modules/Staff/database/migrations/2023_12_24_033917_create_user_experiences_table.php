@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('numerical')->nullable();
             $table->string('position')->nullable();
             $table->string('company')->nullable();
-            $table->string('level')->nullable();
+            $table->string('rank_id')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->text('job_description')->nullable();

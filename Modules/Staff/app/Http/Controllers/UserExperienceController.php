@@ -24,7 +24,7 @@ class UserExperienceController extends Controller
             'numerical' => $request->numerical,
             'position' => $request->position,
             'company' => $request->company,
-            'level' => $request->level,
+            'rank_id' => $request->rank_id,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'job_description' => $request->job_description,
@@ -38,20 +38,24 @@ class UserExperienceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(UpdateUserExperienceRequest $request, $id): RedirectResponse
     {
         $experience = UserExperience::findOrFail($id);
         $experience->update([
             'numerical' => $request->numerical,
             'position' => $request->position,
             'company' => $request->company,
-            'level' => $request->level,
+            'rank_id' => $request->rank_id,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'job_description' => $request->job_description,
             'is_current' => $request->is_current ? $request->is_current : 0,
         ]); 
-        return redirect()->back()->with('success', 'Công việc đã được cập nhật thành công.');
+        return response([
+            'success' => true,
+            'message' => __('sys.store_item_success')
+        ]); 
+        // return redirect()->back()->with('success', 'Công việc đã được cập nhật thành công.');
     }
 
 public function destroy($id)

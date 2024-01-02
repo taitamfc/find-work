@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('cv_id')->nullable();
             $table->integer('numerical')->nullable();
-            $table->string('education_level')->nullable();
+            $table->string('rank_id')->nullable();
             $table->string('school_course')->nullable();
             $table->date('graduation_date')->nullable();
             $table->string('language')->nullable();

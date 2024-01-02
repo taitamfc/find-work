@@ -25,10 +25,10 @@ return new class extends Migration
             $table->text('outstanding_achievements')->nullable();
             $table->string('desired_position')->nullable(); 
             $table->unsignedBigInteger('rank_id')->nullable(); 
-            $table->string('employment_type')->nullable();
-            $table->string('industry')->nullable(); 
+            $table->string('form_work_id')->nullable();
+            $table->string('career_id')->nullable(); 
             $table->string('desired_location')->nullable(); 
-            $table->string('desired_salary')->nullable(); 
+            $table->string('wage_id')->nullable(); 
             $table->string('experience_years')->nullable(); 
             $table->text('career_objective')->nullable(); 
             $table->integer('status')->default(-1);

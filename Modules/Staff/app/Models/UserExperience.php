@@ -20,7 +20,7 @@ class UserExperience extends Model
             'numerical',
             'position',
             'company',
-            'level',
+            'rank_id',
             'start_date',
             'end_date',
             'job_description',
