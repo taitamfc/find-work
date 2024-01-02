@@ -83,7 +83,7 @@
                                                                 </ul>
                                                                 <ul class="post-tags">
                                                                     @if ($cv_aplly->status == 1)
-                                                                        <div class="green-button">Chưa duyệt</div>
+                                                                        <div class="green-button">Đã duyệt</div>
                                                                     @else
                                                                         <div class="danger-button">Chưa duyệt</div>
                                                                     @endif

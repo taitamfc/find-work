@@ -73,9 +73,9 @@ class JobapplicationController extends Controller
     {
         try {
             $item = UserJobApply::findOrFail($id);
-            if($item->user_id != auth()->id()){
-                return redirect()->route( 'employee.cv.index' );
-            }
+            // if($item->user_id != auth()->id()){
+            //     return redirect()->route( 'employee.cv.index' );
+            // }
             $params = [
                 'item' => $item
             ];
