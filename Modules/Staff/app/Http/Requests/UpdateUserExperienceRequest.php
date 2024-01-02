@@ -13,7 +13,7 @@ class UpdateUserExperienceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'numerical1' => 'required',
+            'numerical' => 'required',
             // 'is_current' => 'required|boolean',
             // 'company' => 'required|string|max:255',
             // 'start_date' => 'required',

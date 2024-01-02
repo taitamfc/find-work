@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-12 col-md-6">
         <div class="row">
-            <div class="form-group col-lg-6 col-md-12">
+            <div class="form-group input-numerical-update col-lg-6 col-md-12 ">
                 <label>Thứ tự</label>
                 <input type="number" name="numerical" value="{{ $experience->numerical }}">
                 <div class="input-error text-danger">@error('numerical') {{ $message }} @enderror</div>
