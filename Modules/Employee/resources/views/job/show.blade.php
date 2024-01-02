@@ -47,30 +47,6 @@
                                         </div>
 
                                         <!-- Input -->
-                                        <div class="form-group col-lg-6 col-md-12">
-                                            <label>Đường dẫn</label>
-                                            <input type="text" name="slug" value="{{ $job->slug }}" id="slugInput"
-                                                placeholder="Đường dẫn" readonly>
-                                            @if ($errors->any())
-                                                <p style="color:red">
-                                                    {{ $errors->first('slug') }}</p>
-                                            @endif
-                                        </div>
-
-                                        <script>
-                                            document.getElementById('nameInput').addEventListener('input', function() {
-                                                var name = this.value;
-                                                var slug = convertToSlug(name);
-                                                document.getElementById('slugInput').value = slug;
-                                            });
-
-                                            function convertToSlug(text) {
-                                                return text
-                                                    .toLowerCase()
-                                                    .replace(/[^\w ]+/g, '')
-                                                    .replace(/ +/g, '-');
-                                            }
-                                        </script>
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Ngành Nghề</label>
@@ -163,7 +139,7 @@
                                             @endif
                                         </div>
 
-                                        <div class="form-group col-lg-6 col-md-12">
+                                        <div class="form-group col-lg-3 col-md-12">
                                             <label>Vị trí</label>
                                             <select name="degree_id" class="chosen-select" disabled>
                                                 @foreach ($param['degrees'] as $degree)
@@ -177,7 +153,7 @@
                                             @endif
                                         </div>
 
-                                        <div class="form-group col-lg-6 col-md-12">
+                                        <div class="form-group col-lg-3 col-md-12">
                                             <label>Bằng cấp</label>
                                             <select name="rank_id" class="chosen-select" disabled>
                                                 @foreach ($param['ranks'] as $rank)

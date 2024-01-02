@@ -23,7 +23,6 @@ class UpdateJobRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'slug' => 'required',
             'career_ids' => 'required',
             'formwork_id' => 'required',
             'deadline' => 'required',
@@ -50,7 +49,6 @@ class UpdateJobRequest extends FormRequest
     {
         return  [
             'name.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'slug.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'career_ids.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'formwork_id.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'deadline.required' => 'Vui lòng nhập đầy đủ thông tin!',

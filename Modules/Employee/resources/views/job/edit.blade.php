@@ -46,31 +46,6 @@
                                             @endif
                                         </div>
 
-                                        <!-- Input -->
-                                        <div class="form-group col-lg-6 col-md-12">
-                                            <label>Đường dẫn</label>
-                                            <input type="text" name="slug" value="{{ $job->slug }}" id="slugInput"
-                                                placeholder="Đường dẫn">
-                                            @if ($errors->any())
-                                                <p style="color:red">
-                                                    {{ $errors->first('slug') }}</p>
-                                            @endif
-                                        </div>
-
-                                        <script>
-                                            document.getElementById('nameInput').addEventListener('input', function() {
-                                                var name = this.value;
-                                                var slug = convertToSlug(name);
-                                                document.getElementById('slugInput').value = slug;
-                                            });
-
-                                            function convertToSlug(text) {
-                                                return text
-                                                    .toLowerCase()
-                                                    .replace(/[^\w ]+/g, '')
-                                                    .replace(/ +/g, '-');
-                                            }
-                                        </script>
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Ngành Nghề</label>
@@ -167,7 +142,7 @@
                                             @endif
                                         </div>
 
-                                        <div class="form-group col-lg-6 col-md-12">
+                                        <div class="form-group col-lg-3 col-md-12">
                                             <label>Vị trí</label>
                                             <select name="degree_id" class="chosen-select">
                                                 @foreach ($param['degrees'] as $degree)
@@ -181,7 +156,7 @@
                                             @endif
                                         </div>
 
-                                        <div class="form-group col-lg-6 col-md-12">
+                                        <div class="form-group col-lg-3 col-md-12">
                                             <label>Bằng cấp</label>
                                             <select name="rank_id" class="chosen-select">
                                                 @foreach ($param['ranks'] as $rank)
@@ -240,9 +215,9 @@
                                                 <div class="row">
                                                     <div class="form-group col-lg-12 col-md-12">
                                                         <label>Loại tin đăng</label>
-                                                        <select name="jobpackage_id" class="chosen-select">
+                                                        <select id="package_tye" name="jobpackage_id" onchange="handle_price_package()" class="chosen-select">
                                                             @foreach ($param['job_packages'] as $job_package)
-                                                                <option @selected($job->jobpackage_id == $job_package->id)
+                                                                <option data-price="{{ $job_package->price }}" @selected($job->jobpackage_id == $job_package->id)
                                                                     value="{{ $job_package->id }}">
                                                                     {{ $job_package->name }}</option>
                                                             @endforeach
@@ -256,7 +231,7 @@
                                                     <div class="form-group col-lg-3 col-md-12">
                                                         <label>Ngày bắt đầu</label>
                                                         <input type="date" value="{{ $job->start_day }}"
-                                                            name="start_day" placeholder="">
+                                                            name="start_day" placeholder="" onchange="calculateDays()">
                                                         @if ($errors->any())
                                                             <p style="color:red">
                                                                 {{ $errors->first('start_day') }}</p>
@@ -265,8 +240,8 @@
 
                                                     <div class="form-group col-lg-3 col-md-12">
                                                         <label>Ngày hết hạn</label>
-                                                        <input type="date" name="end_day"
-                                                            value="{{ $job->end_day }}" placeholder="">
+                                                        <input type="date" name="end_day" value="{{ $job->end_day }}"
+                                                            placeholder="" onchange="calculateDays()">
                                                         @if ($errors->any())
                                                             <p style="color:red">
                                                                 {{ $errors->first('end_day') }}</p>
@@ -276,16 +251,19 @@
                                                     <div class="form-group col-lg-6 col-md-12">
                                                         <label>Số ngày :</label>
                                                         <input type="number" value="{{ $job->number_day }}"
-                                                            name="number_day" id="nameInput" placeholder="Số ngày...">
+                                                            name="number_day" class="number_day" id="nameInput" placeholder="Số ngày..."
+                                                            readonly>
                                                         @if ($errors->any())
                                                             <p style="color:red">
                                                                 {{ $errors->first('number_day') }}</p>
                                                         @endif
                                                     </div>
 
+
+
                                                     <div class="form-group col-lg-6 col-md-12">
                                                         <label>Tổng thah toán cho tin đăng :</label>
-                                                        <input type="number" value="{{ $job->price }}" name="price"
+                                                        <input id="price" type="number" value="{{ $job->price }}" name="price"
                                                             id="nameInput" placeholder="Giá...">
                                                         @if ($errors->any())
                                                             <p style="color:red">
@@ -346,6 +324,42 @@
         </div>
     </section>
     <script>
+
+        //  xủ lý tính số ngày
+        function calculateDays() {
+            var startDayInput = document.querySelector('input[name="start_day"]');
+            var endDayInput = document.querySelector('input[name="end_day"]');
+            var numberDayInput = document.querySelector('input[name="number_day"]');
+
+            var startDay = new Date(startDayInput.value);
+            var endDay = new Date(endDayInput.value);
+
+            var timeDiff = endDay - startDay;
+            var dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+            if (!isNaN(dayDiff) && dayDiff >= 0) {
+                numberDayInput.value = dayDiff;
+            }
+
+            handle_price_package();
+        }
+
+        // hàm xử lý tính giá tiền
+        function handle_price_package(){
+            var price = $("#package_tye").find("option:selected").data("price");
+            var number_day = $(".number_day").val();
+            // Kiểm tra nếu cả hai giá trị đều có thì mới tính toán tổng giá trị
+            if (price !== undefined && number_day !== "") {
+                var total_price = price * number_day;
+                // Hiển thị tổng giá trị trong ô input
+                $("#price").val(total_price);
+            }
+        }
+
+
+        // Gọi hàm calculateDays() lần đầu khi trang đã tải xong để tính toán số ngày ban đầu.
+        calculateDays();
+
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
         });

@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Employee\app\Models\UserJobApply;
+use Modules\Employee\app\Models\Job;
 use Modules\Staff\app\Models\UserCv;
 use Illuminate\Support\Facades\Log;
 
@@ -40,24 +41,27 @@ class JobapplicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         try {
+
+            $job = Job::find($request->job_id);
+            $cv_staff = UserCv::find($request->cv_id);
             $cv_apply = new UserJobApply();
-
+            
             $cv_apply->cv_id = $request->cv_id;
-            $cv_apply->user_id = $request->user_id;
-            $cv_apply->job_id  = $request->job_id;
-            $cv_apply->status = 0;
-
+            $cv_apply->user_id = $cv_staff->user_id;
+            $cv_apply->job_id  = $job->id;
+            $cv_apply->status = UserJobApply::INACTIVE;
+            
             $cv_apply->save();
 
             $message = "Nộp hồ sơ thành công!";
-            return redirect()->route('website.jobs.show',$request->job_id)->with('success', $message);
+            return redirect()->route('website.jobs.show',$job->slug)->with('success', $message);
         } catch (\Exception $e) {
             // DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
             Log::error('Lỗi xảy ra: ' . $e->getMessage());
-            return redirect()->route('website.jobs.show',$request->job_id)->with('error', 'Nộp hồ sơ thất bại!');
+            return redirect()->route('website.jobs.show',$request->$job->slug)->with('error', 'Nộp hồ sơ thất bại!');
         }
     }
 

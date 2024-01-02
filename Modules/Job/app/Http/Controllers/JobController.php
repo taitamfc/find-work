@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Modules\Staff\app\Models\UserStaff;
 use Modules\Staff\app\Models\UserCv;
 use Modules\Job\app\Models\Job;
+use Modules\Employee\app\Models\UserEmployee;
 class JobController extends Controller
 {
     /**
@@ -89,16 +90,20 @@ class JobController extends Controller
     }
     public function aplication($slug)
     {
-        // dd($slug);
-        $userStaffs = UserStaff::all();
-        $job = Job::where('slug', $slug)->first();
-        $userCvs = UserCv::where('user_id', $job->user_id)->get();
-        $params = [
-            'userStaffs' => $userStaffs,
-            'userCvs' => $userCvs,
-            'job' =>$job
-        ];
-        return view('job::aplications.index', $params);
+        if (auth()->check()) {
+            $job = Job::where('slug', $slug)->first();
+            $userCvs = UserCv::where('user_id', auth()->user()->id)->get();
+            $user_employee = UserEmployee::find($job->user_id);
+            $params = [
+                'userCvs' => $userCvs,
+                'user_employee' => $user_employee,
+                'job' =>$job
+            ];
+            return view('job::aplications.index', $params);
+        } else {
+            // Người dùng chưa đăng nhập, thực hiện các hành động khác, ví dụ: chuyển hướng đến trang đăng nhập
+            return redirect()->route('staff.login');
+        }
     }
     /**
      * Remove the specified resource from storage.

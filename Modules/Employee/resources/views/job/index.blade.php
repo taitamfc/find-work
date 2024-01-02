@@ -48,7 +48,9 @@
                                                     <td>
                                                         <ul class="option-list">
                                                             <li>{{ $countID[$job->id] }} hồ sơ </li>
-                                                            <li><a href="{{route('employee.job.showjobcv',$job->id)}}" data-text="View Aplication"><span class="la la-eye"></span></a></li>
+                                                            <li><a href="{{ route('employee.job.showjobcv', $job->id) }}"
+                                                                    data-text="View Aplication"><span
+                                                                        class="la la-eye"></span></a></li>
                                                         </ul>
                                                     </td>
                                                     <td>{{ $job->deadline }}</td>
@@ -77,11 +79,10 @@
                                                                 <script>
                                                                     function confirmDelete(event) {
                                                                         event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
-
+                                                                
                                                                         if (confirm("Bạn có muốn xóa không?")) {
-                                                                            console.log(123);
-                                                                            var url = event.target.getAttribute('href');
-                                                                            window.location.href = {{ route('employee.job.delete', ['id' => $job->id]) }}; // Chuyển hướng đến URL xóa
+                                                                            var url = "{{ route('employee.job.delete', ['id' => $job->id]) }}";
+                                                                            window.location.href = url; // Chuyển hướng đến URL xóa
                                                                         }
                                                                     }
                                                                 </script>
