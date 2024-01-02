@@ -12,7 +12,7 @@ class UpdateProfileEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:100',
             'email' => 'required',
             'name' => 'required',
             'phone' => 'required',
@@ -25,6 +25,7 @@ class UpdateProfileEmployeeRequest extends FormRequest
     {
         return  [
             'name.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'name.max' => 'Tên không được vượt quá 100 ký tự!',
             'email.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'name.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'phone.required' => 'Vui lòng nhập đầy đủ thông tin!',

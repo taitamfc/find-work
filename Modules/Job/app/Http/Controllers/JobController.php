@@ -102,7 +102,7 @@ class JobController extends Controller
             return view('job::aplications.index', $params);
         } else {
             // Người dùng chưa đăng nhập, thực hiện các hành động khác, ví dụ: chuyển hướng đến trang đăng nhập
-            return redirect()->route('staff.login');
+            return redirect()->route('staff.login')->with('error', 'Bạn phải đăng nhập để ứng tuyển!');
         }
     }
     /**
