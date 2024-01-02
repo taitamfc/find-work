@@ -24,8 +24,8 @@
                             </div>
                             @endif
 
-                            <form class="default-form" method="POST" action="{{ route('staff.update', $item->id) }}"
-                                enctype="multipart/form-data">
+                            <form class="default-form" method="POST"
+                                action="{{ route('staff.update', $item->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <span><strong>Tải lên logo</strong></span>
