@@ -258,7 +258,7 @@
                                                     </div>
 
                                                     <div class="form-group col-lg-6 col-md-12">
-                                                        <label>Tổng thah toán cho tin đăng :</label>
+                                                        <label>Tổng thanh toán cho tin đăng :</label>
                                                         <input type="number" value="{{ $job->price }}" name="price"
                                                             id="nameInput" placeholder="Giá..." readonly>
                                                         @if ($errors->any())

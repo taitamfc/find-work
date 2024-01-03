@@ -120,7 +120,7 @@
 
                                         <!-- Input -->
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>giới tính</label>
+                                            <label>Giới tính</label>
                                             <select name="gender" class="chosen-select">
                                                 <option value="">Không yêu cầu</option>
                                                 <option value="1">Nam</option>
@@ -274,7 +274,7 @@
 
                                         <div class="form-group col-lg-3 col-md-12">
                                             <label>Giờ bắt đầu đăng :</label>
-                                            <input type="text" value="{{ old('start_hour') }}" name="start_hour"
+                                            <input type="time" value="{{ old('start_hour') }}" name="start_hour"
                                                 id="nameInput" placeholder="Giờ...">
                                             @if ($errors->any())
                                                 <p style="color:red">
@@ -283,7 +283,7 @@
                                         </div>
                                         <div class="form-group col-lg-3 col-md-12">
                                             <label>Giờ Kết thúc :</label>
-                                            <input type="text" value="{{ old('end_hour') }}" name="end_hour"
+                                            <input type="time" value="{{ old('end_hour') }}" name="end_hour"
                                                 id="nameInput" placeholder="Giờ...">
                                             @if ($errors->any())
                                                 <p style="color:red">

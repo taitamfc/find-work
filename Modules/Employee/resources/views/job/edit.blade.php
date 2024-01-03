@@ -267,7 +267,7 @@
 
 
                                                 <div class="form-group col-lg-6 col-md-12">
-                                                    <label>Tổng thah toán cho tin đăng :</label>
+                                                    <label>Tổng thanh toán cho tin đăng :</label>
                                                     <input id="price" type="number" value="{{ $job->price }}"
                                                         name="price" id="nameInput" placeholder="Giá...">
                                                     @if ($errors->any())
@@ -278,7 +278,7 @@
 
                                                 <div class="form-group col-lg-3 col-md-12">
                                                     <label>Giờ bắt đầu đăng :</label>
-                                                    <input type="text" name="start_hour" value="{{ $job->start_hour }}"
+                                                    <input type="time" name="start_hour" value="{{ $job->start_hour }}"
                                                         id="nameInput" placeholder="Giờ...">
                                                     @if ($errors->any())
                                                     <p style="color:red">
@@ -287,7 +287,7 @@
                                                 </div>
                                                 <div class="form-group col-lg-3 col-md-12">
                                                     <label>Giờ Kết thúc :</label>
-                                                    <input type="text" name="end_hour" value="{{ $job->end_hour }}"
+                                                    <input type="time" name="end_hour" value="{{ $job->end_hour }}"
                                                         id="nameInput" placeholder="Giờ...">
                                                     @if ($errors->any())
                                                     <p style="color:red">
@@ -295,19 +295,7 @@
                                                     @endif
                                                 </div>
 
-                                                <div class="form-group col-lg-12 col-md-12">
-                                                    <label>Status</label>
-                                                    <select name="status" class="chosen-select">
-                                                        <option @selected($job->status == 1) value="1"> Duyệt
-                                                        </option>
-                                                        <option @selected($job->status == 0) value="0"> Chưa
-                                                            Duyệt</option>
-                                                    </select>
-                                                    @if ($errors->any())
-                                                    <p style="color:red">
-                                                        {{ $errors->first('status') }}</p>
-                                                    @endif
-                                                </div>
+                                               
                                             </div>
                                             <!-- Input -->
                                             <div class="form-group col-lg-12 col-md-12 text-right">

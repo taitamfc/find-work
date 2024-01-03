@@ -30,7 +30,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::where('user_id',auth()->user()->id)->get();
+        $jobs = Job::where('user_id', auth()->user()->id)->get();
         $countID = [];
         foreach ($jobs as $job) {
             $count = UserJobApply::where('job_id', $job->id)->count();
@@ -215,7 +215,7 @@ class JobController extends Controller
             $job->start_hour = $request->start_hour;
             $job->end_hour = $request->end_hour;
             $job->user_id = Auth::id();
-            $job->status = $request->status;
+            $job->status = Job::ACTIVE;
 
             $job->save();
 
