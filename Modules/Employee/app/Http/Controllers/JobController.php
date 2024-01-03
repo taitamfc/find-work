@@ -30,7 +30,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::all();
+        $jobs = Job::where('user_id',auth()->user()->id)->get();
         $countID = [];
         foreach ($jobs as $job) {
             $count = UserJobApply::where('job_id', $job->id)->count();
@@ -251,8 +251,12 @@ class JobController extends Controller
     public function showjobcv(Request $request, $id){
         $cv_apllys = UserJobApply::where('job_id', $request->id)->get();
         $count_job = UserJobApply::where('job_id', $request->id)->count();
-        $count_cv_appled = UserJobApply::where('status', 1)->count();
-        $count_not_applly = UserJobApply::where('status', 0)->count();
+        $count_cv_appled =  UserJobApply::where('user_id', auth()->user()->id)
+        ->where('status', 1)->where('job_id', $request->id)
+        ->count();
+        $count_not_applly =  UserJobApply::where('user_id', auth()->user()->id)
+        ->where('status', 0)->where('job_id', $request->id)
+        ->count();
         $param_count = [
             'count_job' => $count_job,
             'count_cv_appled' => $count_cv_appled,

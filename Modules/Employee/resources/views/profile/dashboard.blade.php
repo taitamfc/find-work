@@ -14,7 +14,7 @@
                         <i class="icon flaticon-briefcase"></i>
                     </div>
                     <div class="right">
-                        <h4>1</h4>
+                        <h4>{{$count_jobs}}</h4>
                         <p>Công việc</p>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                         <i class="icon la la-file-invoice"></i>
                     </div>
                     <div class="right">
-                        <h4>1</h4>
+                        <h4>{{$count_CVapply}}</h4>
                         <p>Hồ sơ</p>
                     </div>
                 </div>

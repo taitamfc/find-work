@@ -19,10 +19,14 @@ class JobapplicationController extends Controller
      */
     public function index()
     {
-        $cv_apllys = UserJobApply::all();
-        $count_job = UserJobApply::all()->count();
-        $count_cv_appled = UserJobApply::where('status', 1)->count();
-        $count_not_applly = UserJobApply::where('status', 0)->count();
+        $cv_apllys = UserJobApply::where('user_id', auth()->user()->id)->get();
+        $count_job = Job::where('user_id', auth()->user()->id)->get()->count();
+        $count_cv_appled =  UserJobApply::where('user_id', auth()->user()->id)
+        ->where('status', 1)
+        ->count();
+        $count_not_applly =  UserJobApply::where('user_id', auth()->user()->id)
+        ->where('status', 0)
+        ->count();
         $param_count = [
             'count_job' => $count_job,
             'count_cv_appled' => $count_cv_appled,
@@ -47,11 +51,10 @@ class JobapplicationController extends Controller
         try {
 
             $job = Job::find($request->job_id);
-            $cv_staff = UserCv::find($request->cv_id);
             $cv_apply = new UserJobApply();
             
             $cv_apply->cv_id = $request->cv_id;
-            $cv_apply->user_id = $cv_staff->user_id;
+            $cv_apply->user_id = $job->user_id;
             $cv_apply->job_id  = $job->id;
             $cv_apply->status = UserJobApply::INACTIVE;
             
