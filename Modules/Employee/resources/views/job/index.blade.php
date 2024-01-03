@@ -34,7 +34,7 @@
                                                 <th>Tên công việc</th>
                                                 <th>Số hồ sơ ứng tuyển</th>
                                                 <th>Thời hạn</th>
-                                                <th>Trạng thái công việc</th>
+                                                <th>Trạng thái</th>
                                                 <th>Thao tác</th>
                                             </tr>
                                         </thead>
@@ -53,7 +53,7 @@
                                                                         class="la la-eye"></span></a></li>
                                                         </ul>
                                                     </td>
-                                                    <td>{{ $job->deadline }}</td>
+                                                    <td>{{ date('d-m-Y',strtotime($job->start_day)) }} - {{ date('d-m-Y',strtotime($job->end_day)) }}</td>
                                                     @if ($job->status == 1)
                                                         <td><span class="green-button">Đang tuyển</span></td>
                                                     @elseif ($job->status == 0)
