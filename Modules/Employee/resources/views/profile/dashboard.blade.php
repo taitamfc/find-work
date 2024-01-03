@@ -105,7 +105,7 @@
             </div>
 
 
-            <div class="col-lg-12">
+            {{-- <div class="col-lg-12">
                 <!-- applicants Widget -->
                 <div class="applicants-widget ls-widget">
                     <div class="widget-title">
@@ -313,7 +313,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>

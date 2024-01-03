@@ -52,36 +52,54 @@
                                     <div class="tab active-tab" id="totals">
                                         <div class="row">
                                             @foreach ($cv_apllys as $cv_aplly)
-                                                <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
-                                                    <div class="inner-box">
-                                                        <div class="content">
-                                                            <figure class="image"><img src="images/resource/candidate-1.png"
-                                                                    alt=""></figure>
-                                                            <h4 class="name"><a href="#">{{$cv_aplly->cv->name}}</a></h4>
-                                                            <ul class="candidate-info">
-                                                                <li class="designation">{{$cv_aplly->cv->desired_rank}}</li>
-                                                                <li><span class="icon flaticon-map-locator"></span> {{$cv_aplly->cv->city}}
-                                                                    </li>
-                                                                
-                                                            </ul>
-                                                            <ul class="post-tags">
-                                                                @if ($cv_aplly->status == 1)
-                                                                <div class="green-button">Đã duyệt</div>
-                                                                @else
-                                                                    <div class="danger-button">Chưa duyệt</div>
-                                                                @endif
-                                                            </ul>
-                                                        </div>
-                                                        <div class="option-box">
-                                                            <ul class="option-list">
-                                                                <li><a href="{{route('employee.cv.show',[$cv_aplly->id,$cv_aplly->cv->id])}}" data-text="View Aplication"><span
-                                                                            class="la la-eye"></span></a></li>
-                                                                <li><a href="{{route('employee.cvs.delete',$cv_aplly->id)}}" data-text="Delete Aplication"><span
-                                                                            class="la la-trash"></span></a href=""></li>
-                                                            </ul>
-                                                        </div>
+                                            <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
+                                                <div class="inner-box">
+                                                    <div class="content">
+                                                        <figure class="image"><img
+                                                                src="images/resource/candidate-2.png"
+                                                                alt="">
+                                                        </figure>
+                                                        <h4 class="name"><a
+                                                                href="#">{{ $cv_aplly->cv->name }}</a></h4>
+                                                        <ul class="candidate-info">
+                                                            <li class="designation">
+                                                                {{ $cv_aplly->cv->employment_type }}</li>
+                                                            <li><span class="icon flaticon-map-locator"></span>
+                                                                {{ $cv_aplly->cv->city }}</li>
+                                                            <li><span class="icon flaticon-money"></span>
+                                                                {{ $cv_aplly->cv->desired_salary }}</li>
+                                                        </ul>
+                                                        <ul class="post-tags">
+                                                            <li><a
+                                                                    href="#">{{ $cv_aplly->cv->career_objective }}</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="option-box">
+                                                        <ul class="option-list">
+                                                            <li><a href="{{ route('employee.cv.show', $cv_aplly->id) }}"
+                                                                    data-text="View Aplication"><span
+                                                                        class="la la-eye"></span></a></li>
+
+                                                            @if ($cv_aplly->status == 1)
+                                                                <li><button data-text="Approve Aplication"><span
+                                                                            class="la la-check"></span></button></li>
+                                                            @else
+                                                                <li><button data-text="Reject Aplication"><span
+                                                                            class="la la-times-circle"></span></button>
+                                                                </li>
+                                                            @endif
+                                                            <li>
+                                                                <a href="{{ route('employee.cvs.delete', $cv_aplly->id) }}"
+                                                                    onclick="confirmDelete(event)"
+                                                                    data-text="Delete Application">
+                                                                    <span class="la la-trash"></span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </div>
+                                            </div>
                                             @endforeach
                                             <!-- Candidate block three -->
                                         </div>
