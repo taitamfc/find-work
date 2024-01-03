@@ -30,16 +30,14 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::where('user_id', auth()->user()->id)->get();
+        $jobs = Job::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get();
         $countID = [];
         foreach ($jobs as $job) {
             $count = UserJobApply::where('job_id', $job->id)->count();
             $countID[$job->id] = $count;   
         }
-    
-        $jobs = $jobs->reverse(); // Sắp xếp các phần tử trong $jobs theo thứ tự đảo ngược
-    
-        return view('employee::job.index', compact(['jobs', 'countID']));
+        
+        return view('employee::job.index', compact('jobs', 'countID'));
     }
 
     /**
@@ -47,7 +45,6 @@ class JobController extends Controller
      */
     public function create()
     {
-
         $careers = Career::where('status',Career::ACTIVE)->get();
         $degrees = Level::where('status',Level::ACTIVE)->get();
         $ranks = Rank::where('status',Rank::ACTIVE)->get();
@@ -241,10 +238,11 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
         try {
-            $job =  Job::find($id); // Sử dụng $id thay vì $request->id
+            $job = Job::find($id);
+            dd($job);
             $job->delete();
             $message = "Xóa thành công!";
             return redirect()->route('employee.job.index')->with('success', $message);
@@ -253,6 +251,8 @@ class JobController extends Controller
             return redirect()->route('employee.job.index')->with('error', 'Xóa thất bại!');
         }
     }
+
+    
 
     public function showjobcv(Request $request, $id){
         $cv_apllys = UserJobApply::where('job_id', $request->id)->get();

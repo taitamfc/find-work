@@ -70,7 +70,8 @@
                                                             <div class="content">
 
                                                                 <figure class="image">
-                                                                    <img src="{{$cv_aplly->user->getImage($cv_aplly->cv->user_id)}}">
+                                                                    <img
+                                                                        src="{{ $cv_aplly->user->getImage($cv_aplly->cv->user_id) }}">
                                                                 </figure>
                                                                 <h4 class="name"><a
                                                                         href="#">{{ $cv_aplly->cv->name }}</a></h4>
@@ -102,19 +103,26 @@
                                                                                     class="la la-times-circle"></span></button>
                                                                         </li>
                                                                     @endif
-                                                                    <li>
-                                                                        <a href="{{ route('employee.cvs.delete', $cv_aplly->id) }}"
-                                                                            onclick="confirmDelete(event)"
-                                                                            data-text="Delete Application">
-                                                                            <span class="la la-trash"></span>
-                                                                        </a>
-                                                                    </li>
+                                                                    <form
+                                                                        action="{{ route('employee.cvs.delete', $cv_aplly->id) }}"
+                                                                        method="POST" id="deleteForm"
+                                                                        onsubmit="confirmDelete(event)">
+                                                                        @csrf
+                                                                        @method('DELETE')
+
+                                                                        <li>
+                                                                            <button type="submit" class="delete-button"
+                                                                                data-text="Delete Application">
+                                                                                <span class="la la-trash"></span>
+                                                                            </button>
+                                                                        </li>
+                                                                    </form>
+
                                                                     <script>
                                                                         function confirmDelete(event) {
-                                                                            event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+                                                                            event.preventDefault(); // Ngăn chặn hành vi mặc định của form
                                                                             if (confirm("Bạn có muốn xóa không?")) {
-                                                                                var url = "{{ route('employee.cvs.delete', $cv_aplly->id) }}";
-                                                                                window.location.href = url; // Chuyển hướng đến URL xóa
+                                                                                document.getElementById('deleteForm').submit(); // Gửi form khi xác nhận xóa
                                                                             }
                                                                         }
                                                                     </script>
@@ -138,6 +146,6 @@
             </div>
         </div>
     </section>
-    
+
     <!-- End Dashboard -->
 @endsection
