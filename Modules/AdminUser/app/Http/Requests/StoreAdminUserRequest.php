@@ -13,7 +13,7 @@ class StoreAdminUserRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => 'required',
+            'name' => 'required|max:255',
             'password' => 'required',
             'email' => 'required|email|unique:users,email',
         ];
@@ -21,6 +21,16 @@ class StoreAdminUserRequest extends FormRequest
             $rules['email'] = 'required';
         }
         return $rules;
+    }
+    function messages():array
+    {
+        return $messages = [
+            'name.required' => 'Vui lòng nhập tên',
+            'name.max' => 'Vui lòng nhập tên có độ dài dưới 255 kí tự',
+            'password.required' => 'Vui lòng nhập mật khẩu',
+            'email.required' => 'Vui lòng nhập email',
+            'email.unique' => 'Tên email đã sử dụng',
+        ];
     }
 
     /**

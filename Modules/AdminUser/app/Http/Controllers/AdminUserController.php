@@ -20,7 +20,7 @@ class AdminUserController extends Controller
      */
     public function index(Request $request)
     {
-        $type = $request->type ?? '';
+        $type = $request->type;
         try {
             $items = $this->model::getItems($request);
             $params = [
@@ -28,7 +28,10 @@ class AdminUserController extends Controller
                 'model'         => $this->model,
                 'items'         => $items
             ];
-            return view($this->view_path.'index', $params);
+            if ($type) {
+                return view($this->view_path.'types.'.$type.'.index', $params);
+            }
+            return view($this->view_path.'index',$params);
         } catch (QueryException $e) {
             Log::error('Error in index method: ' . $e->getMessage());
             return redirect()->route( $this->route_prefix.'index' )->with('error',  __('sys.get_items_error'));
@@ -105,9 +108,6 @@ class AdminUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-  /**
- * Show the form for editing the specified resource.
- */
 public function edit($id)
 {
     try {
