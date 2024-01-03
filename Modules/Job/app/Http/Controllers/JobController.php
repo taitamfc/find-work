@@ -60,7 +60,6 @@ class JobController extends Controller
         ];
         return view($this->link_view . 'index', $param);
     }
-
     /**
      * Show the form for creating a new resource.
      */
