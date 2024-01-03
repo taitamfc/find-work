@@ -52,7 +52,7 @@
                                         <h6></h6>
                                         <ul class="aplicantion-status tab-buttons clearfix">
                                             <li class="tab-btn active-btn totals" data-tab="#totals">Tổng số hồ sơ:
-                                                {{ $param_count['count_job'] }}</li>
+                                                {{ $param_count['cv_apllys_count'] }}</li>
                                             <li class="tab-btn approved" data-tab="#approved">Đã duyệt:
                                                 {{ $param_count['count_cv_appled'] }}</li>
                                             <li class="tab-btn rejected" data-tab="#rejected">Chưa duyệt:

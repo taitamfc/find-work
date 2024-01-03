@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Log;
+use Modules\Employee\app\Models\Job;
+
 
 class EmployeeController extends Controller
 {
@@ -36,10 +38,12 @@ class EmployeeController extends Controller
     {
         try {
             $userEmployee = UserEmployee::where('slug',$id)->firstOrFail();
-            $jobs = $userEmployee->jobs;
+            $jobs = Job::where('user_id',$userEmployee->user_id)->paginate(5);
+            $count_jobs = Job::where('user_id',$userEmployee->user_id)->count();
             $user = new User();
             $image = $user->getImage($userEmployee->user_id);
             $params = [
+                'count_jobs' => $count_jobs,
                 'userEmployee' => $userEmployee,
                 'jobs' => $jobs,
                 'image' => $image
