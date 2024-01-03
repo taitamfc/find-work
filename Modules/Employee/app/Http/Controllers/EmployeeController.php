@@ -34,10 +34,11 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
+
         try {
-            $userEmployee = UserEmployee::where('slug',$id)->firstOrFail();
+            $userEmployee = UserEmployee::where('slug',$slug)->firstOrFail();
             $jobs = Job::where('user_id',$userEmployee->user_id)->paginate(5);
             $count_jobs = Job::where('user_id',$userEmployee->user_id)->count();
             $user = new User();
