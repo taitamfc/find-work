@@ -283,7 +283,18 @@
                                                 </ul>
                                             </div>
                                         </div>
-
+                                        <form action="{{route('employee.cv.update',$cv_job_apply->id)}}" method="post" >
+                                            @csrf
+                                            @method('PUT')
+                                            <select class="form-select form-select-lg mb-3" name="status" aria-label=".form-select-lg example">
+                                                <option @selected($cv_job_apply->status == 1) value="1">Duyệt</option>
+                                                <option @selected($cv_job_apply->status == 0) value="0">Không duyệt</option>
+                                              </select>
+                                            <div class="form-group col-lg-12 col-md-12 text-right">
+                                                <button class="theme-btn btn-style-one">Cập Nhật</button>
+                                                <a style="background-color: red !important;" href="{{route('employee.cv.index')}}" class="theme-btn btn-style-one danger">Trở về</a>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

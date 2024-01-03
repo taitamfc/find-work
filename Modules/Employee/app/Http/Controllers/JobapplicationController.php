@@ -73,11 +73,12 @@ class JobapplicationController extends Controller
     public function show($id)
     {
         try {
-
-            $item = UserCv::findOrFail($id);
-            $educations = UserEducation::where('cv_id', $id)->get();
-            $userExperiences = UserExperience::where('cv_id',$id)->get();
-            $userSkills = UserSkill::where('cv_id',$id)->get();
+            // dd(1);
+            $cv_job_apply = UserJobApply::findOrFail($id);
+            $item = UserCv::findOrFail($cv_job_apply->cv->id);
+            $educations = UserEducation::where('cv_id', $cv_job_apply->cv->id)->get();
+            $userExperiences = UserExperience::where('cv_id',$cv_job_apply->cv->id)->get();
+            $userSkills = UserSkill::where('cv_id',$cv_job_apply->cv->id)->get();
             // dd($educations);
             
             $params = [
@@ -85,6 +86,7 @@ class JobapplicationController extends Controller
                 'educations' => $educations,
                 'userExperiences' => $userExperiences,
                 'userSkills' => $userSkills,
+                'cv_job_apply' => $cv_job_apply
             ];
 
             return view('employee::cv-apply.show',$params);
