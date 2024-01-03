@@ -142,21 +142,23 @@
                                         @endif
                                     </div>
 
-                                        <!-- Input -->
-                                        <div class="form-group col-lg-6 col-md-12">
-                                            <label>giới tính</label>
-                                            <select name="gender" class="chosen-select">
-                                                <option @selected($job->gender == '') value="">Không yêu cầu</option>
-                                                <option @selected($job->gender == 1) value="1">Nam</option>
-                                                <option @selected($job->gender == 2) value="2">Nữ</option>
-                                            </select>
-                                            @if ($errors->any())
-                                                <p style="color:red">
-                                                    {{ $errors->first('gender') }}</p>
-                                            @endif
-                                        </div>
-                                    <div class="form-group col-lg-3 col-md-12">
+                                    <!-- Input -->
+                                    <div class="form-group col-lg-6 col-md-12">
                                         <label>Bằng cấp</label>
+                                        <select name="degree_id" class="chosen-select">
+                                            @foreach ($param['degrees'] as $degree)
+                                            <option @selected($job->degree_id == $degree->id) value="{{ $degree->id }}">
+                                                {{ $degree->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->any())
+                                        <p style="color:red">
+                                            {{ $errors->first('degree_id') }}</p>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-12">
+                                        <label>Vị trí</label>
                                         <select name="rank_id" class="chosen-select">
                                             @foreach ($param['ranks'] as $rank)
                                             <option @selected($job->rank_id == $rank->id) value="{{ $rank->id }}">
