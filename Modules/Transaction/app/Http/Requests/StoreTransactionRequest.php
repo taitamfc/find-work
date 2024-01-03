@@ -12,13 +12,15 @@ class StoreTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount' => 'required|numeric',
+            'amount' => 'required|numeric|gt:0',
         ];
     }
     function messages():array
     {
+
         return [
             'amount.required' => 'Vui lòng nhập số tiền',
+            'amount.gt' => 'Số tiền phải lớn hơn 0',
             'amount.numeric' => 'Vui lòng nhập số tiền',
         ];
     }

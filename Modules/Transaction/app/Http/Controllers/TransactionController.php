@@ -57,10 +57,10 @@ class TransactionController extends Controller
             $params = [
                 'route_prefix'  => $this->route_prefix,
             ];
-            return redirect()->route($this->route_prefix.'index')->with('success',  __('sys.get_items_success'));
+            return redirect()->route($this->route_prefix.'index')->with('success',  'Nạp tiền thành công. Vui lòng chờ quản trị viên phê duyệt!');
         } catch (QueryException $e) {
             Log::error('Error in index method: ' . $e->getMessage());
-            return redirect()->back()->with('error',  __('sys.get_items_error'));
+            return redirect()->back()->with('error',  'Nạp tiền thất bại. Vui lòng liên hệ quản trị viên!');
         }
     }
 
