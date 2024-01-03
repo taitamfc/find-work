@@ -20,12 +20,12 @@
                         <h4><a href="#">{{ $userEmployee->name}}</a></h4>
                         <ul class="job-info">
                             <li><span class="icon flaticon-map-locator"></span>{{ $userEmployee->address }}</li>
-                            <li><span class="icon flaticon-briefcase"></span> Accounting / Finance</li>
+                            {{-- <li><span class="icon flaticon-briefcase"></span> Accounting / Finance</li> --}}
                             <li><span class="icon flaticon-telephone-1"></span> {{ $userEmployee->phone }}</li>
                             <li><span class="icon flaticon-mail"></span> {{ $userEmployee->user->email }}</li>
                         </ul>
                         <ul class="job-other-info">
-                            <li class="time">Việc làm mở – 3</li>
+                            <li class="time">Việc làm mở – {{ $count_jobs }}</li>
                         </ul>
                     </div>
 
@@ -42,7 +42,7 @@
         <div class="auto-container">
             <div class="row">
                 <div class="content-column col-lg-8 col-md-12 col-sm-12 order-2">
-                    <div class="job-detail">
+                    <div class="job-detail d-none">
                         <h4>Giới thiệu về công ty</h4>
                         <p>Tập đoàn Moody's, thường được gọi là Moody's, là một công ty kinh doanh và dịch vụ tài chính
                             của Mỹ. Đây là công ty mẹ của Moody's Investor Service (MIS), một cơ quan xếp hạng tín dụng
@@ -91,7 +91,7 @@
                     <!-- Related Jobs -->
                     <div class="related-jobs">
                         <div class="title-box">
-                            <h3>{{ $jobs->count() }} việc làm tại {{ $userEmployee->name }}</h3>
+                            <h3>{{ $count_jobs }} việc làm tại {{ $userEmployee->name }}</h3>
                         </div>
                         @foreach($jobs as $job)
                         @include('job::includes.components.job-item',[
@@ -101,6 +101,11 @@
                             'bookmark' => true,
                         ])
                         @endforeach
+                        <div class="ls-show-more">
+                            <div class="card-footer">
+                                {{ $jobs->appends(request()->query())->links() }}
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -110,31 +115,32 @@
                         <div class="sidebar-widget company-widget">
                             <div class="widget-content">
                                 <ul class="company-info mt-0">
-                                    <li>Ngành công nghiệp chính: <span>Phần mềm</span></li>
+                                    {{-- <li>Ngành công nghiệp chính: <span>Phần mềm</span></li>
                                     <li>Quy mô công ty: <span>501-1,000</span></li>
-                                    <li>Được thành lập vào: <span>2011</span></li>
+                                    <li>Được thành lập vào: <span>2011</span></li> --}}
                                     <li>Điện thoại:: <span>{{ $userEmployee->phone }}</span></li>
                                     <li>Email: <span>{{ $userEmployee->user->email }}</span></li>
+                                    <li>Website: <span>{{ $userEmployee->website }}</span></li>
                                     <li>Vị trí: <span>{{ $userEmployee->address }}</span></li>
-                                    <li>Truyền thông xã hội:
+                                    {{-- <li>Truyền thông xã hội:
                                         <div class="social-links">
                                             <a href="#"><i class="fab fa-facebook-f"></i></a>
                                             <a href="#"><i class="fab fa-twitter"></i></a>
                                             <a href="#"><i class="fab fa-instagram"></i></a>
                                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
                                         </div>
-                                    </li>
+                                    </li> --}}
                                 </ul>
 
                                 <div class="btn-box">
-                                    <a href="{{ $userEmployee->website }}" class="theme-btn btn-style-three"
-                                        target="_blank">{{ $userEmployee->website }}</a>
+                                    <a href="mailto:{{ $userEmployee->user->email }}" class="theme-btn btn-style-three"
+                                        target="_blank">Liên Hệ</a>
                                 </div>
 
                             </div>
                         </div>
 
-                        <div class="sidebar-widget">
+                        <div class="sidebar-widget d-none">
                             <!-- Map Widget -->
                             <h4 class="widget-title">Nơi làm việc</h4>
                             <div class="widget-content">
@@ -655,7 +661,7 @@
                             </div>
                         </div>
 
-                        <div class="sidebar-widget contact-widget">
+                        <div class="sidebar-widget contact-widget d-none">
                             <h4 class="widget-title">Contact Us</h4>
                             <div class="widget-content">
                                 <!-- Comment Form -->
