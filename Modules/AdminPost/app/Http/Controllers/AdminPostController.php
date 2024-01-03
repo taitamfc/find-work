@@ -95,7 +95,6 @@ class AdminPostController extends Controller
         $type = $request->type;
         try {
             $item = $this->model::findItem($id,$type);
-            
             $params = [
                 'route_prefix'  => $this->route_prefix,
                 'model'         => $this->model,
@@ -116,7 +115,6 @@ class AdminPostController extends Controller
      */
     public function update(StoreAdminPostRequest $request, $id): RedirectResponse
     {
-        // dd($request);
         $type = $request->type;
         try {
             $this->model::updateItem($id,$request,);
