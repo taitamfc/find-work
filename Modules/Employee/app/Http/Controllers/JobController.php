@@ -91,7 +91,9 @@ class JobController extends Controller
             $job->start_day = $request->start_day;
             $job->experience = $request->experience;
             $job->wage_id = $request->wage_id;
-            $job->gender = $request->gender;
+            if($request->gender){
+                $job->gender = $request->gender;
+            }
             $job->rank_id = $request->rank_id;
             $job->jobpackage_id = $request->jobpackage_id;
             $job->price = $request->price;
@@ -198,7 +200,9 @@ class JobController extends Controller
             $job->start_day = $request->start_day;
             $job->experience = $request->experience;
             $job->wage_id = $request->wage_id;
-            $job->gender = $request->gender;
+            if($request->gender){
+                $job->gender = $request->gender;
+            }
             $job->rank_id = $request->rank_id;
             $job->jobpackage_id = $request->jobpackage_id;
             $job->price = $request->price;
