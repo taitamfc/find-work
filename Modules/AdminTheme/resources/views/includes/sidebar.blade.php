@@ -20,18 +20,18 @@
                 <img src="https://codervent.com/roksyn/demo/ltr/assets/images/avatars/01.png" alt="">
             </div>
             <div class="user-info">
-                <h5 class="mb-0 user-name">Jhon Maxwell</h5>
-                <p class="mb-0 user-designation">UI Engineer</p>
+                <h5 class="mb-0 user-name">{{ Auth::user()->name }}</h5>
+                <p class="mb-0 user-designation">{{ Auth::user()->type }}</p>
             </div>
         </div>
         <ul class="dropdown-menu dropdown-menu-end">
             <li><a class="dropdown-item" href="javascript:;">
-                <span class="material-symbols-outlined me-2"></span>
-                <span>Profile</span>
-            </a>
+                    <span class="material-symbols-outlined me-2"></span>
+                    <span>Profile</span>
+                </a>
             </li>
             <li>
-                <a class="dropdown-item" href="javascript:;">
+                <a class="dropdown-item" href="{{ route('adminuser.logout') }}">
                     <span class="material-symbols-outlined me-2"></span>
                     <span>Logout</span>
                 </a>

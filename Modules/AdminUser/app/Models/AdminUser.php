@@ -24,13 +24,21 @@ class AdminUser extends Model
     {
         //return AdminUserFactory::new();
     }
-
     public static function getItems($request = null,$limit = 20,$type = ''){
         $query = self::query(true);
         if($request->type){
             $query->where('type',$request->type);
         }else{
             $query->where('type','user');
+        }
+        if($request->name){
+            $query->where('name','LIKE','%'.$request->name.'%');
+        }
+        if($request->email){
+            $query->where('email',$request->email);
+        }
+        if($request->phone){
+            $query->where('phone',$request->phone);
         }
         if($request->status !== NULL){
             $query->where('status',$request->status);
@@ -55,6 +63,7 @@ class AdminUser extends Model
         $item = self::findOrFail($id);
         $data = $request->all();
         $data = $request->except(['_token', '_method']);
+        $data['type'] = $item->type;
         if ($request->hasFile('image')) {
             self::deleteFile($item->image);
             $data['image'] = self::uploadFile($request->file('image'), self::$upload_dir);

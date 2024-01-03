@@ -20,11 +20,15 @@ class AuthController extends Controller
 {
     public function login()
     {
+        if (Auth::user()) {
+            return redirect()->route('home'); 
+        }
         return view('auth::login');
     }
 
     public function postLogin(StoreLoginRequest $request)
     {
+        Auth::logout();
         $dataUser = $request->only('email', 'password');
         if (Auth::attempt($dataUser, $request->remember)) {
             return redirect()->route('home'); 
@@ -35,7 +39,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        return redirect()->route('home');
+        return redirect()->route('auth.login');
     }
     public function register($type = ''){
         if (Auth::check()) {

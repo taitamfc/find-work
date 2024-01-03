@@ -19,6 +19,7 @@ Route::group(['prefix'=>'admin'], function () {
     Route::group(['prefix'=>'adminuser'], function () {
         Route::get('login',[AdminAuthController::class,'login'])->name('login');
         Route::post('postLogin',[AdminAuthController::class,'postLogin'])->name('adminuser.postLogin');
+        Route::get('logout',[AdminAuthController::class,'logout'])->name('adminuser.logout');
 
         Route::get('register',[AdminAuthController::class,'register'])->name('adminuser.register');
         Route::post('postRegister',[AdminAuthController::class,'postRegister'])->name('adminuser.postRegister');
