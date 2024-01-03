@@ -55,22 +55,24 @@
                                             <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
                                                 <div class="inner-box">
                                                     <div class="content">
+
                                                         <figure class="image">
-                                                            <img src="{{$cv_aplly->user->getImage($cv_aplly->cv->user_id)}}">
+                                                            <img
+                                                                src="{{ $cv_aplly->user->getImage($cv_aplly->cv->user_id) }}">
                                                         </figure>
                                                         <h4 class="name"><a
                                                                 href="#">{{ $cv_aplly->cv->name }}</a></h4>
                                                         <ul class="candidate-info">
                                                             <li class="designation">
-                                                                {{ $cv_aplly->cv->employment_type }}</li>
+                                                                {{ $cv_aplly->cv->employment_type ? $cv_aplly->cv->employment_type : '(null)' }}</li>
                                                             <li><span class="icon flaticon-map-locator"></span>
-                                                                {{ $cv_aplly->cv->city }}</li>
+                                                                {{ $cv_aplly->cv->city ? $cv_aplly->cv->city : '(null)' }}</li>
                                                             <li><span class="icon flaticon-money"></span>
-                                                                {{ $cv_aplly->cv->desired_salary }}</li>
+                                                                {{ $cv_aplly->cv->desired_salary ? $cv_aplly->cv->desired_salary : '(null)' }}</li>
                                                         </ul>
                                                         <ul class="post-tags">
                                                             <li><a
-                                                                    href="#">{{ $cv_aplly->cv->career_objective }}</a>
+                                                                    href="#">{{ $cv_aplly->cv->career_objective ? $cv_aplly->cv->career_objective : '(null)' }}</a>
                                                             </li>
                                                         </ul>
                                                     </div>

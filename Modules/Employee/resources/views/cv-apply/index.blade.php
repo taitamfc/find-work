@@ -77,15 +77,15 @@
                                                                         href="#">{{ $cv_aplly->cv->name }}</a></h4>
                                                                 <ul class="candidate-info">
                                                                     <li class="designation">
-                                                                        {{ $cv_aplly->cv->employment_type }}</li>
+                                                                        {{ $cv_aplly->cv->employment_type ? $cv_aplly->cv->employment_type : '(null)' }}</li>
                                                                     <li><span class="icon flaticon-map-locator"></span>
-                                                                        {{ $cv_aplly->cv->city }}</li>
+                                                                        {{ $cv_aplly->cv->city ? $cv_aplly->cv->city : '(null)' }}</li>
                                                                     <li><span class="icon flaticon-money"></span>
-                                                                        {{ $cv_aplly->cv->desired_salary }}</li>
+                                                                        {{ $cv_aplly->cv->desired_salary ? $cv_aplly->cv->desired_salary : '(null)' }}</li>
                                                                 </ul>
                                                                 <ul class="post-tags">
                                                                     <li><a
-                                                                            href="#">{{ $cv_aplly->cv->career_objective }}</a>
+                                                                            href="#">{{ $cv_aplly->cv->career_objective ? $cv_aplly->cv->career_objective : '(null)' }}</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>

@@ -51,7 +51,7 @@
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Ngành Nghề</label>
                                             <select name="career_ids[]" class="chosen-select js-example-basic-multiple"
-                                                multiple="multiple" disabled> 
+                                                multiple="multiple" disabled>
                                                 @foreach ($param['careers'] as $career)
                                                     @php
                                                         $selected = $careerjobs->contains($career->id) ? 'selected' : '';
@@ -90,7 +90,7 @@
                                             @endif
                                         </div>
 
-                                        
+
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Kinh Nghiệm</label>
                                             <select name="experience" class="chosen-select" disabled>
@@ -240,7 +240,8 @@
 
                                                     <div class="form-group col-lg-3 col-md-12">
                                                         <label>Ngày hết hạn</label>
-                                                        <input type="date" name="end_day" value="{{ $job->end_day }}" placeholder="" readonly>
+                                                        <input type="date" name="end_day" value="{{ $job->end_day }}"
+                                                            placeholder="" readonly>
                                                         @if ($errors->any())
                                                             <p style="color:red">
                                                                 {{ $errors->first('end_day') }}</p>
@@ -250,7 +251,8 @@
                                                     <div class="form-group col-lg-6 col-md-12">
                                                         <label>Số ngày :</label>
                                                         <input type="number" value="{{ $job->number_day }}"
-                                                            name="number_day" id="nameInput" placeholder="Số ngày..." readonly>
+                                                            name="number_day" id="nameInput" placeholder="Số ngày..."
+                                                            readonly>
                                                         @if ($errors->any())
                                                             <p style="color:red">
                                                                 {{ $errors->first('number_day') }}</p>
@@ -269,7 +271,8 @@
 
                                                     <div class="form-group col-lg-3 col-md-12">
                                                         <label>Giờ bắt đầu đăng :</label>
-                                                        <input type="text" name="start_hour" value="{{ $job->start_hour }}" id="nameInput"
+                                                        <input type="text" name="start_hour"
+                                                            value="{{ $job->start_hour }}" id="nameInput"
                                                             placeholder="Giờ..." readonly>
                                                         @if ($errors->any())
                                                             <p style="color:red">
@@ -278,13 +281,19 @@
                                                     </div>
                                                     <div class="form-group col-lg-3 col-md-12">
                                                         <label>Giờ Kết thúc :</label>
-                                                        <input type="text" name="end_hour" value="{{ $job->end_hour}}" id="nameInput"
+                                                        <input type="text" name="end_hour"
+                                                            value="{{ $job->end_hour }}" id="nameInput"
                                                             placeholder="Giờ..." readonly>
                                                         @if ($errors->any())
                                                             <p style="color:red">
                                                                 {{ $errors->first('end_hour') }}</p>
                                                         @endif
                                                     </div>
+                                                </div>
+                                                <div class="form-group col-lg-12 col-md-12 text-right">
+                                                    <a style="background-color: red !important;"
+                                                        href="{{ route('employee.job.index') }}"
+                                                        class="theme-btn btn-style-one danger">Trở về</a>
                                                 </div>
                                             </div>
                                         </div>
