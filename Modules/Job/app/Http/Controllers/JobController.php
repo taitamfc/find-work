@@ -13,6 +13,10 @@ use Modules\Staff\app\Models\UserStaff;
 use Modules\Staff\app\Models\UserCv;
 use Modules\Job\app\Models\Job;
 use Modules\Employee\app\Models\UserEmployee;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+
+
 class JobController extends Controller
 {
     /**
@@ -20,26 +24,41 @@ class JobController extends Controller
      */
     protected $model = Job::class;
     protected $link_view = "job::jobs.";
+
+
     public function index(Request $request)
     {
         $query = $this->model::query();
         if ($request->pagination) {
             $paginate = $request->pagination;
-        }else{
-            $paginate = 5  ;
+        } else {
+            $paginate = 5;
         }
         if ($request->has('searchTypeWork')) {
-            $query->where('type_work',$request->searchTypeWork);
+            $query->where('type_work', $request->searchTypeWork);
         }
 
         $query->where('status', 1);
 
-        $items = $query->paginate($paginate);
+        $items = $query->get()->reverse();
+
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = $paginate;
+        $offset = ($currentPage - 1) * $perPage;
+
+        $paginatedItems = new LengthAwarePaginator(
+            $items->slice($offset, $perPage),
+            $items->count(),
+            $perPage,
+            $currentPage,
+            ['path' => LengthAwarePaginator::resolveCurrentPath()]
+        );
+
         $param = [
-            'items' => $items,
+            'items' => $paginatedItems,
             'request' => $request
         ];
-        return view($this->link_view.'index', $param);
+        return view($this->link_view . 'index', $param);
     }
 
     /**

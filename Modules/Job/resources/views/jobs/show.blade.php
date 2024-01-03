@@ -33,7 +33,7 @@
                             <li><span class="icon flaticon-money"></span>{{$job->wage->name ?? ''}} đ</li>
                         </ul>
                         <ul class="job-other-info">
-                            <li class="time">Thời gian làm việc ({{ $job->formWork->name ?? ''}})</li>
+                            <li class="time">Hình thức làm việc ({{ $job->formWork->name ?? ''}})</li>
                             {{-- <li class="privacy">Private</li>
                                 <li class="required">Urgent</li> --}}
                         </ul>

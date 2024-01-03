@@ -36,8 +36,10 @@ class JobController extends Controller
             $count = UserJobApply::where('job_id', $job->id)->count();
             $countID[$job->id] = $count;   
         }
-
-        return view('employee::job.index',compact(['jobs','countID']));
+    
+        $jobs = $jobs->reverse(); // Sắp xếp các phần tử trong $jobs theo thứ tự đảo ngược
+    
+        return view('employee::job.index', compact(['jobs', 'countID']));
     }
 
     /**
@@ -242,7 +244,7 @@ class JobController extends Controller
     public function destroy(Request $request, $id)
     {
         try {
-            $job =  Job::find($request->id);
+            $job =  Job::find($id); // Sử dụng $id thay vì $request->id
             $job->delete();
             $message = "Xóa thành công!";
             return redirect()->route('employee.job.index')->with('success', $message);
