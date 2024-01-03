@@ -1,7 +1,7 @@
 @extends('admintheme::layouts.master')
 @section('content')
 @include('admintheme::includes.globals.breadcrumb',[
-'page_title' => 'Danh sách ứng viên',
+'page_title' => 'Danh sách người dùng',
 'actions' => [
 'add_new' => route($route_prefix.'create',['type'=>request()->type]),
 //'export' => route($route_prefix.'export'),

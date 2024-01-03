@@ -15,6 +15,10 @@
                 @include('adminuser::includes.form-right')
             </div>
         </div>
-    </form>
-    <!--end row-->
+        <div class="col-12 col-lg-4">
+            @include('adminuser::includes.form-right')
+        </div>
+    </div>
+</form>
+<!--end row-->
 @endsection
