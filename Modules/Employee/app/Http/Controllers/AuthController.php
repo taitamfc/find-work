@@ -40,7 +40,6 @@ class AuthController extends Controller
                     'name' => $user->name,
                     'email' => $user->email,
                 ];
-                SendEmail::dispatch($data,'send_mail');
                 return redirect()->route('employee.home'); 
             } else {
                 return redirect()->route('employee.login')->with('error', 'Account or password is incorrect');
