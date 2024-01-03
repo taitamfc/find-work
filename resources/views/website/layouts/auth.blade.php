@@ -29,7 +29,7 @@
                     <!--Nav Outer -->
                     <div class="nav-outer">
                         <div class="logo-box">
-                            <div class="logo"><a href="index.html"><img
+                            <div class="logo"><a href="{{route('home')}}"><img
                                         src="{{ asset('website-assets/images/logo-2.svg')}}" alt="" title=""></a></div>
                         </div>
                     </div>
