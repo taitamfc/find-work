@@ -9,6 +9,14 @@ class UserEmployee extends AdminModel
 {
     use HasFactory;
     protected $table = 'user_employee';
+    public $custom_fields = [
+        'name',
+        'phone',
+        'website',
+        'address',
+        'image',
+        'user_id',
+    ];
     protected $fillable = [
         'name',
         'phone',

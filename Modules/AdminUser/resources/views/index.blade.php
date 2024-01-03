@@ -11,21 +11,17 @@
 <!-- Item actions -->
 <form action="{{ route($route_prefix.'index') }}" method="get">
     <input type="hidden" name="type" value="{{ request()->type }}">
-    <div class="row g-3">
-        <div class="col-auto">
+    <div class="row">
+        <div class="col">
             <input class="form-control" name="name" type="text" placeholder="Tên" value="{{ request()->name }}">
         </div>
-        <div class="col-auto">
+        <div class="col">
             <input class="form-control" name="email" type="text" placeholder="Email" value="{{ request()->email }}">
         </div>
-        <div class="col-auto">
-            <input class="form-control" name="phone" type="text" placeholder="Số điện thoại"
-                value="{{ request()->phone }}">
-        </div>
-        <div class="col-auto">
+        <div class="col">
             <x-admintheme::form-status model="{{ $model }}" status="{{ request()->status }}" showAll="1" />
         </div>
-        <div class="col-auto">
+        <div class="col">
             <div class="d-flex align-items-center gap-2 justify-content-lg-end">
                 <button class="btn btn-light px-4"><i class="bi bi-box-arrow-right me-2"></i>Tìm</button>
             </div>
