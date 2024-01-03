@@ -160,7 +160,7 @@
                                 <div class="company-title">
                                     <div class="company-logo"><img src="images/resource/company-7.png" alt=""></div>
                                     <h5 class="company-name">Thông tin nhà tuyển dụng</h5>
-                                    <a href="{{route('employee.show',$job->user->userEmployee->id)}}"
+                                    <a href="{{route('employee.show',$job->user->userEmployee->slug)}}"
                                         class="profile-link">Xem hồ sơ nhà tuyển dụng</a>
                                 </div>
 
