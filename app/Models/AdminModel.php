@@ -54,6 +54,7 @@ class AdminModel extends Model
         if($request->status !== NULL){
             $query->where('status',$request->status);
         }
+        $query->orderBy('id','DESC');
         $items = $query->paginate($limit);
         return $items;
     }

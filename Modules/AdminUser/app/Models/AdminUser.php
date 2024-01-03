@@ -17,7 +17,8 @@ class AdminUser extends Model
         'name',
         'email',
         'password',
-        'type'
+        'type',
+        'status',
     ];
     
     protected static function newFactory(): AdminUserFactory
@@ -35,6 +36,7 @@ class AdminUser extends Model
         if($request->status !== NULL){
             $query->where('status',$request->status);
         }
+        $query->orderBy('id','DESC');
         $items = $query->paginate($limit);
         return $items;
     }
@@ -53,16 +55,22 @@ class AdminUser extends Model
     }
     public static function updateItem($id,$request,$type = ''){
         $item = self::findOrFail($id);
-        $data = $request->all();
-        $data = $request->except(['_token', '_method']);
+        
+        $userData   = $request->only(['name', 'email','password','type','status']);
+        $userFields = $request->except(['_token', '_method','name', 'email','password','type','status']);
         if ($request->hasFile('image')) {
             self::deleteFile($item->image);
-            $data['image'] = self::uploadFile($request->file('image'), self::$upload_dir);
+            $userData['image'] = self::uploadFile($request->file('image'), self::$upload_dir);
         }
-        if ($data['password']) {
-            $data['password'] = bcrypt($data['password']);
-        } 
-        $item->update($data);
+        if ($userData['password']) {
+            $userData['password'] = bcrypt($userData['password']);
+        }else{
+            unset($userData['password']);
+        }
+        if($item->{$item->type}){
+            $item->{$item->type}()->update($userFields);
+        }
+        $item->update($userData);
     }
     public static function showUserCVs($request,$limit = 20,$type = ''){
         $id = $request->id;
@@ -89,5 +97,9 @@ class AdminUser extends Model
     public function staff(){
         return $this->hasOne(\Modules\Staff\app\Models\UserStaff::class,'user_id');
     }
+    public function employee(){
+        return $this->hasOne(\Modules\Employee\app\Models\UserEmployee::class,'user_id');
+    }
+    
     
 }

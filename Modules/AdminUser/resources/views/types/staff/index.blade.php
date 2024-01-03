@@ -1,7 +1,7 @@
 @extends('admintheme::layouts.master')
 @section('content')
 @include('admintheme::includes.globals.breadcrumb',[
-'page_title' => 'Danh sách người dùng',
+'page_title' => 'Danh sách ứng viên',
 'actions' => [
 'add_new' => route($route_prefix.'create',['type'=>request()->type]),
 //'export' => route($route_prefix.'export'),
@@ -40,6 +40,7 @@
                 <table class="table align-middle">
                     <thead class="table-light">
                         <tr>
+                            <th>Mã</th>
                             <th>Tên</th>
                             <th>Email</th>
                             <th>{{ __('adminpost::table.status') }}</th>
@@ -51,7 +52,10 @@
                         @if( count( $items ) )
                         @foreach( $items as $item )
                         <tr>
-                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->name }}
+                            <p class="mb-0 product-category">{{ $item->staff->phone ?? '' }}</p>
+                            </td>
                             <td>{{ $item->email }}</td>
                             <td>{!! $item->status_fm !!}</td>
                             <td>{{ $item->created_at_fm }}</td>

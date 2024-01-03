@@ -12,7 +12,7 @@
         </div>
         <div class="mb-4">
             <label class="mb-3">Mật khẩu</label>
-            <input type="password" class="form-control" name="password" value="{{ $item->password ?? old('password') }}">
+            <input type="password" class="form-control" name="password" value="">
             <x-admintheme::form-input-error field="password"/>
         </div>
     </div>
