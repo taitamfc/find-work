@@ -24,8 +24,8 @@ span.flaticon-bookmark.active {
             @if($job_other_info)
             <ul class="job-other-info">
                 <li class="time">Thời gian làm việc ({{ $job->formWork->name ?? ''}})</li>
-                <li class="privacy">Private</li>
-                <li class="required">Urgent</li>
+                <!-- <li class="privacy">Private</li>
+                <li class="required">Urgent</li> -->
             </ul>
             @endif
             @if($bookmark)
