@@ -31,11 +31,11 @@
                                     <figure class="image"><img src="{{ asset($item->image_fm)}}" alt=""></figure>
                                     <h4 class="name"><a href="#">{{ $item->cv_file }}</a></h4>
                                     <ul class="candidate-info">
-                                        <!-- <li class="designation">UI Designer</li>
-                                        <li><span class="icon flaticon-map-locator"></span> London, UK</li> -->
+                                        <!-- <li><span class="icon flaticon-map-locator"></span> London, UK</li> -->
                                         <li><span
-                                                class="icon flaticon-clock-3"></span>{{ $item->created_at->format('d/m/Y') }}
-                                        </li>
+                                        class="icon flaticon-clock-3"></span>{{ $item->created_at->format('d/m/Y') }}
+                                    </li>
+                                    <li class="designation">{{ $item->desired_position }}</li>
 
                                     </ul>
                                 </div>
