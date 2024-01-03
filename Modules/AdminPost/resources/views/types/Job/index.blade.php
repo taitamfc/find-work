@@ -11,20 +11,26 @@
 <!-- Item actions -->
 <form action="{{ route($route_prefix.'index') }}" method="get">
     <input type="hidden" name="type" value="{{ request()->type }}">
-    <div class="row g-3">
-        <div class="col-auto flex-grow-1">
-            <div class="position-relative">
-                <input class="form-control" name="name" type="text" placeholder="{{ __('sys.search_name') }}"
-                    value="{{ request()->name }}">
-            </div>
+    <div class="row">
+        <div class="col col-xs-6">
+            <input class="form-control" name="name" type="text" placeholder="Tên công việc"
+                value="{{ request()->name }}">
         </div>
-        <div class="col-auto">
+        <div class="col col-xs-6">
+            <select name="jobpackage_id" class="form-control">
+                <option value="">Gói Tin</option>
+                @foreach( \App\Models\JobPackage::all() as $job_package )
+                <option @selected( request()->jobpackage_id == $job_package->id ) value="{{  $job_package->id }}">{{  $job_package->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col col-xs-6">
             <x-admintheme::form-status model="{{ $model }}" status="{{ request()->status }}" showAll="1" />
         </div>
-        <div class="col-auto">
-            <x-admintheme::form-user type="" user_id="{{ request()->user_id }}" />
+        <div class="col col-xs-6">
+            <x-admintheme::form-user type="employee" user_id="{{ request()->user_id }}" />
         </div>
-        <div class="col-auto">
+        <div class="col col-xs-6">
             <div class="d-flex align-items-center gap-2 justify-content-lg-end">
                 <button class="btn btn-light px-4"><i class="bi bi-box-arrow-right me-2"></i>Search</button>
             </div>
@@ -41,7 +47,7 @@
                         <tr>
                             <th>Mã</th>
                             <th>Tên</th>
-                            <th>Ngành nghề</th>
+                            <th>Loại Tin</th>
                             <th>Bắt đầu</th>
                             <th>Kết thúc</th>
                             <th>Trạng thái</th>
@@ -55,9 +61,9 @@
                             <td>#{{ $item->id }}</td>
                             <td>
                                 {{ $item->name }}
-                                <p class="mb-0 product-category">{{ $item->job_package->name ?? '' }}</p>
+                                <p class="mb-0 product-category">{{ $item->user->name ?? '' }}</p>
                             </td>
-                            <td>{{ implode(',',$item->careers->pluck('name')->toArray() ) ?? '' }}</td>
+                            <td>{{ $item->job_package->name  ?? '' }}</td>
                             <td>{{ $item->start_day }}</td>
                             <td>{{ $item->end_day }}</td>
                             <td>{!! $item->status_fm !!}</td>

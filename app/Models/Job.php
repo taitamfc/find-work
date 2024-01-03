@@ -27,13 +27,13 @@ class Job extends AdminModel
         }
         return "/website-assets/images/favicon.png";
     }
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
     public function job_package()
     {
-        return $this->belongsTo(JobPackage::class);
+        return $this->belongsTo(JobPackage::class,'jobpackage_id','id');
     }
     public function careers()
     {
@@ -54,5 +54,13 @@ class Job extends AdminModel
     public function userEmployee()
     {
         return $this->belongsTo(UserEmployee::class, 'user_id', 'user_id');
+    }
+
+    // Custom methods
+    public static function handleSearch($request,$query){
+        if($request->jobpackage_id){
+            $query->where('jobpackage_id',$request->jobpackage_id);
+        }
+        return $query;
     }
 }

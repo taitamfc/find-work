@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Employee\app\Models\Job;
 
-class Career extends Model
+class Career extends AdminModel
 {
     use HasFactory;
     protected $fillable = [

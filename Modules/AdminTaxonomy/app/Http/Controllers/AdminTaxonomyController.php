@@ -104,7 +104,7 @@ class AdminTaxonomyController extends Controller
     {
         $type = $request->type;
         try {
-            $this->model::updateItem($id,$request,);
+            $this->model::updateItem($id,$request,$type);
             return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.update_item_success'));
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());

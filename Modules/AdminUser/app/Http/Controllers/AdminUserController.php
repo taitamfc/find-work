@@ -106,8 +106,16 @@ class AdminUserController extends Controller
 public function edit($id)
 {
     try {
+        $type = request()->type;
         $item = $this->model::findOrFail($id);
-        return view($this->view_path.'edit', ['item' => $item, 'model' => $this->model]); // Pass the item and model to the view
+        $params = [
+            'item' => $item, 
+            'model' => $this->model
+        ];
+        if ($type) {
+            return view($this->view_path.'types.'.$type.'.edit', $params);
+        }
+        return view($this->view_path.'edit',  $params);
     } catch (ModelNotFoundException $e) {
         Log::error('Item not found: ' . $e->getMessage());
         return redirect()->route($this->route_prefix.'index')->with('error', __('sys.item_not_found'));

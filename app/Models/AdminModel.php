@@ -36,15 +36,20 @@ class AdminModel extends Model
     }
 
     // Methods
+    public static function handleSearch($request,$query){
+        return $query;
+    }
     public static function getItems($request = null,$limit = 20,$table = ''){
         $model = new self;
         $tableName = $model->getTable();
         if($table){
             $modelClass = '\App\Models\\' . $table;
             $query = $modelClass::query(true);
+            $query = $modelClass::handleSearch($request,$query);
         }else{
             $query = self::query(true);
         }
+        
         if($request->type && Schema::hasColumn($tableName, 'type')){
             $query->where('type',$request->type);
         }
