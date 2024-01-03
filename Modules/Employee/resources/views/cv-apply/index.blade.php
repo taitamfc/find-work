@@ -52,7 +52,7 @@
                                         <h6></h6>
                                         <ul class="aplicantion-status tab-buttons clearfix">
                                             <li class="tab-btn active-btn totals" data-tab="#totals">Tổng số hồ sơ:
-                                                {{ $param_count['count_job'] }}</li>
+                                                {{ $param_count['cv_apllys_count'] }}</li>
                                             <li class="tab-btn approved" data-tab="#approved">Đã duyệt:
                                                 {{ $param_count['count_cv_appled'] }}</li>
                                             <li class="tab-btn rejected" data-tab="#rejected">Chưa duyệt:
@@ -69,24 +69,23 @@
                                                         <div class="inner-box">
                                                             <div class="content">
                                                                 <figure class="image"><img
-                                                                        src="images/resource/candidate-1.png"
-                                                                        alt=""></figure>
+                                                                        src="images/resource/candidate-2.png"
+                                                                        alt="">
+                                                                </figure>
                                                                 <h4 class="name"><a
                                                                         href="#">{{ $cv_aplly->cv->name }}</a></h4>
                                                                 <ul class="candidate-info">
                                                                     <li class="designation">
-                                                                        {{ $cv_aplly->cv->desired_rank }}</li>
+                                                                        {{ $cv_aplly->cv->employment_type }}</li>
                                                                     <li><span class="icon flaticon-map-locator"></span>
-                                                                        {{ $cv_aplly->cv->city }}
-                                                                    </li>
-
+                                                                        {{ $cv_aplly->cv->city }}</li>
+                                                                    <li><span class="icon flaticon-money"></span>
+                                                                        {{ $cv_aplly->cv->desired_salary }}</li>
                                                                 </ul>
                                                                 <ul class="post-tags">
-                                                                    @if ($cv_aplly->status == 1)
-                                                                        <div class="green-button">Đã duyệt</div>
-                                                                    @else
-                                                                        <div class="danger-button">Chưa duyệt</div>
-                                                                    @endif
+                                                                    <li><a
+                                                                            href="#">{{ $cv_aplly->cv->career_objective }}</a>
+                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                             <div class="option-box">
@@ -94,6 +93,15 @@
                                                                     <li><a href="{{ route('employee.cv.show', $cv_aplly->id) }}"
                                                                             data-text="View Aplication"><span
                                                                                 class="la la-eye"></span></a></li>
+                                                                    @if ($cv_aplly->status == 1)
+                                                                        <li><button data-text="Approve Aplication"><span
+                                                                                    class="la la-check"></span></button>
+                                                                        </li>
+                                                                    @else
+                                                                        <li><button data-text="Reject Aplication"><span
+                                                                                    class="la la-times-circle"></span></button>
+                                                                        </li>
+                                                                    @endif
                                                                     <li>
                                                                         <a href="{{ route('employee.cvs.delete', $cv_aplly->id) }}"
                                                                             onclick="confirmDelete(event)"
@@ -101,16 +109,6 @@
                                                                             <span class="la la-trash"></span>
                                                                         </a>
                                                                     </li>
-
-                                                                    <script>
-                                                                        function confirmDelete(event) {
-                                                                            event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
-                                                                            if (confirm("Bạn có muốn xóa không?")) {
-                                                                                var url = "{{ route('employee.cvs.delete', $cv_aplly->id) }}";
-                                                                                window.location.href = url; // Chuyển hướng đến URL xóa
-                                                                            }
-                                                                        }
-                                                                    </script>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -131,5 +129,14 @@
             </div>
         </div>
     </section>
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+            if (confirm("Bạn có muốn xóa không?")) {
+                var url = "{{ route('employee.cvs.delete', $cv_aplly->id) }}";
+                window.location.href = url; // Chuyển hướng đến URL xóa
+            }
+        }
+    </script>
     <!-- End Dashboard -->
 @endsection

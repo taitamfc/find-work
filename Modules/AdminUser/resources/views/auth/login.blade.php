@@ -1,9 +1,9 @@
 @extends('admintheme::layouts.auth')
 @section('content')
     <img src="assets/images/logo-icon.png" class="mb-4" width="45" alt="">
-    <h4 class="fw-bold">Get Started Now</h4>
-    <p class="mb-0">Enter your credentials to login your account</p>
-    <div class="row g-3 my-4">
+    <h4 class="fw-bold text-center">Đăng Nhập Hệ Thống</h4>
+    <!-- <p class="mb-0">Enter your credentials to login your account</p> -->
+    <!-- <div class="row g-3 my-4">
         <div class="col-12 col-lg-6">
             <button class="btn btn-primary py-2 font-text1 fw-bold d-flex align-items-center justify-content-center w-100">Log In
                 with Google</button>
@@ -12,13 +12,13 @@
             <button class="btn btn-primary py-2 font-text1 fw-bold d-flex align-items-center justify-content-center w-100">Log In
                 with Facebook</button>
         </div>
-    </div>
+    </div> -->
 
-    <div class="separator section-padding">
+    <!-- <div class="separator section-padding">
         <div class="line"></div>
         <p class="mb-0 fw-bold">OR</p>
         <div class="line"></div>
-    </div>
+    </div> -->
 
     <div class="form-body mt-4">
         <form class="row g-3" action="{{ route('adminuser.postLogin') }}" method="POST">
@@ -51,12 +51,12 @@
                     <button type="submit" class="btn btn-primary">Login</button>
                 </div>
             </div>
-            <div class="col-12">
+            <!-- <div class="col-12">
                 <div class="text-start">
                     <p class="mb-0">Don't have an account yet? <a href="{{ route('adminuser.register') }}">Sign up here</a>
                     </p>
                 </div>
-            </div>
+            </div> -->
         </form>
     </div>
 @endsection

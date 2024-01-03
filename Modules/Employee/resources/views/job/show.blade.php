@@ -124,6 +124,7 @@
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>giới tính</label>
                                             <select name="gender" class="chosen-select" disabled>
+                                                <option @selected($job->gender == '') value="">Không yêu cầu</option>
                                                 <option @selected($job->gender == 1) value="1">Nam</option>
                                                 <option @selected($job->gender == 2) value="2">Nữ</option>
                                             </select>

@@ -36,10 +36,7 @@ class AdminUser extends Model
             $query->where('name','LIKE','%'.$request->name.'%');
         }
         if($request->email){
-            $query->where('email',$request->email);
-        }
-        if($request->phone){
-            $query->where('phone',$request->phone);
+            $query->where('email','LIKE','%'.$request->email.'%');
         }
         if($request->status !== NULL){
             $query->where('status',$request->status);
@@ -64,7 +61,6 @@ class AdminUser extends Model
     public static function updateItem($id,$request,$type = ''){
         $item = self::findOrFail($id);
         $userData   = $request->only(['name', 'email','password','type','status']);
-        $userFields = $request->except(['_token', '_method','name', 'email','password','type','status']);
         if ($request->hasFile('image')) {
             self::deleteFile($item->image);
             $userData['image'] = self::uploadFile($request->file('image'), self::$upload_dir);
@@ -75,7 +71,8 @@ class AdminUser extends Model
             unset($userData['password']);
         }
         if($item->{$item->type}){
-            $item->{$item->type}()->update($userFields);
+            $custom_fields = $request->only($item->{$item->type}->custom_fields);
+            $item->{$item->type}()->update($custom_fields);
         }
         $item->update($userData);
     }
@@ -102,10 +99,10 @@ class AdminUser extends Model
 
     // Custom relation
     public function staff(){
-        return $this->hasOne(\Modules\Staff\app\Models\UserStaff::class,'user_id');
+        return $this->hasOne(\App\Models\UserStaff::class,'user_id');
     }
     public function employee(){
-        return $this->hasOne(\Modules\Employee\app\Models\UserEmployee::class,'user_id');
+        return $this->hasOne(\App\Models\UserEmployee::class,'user_id');
     }
     
     

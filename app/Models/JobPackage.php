@@ -21,8 +21,8 @@ class JobPackage extends AdminModel
         'price'
     ];
 
-    public function job()
+    public function jobs()
     {
-        return $this->hasOne(Job::class);
+        return $this->belongsToMany(Job::class);
     }
 }

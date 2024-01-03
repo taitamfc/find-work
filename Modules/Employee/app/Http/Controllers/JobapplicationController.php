@@ -19,6 +19,7 @@ class JobapplicationController extends Controller
      */
     public function index()
     {
+        $cv_apllys_count = UserJobApply::where('user_id', auth()->user()->id)->count();
         $cv_apllys = UserJobApply::where('user_id', auth()->user()->id)->get();
         $count_job = Job::where('user_id', auth()->user()->id)->get()->count();
         $count_cv_appled =  UserJobApply::where('user_id', auth()->user()->id)
@@ -28,7 +29,7 @@ class JobapplicationController extends Controller
         ->where('status', 0)
         ->count();
         $param_count = [
-            'count_job' => $count_job,
+            'cv_apllys_count' => $cv_apllys_count,
             'count_cv_appled' => $count_cv_appled,
             'count_not_applly' => $count_not_applly
         ];

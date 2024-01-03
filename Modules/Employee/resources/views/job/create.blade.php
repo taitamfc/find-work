@@ -122,6 +122,7 @@
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>giới tính</label>
                                             <select name="gender" class="chosen-select">
+                                                <option value="">Không yêu cầu</option>
                                                 <option value="1">Nam</option>
                                                 <option value="2">Nữ</option>
                                             </select>
