@@ -341,6 +341,18 @@
                 numberDayInput.value = dayDiff;
             }
 
+            // validate
+
+            var startDate = new Date(document.querySelector('input[name="start_day"]').value);
+            var endDate = new Date(document.querySelector('input[name="end_day"]').value);
+
+            if (endDate < startDate) {
+                // Nếu ngày hết hạn nhỏ hơn ngày bắt đầu, hiển thị thông báo lỗi
+                alert("Ngày hết hạn phải lớn hơn hoặc bằng ngày bắt đầu");
+                // Xóa giá trị ngày hết hạn
+                document.querySelector('input[name="end_day"]').value = "";
+            }
+
             handle_price_package();
         }
 
