@@ -68,9 +68,9 @@
                                                     <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
                                                         <div class="inner-box">
                                                             <div class="content">
-                                                                <figure class="image"><img
-                                                                        src="images/resource/candidate-2.png"
-                                                                        alt="">
+
+                                                                <figure class="image">
+                                                                    <img src="{{$cv_aplly->user->getImage($cv_aplly->cv->user_id)}}">
                                                                 </figure>
                                                                 <h4 class="name"><a
                                                                         href="#">{{ $cv_aplly->cv->name }}</a></h4>
