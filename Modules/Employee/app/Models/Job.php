@@ -64,7 +64,7 @@ class Job extends Model
 
     public function jobPackage()
     {
-        return $this->belongsTo(JobPackage::class);
+        return $this->belongsToMany(JobPackage::class);
     }
 
     public function level()
