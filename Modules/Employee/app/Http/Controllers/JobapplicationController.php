@@ -11,6 +11,9 @@ use Modules\Employee\app\Models\Job;
 use Modules\Staff\app\Models\UserCv;
 use Illuminate\Support\Facades\Log;
 use Modules\Employee\app\Http\Requests\CvapplyRequest;
+use Modules\Staff\app\Models\UserExperience;
+use Modules\Staff\app\Models\UserEducation;
+use Modules\Staff\app\Models\UserSkill;
 
 class JobapplicationController extends Controller
 {
@@ -76,14 +79,22 @@ class JobapplicationController extends Controller
     public function show($id)
     {
         try {
-            $item = UserJobApply::findOrFail($id);
-            // if($item->user_id != auth()->id()){
-            //     return redirect()->route( 'employee.cv.index' );
-            // }
+
+            $item = UserCv::findOrFail($id);
+            $educations = UserEducation::where('cv_id', $id)->get();
+            $userExperiences = UserExperience::where('cv_id',$id)->get();
+            $userSkills = UserSkill::where('cv_id',$id)->get();
+            // dd($educations);
+            
             $params = [
-                'item' => $item
+                'item' => $item,
+                'educations' => $educations,
+                'userExperiences' => $userExperiences,
+                'userSkills' => $userSkills,
             ];
-            return view('employee::cv-apply.show',$params);
+
+
+            return view('employee::cv-apply.show1',$params);
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
             return redirect()->route( 'employee.cv.index' )->with('error', __('sys.item_not_found'));
