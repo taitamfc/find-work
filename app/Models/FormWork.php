@@ -21,6 +21,6 @@ class FormWork extends AdminModel
 
     public function job()
     {
-        return $this->hasOne(Job::class);
+        return $this->belongsToMany(Job::class);
     }
 }
