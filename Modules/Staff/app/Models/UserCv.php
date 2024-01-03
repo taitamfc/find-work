@@ -123,4 +123,7 @@ class UserCv extends Model
     {
         return $this->belongsTo(Career::class);
     }
+    function getTimeCreateAttribute(){
+        return $this->created_at->diffForHumans();
+    }
 }

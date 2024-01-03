@@ -14,29 +14,23 @@
                     <label class="form-check-sign" for="chk-0">Đang làm ở đây?</label>
                 </div>
             </div>
-            <div class="form-group col-12">
+            <div class="form-group input-company-update col-12">
                 <label>Công ty</label>
                 <input type="text" name="company" value="{{ old('company', $experience->company ?? '') }}">
-                @if ($errors->any())
-                <p style="color:red">{{ $errors->first('company') }}</p>
-                @endif
+                <div class="input-error text-danger">@error('company') {{ $message }} @enderror</div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="form-group">
+                <div class="form-group input-start_date-update">
                     <label class="required">Thời gian bắt đầu</label>
                     <input class="form-control" name="start_date" type="date" value="{{ $experience->start_date }}">
-                    @if ($errors->any())
-                    <p style="color:red">{{ $errors->first('start_date') }}</p>
-                    @endif
+                    <div class="input-error text-danger">@error('start_date') {{ $message }} @enderror</div>
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="form-group">
+                <div class="form-group input-end_date-update">
                     <label for="WorkTo">Thời gian kết thúc</label>
                     <input class="form-control" name="end_date" type="date" value="{{ $experience->end_date }}">
-                    @if ($errors->any())
-                    <p style="color:red">{{ $errors->first('end_date') }}</p>
-                    @endif
+                    <div class="input-error text-danger">@error('end_date') {{ $message }} @enderror</div>
                 </div>
             </div>
         </div>
@@ -56,21 +50,17 @@
             </div>
 
 
-            <div class="form-group col-12">
+            <div class="form-group input-position-update col-12">
                 <label>Vị trí chức danh</label>
                 <input type="text" name="position" value="{{ $experience->position }}">
-                @if ($errors->any())
-                <p style="color:red">{{ $errors->first('position') }}</p>
-                @endif
+                <div class="input-error text-danger">@error('company') {{ $message }} @enderror</div>
             </div>
         </div>
 
-        <div class="form-group col-12">
+        <div class="form-group input-job_description-update col-12">
             <label>Mô tả công việc</label>
             <input type="text" name="job_description" value="{{ $experience->job_description }}">
-            @if ($errors->any())
-            <p style="color:red">{{ $errors->first('job_description') }}</p>
-            @endif
+            <div class="input-error text-danger">@error('job_description') {{ $message }} @enderror</div>
         </div>
 
     </div>

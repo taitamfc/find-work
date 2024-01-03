@@ -136,6 +136,18 @@
 
 
             <div class="col-lg-12">
+                @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+                @endif
+
+                @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+                @endif
+
                 <!-- applicants Widget -->
                 <div class="applicants-widget ls-widget">
                     <div class="widget-title">
@@ -147,11 +159,11 @@
                             <!-- Job Block -->
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 @include('job::includes.components.job-item',[
-                                    'job' => $userJobApplie->job,
-                                    'job_info' => true,
-                                    'job_other_info' => true,
-                                    'bookmark' => true,
-                                    ])
+                                'job' => $userJobApplie->job,
+                                'job_info' => true,
+                                'job_other_info' => true,
+                                'bookmark' => true,
+                                ])
                             </div>
                             @endforeach
                         </div>

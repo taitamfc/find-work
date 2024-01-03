@@ -132,14 +132,14 @@ class UserCvController extends Controller
         switch ($tab) {
             case 'personal-information':
                 $saved = UserCv::savePersonalInformation($request,$cv_id);
-                return redirect()->route('staff.cv.edit', ['cv' => $id, 'tab' => 'job-information']) ->with('success', 'Personal information updated successfully.');;
+                return redirect()->route('staff.cv.edit', ['cv' => $id, 'tab' => 'job-information']) ->with('success', 'Thông tin cá nhân được cập nhật thành công.');;
                 break;
             case 'job-information':
                 $saved = UserCv::saveJobInformation($request,$cv_id);
-                return redirect()->route('staff.cv.edit', ['cv' => $id, 'tab' => 'experience'])  ->with('success', 'Job information updated successfully.');;
+                return redirect()->route('staff.cv.edit', ['cv' => $id, 'tab' => 'experience'])  ->with('success', 'Thông tin công việc được cập nhật thành công.');;
                 break;
             default:
-                return redirect()->route('staff.cv.edit',$id,['id'=>$id,'tab'=>'personal-information'])  ->with('success', 'Profile updated successfully.');;
+                return redirect()->route('staff.cv.edit',$id,['id'=>$id,'tab'=>'personal-information'])  ->with('success', 'Hồ sơ được cập nhật thành công.');;
                 break;
         }
     }
@@ -154,7 +154,7 @@ public function destroy($id)
     $userCv = UserCv::findOrFail($id);
     $userCv->delete();
 
-    return redirect()->route('staff.cv.index')->with('success', 'Profile deleted successfully');
+    return redirect()->route('staff.cv.index')->with('success', 'Đã xóa hồ sơ thành công');
 }
 
 }

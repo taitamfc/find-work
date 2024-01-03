@@ -41,7 +41,7 @@
             </div>
 
             <div class="form-group">
-                <label>Năm sinh </label>
+                <label>Ngày sinh </label>
                 <input type="date" name="birthdate" value="{{ old('birthdate') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('birthdate') }}</p>

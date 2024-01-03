@@ -54,6 +54,7 @@
     <script src="{{ asset('website-assets/js/wow.js')}}"></script>
     <script src="{{ asset('website-assets/js/script.js')}}"></script>
     <script src="{{ asset('website-assets/js/repeater.js')}}"></script>
+    <script src="{{ asset('admin-assets/js/app.js')}}"></script>
     <!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
     <script src="{{ asset('website-assets/js/chart.min.js')}}"></script>
     <script>

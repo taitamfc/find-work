@@ -4,8 +4,8 @@
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
-            <h3>Profile!</h3>
-            <div class="text">Ready to jump back in?</div>
+            <h3>Thêm mới Hồ Sơ</h3>
+            <!-- <div class="text">Ready to jump back in?</div> -->
         </div>
         @include('staff::cv.includes.card')
 
@@ -21,28 +21,35 @@
 @endsection
 @section('footer')
 <script>
-    jQuery(document).ready(function () {
-        jQuery('.experience-update').click(function (e) {
-            e.preventDefault(); 
-            var formData = jQuery(this).closest('.experience-form').serialize(); 
-            var url = jQuery(this).closest('.experience-form').attr('action');
-            jQuery.ajax({
-                url: url, 
-                type: 'POST', 
-                data: formData,
-                success: function (data) {
-                    if (data.success) {
-                    let formData = data.data;
-                    formUpdate.find('.input-numerical-update input').val(formData.numerical);
+jQuery(document).ready(function() {
+    jQuery('.experience-update').click(function(e) {
+        var experience_form = jQuery(this).closest('.experience-form')
+        e.preventDefault();
+        var formData = jQuery(this).closest('.experience-form').serialize();
+        var url = jQuery(this).closest('.experience-form').attr('action');
+        jQuery.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            success: function(res) {
+                if (res.has_errors) {
+                    for (const key in res.errors) {
+                        jQuery('.input-' + key + '-update').find('.input-error').html(res
+                            .errors[key][0]);
+                    }
                 }
-                    console.log(data);
-                },
-                error: function (error) {
-            
-                    console.log(error);
+                if (res.success) {
+                    // showAlertSuccess(res.message);
+                    location.reload();
                 }
-            });
+                console.log(res);
+            },
+            error: function(error) {
+
+                console.log(error);
+            }
         });
     });
+});
 </script>
 @endsection

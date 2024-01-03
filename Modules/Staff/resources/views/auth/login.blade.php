@@ -3,7 +3,7 @@
 <!-- Login Form -->
 <div class="login-form default-form">
     <div class="form-inner">
-        <h3>Login to Superio</h3>
+        <h3>Đăng nhập</h3>
         <!--Login Form-->
         <form action="{{ route('staff.postLogin')}}" method="POST">
             @if (session('error'))
@@ -18,15 +18,15 @@
             @endif
             @csrf
             <div class="form-group">
-                <label>email</label>
+                <label>Email</label>
                 <input type="email" name="email" placeholder="email" value="{{ old('email') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('email') }}</p>
                 @endif
             </div>
             <div class="form-group">
-                <label>Password</label>
-                <input id="password-field" type="password" name="password" value="" placeholder="Password" value="{{ old('Password') }}">
+                <label>Mật khẩu</label>
+                <input id="password-field" type="password" name="password" value="" placeholder="Mật khẩu" value="{{ old('Password') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('password') }}</p>
                 @endif
@@ -35,28 +35,26 @@
                 <div class="field-outer">
                     <div class="input-group checkboxes square">
                         <input type="checkbox" name="remember-me" value="" id="remember">
-                        <label for="remember" class="remember"><span class="custom-checkbox"></span> Remember me</label>
+                        <label for="remember" class="remember"><span class="custom-checkbox"></span>Ghi nhớ</label>
                     </div>
-                    <a href="{{ route('auth.forgot')}}" class="pwd">Forgot password?</a>
+                    <a href="{{ route('auth.forgot')}}" class="pwd">Quên mật khẩu?</a>
                 </div>
             </div>
 
             <div class="form-group">
-                <button class="theme-btn btn-style-one" type="submit" name="log-in">Log In</button>
+                <button class="theme-btn btn-style-one" type="submit" name="log-in">Đăng nhập</button>
             </div>
         </form>
 
         <div class="bottom-box">
-            <div class="text">Don't have an account? <a href="{{ route('staff.register')}}">Signup</a></div>
-            <div class="divider"><span>or</span></div>
+            <div class="text">Bạn chưa có tài khoản? <a href="{{ route('staff.register')}}">Đăng ký</a></div>
+            <div class="divider"><span>hoặc</span></div>
             <div class="btn-box row">
                 <div class="col-lg-6 col-md-12">
-                    <a href="#" class="theme-btn social-btn-two facebook-btn"><i class="fab fa-facebook-f"></i> Log In
-                        via Facebook</a>
+                    <a href="#" class="theme-btn social-btn-two facebook-btn"><i class="fab fa-facebook-f"></i>Đăng nhập qua Facebook</a>
                 </div>
                 <div class="col-lg-6 col-md-12">
-                    <a href="#" class="theme-btn social-btn-two google-btn"><i class="fab fa-google"></i> Log In via
-                        Gmail</a>
+                    <a href="#" class="theme-btn social-btn-two google-btn"><i class="fab fa-google"></i>Đăng nhập qua Gmail</a>
                 </div>
             </div>
         </div>

@@ -9,7 +9,7 @@
                 @endif
             </div>
             <div class="form-group col-12">
-                <label for="skill_level">Skill Level</label>
+                <label for="skill_level">Cấp độ kỹ năng</label>
                 <input type="range" id="skill_level" name="skill_level" class="form-control-range range-value"
                     data-val="true" data-val-range="The field Skill Level must be between 1 and 100."
                     data-val-range-max="100" data-val-range-min="1" data-val-required="Vui lòng chọn mức độ kỹ năng"
@@ -43,14 +43,14 @@
     <div class="col-12 col-md-6">
         <div class="row">
             <div class="form-group col-12">
-                <label>Special Skill</label>
+                <label>Kĩ năng đặc biệt</label>
                 <input type="text" name="special_skill" value="{{ old('special_skill', $skill->special_skill ?? '') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('special_skill') }}</p>
                 @endif
             </div>
             <div class="form-group col-12">
-                <label>Description</label>
+                <label>Mô tả</label>
                 <textarea name="description" rows="3">{{ old('description', $skill->description ?? '') }}</textarea>
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('description') }}</p>

@@ -95,7 +95,7 @@ class UserJobFavoriteController extends Controller
             $userFavorite->delete();
     
             return redirect()->route('staff.favorite')
-                ->with('success', 'Xóa ứng tuyển thành công!');
+                ->with('success', 'Xóa thành công!');
         } catch (\Exception $exception) {
             Log::error("Error deleting UserJobFavorite with ID: $id. Error message: " . $exception->getMessage());
     

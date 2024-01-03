@@ -6,7 +6,7 @@
     <div class="dashboard-outer">
         <div class="upper-title-box">
             <h3>Thông tin cá nhân!</h3>
-            <div class="text">Ready to jump back in?</div>
+            <!-- <div class="text">Ready to jump back in?</div> -->
         </div>
         <div class="row">
             <div class="col-lg-12">
@@ -14,7 +14,7 @@
                 <div class="ls-widget">
                     <div class="tabs-box">
                         <div class="widget-title">
-                            <h4>My Profile</h4>
+                            <h4>Thông tin của tôi</h4>
                         </div>
 
                         <div class="widget-content">
@@ -64,7 +64,7 @@
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>Phone</label>
+                                        <label>Số điện thoại</label>
                                         <input type="text" name="phone" value="{{ $item->phone }}">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('phone') }}</p>
@@ -73,7 +73,7 @@
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Năm Sinh</label>
-                                        <input type="text" name="birthdate" value="{{ $item->birthdate }}">
+                                        <input type="date" name="birthdate" value="{{ $item->birthdate }}">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('birthdate') }}</p>
                                         @endif

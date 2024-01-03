@@ -81,7 +81,7 @@ class UserJobAppliedController extends Controller
             $userJobApplied->delete();
     
             return redirect()->route('staff.job-applied')
-                ->with('success', 'Xóa ứng tuyển thành công!');
+                ->with('success', 'Xóa thành công!');
         } catch (\Exception $exception) {
             // Xử lý nếu có lỗi khi xóa
             return redirect()->route('staff.job-applied')
