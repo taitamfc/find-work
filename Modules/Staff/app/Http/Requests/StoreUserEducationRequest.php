@@ -20,7 +20,17 @@ class StoreUserEducationRequest extends FormRequest
             'major' => 'required',
         ];
     }
-
+    public function messages(): array
+    {
+        return [
+            'numerical.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'school_course.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'start_date.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'graduation_date.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'major.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'language.required' => 'Vui lòng nhập đầy đủ thông tin.',
+        ];
+    }
     /**
      * Determine if the user is authorized to make this request.
      */

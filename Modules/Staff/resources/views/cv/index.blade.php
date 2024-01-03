@@ -4,7 +4,7 @@
     <div class="dashboard-outer">
         <div class="upper-title-box">
             <h3>Danh sách hồ sơ</h3>
-            <div class="text">Ready to jump back in?</div>
+            <!-- <div class="text">Ready to jump back in?</div> -->
         </div>
         <div class="row">
             <div class="col-lg-12">
@@ -32,9 +32,12 @@
                                     <figure class="image"><img src="{{ asset($item->image_fm)}}" alt=""></figure>
                                     <h4 class="name"><a href="#">{{ $item->cv_file }}</a></h4>
                                     <ul class="candidate-info">
-                                        <li class="designation">UI Designer</li>
-                                        <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                                        <li><span class="icon flaticon-money"></span> $99 / hour</li>
+                                        <!-- <li class="designation">UI Designer</li>
+                                        <li><span class="icon flaticon-map-locator"></span> London, UK</li> -->
+                                        <li><span
+                                                class="icon flaticon-clock-3"></span>{{ $item->created_at->format('d/m/Y') }}
+                                        </li>
+
                                     </ul>
                                 </div>
                                 <div class="option-box">
@@ -64,7 +67,7 @@
                                             @method('DELETE')
                                             <button type="submit"
                                                 onclick="return confirm('Bạn có chắc chắn muốn xóa ứng tuyển này không?')"
-                                                data-text="Delete Application"><span
+                                                data-text="Delete Application" class="btn btn-outline-danger btn-lg" style="margin-left: 20px;"><span
                                                     class="la la-trash"></span></button>
                                         </form>
                                     </li>

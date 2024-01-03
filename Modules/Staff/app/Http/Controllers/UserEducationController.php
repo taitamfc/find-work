@@ -31,7 +31,7 @@ class UserEducationController extends Controller
         ]);
         // dd($education);
         $education->save();
-        return redirect()->back()->with('success', 'Education information has been added successfully.');
+        return redirect()->back()->with('success', 'Thêm mới thành công');
     }
 
     /**
@@ -48,7 +48,7 @@ class UserEducationController extends Controller
             'language' => $request->language,
             'major' => $request->major,
         ]);
-        return redirect()->back()->with('success', 'Education information has been updated successfully.');
+        return redirect()->back()->with('success', 'Cập nhật thành công');
     }
 
     /**
@@ -59,7 +59,6 @@ class UserEducationController extends Controller
         $education = UserEducation::findOrFail($id);
         // dd($education);
         $education->delete();
-        return redirect()->back()->with('success', 'Education information has been deleted successfully.');
+        return redirect()->back()->with('success', 'Xóa thành công');
     }
-
 }

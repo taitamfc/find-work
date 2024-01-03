@@ -15,12 +15,12 @@ class UpdateUserExperienceRequest extends FormRequest
         return [
             'numerical' => 'required',
             // 'is_current' => 'required|boolean',
-            // 'company' => 'required|string|max:255',
-            // 'start_date' => 'required',
-            // 'end_date' => 'required',
-            // 'rank_id' => 'required',
-            // 'position' => 'required|string|max:255',
-            // 'job_description' => 'required|string',
+            'company' => 'required|string|max:255',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'rank_id' => 'required',
+            'position' => 'required|string|max:255',
+            'job_description' => 'required|string',
         ];
     }
 

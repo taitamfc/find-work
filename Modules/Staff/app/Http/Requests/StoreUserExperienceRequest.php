@@ -28,6 +28,12 @@ class StoreUserExperienceRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'numerical.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'company.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'start_date.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'end_date.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'position.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'job_description.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'end_date.after' => 'Thời gian kết thúc phải sau thời gian bắt đầu.',
         ];
     }

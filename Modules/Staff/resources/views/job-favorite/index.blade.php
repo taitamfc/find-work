@@ -8,6 +8,11 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
                 <!-- Ls widget -->
                 <div class="ls-widget">
                     <div class="tabs-box">
@@ -54,7 +59,7 @@
                                                             @method('DELETE')
                                                             <button type="submit"
                                                                 onclick="return confirm('Bạn có chắc chắn muốn xóa ứng tuyển này không?')"
-                                                                data-text="Delete Application"><span
+                                                                data-text="Delete Application" class="btn btn-outline-danger btn-lg"><span
                                                                     class="la la-trash"></span></button>
                                                         </form>
                                                         </li>

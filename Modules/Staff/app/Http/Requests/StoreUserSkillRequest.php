@@ -21,6 +21,14 @@ class StoreUserSkillRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
+    public function messages(): array
+    {
+        return [
+            'numerical.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'special_skill.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'description.required' => 'Vui lòng nhập đầy đủ thông tin.',
+        ];
+    }
     public function authorize(): bool
     {
         return true;

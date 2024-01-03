@@ -44,7 +44,7 @@ class UserSkillController extends Controller
             'description' => $request->description,
         ]);
         $skill->save();
-        return redirect()->route('staff.cv.index')->with('success', 'Skill information has been added successfully.');
+        return redirect()->route('staff.cv.index')->with('success', 'Thêm mới hồ sơ thành công');
     }
 
     /**
@@ -75,7 +75,7 @@ class UserSkillController extends Controller
             'skill_level' => $request->skill_level,
             'description' => $request->description,
         ]);
-        return redirect()->back()->with('success', 'Skill information has been updated successfully.');
+        return redirect()->back()->with('success', 'Thông tin kỹ năng đã được cập nhật thành công.');
     }
 
     /**
@@ -85,6 +85,6 @@ class UserSkillController extends Controller
     {
         $skill = UserSkill::findOrFail($id);
         $skill->delete();
-        return redirect()->back()->with('success', 'Công việc đã được xóa thành công.');
+        return redirect()->back()->with('success', 'Xóa thành công.');
     }
 }

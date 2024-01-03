@@ -54,17 +54,13 @@ class UserExperienceController extends Controller
                 'is_current' => $request->is_current ? $request->is_current : 0,
             ]); 
 
-            return response([
-                'success' => true,
-                'message' => ('Added successfully')
-            ]); 
-        } catch (QueryException $e) {
-            Log::error($e->getMessage()); // Ghi log lỗi
-            return response([
-                'success' => false,
-                'message' => ('Failed to add')
-            ]);
-        }
+            return response()->json(['success' => true, 'message' => 'Cập nhật thành công!']);
+    } catch (QueryException $e) {
+        Log::error($e->getMessage()); // Ghi log lỗi
+
+        // Trả về thông báo thất bại dưới dạng JSON
+        return response()->json(['success' => false, 'message' => 'Cập nhật thất bại']);
+    }
     }
 
     public function destroy($id)
