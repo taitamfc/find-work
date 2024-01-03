@@ -28,7 +28,6 @@
                         <div class="candidate-block-three">
                             <div class="inner-box">
                                 <div class="content">
-
                                     <figure class="image"><img src="{{ asset($item->image_fm)}}" alt=""></figure>
                                     <h4 class="name"><a href="#">{{ $item->cv_file }}</a></h4>
                                     <ul class="candidate-info">

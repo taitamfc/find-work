@@ -108,7 +108,7 @@ class UserCv extends Model
             return asset($this->image);
             // return $this->image ? asset($this->image): asset('images/profile.jpg');
         } else {
-            return asset('website-assets/images/default.jpg');
+            return asset('website-assets/images/favicon.png');
         }
     }
     public function wage()
