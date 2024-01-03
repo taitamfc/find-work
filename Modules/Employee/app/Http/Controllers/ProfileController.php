@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Modules\Employee\app\Http\Requests\UpdateProfileEmployeeRequest;
 use Illuminate\Support\Str;
+use Modules\Employee\app\Models\Job;
+use Modules\Staff\app\Models\UserCv;
+use Modules\Employee\app\Models\UserJobApply;
 
 
 class ProfileController extends Controller
@@ -23,7 +26,9 @@ class ProfileController extends Controller
 
      public function dashboard()
      {
-         return view('employee::profile.dashboard');
+        $count_jobs = Job::where('user_id',auth()->user()->id)->count();
+        $count_CVapply = UserJobApply::where('user_id',auth()->user()->id)->count();
+         return view('employee::profile.dashboard',compact(['count_jobs','count_CVapply']));
      }
     
     public function index()
