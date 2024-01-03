@@ -19,4 +19,8 @@ class FormWork extends Model
     {
         return $this->hasMany(Job::class, 'formwork_id');
     }
+    public function userCvs()
+    {
+        return $this->hasMany(UserCv::class,'form_work_id');
+    }
 }

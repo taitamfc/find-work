@@ -7,8 +7,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Employee\app\Models\UserJobApply;
+use Modules\Employee\app\Models\Job;
 use Modules\Staff\app\Models\UserCv;
 use Illuminate\Support\Facades\Log;
+use Modules\Employee\app\Http\Requests\CvapplyRequest;
 
 class JobapplicationController extends Controller
 {
@@ -17,10 +19,14 @@ class JobapplicationController extends Controller
      */
     public function index()
     {
-        $cv_apllys = UserJobApply::all();
-        $count_job = UserJobApply::all()->count();
-        $count_cv_appled = UserJobApply::where('status', 1)->count();
-        $count_not_applly = UserJobApply::where('status', 0)->count();
+        $cv_apllys = UserJobApply::where('user_id', auth()->user()->id)->get();
+        $count_job = Job::where('user_id', auth()->user()->id)->get()->count();
+        $count_cv_appled =  UserJobApply::where('user_id', auth()->user()->id)
+        ->where('status', 1)
+        ->count();
+        $count_not_applly =  UserJobApply::where('user_id', auth()->user()->id)
+        ->where('status', 0)
+        ->count();
         $param_count = [
             'count_job' => $count_job,
             'count_cv_appled' => $count_cv_appled,
@@ -40,24 +46,26 @@ class JobapplicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(CvapplyRequest $request)
     {
         try {
+
+            $job = Job::find($request->job_id);
             $cv_apply = new UserJobApply();
-
+            
             $cv_apply->cv_id = $request->cv_id;
-            $cv_apply->user_id = $request->user_id;
-            $cv_apply->job_id  = $request->job_id;
-            $cv_apply->status = 0;
-
+            $cv_apply->user_id = $job->user_id;
+            $cv_apply->job_id  = $job->id;
+            $cv_apply->status = UserJobApply::INACTIVE;
+            
             $cv_apply->save();
 
             $message = "Nộp hồ sơ thành công!";
-            return redirect()->route('website.jobs.show',$request->job_id)->with('success', $message);
+            return redirect()->route('website.jobs.show',$job->slug)->with('success', $message);
         } catch (\Exception $e) {
             // DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
             Log::error('Lỗi xảy ra: ' . $e->getMessage());
-            return redirect()->route('website.jobs.show',$request->job_id)->with('error', 'Nộp hồ sơ thất bại!');
+            return redirect()->route('website.jobs.show',$request->$job->slug)->with('error', 'Nộp hồ sơ thất bại!');
         }
     }
 
@@ -68,9 +76,9 @@ class JobapplicationController extends Controller
     {
         try {
             $item = UserJobApply::findOrFail($id);
-            if($item->user_id != auth()->id()){
-                return redirect()->route( 'employee.cv.index' );
-            }
+            // if($item->user_id != auth()->id()){
+            //     return redirect()->route( 'employee.cv.index' );
+            // }
             $params = [
                 'item' => $item
             ];

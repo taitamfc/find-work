@@ -18,7 +18,7 @@
             @endif
             @csrf
             <div class="form-group">
-                <label>email</label>
+                <label>Email</label>
                 <input type="email" name="email" placeholder="email" value="{{ old('email') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('email') }}</p>

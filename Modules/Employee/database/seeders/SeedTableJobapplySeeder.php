@@ -15,29 +15,10 @@ class SeedTableJobapplySeeder extends Seeder
     {
         UserJobApply::create([
             'cv_id' => 1,
-            'user_id' => 1,
+            'user_id' => 2,
             'job_id' => 1,
             'status' => 0,
         ]);
 
-        UserJobApply::create([
-            'cv_id' => 1,
-            'user_id' => 2,
-            'job_id' => 1,
-            'status' => 1,
-        ]);
-
-        UserJobApply::create([
-            'cv_id' => 2,
-            'user_id' => 2,
-            'job_id' => 2,
-            'status' => 1,
-        ]);
-        UserJobApply::create([
-            'cv_id' => 2,
-            'user_id' => 2,
-            'job_id' => 3,
-            'status' => 1,
-        ]);
     }
 }

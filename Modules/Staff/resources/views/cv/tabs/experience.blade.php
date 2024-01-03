@@ -7,17 +7,24 @@ $showFormAdd = true;
 <div class="row">
     <div class="col-md-12">
         <div class="card">
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
+            
             <div class="card-header">
                 <div class="card-title">
                     <button class="btn btn-primary" type="button" data-toggle="collapse"
-                        data-target="#collapseExperience-" aria-expanded="{{ $showFormAdd ? 'true' : 'false' }}"
-                        aria-controls="collapseExperience-">
-                        <i class="fas fa-plus"></i>
-                        Thêm mới công việc
-                    </button>
-                </div>
+                    data-target="#collapseExperience-" aria-expanded="{{ $showFormAdd ? 'true' : 'false' }}"
+                    aria-controls="collapseExperience-">
+                    <i class="fas fa-plus"></i>
+                    Thêm mới Kinh nghiệm
+                </button>
             </div>
-            <div class="card-body collapse {{ $showFormAdd ? 'show' : '' }}" id="collapseExperience-">
+        </div>
+        <div class="card-body collapse {{ $showFormAdd ? 'show' : '' }}" id="collapseExperience-">
+              
                 <form class="default-form" method="POST"
                     action="{{ route('staff.experience.store',['cv_id'=>$cv_id]) }}">
                     @csrf
@@ -34,7 +41,7 @@ $showFormAdd = true;
                 </h5>
             </div>
             <div class="card-body">
-                <form class="default-form" method="POST"
+                <form class="default-form experience-form" method="POST"
                     action="{{ route('staff.experience.update',$userExperience->id) }}">
                     @csrf
                     @method('PUT')

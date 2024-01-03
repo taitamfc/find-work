@@ -19,4 +19,5 @@ class Wage extends Model
     {
         return $this->hasMany(Job::class, 'wage_id');
     }
+   
 }

@@ -19,16 +19,17 @@ class UserCv extends Model
         'email',
         'phone',
         'birthdate',
+        'experience_years',
         'gender',
         'city',
         'address',
         'outstanding_achievements',
         'desired_position',
         'rank_id',
-        'employment_type',
-        'industry',
+        'form_work_id',
+        'career_id',
         'desired_location',
-        'desired_salary',
+        'wage_id',
         'career_objective',
     ];
     public static function savePersonalInformation($request,$cv_id = 0){
@@ -45,6 +46,7 @@ class UserCv extends Model
         $item->phone = $request->phone;
         $item->birthdate = $request->birthdate;
         $item->gender = $request->gender;
+        $item->experience_years = $request->experience_years;
         $item->city = $request->city;
         $item->address = $request->address;
         $item->outstanding_achievements = $request->outstanding_achievements;
@@ -61,10 +63,11 @@ class UserCv extends Model
         $item->cv_file = $request->cv_file;
         $item->desired_position = $request->desired_position;
         $item->rank_id = $request->rank_id;
-        $item->employment_type = $request->employment_type;
-        $item->industry = $request->industry;
+        $item->form_work_id = $request->form_work_id;
+        $item->experience_years = $request->experience_years;
+        $item->career_id = $request->career_id;
         $item->desired_location = $request->desired_location;
-        $item->desired_salary = $request->desired_salary;
+        $item->wage_id = $request->wage_id;
         $item->career_objective = $request->career_objective;
         $item->save();
         return $item;
@@ -107,5 +110,17 @@ class UserCv extends Model
         } else {
             return asset('website-assets/images/default.jpg');
         }
+    }
+    public function wage()
+    {
+        return $this->belongsTo(Wage::class);
+    }
+    public function formWork()
+    {
+        return $this->belongsTo(FormWork::class);
+    }
+    public function career()
+    {
+        return $this->belongsTo(Career::class);
     }
 }

@@ -13,7 +13,7 @@ class StoreUserEducationRequest extends FormRequest
     {
         return [
             'numerical' => 'required',
-            'education_level' => 'required',
+            'rank_id' => 'required',
             'school_course' => 'required',
             'graduation_date' => 'required',
             'language' => 'required',

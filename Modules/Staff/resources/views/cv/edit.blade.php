@@ -19,3 +19,30 @@
 </section>
 <!-- End Dashboard -->
 @endsection
+@section('footer')
+<script>
+    jQuery(document).ready(function () {
+        jQuery('.experience-update').click(function (e) {
+            e.preventDefault(); 
+            var formData = jQuery(this).closest('.experience-form').serialize(); 
+            var url = jQuery(this).closest('.experience-form').attr('action');
+            jQuery.ajax({
+                url: url, 
+                type: 'POST', 
+                data: formData,
+                success: function (data) {
+                    if (data.success) {
+                    let formData = data.data;
+                    formUpdate.find('.input-numerical-update input').val(formData.numerical);
+                }
+                    console.log(data);
+                },
+                error: function (error) {
+            
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
+@endsection

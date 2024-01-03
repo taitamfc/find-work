@@ -87,14 +87,14 @@ class AuthController extends Controller
                 $slug = "{$maybe_slug}-{$next}";
                 $next++;
             }
-
+            // dd($slug);
             $user->userEmployee()->create([
                 'name' => $request->cp_name,
                 'website' => $request->website,
                 'phone' => $request->phone,
+                'slug' => $slug,
                 'address' => $request->address,
-                'image' => $imageName,
-                'slug' => $slug
+                'image' => $imageName
             ]);
             $message = "Đăng ký thành công!";
             DB::commit(); // Hoàn thành giao dịch

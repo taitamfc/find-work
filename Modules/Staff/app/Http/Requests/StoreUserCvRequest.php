@@ -29,10 +29,10 @@ class StoreUserCvRequest extends FormRequest
                 'cv_file' => 'required',
                 'desired_position' => 'required',
                 'rank_id' => 'required',
-                'employment_type' => 'required',
-                'industry' => 'required',
+                'form_work_id' => 'required',
+                'career_id' => 'required',
                 'desired_location' => 'required',
-                'desired_salary' => 'required|numeric',
+                'wage_id' => 'required|numeric',
                 'career_objective' => 'required',
             ];
         }

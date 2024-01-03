@@ -22,7 +22,7 @@ class StoreRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:255',
             'phone' => 'required',
             'birthdate' => 'required',
             'email' => 'required|unique:users|email',
@@ -36,11 +36,13 @@ class StoreRegisterRequest extends FormRequest
     {
         return  [
             'name.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'name.max' => 'Tên không được vượt quá 255 ký tự!',
             'phone.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'year_of_birth.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'email.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'password.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'repeatpassword.required' => 'Vui lòng nhập đầy đủ thông tin!',     
+            'accept_pp.accepted' => 'Vui lòng chấp nhận các điều khoản!',
             ];
     }
 }

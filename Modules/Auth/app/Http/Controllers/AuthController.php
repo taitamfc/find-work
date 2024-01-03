@@ -51,6 +51,7 @@ class AuthController extends Controller
     public function postRegister(StoreRegisterRequest $request)
 {
     try {
+        
         // Create a new user in the users table
         $user = User::create([
             'name' => $request->name,

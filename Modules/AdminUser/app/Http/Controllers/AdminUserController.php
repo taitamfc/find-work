@@ -108,22 +108,23 @@ class AdminUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
-    {
-        $item = $this->model::findItem($id);
-        $params = [
-            'route_prefix'  => $this->route_prefix,
-            'model'         => $this->model,
-            'item'         => $item
-        ];
-        return view($this->view_path.'edit',$params);
+public function edit($id)
+{
+    try {
+        $item = $this->model::findOrFail($id);
+        return view($this->view_path.'edit', ['item' => $item, 'model' => $this->model]); // Pass the item and model to the view
+    } catch (ModelNotFoundException $e) {
+        Log::error('Item not found: ' . $e->getMessage());
+        return redirect()->route($this->route_prefix.'index')->with('error', __('sys.item_not_found'));
     }
+}
 
     /**
      * Update the specified resource in storage.
      */
     public function update(StoreAdminUserRequest $request, $id): RedirectResponse
     {
+        dd($request->all());
         $type = $request->type;
         try {
             $this->model::updateItem($id,$request,$type);

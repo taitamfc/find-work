@@ -20,6 +20,7 @@ use Modules\Employee\app\Models\UserJobApply;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Modules\Employee\app\Models\CareerJob;
+use Illuminate\Support\Str;
 
 
 class JobController extends Controller
@@ -29,7 +30,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::all();
+        $jobs = Job::where('user_id',auth()->user()->id)->get();
         $countID = [];
         foreach ($jobs as $job) {
             $count = UserJobApply::where('job_id', $job->id)->count();
@@ -69,10 +70,22 @@ class JobController extends Controller
     {
         DB::beginTransaction();
         try {
+
+            // xử lý slug
+            $slug = $maybe_slug = Str::slug($request->name);
+            $next = 2;
+            while (Job::where('slug', $slug)->first()) {
+                $slug = "{$maybe_slug}-{$next}";
+                $next++;
+            }
+
+
+
+            // lưu jobs
+
             $job = new Job();
             $job->name = $request->name;
-            $job->slug = $request->slug;
-            // $job->career = implode(',', $request->input('career'));
+            $job->slug = $slug;
             $job->formwork_id = $request->formwork_id;
             $job->deadline = $request->deadline;
             $job->start_day = $request->start_day;
@@ -91,7 +104,7 @@ class JobController extends Controller
             $job->start_hour = $request->start_hour;
             $job->end_hour = $request->end_hour;
             $job->user_id = Auth::id();
-            $job->status = Job::INACTIVE;
+            $job->status = Job::ACTIVE;
             $job->save();
 
 
@@ -129,7 +142,8 @@ class JobController extends Controller
             'wages' => $wages,
             'job_packages' => $job_packages
         ];
-        return view('employee::job.show',compact(['job','param']));
+        $careerjobs = $job->careers()->pluck('career_id');
+        return view('employee::job.show',compact(['job','param','careerjobs']));
     }
 
     /**
@@ -163,10 +177,22 @@ class JobController extends Controller
     {
         DB::beginTransaction();
         try {
+
+
+            // xử lý slug
+            $slug = $maybe_slug = Str::slug($request->name);
+            $next = 2;
+            while (Job::where('slug', $slug)->first()) {
+                $slug = "{$maybe_slug}-{$next}";
+                $next++;
+            }
+
+            // lưu jobs
+
+
             $job = Job::findOrFail($request->id);
             $job->name = $request->name;
-            $job->slug = $request->slug;
-            // $job->career = implode(',', $request->input('career'));
+            $job->slug = $slug;
             $job->formwork_id = $request->formwork_id;
             $job->deadline = $request->deadline;
             $job->start_day = $request->start_day;
@@ -225,8 +251,12 @@ class JobController extends Controller
     public function showjobcv(Request $request, $id){
         $cv_apllys = UserJobApply::where('job_id', $request->id)->get();
         $count_job = UserJobApply::where('job_id', $request->id)->count();
-        $count_cv_appled = UserJobApply::where('status', 1)->count();
-        $count_not_applly = UserJobApply::where('status', 0)->count();
+        $count_cv_appled =  UserJobApply::where('user_id', auth()->user()->id)
+        ->where('status', 1)->where('job_id', $request->id)
+        ->count();
+        $count_not_applly =  UserJobApply::where('user_id', auth()->user()->id)
+        ->where('status', 0)->where('job_id', $request->id)
+        ->count();
         $param_count = [
             'count_job' => $count_job,
             'count_cv_appled' => $count_cv_appled,

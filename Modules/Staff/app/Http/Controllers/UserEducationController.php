@@ -23,7 +23,7 @@ class UserEducationController extends Controller
             'user_id' => $user->id,
             'cv_id' => $request->cv_id,
             'numerical' => $request->numerical,
-            'education_level' => $request->education_level,
+            'rank_id' => $request->rank_id,
             'school_course' => $request->school_course,
             'graduation_date' => $request->graduation_date,
             'language' => $request->language,
@@ -42,7 +42,7 @@ class UserEducationController extends Controller
         $education = UserEducation::findOrFail($id);
         $education->update([
             'numerical' => $request->numerical,
-            'education_level' => $request->education_level,
+            'rank_id' => $request->rank_id,
             'school_course' => $request->school_course,
             'graduation_date' => $request->graduation_date,
             'language' => $request->language,

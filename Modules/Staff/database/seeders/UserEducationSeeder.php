@@ -18,7 +18,7 @@ class UserEducationSeeder extends Seeder
                 'user_id' => 2,
                 'cv_id' => 1,
                 'numerical' => 1,
-                'education_level' => 'Bachelor',
+                'rank_id' => 1,
                 'school_course' => 'Computer Science',
                 'graduation_date' => '2022-06-01',
                 'language' => 'English',

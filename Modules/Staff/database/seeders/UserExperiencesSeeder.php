@@ -20,7 +20,7 @@ class UserExperiencesSeeder extends Seeder
                 'numerical' => 1,
                 'position' => 'Software Developer',
                 'company' => 'ABC Corporation',
-                'level' => 'Senior',
+                'rank_id' => 1,
                 'start_date' => '2022-01-01',
                 'end_date' => '2023-01-01',
                 'job_description' => 'Responsible for developing web applications.',

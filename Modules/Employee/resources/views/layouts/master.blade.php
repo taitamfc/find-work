@@ -12,7 +12,7 @@
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    
+    @yield('header')
 
 </head>
 
@@ -50,6 +50,7 @@
     <script src="{{ asset('website-assets/js/owl.js')}}"></script>
     <script src="{{ asset('website-assets/js/wow.js')}}"></script>
     <script src="{{ asset('website-assets/js/script.js')}}"></script>
+    @yield('footer')
 
     <!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
     <script src="{{ asset('website-assets/js/chart.min.js')}}"></script>

@@ -6,6 +6,7 @@
     <title>@yield('title')</title>
     <!-- Stylesheets -->
     <link href="{{ asset('website-assets/css/bootstrap.css')}}" rel="stylesheet">
+
     <link href="{{ asset('website-assets/css/style.css')}}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('website-assets/images/favicon.png')}}" type="image/x-icon">
     <link rel="icon" href="{{ asset('website-assets/images/favicon.png')}}" type="image/x-icon">
