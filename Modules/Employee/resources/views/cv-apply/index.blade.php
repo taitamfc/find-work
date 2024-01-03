@@ -109,6 +109,15 @@
                                                                             <span class="la la-trash"></span>
                                                                         </a>
                                                                     </li>
+                                                                    <script>
+                                                                        function confirmDelete(event) {
+                                                                            event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+                                                                            if (confirm("Bạn có muốn xóa không?")) {
+                                                                                var url = "{{ route('employee.cvs.delete', $cv_aplly->id) }}";
+                                                                                window.location.href = url; // Chuyển hướng đến URL xóa
+                                                                            }
+                                                                        }
+                                                                    </script>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -129,14 +138,6 @@
             </div>
         </div>
     </section>
-    <script>
-        function confirmDelete(event) {
-            event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
-            if (confirm("Bạn có muốn xóa không?")) {
-                var url = "{{ route('employee.cvs.delete', $cv_aplly->id) }}";
-                window.location.href = url; // Chuyển hướng đến URL xóa
-            }
-        }
-    </script>
+    
     <!-- End Dashboard -->
 @endsection
