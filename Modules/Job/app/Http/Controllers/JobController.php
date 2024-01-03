@@ -31,6 +31,7 @@ class JobController extends Controller
         if ($request->has('searchTypeWork')) {
             $query->where('type_work',$request->searchTypeWork);
         }
+        $query->where('status', 1);
         $items = $query->paginate($paginate);
         $param = [
             'items' => $items,
