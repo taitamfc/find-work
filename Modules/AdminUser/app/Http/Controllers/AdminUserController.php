@@ -20,22 +20,17 @@ class AdminUserController extends Controller
      */
     public function index(Request $request)
     {
-        $type = $request->type;
-        try {
-            $items = $this->model::getItems($request);
-            $params = [
-                'route_prefix'  => $this->route_prefix,
-                'model'         => $this->model,
-                'items'         => $items
-            ];
-            if ($type) {
-                return view($this->view_path.'types.'.$type.'.index', $params);
-            }
-            return view($this->view_path.'index',$params);
-        } catch (QueryException $e) {
-            Log::error('Error in index method: ' . $e->getMessage());
-            return redirect()->route( $this->route_prefix.'index' )->with('error',  __('sys.get_items_error'));
+        $type = $request->type ?? '';
+        $items = $this->model::getItems($request);
+        $params = [
+            'route_prefix'  => $this->route_prefix,
+            'model'         => $this->model,
+            'items'         => $items
+        ];
+        if ($type) {
+            return view($this->view_path.'types.'.$type.'.index', $params);
         }
+        return view($this->view_path.'index', $params);
     }
 
     /**
@@ -124,7 +119,6 @@ public function edit($id)
      */
     public function update(StoreAdminUserRequest $request, $id): RedirectResponse
     {
-        dd($request->all());
         $type = $request->type;
         try {
             $this->model::updateItem($id,$request,$type);
@@ -143,15 +137,19 @@ public function edit($id)
      */
     public function destroy($id)
     {
+        $type = request()->type ?? '';
         try {
+            $item = $this->model::findOrFail($id);
+            $type = $item->type;
             $this->model::deleteItem($id);
-            return redirect()->route($this->route_prefix.'index')->with('success', __('sys.destroy_item_success'));
+
+            return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.destroy_item_success'));
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
-            return redirect()->route( $this->route_prefix.'index' )->with('error', __('sys.item_not_found'));
+            return redirect()->route( $this->route_prefix.'index',['type'=>$type])->with('error', __('sys.item_not_found'));
         } catch (QueryException $e) {
             Log::error('Error in destroy method: ' . $e->getMessage());
-            return redirect()->route( $this->route_prefix.'index' )->with('error', __('sys.destroy_item_error'));
+            return redirect()->route( $this->route_prefix.'index',['type'=>$type])->with('error', __('sys.destroy_item_error'));
         }
     }
     

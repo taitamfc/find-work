@@ -39,18 +39,12 @@
                 <table class="table align-middle">
                     <thead class="table-light">
                         <tr>
-                            <th>
-                                <input class="form-check-input" type="checkbox">
-                            </th>
-                            <th>{{ __('adminpost::table.name') }}</th>
-                            <th>{{ __('adminpost::table.start_day') }}</th>
-                            <th>{{ __('adminpost::table.end_day') }}</th>
-                            <th>{{ __('adminpost::table.start_hour') }}</th>
-                            <th>{{ __('adminpost::table.end_hour') }}</th>
-                            <th>{{ __('adminpost::table.number_day') }}</th>
-                            <th>{{ __('adminpost::table.job_package') }}</th>
-                            <th>{{ __('adminpost::table.status') }}</th>
-                            <th>{{ __('adminpost::table.created_at') }}</th>
+                            <th>Mã</th>
+                            <th>Tên</th>
+                            <th>Ngành nghề</th>
+                            <th>Bắt đầu</th>
+                            <th>Kết thúc</th>
+                            <th>Trạng thái</th>
                             <th>{{ __('adminpost::table.action') }}</th>
                         </tr>
                     </thead>
@@ -58,28 +52,15 @@
                         @if( count( $items ) )
                         @foreach( $items as $item )
                         <tr>
+                            <td>#{{ $item->id }}</td>
                             <td>
-                                <input class="form-check-input" type="checkbox">
+                                {{ $item->name }}
+                                <p class="mb-0 product-category">{{ $item->job_package->name ?? '' }}</p>
                             </td>
-                            <td>
-                                <div class="d-flex align-items-center gap-3">
-                                    <div class="product-box">
-                                        <img src="{{ $item->image_fm }}" alt="">
-                                    </div>
-                                    <div class="product-info">
-                                        <a href="javascript:;" class="product-title">{{ $item->name }}</a>
-                                        <p class="mb-0 product-category">{{ $item->user_name }}</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ implode(',',$item->careers->pluck('name')->toArray() ) ?? '' }}</td>
+                            <td>{{ $item->start_day }}</td>
+                            <td>{{ $item->end_day }}</td>
                             <td>{!! $item->status_fm !!}</td>
-                            <td>{{ $item->created_at_fm }}</td>
                             <td>
                                 <div class="dropdown">
                                     <button class="btn btn-sm btn-light border dropdown-toggle dropdown-toggle-nocaret"

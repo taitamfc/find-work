@@ -6,7 +6,7 @@
     <form action="{{ route('adminuser.update',$item->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <input type="hidden" name="type" value="{{ request()->type }}">
+        <input type="hidden" name="type" value="{{ request()->type ?? $item->type }}">
         <div class="row">
             <div class="col-12 col-lg-8">
                 @include('adminuser::includes.form-left')

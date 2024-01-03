@@ -63,7 +63,7 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="{{ route($route_prefix.'edit',$item->id) }}">
+                                            <a class="dropdown-item" href="{{ route($route_prefix.'edit',['adminuser' => $item->id, 'type'=>request()->type]) }}">
                                                 {{ __('sys.edit') }}
                                             </a>
                                         </li>
