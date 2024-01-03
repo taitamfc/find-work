@@ -26,7 +26,7 @@ class JobController extends Controller
         if ($request->pagination) {
             $paginate = $request->pagination;
         }else{
-            $paginate = 20  ;
+            $paginate = 5  ;
         }
         if ($request->has('searchTypeWork')) {
             $query->where('type_work',$request->searchTypeWork);
