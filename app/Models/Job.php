@@ -39,6 +39,10 @@ class Job extends AdminModel
     {
         return $this->belongsToMany(Career::class, 'career_job','job_id','career_id');
     }
+    public function career()
+    {
+        return $this->belongsTo(Career::class, 'career_id');
+    }
     public function wage()
     {
         return $this->belongsTo(Wage::class, 'wage_id');
@@ -55,7 +59,9 @@ class Job extends AdminModel
     {
         return $this->belongsTo(UserEmployee::class, 'user_id', 'user_id');
     }
-
+    function getTimeCreateAttribute(){
+        return $this->created_at->diffForHumans();
+    }
     // Custom methods
     public static function handleSearch($request,$query){
         if($request->jobpackage_id){
