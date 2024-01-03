@@ -39,13 +39,7 @@ class JobapplicationController extends Controller
         return view('employee::cv-apply.index',compact('cv_apllys','param_count'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('employee::create');
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -102,13 +96,7 @@ class JobapplicationController extends Controller
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('employee::edit');
-    }
+    
 
     /**
      * Update the specified resource in storage.

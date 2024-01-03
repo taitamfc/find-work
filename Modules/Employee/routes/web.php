@@ -39,7 +39,7 @@ Route::group([
 	Route::get('/job/edit/{id}', [JobController::class,'edit'])->name('job.edit');
 	Route::get('/job/show/{id}', [JobController::class,'show'])->name('job.show');
 	Route::post('/job/update/{id}', [JobController::class,'update'])->name('job.update');
-	Route::get('/job/delete/{id}', [JobController::class,'destroy'])->name('job.delete');
+	Route::delete('/job/delete/{id}', [JobController::class,'destroy'])->name('job.delete');
 	Route::get('/job/{id}/applied-jobs', [JobController::class,'showjobcv'])->name('job.showjobcv');
 
 
@@ -47,7 +47,7 @@ Route::group([
 	Route::get('/applied-jobs', [JobapplicationController::class,'index'])->name('cv.index');
 	Route::get('/applied-jobs/{id}', [JobapplicationController::class,'show'])->name('cv.show');
 	Route::put('/cv/update/{id}', [JobapplicationController::class,'update'])->name('cv.update');
-	Route::get('/cv/delete/{id}', [JobapplicationController::class,'destroy'])->name('cvs.delete');
+	Route::delete('/cv/delete/{id}', [JobapplicationController::class,'destroy'])->name('cvs.delete');
 });
 
 Route::post('/applied-jobs/store', [JobapplicationController::class,'store'])->name('cv.store');

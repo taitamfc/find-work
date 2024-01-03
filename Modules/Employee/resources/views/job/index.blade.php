@@ -69,21 +69,24 @@
                                                                 <li><a href="{{ route('employee.job.edit', $job->id) }}"
                                                                         data-text="Reject Aplication"><span
                                                                             class="la la-pencil"></span></a></li>
-                                                                <li>
-                                                                    <a href="{{ route('employee.job.delete', ['id' => $job->id]) }}"
-                                                                        onclick="confirmDelete(event)"
-                                                                        data-text="Delete Application">
-                                                                        <span class="la la-trash"></span>
-                                                                    </a>
-                                                                </li>
+                                                                <form action="{{ route('employee.job.delete', $job->id) }}"
+                                                                    method="POST" id="deleteForm_{{ $job->id }}"
+                                                                    onsubmit="confirmDelete(event, {{ $job->id }})">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <li>
+                                                                        <button type="submit" class="delete-button"
+                                                                            data-text="Delete Application">
+                                                                            <span class="la la-trash"></span>
+                                                                        </button>
+                                                                    </li>
+                                                                </form>
 
                                                                 <script>
-                                                                    function confirmDelete(event) {
-                                                                        event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
-
+                                                                    function confirmDelete(event, jobId) {
+                                                                        event.preventDefault();
                                                                         if (confirm("Bạn có muốn xóa không?")) {
-                                                                            var url = event.currentTarget.href; // Lấy URL từ thuộc tính href của liên kết
-                                                                            window.location.href = url; // Chuyển hướng đến URL xóa
+                                                                            document.getElementById('deleteForm_' + jobId).submit();
                                                                         }
                                                                     }
                                                                 </script>
