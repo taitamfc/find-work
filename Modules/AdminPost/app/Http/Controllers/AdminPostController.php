@@ -77,6 +77,9 @@ class AdminPostController extends Controller
                 'model'         => $this->model,
                 'item' => $item
             ];
+            if ($type) {
+                return view($this->view_path.'types.'.$type.'.show', $params);
+            }
             return view($this->view_path.'show', $params);
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
@@ -97,6 +100,9 @@ class AdminPostController extends Controller
                 'model'         => $this->model,
                 'item' => $item
             ];
+            if ($type) {
+                return view($this->view_path.'types.'.$type.'.edit', $params);
+            }
             return view($this->view_path.'edit', $params);
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
