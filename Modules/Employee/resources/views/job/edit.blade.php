@@ -267,7 +267,7 @@
 
 
                                                 <div class="form-group col-lg-6 col-md-12">
-                                                    <label>Tổng thanh toán cho tin đăng :</label>
+                                                    <label>Tổng thanh toán cho tin đăng (VNĐ) :</label>
                                                     <input id="price" type="number" value="{{ $job->price }}"
                                                         name="price" id="nameInput" placeholder="Giá...">
                                                     @if ($errors->any())

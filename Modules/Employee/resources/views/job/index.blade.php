@@ -53,7 +53,8 @@
                                                                         class="la la-eye"></span></a></li>
                                                         </ul>
                                                     </td>
-                                                    <td>{{ date('d-m-Y',strtotime($job->start_day)) }} - {{ date('d-m-Y',strtotime($job->end_day)) }}</td>
+                                                    <td>{{ date('d-m-Y', strtotime($job->start_day)) }} -
+                                                        {{ date('d-m-Y', strtotime($job->end_day)) }}</td>
                                                     @if ($job->status == 1)
                                                         <td><span class="green-button">Đang tuyển</span></td>
                                                     @elseif ($job->status == 0)
@@ -79,9 +80,9 @@
                                                                 <script>
                                                                     function confirmDelete(event) {
                                                                         event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
-                                                                
+
                                                                         if (confirm("Bạn có muốn xóa không?")) {
-                                                                            var url = "{{ route('employee.job.delete', ['id' => $job->id]) }}";
+                                                                            var url = event.currentTarget.href; // Lấy URL từ thuộc tính href của liên kết
                                                                             window.location.href = url; // Chuyển hướng đến URL xóa
                                                                         }
                                                                     }

@@ -263,7 +263,7 @@
                                         
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>Tổng thanh toán cho tin đăng :</label>
+                                            <label>Tổng thanh toán cho tin đăng (VNĐ) :</label>
                                             <input id="price" type="number" value="{{ old('price') }}"
                                                 name="price" id="nameInput2" placeholder="Giá..." readonly>
                                             @if ($errors->any())
