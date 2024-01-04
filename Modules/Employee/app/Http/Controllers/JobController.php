@@ -25,18 +25,38 @@ use Illuminate\Support\Str;
 
 class JobController extends Controller
 {
+
+    public function getModel()
+    {
+        return Job::class;
+    }
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $jobs = Job::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get();
+        $query = $this->getModel()::query (true)->where('user_id', auth()->user()->id);
+        
+        if($request->name){
+            $query->where('name', 'LIKE', '%' . $request->name . '%');
+        }
+        if($request->start_day){
+            $query->where('start_day', '>=', $request->start_day);
+        }
+        if($request->end_day){
+            $query->where('end_day', '<=', $request->end_day);
+        }
+        if($request->status != ''){
+            $query->where('status', $request->status);
+        }
+        
+        $query->orderBy('id','desc');
+        $jobs = $query->get();
         $countID = [];
         foreach ($jobs as $job) {
             $count = UserJobApply::where('job_id', $job->id)->count();
             $countID[$job->id] = $count;   
         }
-        
         return view('employee::job.index', compact('jobs', 'countID'));
     }
 
@@ -143,8 +163,12 @@ class JobController extends Controller
             'wages' => $wages,
             'job_packages' => $job_packages
         ];
-        $careerjobs = $job->careers()->pluck('career_id');
-        return view('employee::job.show',compact(['job','param','careerjobs']));
+        if(auth()->user()->id == $job->user_id){
+            $careerjobs = $job->careers()->pluck('career_id');
+            return view('employee::job.show',compact(['job','param','careerjobs']));
+        }else{
+            return redirect()->route('employee.job.index')->with('error', 'bạn không có quyền truy cập link này!');
+        }
     }
 
     /**
