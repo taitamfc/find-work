@@ -26,16 +26,12 @@ use Illuminate\Support\Str;
 class JobController extends Controller
 {
 
-    public function getModel()
-    {
-        return Job::class;
-    }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $query = $this->getModel()::query (true)->where('user_id', auth()->user()->id);
+        $query = Job::query (true)->where('user_id', auth()->user()->id);
         
         if($request->name){
             $query->where('name', 'LIKE', '%' . $request->name . '%');
@@ -51,10 +47,10 @@ class JobController extends Controller
         }
         
         $query->orderBy('id','desc');
-        $jobs = $query->get();
+        $jobs = $query->paginate(5);
         $countID = [];
         foreach ($jobs as $job) {
-            $count = UserJobApply::where('job_id', $job->id)->count();
+            $count = $job->jobApplications->count();
             $countID[$job->id] = $count;   
         }
         return view('employee::job.index', compact('jobs', 'countID'));
