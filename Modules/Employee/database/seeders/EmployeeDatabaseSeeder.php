@@ -17,6 +17,7 @@ class EmployeeDatabaseSeeder extends Seeder
         $this->call([
             UserEmployeeSeeder::class,
             SeedTableJobsSeeder::class,
+            CareerjobSeeder::class,
             SeedTableJobapplySeeder::class,
         ]);
     }
