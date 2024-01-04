@@ -15,7 +15,15 @@ span.flaticon-bookmark.active {
 
             @if($job_info)
             <ul class="job-info">
-                <li><span class="icon flaticon-briefcase"></span> {{ $job->career->name ?? ''}}</li>
+                <li>
+                    <span class="icon flaticon-briefcase"></span>
+                    @foreach ($job->careers as $career)
+                        {{ $career->name }}
+                        @if (!$loop->last)
+                            , <!-- Dấu phẩy để ngăn cách giữa các nghề nghiệp -->
+                        @endif
+                    @endforeach
+                </li>
                 <li><span class="icon flaticon-map-locator"></span>{{$job->work_address}}</li>
                 <li><span class="icon flaticon-clock-3"></span>{{ $job->time_create }}</li>
                 <li><span class="icon flaticon-money"></span>{{$job->wage->name ?? ''}} đ</li>
