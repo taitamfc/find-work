@@ -73,23 +73,28 @@ class JobapplicationController extends Controller
     public function show($id)
     {
         try {
-            // dd(1);
-            $cv_job_apply = UserJobApply::findOrFail($id);
-            $item = UserCv::findOrFail($cv_job_apply->cv->id);
-            $educations = UserEducation::where('cv_id', $cv_job_apply->cv->id)->get();
-            $userExperiences = UserExperience::where('cv_id',$cv_job_apply->cv->id)->get();
-            $userSkills = UserSkill::where('cv_id',$cv_job_apply->cv->id)->get();
-            // dd($educations);
             
-            $params = [
-                'item' => $item,
-                'educations' => $educations,
-                'userExperiences' => $userExperiences,
-                'userSkills' => $userSkills,
-                'cv_job_apply' => $cv_job_apply
-            ];
-
-            return view('employee::cv-apply.show',$params);
+            $cv_job_apply = UserJobApply::findOrFail($id);
+            if (auth()->user()->id == $cv_job_apply->user_id)
+                {
+                    $item = UserCv::findOrFail($cv_job_apply->cv->id);
+                    $educations = UserEducation::where('cv_id', $cv_job_apply->cv->id)->get();
+                    $userExperiences = UserExperience::where('cv_id',$cv_job_apply->cv->id)->get();
+                    $userSkills = UserSkill::where('cv_id',$cv_job_apply->cv->id)->get();
+                    // dd($educations);
+                    
+                    $params = [
+                        'item' => $item,
+                        'educations' => $educations,
+                        'userExperiences' => $userExperiences,
+                        'userSkills' => $userSkills,
+                        'cv_job_apply' => $cv_job_apply
+                    ];
+        
+                    return view('employee::cv-apply.show',$params);
+                }else{
+                    return redirect()->route( 'employee.cv.index' )->with('error', 'bạn không có quyền truy cập link này!');
+                }
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
             return redirect()->route( 'employee.cv.index' )->with('error', __('sys.item_not_found'));

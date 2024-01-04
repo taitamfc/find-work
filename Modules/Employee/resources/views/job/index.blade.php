@@ -14,7 +14,34 @@
                     <div class="ls-widget">
                         <div class="tabs-box">
                             <div class="widget-title">
-                                <h4>Danh sách công việc của tôi</h4>
+                                <h4>Danh sách công việc</h4>
+                                <form class="form-search" action="{{ route('employee.job.index') }}">
+                                    <div class="chosen-outer1">
+                                        <input
+                                            type="text" value="{{ request('name') }}" placeholder="Tên công việc..." name="name">
+                                    </div>
+
+                                    <div class="chosen-outer1">
+                                        <label for="">Thời hạn từ :</label>
+                                        <input
+                                            type="date" value="{{ request('start_day') }}" placeholder="Tên công việc..." name="start_day" onchange="calculateDays()">
+                                        <label for="">đến :</label>
+                                        <input
+                                            type="date" value="{{ request('end_day') }}" placeholder="Tên công việc..." name="end_day" onchange="calculateDays()">
+                                    </div>
+
+
+                                    <div class="chosen-outer1">
+                                        <select name="status" class="chosen-select1">
+                                            <option value="">Trạng thái</option>
+                                            <option {{ request('status') == '1' ? 'selected' : '' }} value="1">Đang tuyển</option>
+                                            <option {{ request('status') == '0' ? 'selected' : '' }} value="0">Dừng tuyển</option>
+                                        </select>
+                                    </div>
+                                    <div style="background: #4906c7;" class="chosen-outer1">
+                                        <button type="submit" style=" color: white;">Tìm kiếm</button>
+                                    </div>
+                                </form>
                             </div>
                             <div class="widget-content">
                                 <div class="table-outer">
@@ -108,4 +135,20 @@
         </div>
     </section>
     <!-- End Dashboard -->
+@endsection
+
+@section('footer')
+    <script>
+        function calculateDays() {
+            var startDate = new Date(document.querySelector('input[name="start_day"]').value);
+            var endDate = new Date(document.querySelector('input[name="end_day"]').value);
+
+            if (endDate < startDate) {
+                // Nếu ngày hết hạn nhỏ hơn ngày bắt đầu, hiển thị thông báo lỗi
+                alert("Ngày hết hạn phải lớn hơn hoặc bằng ngày bắt đầu");
+                // Xóa giá trị ngày hết hạn
+                document.querySelector('input[name="end_day"]').value = "";
+            }
+        }
+    </script>
 @endsection
