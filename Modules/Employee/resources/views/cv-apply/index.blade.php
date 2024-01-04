@@ -4,7 +4,7 @@
     <section class="user-dashboard">
         <div class="dashboard-outer">
             <div class="upper-title-box">
-                <h3>Tất Cả Hồ Sơ Ứng Tuyển</h3>
+                <h3>Quản Lý Hồ Sơ Ứng Tuyển</h3>
                 <div class="text"></div>
             </div>
 
@@ -24,25 +24,28 @@
                                 </div>
                             @endif
                             <div class="widget-title">
-                                <h4>Danh sách</h4>
+                                <h4>Danh sách hồ sơ</h4>
 
-                                <div class="chosen-outer">
-                                    <!--Tabs Box-->
-                                    <select class="chosen-select">
-                                        <option>Công việc khác</option>
-                                        <option>Last 12 Months</option>
-                                        <option>Last 16 Months</option>
-                                        <option>Last 24 Months</option>
-                                        <option>Last 5 year</option>
-                                    </select>
+                                <form class="form-search" action="{{ route('employee.cv.index') }}">
+                                    <div class="chosen-outer1">
+                                        <input type="text" value="{{ request('name') }}" placeholder="Tên hồ sơ..."
+                                            name="name">
+                                    </div>
 
-                                    <!--Tabs Box-->
-                                    <select class="chosen-select">
-                                        <option>Trạng thái hồ sơ</option>
-                                        <option>Duyệt</option>
-                                        <option>Chưa duyệt</option>
-                                    </select>
-                                </div>
+
+                                    <div class="chosen-outer1">
+                                        <select name="status" class="chosen-select1">
+                                            <option value="">Trạng thái</option>
+                                            <option {{ request('status') == '1' ? 'selected' : '' }} value="1">Đã
+                                                duyệt</option>
+                                            <option {{ request('status') == '0' ? 'selected' : '' }} value="0">Chưa
+                                                duyệt</option>
+                                        </select>
+                                    </div>
+                                    <div style="background: #4906c7;" class="chosen-outer1">
+                                        <button type="submit" style=" color: white;">Tìm kiếm</button>
+                                    </div>
+                                </form>
                             </div>
 
                             <div class="widget-content">
@@ -76,17 +79,25 @@
                                                                 <h4 class="name"><a
                                                                         href="#">{{ $cv_aplly->cv->name }}</a></h4>
                                                                 <ul class="candidate-info">
-                                                                    <li class="designation">
-                                                                        {{ $cv_aplly->cv->employment_type ? $cv_aplly->cv->employment_type : '(null)' }}</li>
-                                                                    <li><span class="icon flaticon-map-locator"></span>
-                                                                        {{ $cv_aplly->cv->city ? $cv_aplly->cv->city : '(null)' }}</li>
-                                                                    <li><span class="icon flaticon-money"></span>
-                                                                        {{ $cv_aplly->cv->desired_salary ? $cv_aplly->cv->desired_salary : '(null)' }}</li>
+                                                                    @if ($cv_aplly->cv->employment_type)
+                                                                        <li class="designation">
+                                                                            {{ $cv_aplly->cv->employment_type }}</li>
+                                                                    @endif
+                                                                    @if ($cv_aplly->cv->city)
+                                                                        <li><span class="icon flaticon-map-locator"></span>
+                                                                            {{ $cv_aplly->cv->city }}</li>
+                                                                    @endif
+                                                                    @if ($cv_aplly->cv->desired_salary)
+                                                                        <li><span class="icon flaticon-money"></span>
+                                                                            {{ $cv_aplly->cv->desired_salary }}</li>
+                                                                    @endif
                                                                 </ul>
                                                                 <ul class="post-tags">
-                                                                    <li><a
-                                                                            href="#">{{ $cv_aplly->cv->career_objective ? $cv_aplly->cv->career_objective : '(null)' }}</a>
-                                                                    </li>
+                                                                    @if ($cv_aplly->cv->career_objective)
+                                                                        <li><a
+                                                                                href="#">{{ $cv_aplly->cv->career_objective }}</a>
+                                                                        </li>
+                                                                    @endif
                                                                 </ul>
                                                             </div>
                                                             <div class="option-box">
@@ -132,6 +143,11 @@
                                                     </div>
                                                 @endforeach
                                                 <!-- Candidate block three -->
+                                            </div>
+                                            <div class="ls-show-more">
+                                                <div class="card-footer">
+                                                    {{ $cv_apllys->appends(request()->query())->links() }}
+                                                </div>
                                             </div>
                                         </div>
 

@@ -124,6 +124,11 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    <div class="ls-show-more">
+                                        <div class="card-footer">
+                                            {{ $jobs->appends(request()->query())->links() }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

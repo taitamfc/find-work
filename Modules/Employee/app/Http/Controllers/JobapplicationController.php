@@ -20,21 +20,28 @@ class JobapplicationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cv_apllys_count = UserJobApply::where('user_id', auth()->user()->id)->count();
-        $cv_apllys = UserJobApply::where('user_id', auth()->user()->id)->get();
-        $count_job = Job::where('user_id', auth()->user()->id)->get()->count();
-        $count_cv_appled =  UserJobApply::where('user_id', auth()->user()->id)
-        ->where('status', 1)
-        ->count();
-        $count_not_applly =  UserJobApply::where('user_id', auth()->user()->id)
-        ->where('status', 0)
-        ->count();
+        $query = UserJobApply::where('user_id', auth()->user()->id);
+
+        if($request->name){
+            $query->whereHas('cv',function($query) use($request){
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
+            });
+        }
+        if($request->status != ''){
+            $query->where('status', $request->status);
+        }
+        
+        $cv_apllys = $query->paginate(5);
+
+        $cv_apllys_count = $query->count();
+        $count_cv_appled = $query->where('status', 1)->count();
+        $count_not_apply = UserJobApply::where('user_id', auth()->user()->id)->where('status', 0)->count();
         $param_count = [
             'cv_apllys_count' => $cv_apllys_count,
             'count_cv_appled' => $count_cv_appled,
-            'count_not_applly' => $count_not_applly
+            'count_not_applly' => $count_not_apply
         ];
         return view('employee::cv-apply.index',compact('cv_apllys','param_count'));
     }
