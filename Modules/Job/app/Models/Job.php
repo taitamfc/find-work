@@ -36,9 +36,9 @@ class Job extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function career()
+    public function careers()
     {
-        return $this->belongsTo(Career::class, 'career_id');
+        return $this->belongsToMany(Career::class, 'career_job', 'job_id', 'career_id');
     }
     public function wage()
     {
