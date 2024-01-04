@@ -44,7 +44,7 @@ span.flaticon-bookmark.active {
                         <div class="showing-result">
                             <!-- <div class="text">Showing <strong>41-60</strong> of <strong>944</strong> jobs</div> -->
                         </div>
-                        <form action="" method="get">
+                        {{-- <form action="" method="get">
                             <div class="sort-by">
                                 <select class="chosen-select" name="searchTypeWork" onchange="this.form.submit()">
                                     <option selected disabled>----Search Type Work----</option>
@@ -63,7 +63,7 @@ span.flaticon-bookmark.active {
                                     <option value="60" @selected($request->pagination == '60')>Show 60</option>
                                 </select>
                             </div>
-                        </form>
+                        </form> --}}
                     </div>
                     <!-- Job Block -->
                     @foreach($items as $item)

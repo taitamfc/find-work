@@ -15,7 +15,8 @@ use Modules\Job\app\Models\Job;
 use Modules\Employee\app\Models\UserEmployee;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
-
+use App\Models\Career;
+use Modules\Employee\app\Models\CareerJob;
 
 class JobController extends Controller
 {
@@ -28,20 +29,37 @@ class JobController extends Controller
 
     public function index(Request $request)
     {
+        
         $query = $this->model::query();
         if ($request->pagination) {
             $paginate = $request->pagination;
         } else {
-            $paginate = 5;
-        }
-        if ($request->has('searchTypeWork')) {
-            $query->where('type_work', $request->searchTypeWork);
+            $paginate = 3;
         }
 
-        $query->where('status', 1);
+        if($request->name){
+            $query->where('name', 'LIKE', '%' . $request->name . '%');
+        }
 
-        $items = $query->get()->reverse();
-
+        if($request->address_work){
+            $query->where('work_address', 'LIKE', '%' . $request->address_work . '%');
+        }
+        
+        if ($request->career_search) {
+            $query->whereHas('careers', function ($query) use ($request) {
+                foreach ($request->career_search as $index => $career) {
+                    if ($index === 0) {
+                        $query->where('career_id', $career);
+                    } else {
+                        $query->orWhere('career_id', $career);
+                    }
+                }
+            });
+        }
+        
+        $items = $query->where('status', 1)->orderBy('id', 'desc')->distinct()->get();
+        
+        
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $perPage = $paginate;
         $offset = ($currentPage - 1) * $perPage;
@@ -54,9 +72,11 @@ class JobController extends Controller
             ['path' => LengthAwarePaginator::resolveCurrentPath()]
         );
 
+        $careers = Career::all();
         $param = [
             'items' => $paginatedItems,
-            'request' => $request
+            'request' => $request,
+            'careers'=> $careers
         ];
         return view($this->link_view . 'index', $param);
     }
